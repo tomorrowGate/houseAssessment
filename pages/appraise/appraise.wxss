@@ -1,1 +1,57 @@
 /* pages/appraise/appraise.wxss */
+.appraise-con{
+    background: #F7F5F6;
+    padding: 24rpx 0;
+}
+.appraise-cell-block{
+    padding: 0rpx 24rpx;
+    background: #fff
+}
+.appraise-cell{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 44rpx 0;
+    font-size: 30rpx;
+}
+.appraise-cell+.appraise-cell{
+    border-top:1rpx solid #F2F2F2 
+}
+.cell-value-input{
+    text-align: right;
+}
+.plh-ipt{
+    color: #CCCCCC
+}
+
+.data-upload{
+    margin-top:24rpx;
+    padding: 24rpx ;
+    background: #fff;
+}
+.data-upload-top{
+    padding: 24rpx 0; 
+}
+.data-upload-text{
+    font-size: 30rpx;
+}
+.data-upload-note{
+    text-indent: 6rpx;
+    font-size: 24rpx;
+    color: #ccc;
+}
+.data-upload-out{
+    width: 120rpx;
+    height: 120rpx;
+    padding: 1rpx;
+    border:1rpx dashed #666
+}
+
+.appraise-save{
+    background: #fff;
+    padding: 160rpx 30rpx 0 30rpx;
+}
+.appraise-save-btn{
+    color: #fff;
+    background-image: linear-gradient(to right,#0066FD,#002EFB) 
+}
