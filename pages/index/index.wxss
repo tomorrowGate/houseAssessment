@@ -1,21 +1,56 @@
-/**index.wxss**/
-.userinfo {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+@import "/app.wxss";
+.index-content{
+    padding: 8rpx;
+}
+.swiper{
+  position: relative;
+  overflow: hidden;
+  /* height:350rpx; */
+  height:332rpx;
+  border-radius: 10rpx 0 10rpx 0;
+  z-index: 5
+}
+.swiper-item image{
+  border-radius: 10rpx 0 10rpx 0;
+} 
+.shadow-box{ 
+  overflow: hidden;
+  position: absolute;
+  top:0;
+  left:22rpx;
+  width: 734rpx;
+  height:332rpx;
+  border-radius: 10rpx 0 10rpx 0;
+  box-shadow: 1rpx 0 2rpx #aaa;
+  z-index: 1;
 }
 
-.userinfo-avatar {
-  width: 128rpx;
-  height: 128rpx;
-  margin: 20rpx;
-  border-radius: 50%;
+/* 楼市宫格 */
+.index-grid{
+    display: flex;
+    flex-wrap: wrap;
+    background: #F7F5F6;
 }
-
-.userinfo-nickname {
-  color: #aaa;
+.index-grid-item{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    width: 334rpx;
+    height: 262rpx;
+    background: #fff;
 }
-
-.usermotto {
-  margin-top: 200px;
+.index-grid-item .grid-item-imgbox{
+    width: 146rpx;
+    height: 126rpx
+}
+.grid-item-textbox{
+    text-align: center;
+}
+.grid-item-textup{
+    color: #040403
+}
+.grid-item-textdown{
+    font-size: 24rpx;
+    color: #A6A6A6
 }

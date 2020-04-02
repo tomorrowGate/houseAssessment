@@ -1,13 +1,42 @@
-<!--index.wxml-->
-<view class="container">
-  <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
-  </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
-  </view>
+<view class="index-content">
+    <view class="banner-view">
+        <swiper 
+        indicator-dots="{{swiperStatic.indicatorDots}}" 
+        indicator-color="{{swiperStatic.indicatorColor}}" 
+        indicator-active-color="{{swiperStatic.indicatorActiveColor}}" 
+        autoplay="{{swiperStatic.autoplay}}" 
+        interval="{{swiperStatic.interval}}" 
+        duration="{{swiperStatic.duration}}"
+        circular="{{swiperStatic.circular}}" class="swiper">
+            <block wx:for="{{swiperimg}}" wx:key="index">
+                <swiper-item class="swiper-item">
+                    <image src="{{item.path}}" class="slide-image" mode="aspectFill" data-url="{{item.path}}" />
+                </swiper-item>
+            </block>
+        </swiper>
+        <view class="shadow-box"></view>
+    </view>
+
+    <!-- 楼市宫格 -->
+    <view class="index-grid">
+        <view class="index-grid-item">
+            <view class="grid-item-imgbox">
+                <image class="grid-item-img" src="/static/img/floor_icon.png"></image>
+            </view>
+            <view class="grid-item-textbox">
+                <view class="grid-item-textup">楼盘房价</view>
+                <view class="grid-item-textdown">查看区域楼盘评估</view>
+            </view>
+        </view>
+        <view class="index-grid-item">
+            <view class="grid-item-imgbox">
+                <image class="grid-item-img" src="/static/img/land_icon.png"></image>
+            </view>
+            <view class="grid-item-textbox">
+                <view class="grid-item-textup">土地</view>
+                <view class="grid-item-textdown">查看土地市场监测</view>
+            </view>
+        </view>
+    </view>
+
 </view>

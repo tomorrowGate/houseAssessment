@@ -1,19 +1,11 @@
-// pages/houseprice/houseprice.js
-let app = getApp()
+// pages/user/user.js
 Page({
+
+    /**
+     * 页面的初始数据
+     */
     data: {
-        swiperStatic: {
-            indicatorDots: false,
-            indicatorColor: "rgba(255,255,255,0.6)",
-            indicatorActiveColor: "#fff",
-            autoplay: true,
-            interval: 4000,
-            duration: 1000,
-            circular: true,
-        },
-        swiperimg:[
-            {path:"/static/img/banner.png"}
-        ]
+
     },
 
     /**
