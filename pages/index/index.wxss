@@ -1,17 +1,18 @@
 @import "/app.wxss";
 .index-content{
     padding: 8rpx;
+    background: #F7F5F6;
 }
 .swiper{
   position: relative;
   overflow: hidden;
   /* height:350rpx; */
   height:332rpx;
-  border-radius: 10rpx 0 10rpx 0;
+  border-radius: 0 10rpx 0 10rpx ;
   z-index: 5
 }
 .swiper-item image{
-  border-radius: 10rpx 0 10rpx 0;
+  border-radius:0 10rpx 0 10rpx ;
 } 
 .shadow-box{ 
   overflow: hidden;
@@ -20,7 +21,7 @@
   left:22rpx;
   width: 734rpx;
   height:332rpx;
-  border-radius: 10rpx 0 10rpx 0;
+  border-radius:0 10rpx 0 10rpx ;
   box-shadow: 1rpx 0 2rpx #aaa;
   z-index: 1;
 }
@@ -29,16 +30,21 @@
 .index-grid{
     display: flex;
     flex-wrap: wrap;
-    background: #F7F5F6;
+    padding: 0rpx 10rpx
+}
+.index-grid-item:nth-child(2n){
+    margin-left: 22rpx;
 }
 .index-grid-item{
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-around;
+    justify-content: center;
     width: 334rpx;
     height: 262rpx;
+    margin: 22rpx 0 0 10rpx;
     background: #fff;
+    border-radius: 0 24rpx 0 24rpx;
 }
 .index-grid-item .grid-item-imgbox{
     width: 146rpx;
@@ -51,6 +57,7 @@
     color: #040403
 }
 .grid-item-textdown{
+    margin-top: 14rpx;
     font-size: 24rpx;
     color: #A6A6A6
 }

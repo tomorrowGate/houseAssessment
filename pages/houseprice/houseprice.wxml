@@ -1,2 +1,56 @@
-<!--pages/houseprice/houseprice.wxml-->
-<text>pages/houseprice/houseprice.wxml</text>
+<view class="houseprice">
+    <view class="user-main">
+        <view class="user-bg">
+            <image class="user-bg-img" src="/static/img/mine_bg.png"></image>
+        </view>
+        <view class="user-card-out">
+           <view class="houseprice-card-head">精准搜索</view>
+           <view class="houseprice-card-body">
+                <view class="houseprice-body-item">
+                    <view class="houseprice-item-imgbox">
+                        <image class="" src="/static/img/county_icon.png"></image>
+                    </view>
+                    <view class="houseprice-item-iptbox">
+                        <input placeholder="请输入区县" placeholder-class="iptbox-plc"/>
+                    </view>
+                </view>
+                <view class="houseprice-body-item">
+                    <view class="houseprice-item-imgbox">
+                        <image class="" src="/static/img/county_icon.png"></image>
+                    </view>
+                    <view class="houseprice-item-iptbox">
+                        <input placeholder="请输入小区名称" placeholder-class="iptbox-plc"/>
+                    </view>
+                </view>
+                <view class="houseprice-body-item">
+                    <view class="houseprice-item-imgbox">
+                        <image class="" src="/static/img/county_icon.png"></image>
+                    </view>
+                    <view class="houseprice-item-iptbox">
+                        <input placeholder="请输入栋" placeholder-class="iptbox-plc"/>
+                    </view>
+                </view>
+                <view class="houseprice-body-item">
+                    <view class="houseprice-item-imgbox">
+                        <image class="" src="/static/img/county_icon.png"></image>
+                    </view>
+                    <view class="houseprice-item-iptbox">
+                        <input placeholder="请输入单元" placeholder-class="iptbox-plc"/>
+                    </view>
+                </view>
+                <view class="houseprice-body-item">
+                    <view class="houseprice-item-imgbox">
+                        <image class="" src="/static/img/county_icon.png"></image>
+                    </view>
+                    <view class="houseprice-item-iptbox">
+                        <input placeholder="请输入室" placeholder-class="iptbox-plc"/>
+                    </view>
+                </view>
+           </view>
+
+           <view class="houseprice-card-foot">
+                <button class="user-del-btn">搜索</button>
+           </view>
+        </view>
+    </view>
+</view>

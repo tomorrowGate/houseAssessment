@@ -1,3 +1,5 @@
 {
-  "usingComponents": {}
+    "navigationBarTitleText": "房价",
+    "navigationStyle": "custom",
+    "usingComponents": {}
 }

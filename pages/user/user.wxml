@@ -1,2 +1,69 @@
-<!--pages/user/user.wxml-->
-<text>pages/user/user.wxml</text>
+<view class="user">
+    <view class="user-main">
+        <view class="user-bg">
+            <image class="user-bg-img" src="/static/img/mine_bg.png"></image>
+        </view>
+        <view class="user-card-out">
+            <view class="user-head">
+                <view class="user-head-left">
+                    <image class="user-head-img" src=""></image>
+                </view>
+                <view class="user-head-mid">
+                    <view class="user-head-name">张某某</view>
+                    <view class="user-head-ident">房地产评估管理员</view>
+                </view>
+                <view class="user-head-right">
+                    <text class="user-head-edit">编辑</text>
+                    <view class="edit-box">
+                        <image class="edit-img" src="/static/img/mine_right_arrow_icon.png"></image>
+                    </view>
+                </view>
+            </view>
+            <view class="user-card">
+                <view class="user-card-item">
+                    <view class="user-card-itemnum">208</view>
+                    <view class="user-card-itemtxt">已申请</view>
+                </view>
+                <view class="user-card-item">
+                    <view class="user-card-itemnum">604</view>
+                    <view class="user-card-itemtxt">待受理</view>
+                </view>
+                <view class="user-card-item">
+                    <view class="user-card-itemnum">458</view>
+                    <view class="user-card-itemtxt">已受理</view>
+                </view>
+            </view>
+        </view>
+        
+    </view>
+
+    <view class="user-func">
+        <view class="user-func-row">
+            <view class="user-func-sharebox">
+                <image src="/static/img/share_icon.png"></image>
+            </view>
+            <view class="user-row-cell">
+                <text class="user-func-text">分享给朋友</text>
+                <view class="user-func-right">
+                    <image class="edit-img" src="/static/img/mine_right_arrow_icon.png"></image>
+                </view>
+            </view>
+        </view>
+        
+        <view class="user-func-row">
+            <view class="user-func-sharebox">
+                <image src="/static/img/feedback_icon.png"></image>
+            </view>
+            <view class="user-row-cell">
+                <text class="user-func-text">意见反馈</text>
+                <view class="user-func-right">
+                    <image class="edit-img" src="/static/img/mine_right_arrow_icon.png"></image>
+                </view>
+            </view>
+        </view>
+    </view>
+
+    <view class="user-del">
+        <button class="user-del-btn">解除绑定</button>
+    </view>
+</view>

@@ -1,1 +1,98 @@
-/* pages/user/user.wxss */
+.user-main{
+    position: relative;
+    padding-bottom: 134rpx
+}
+.user-bg{
+    height: 455rpx;
+}
+.user-card-out{
+    position: absolute;
+    bottom: 60rpx;
+    width: 100%;
+    padding: 0 30rpx;
+    box-sizing: border-box;
+    z-index: 2;
+}
+.user-head{
+    display: flex;
+    align-items: center;
+    color: #fff
+}
+.user-head-left{
+    width: 134rpx;
+    height: 134rpx;
+    border: 1rpx solid #ccc;
+    border-radius: 50%;
+    background: #aaa
+}
+.user-head-mid{
+    width: 440rpx;
+    margin-left: 18rpx;
+}
+.user-head-name{
+    font-size: 34rpx;
+    margin-bottom: 10rpx;
+}
+.user-head-ident{
+    font-size: 28rpx;
+}
+.user-head-right{
+    display: flex;
+    align-items: center;
+    padding-top: 50rpx
+}
+
+.user-card{
+    display: flex;
+    margin-top: 40rpx;
+    background: #fff;
+    box-shadow: 2rpx 10rpx 10rpx #eee;
+    border-radius: 0 24rpx 0 24rpx;
+}
+.user-card-item{
+    flex: 1;
+    padding: 27rpx;
+    text-align: center;
+}
+.user-card-itemnum{
+    font-size: 30rpx;
+    color: #005DFE;
+}
+.user-card-itemtxt{
+    color: #999999;
+    margin-top: 23rpx;
+}
+
+.user-func{
+    padding: 0 30rpx;
+}
+.user-func-row{
+    display: flex;
+    align-items: center;
+}
+.user-func-sharebox{
+    width: 34rpx;
+    height: 34rpx;
+    margin-right: 30rpx;
+}
+.user-row-cell{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 656rpx;
+    padding: 46rpx 0;
+    border-bottom: 1rpx solid #ccc;
+}
+.user-func-right{
+    width: 14rpx;
+    height: 26rpx;
+}
+
+.user-del{
+    background: #fff;
+    padding: 160rpx 30rpx 0 30rpx;
+}
+.user-del-btn{
+    color: #fff;
+    background: #F01625
+}
