@@ -43,6 +43,7 @@
                 <image src="/static/img/share_icon.png"></image>
             </view>
             <view class="user-row-cell">
+                    <button class='contact-btn' open-type='share'></button>
                 <text class="user-func-text">分享给朋友</text>
                 <view class="user-func-right">
                     <image class="edit-img" src="/static/img/mine_right_arrow_icon.png"></image>
@@ -64,6 +65,6 @@
     </view>
 
     <view class="user-del">
-        <button class="user-del-btn">解除绑定</button>
+        <button class="user-del-btn" style="width: 100%;" bindtap="removeBind">解除绑定</button>
     </view>
 </view>

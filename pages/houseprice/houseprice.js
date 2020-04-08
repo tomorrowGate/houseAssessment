@@ -5,9 +5,19 @@ Page({
      * 页面的初始数据
      */
     data: {
-
+        searchParameter:{
+            county:"",
+            countyName:"",
+            dong:"",
+            unit:"",
+            room:""
+        }
     },
-
+    houseSearch(){
+        wx.navigateTo({
+            url: '/pages/housePriceDet/housePriceDet',
+        })
+    },
     /**
      * 生命周期函数--监听页面加载
      */

@@ -41,6 +41,14 @@
     align-items: center;
     padding-top: 50rpx
 }
+.user-head-edit{
+    margin-right: 10rpx;
+    font-size: 30rpx;
+}
+.edit-box{
+    width: 14rpx;
+    height:26rpx;
+}
 
 .user-card{
     display: flex;
@@ -76,6 +84,7 @@
     margin-right: 30rpx;
 }
 .user-row-cell{
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -83,9 +92,13 @@
     padding: 46rpx 0;
     border-bottom: 1rpx solid #ccc;
 }
+.user-func-text{
+    letter-spacing: 2rpx;
+}
 .user-func-right{
     width: 14rpx;
     height: 26rpx;
+    color: #D4D4D6;
 }
 
 .user-del{
@@ -93,6 +106,14 @@
     padding: 160rpx 30rpx 0 30rpx;
 }
 .user-del-btn{
+    width: 100%;
     color: #fff;
     background: #F01625
+}
+.contact-btn{
+    position: absolute;
+    width: 656rpx;
+    height: 100%;
+    opacity: 0;
+    z-index: 2
 }

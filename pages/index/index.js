@@ -13,9 +13,41 @@ Page({
         },
         swiperimg:[
             {path:"/static/img/banner.png"}
-        ]
+        ],
+        isShowDia:true//是否显示弹框，true是不显示
     },
-
+    showDiaLog(){
+        this.setData({
+            isShowDia: !this.data.isShowDia
+        })
+    },
+    hideDialog(){
+        this.setData({
+            isShowDia: true
+        })
+    },
+    functionQuery(){
+        this.showDiaLog()
+    },
+    toOtherFour(e){
+        console.log(e.currentTarget.dataset.type)
+        wx.navigateTo({
+            url: '/pages/newhouse/newhouse?type=' + e.currentTarget.dataset.type,
+        })
+    },
+    search(){
+        wx.navigateTo({
+            url: '/pages/buildingdet/buildingdet',
+        })
+        this.hideDialog()
+    },
+    nexTime(){
+        wx.showToast({
+            title: '敬请期待',
+            icon: 'none',
+            duration: 2000
+        })
+    },
     /**
      * 生命周期函数--监听页面加载
      */

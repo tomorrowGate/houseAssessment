@@ -1,0 +1,135 @@
+<view class="user">
+    <view class="user-main">
+        <view class="user-bg">
+            <image class="user-bg-img" src="/static/img/mine_bg.png"></image>
+        </view>
+        <view class="user-card-out">
+            <view class="user-head">
+               <view class="house-src">杭州国玺悦龙府</view>
+               <view class="house-num">( 5幢1单元1201室 )</view>
+            </view>
+
+            <view class="user-card">
+                <view class="user-card-item">
+                    <view class="user-card-itemnum">339万元</view>
+                    <view class="user-card-itemtxt">估算总价</view>
+                </view>
+                <view class="user-card-item">
+                    <view class="user-card-itemnum">38500元/m2</view>
+                    <view class="user-card-itemtxt">估算单价</view>
+                </view>
+            </view>
+        </view>
+    </view>
+
+    <view class="housepd-fun">
+        <view class="housepd-fun-item">
+            <view class="housepd-item-imgbox">
+                <image class="" src="/static/img/price_correction_icon.png"></image>
+            </view>
+            <text class="housepd-item-text">价格修正</text>
+        </view>
+        <view class="housepd-fun-item">
+            <view class="housepd-item-imgbox">
+                <image class="" src="/static/img/market_anticipation_icon.png"></image>
+            </view>
+            <text class="housepd-item-text">市场预判</text>
+        </view>
+        <view class="housepd-fun-item">
+            <view class="housepd-item-imgbox">
+                <image class="" src="/static/img/case_reference_icon.png"></image>
+            </view>
+            <text class="housepd-item-text">案例参考</text>
+        </view>
+        <view class="housepd-fun-item">
+            <view class="housepd-item-imgbox">
+                <image class="" src="/static/img/offline_commitment_icon.png"></image>
+            </view>
+            <text class="housepd-item-text">线下委托</text>
+        </view>
+    </view>
+
+    
+    <view class="housepd-table">
+        <view class="housepd-table-head">房产基本信息</view>
+        <view class="housepd-table-cells">
+            <view class="housepd-cell-block">
+                <text class="housepd-cell-key">房屋坐落: </text>
+                <text class="housepd-cell-value">杭州国玺悦龙府5幢1单元1201室</text>
+            </view>
+            <view class="housepd-cell-inlineb">
+                <text class="housepd-cell-key">权证信息: </text>
+                <text class="housepd-cell-value"></text>
+            </view>
+            <view class="housepd-cell-inlineb">
+                <text class="housepd-cell-key">所属城市: </text>
+                <text class="housepd-cell-value">杭州市</text>
+            </view>
+            <view class="housepd-cell-inlineb">
+                <text class="housepd-cell-key">所属城区: </text>
+                <text class="housepd-cell-value">上城区 </text>
+            </view>
+            <view class="housepd-cell-inlineb">
+                <text class="housepd-cell-key">小区名称: </text>
+                <text class="housepd-cell-value">国玺悦龙府</text>
+            </view>
+            <view class="housepd-cell-inlineb">
+                <text class="housepd-cell-key">建成年份: </text>
+                <text class="housepd-cell-value">2000 </text>
+            </view>
+            <view class="housepd-cell-inlineb">
+                <text class="housepd-cell-key">建筑面积: </text>
+                <text class="housepd-cell-value">87.8㎡</text>
+            </view>
+            <view class="housepd-cell-inlineb">
+                <text class="housepd-cell-key">套内面积: </text>
+                <text class="housepd-cell-value">75.5㎡ </text>
+            </view>
+            <view class="housepd-cell-inlineb">
+                <text class="housepd-cell-key">规划用途: </text>
+                <text class="housepd-cell-value">住宅 </text>
+            </view>
+            <view class="housepd-cell-inlineb">
+                <text class="housepd-cell-key">总  层  次: </text>
+                <text class="housepd-cell-value">10</text>
+            </view>
+            <view class="housepd-cell-inlineb">
+                <text class="housepd-cell-key">建筑结构: </text>
+                <text class="housepd-cell-value"></text>
+            </view>
+        </view>
+    </view>
+
+    <view class="housepd-table">
+        <view class="housepd-table-head">房产价格同比环比</view>
+        <view class="housepd-table-datas">
+            <scroll-view class="tableScroll" scroll-x="true">
+                <view class="tr">
+                    <view class="th tablest"></view>
+                    <view class="th" wx:for="{{housePriceTh}}" wx:for-item="item" wx:key="index">{{item}}</view>
+                </view>
+                <view class="tr" wx:for="{{housePriceTable}}" wx:for-item="item" wx:key="index">
+                    <view class='td tablest'> {{item.name}} </view>
+                    <view class="td" wx:for="{{item.arr}}" wx:for-item="items" wx:key="idx"> 
+                        <text>{{items}}%</text>
+                        <view class="td-imgbox"> <image src="{{items>0?incaseIcon:downIcon}}"></image> </view>
+                    </view>
+                </view>
+            </scroll-view>
+        </view>
+    </view>
+
+    <Charts chartData="{{chartData}}"></Charts>
+    
+    <!--  <view class="house-datas">
+        <view class="house-datas-head">
+            <view class="house-datas-text">价格走势图</view>
+            <view class="house-data-tag">单位：元</view>
+        </view>
+        <view class="house-data-body">
+           <view class='container1'>
+                <ec-canvas class="ec-canvas" id="ecdom1" canvas-id="eccolumn1" ec="{{ ecopt }}"></ec-canvas>
+            </view>
+        </view>
+    </view> -->
+</view>
