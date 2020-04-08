@@ -1,0 +1,63 @@
+<view class="appraise">
+    <view class="appraise-con">
+        <view class="appraise-cell-block">
+            <view class="appraise-cell">
+                <view class="appraise-cell-key">地下室</view>
+                <view class="appraise-cell-value">
+                    <input type="text" class="cell-value-input" placeholder-class="plh-ipt" placeholder="请输入"></input>
+                </view>
+            </view>
+            <view class="appraise-cell">
+                <view class="appraise-cell-key">未计入建筑面积</view>
+                <view class="appraise-cell-value">
+                    <input type="text" class="cell-value-input" placeholder-class="plh-ipt" placeholder="请输入"></input>
+                </view>
+            </view>
+            <view class="appraise-cell">
+                <view class="appraise-cell-key">阁楼</view>
+                <view class="appraise-cell-value">
+                    <input type="number" class="cell-value-input" placeholder-class="plh-ipt" placeholder="请选择"></input>
+                </view>
+            </view>
+            <view class="appraise-cell">
+                <view class="appraise-cell-key">公共设施完善度</view>
+                <view class="appraise-cell-value">
+                    <input type="text" class="cell-value-input" placeholder-class="plh-ipt" placeholder="请选择"></input>
+                </view>
+            </view>
+            <view class="appraise-cell">
+                <view class="appraise-cell-key">露台</view>
+                <view class="appraise-cell-value">
+                    <input type="number" class="cell-value-input" placeholder-class="plh-ipt" placeholder="请选择"></input>
+                </view>
+            </view>
+        </view>
+    </view>
+
+    <view class="appraise-con">
+        <view class="appraise-cell-block">
+            <view class="appraise-cell">
+                <view class="appraise-cell-key">厌恶设施</view>
+                <view class="appraise-cell-value">
+                    <input type="text" class="cell-value-input" placeholder-class="plh-ipt" placeholder="请选择"></input>
+                </view>
+            </view>
+            <view class="appraise-cell">
+                <view class="appraise-cell-key">独用花园(院子)</view>
+                <view class="appraise-cell-value">
+                    <input type="text" class="cell-value-input" placeholder-class="plh-ipt" placeholder="请选择"></input>
+                </view>
+            </view>
+            <view class="appraise-cell">
+                <view class="appraise-cell-key">其他因素</view>
+                <view class="appraise-cell-value">
+                    <input type="number" class="cell-value-input" placeholder-class="plh-ipt" placeholder="请输入"></input>
+                </view>
+            </view>
+        </view>
+    </view>   
+
+    <view class="modify-price-btns">
+        <view class="modify-price-btn">修正价格</view>
+    </view>
+</view>

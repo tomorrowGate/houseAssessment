@@ -1,0 +1,8 @@
+
+.house-data-body{
+    height: 550rpx;
+}
+.container1,.ec-canvas{
+    width: 680rpx;
+    height: 550rpx;
+}

@@ -1,0 +1,60 @@
+.user-main{
+    position: relative;
+    /* padding-bottom: 134rpx */
+}
+.user-bg{
+    height: 455rpx;
+}
+.user-card-out{
+    position: absolute;
+    top:220rpx;
+    left: 50%;
+    width: 690rpx;
+    transform: translateX( -50%);
+    border-radius: 20rpx;
+    background: #fff;
+    z-index: 2;
+}
+.houseprice-card-head{
+    height: 92rpx;
+    line-height: 92rpx;
+    color: #0C0C0C;
+    font-size: 30rpx;
+    text-align: center;
+    font-weight: 600;
+    border-radius: 20rpx;
+    background: #F2F3F7;
+}
+.houseprice-item-imgbox{
+    width: 40rpx;
+    height: 40rpx;
+    margin: 0 24rpx 0 29rpx
+}
+.houseprice-item-imgbox image{
+    display: block;
+}
+.houseprice-body-item{
+    display: flex;
+    align-items: center;
+    width: 580rpx;
+    height: 88rpx;
+    line-height: 88rpx;
+    margin: 50rpx auto;
+    background: #F2F3F7;
+    border-radius: 16rpx;
+}
+.iptbox-plc{
+    color: #D6D6D6
+}
+
+.user-del-btn{
+    width: 580rpx;
+    height: 88rpx;
+    line-height: 88rpx;
+    text-align: center;
+    margin: auto;
+    color: #fff;
+    font-size: 32rpx;
+    border-radius: 20rpx;
+    background-image: linear-gradient(to right,#0066FD,#002EFB) 
+}

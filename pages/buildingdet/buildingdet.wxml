@@ -1,0 +1,58 @@
+<view class="user">
+    <view class="user-main">
+        <view class="user-bg">
+            <image class="user-bg-img" src="/static/img/floor_banner.png"></image>
+        </view>
+        <view class="user-card-out">
+            <view class="user-head">
+               <view class="house-src">国玺悦珑府</view>
+               <view class="house-num">38500元/m2</view>
+            </view>
+
+            <view class="user-card">
+                <view class="user-card-bgimg">
+                    <image src="/static/img/More_button.png"></image>
+                </view>
+                <view class="build-more-do">更多操作</view>
+                <view class="build-more-imgbox">
+                    <image src="/static/img/right_arrow_icon.png"></image>
+                </view>
+            </view>
+        </view>
+    </view>
+
+     <view class="house-datas">
+        <view class="house-datas-head">
+            <view class="house-datas-text">住宅成交价格走势</view>
+            <view class="house-data-tag">单位：元</view>
+        </view>
+        <view class="house-data-body">
+           <view class=' container1'>
+                <ec-canvas class="ec-canvas" id="ecdom1" canvas-id="eccolumn1" ec="{{ ecopt }}"></ec-canvas>
+            </view>
+        </view>
+    </view>
+     <view class="house-datas">
+        <view class="house-datas-head">
+            <view class="house-datas-text">商业成交价格走势</view>
+            <view class="house-data-tag">单位：元</view>
+        </view>
+        <view class="house-data-body">
+           <view class=' container1'>
+                <ec-canvas class="ec-canvas" id="ecdom2" canvas-id="eccolumn2" ec="{{ ecopt }}"></ec-canvas>
+            </view>
+        </view>
+    </view>
+     <view class="house-datas">
+        <view class="house-datas-head">
+            <view class="house-datas-text">办公成交价格走势</view>
+            <view class="house-data-tag">单位：元</view>
+        </view>
+        <view class="house-data-body">
+           <view class=' container1'>
+                <ec-canvas class="ec-canvas" id="ecdom3" canvas-id="eccolumn3" ec="{{ ecopt }}"></ec-canvas>
+            </view>
+           
+        </view>
+    </view>
+</view>

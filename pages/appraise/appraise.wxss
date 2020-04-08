@@ -1,0 +1,91 @@
+/* pages/appraise/appraise.wxss */
+.appraise-con{
+    background: #F7F5F6;
+    padding: 24rpx 0;
+}
+.appraise-cell-block{
+    padding: 0rpx 24rpx;
+    background: #fff;
+    font-size: 30rpx;
+}
+.appraise-cell{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 44rpx 0;
+    font-size: 30rpx;
+}
+.appraise-cell+.appraise-cell{
+    border-top:1rpx solid #F2F2F2 
+}
+.cell-value-input{
+    text-align: right;
+}
+.plh-ipt{
+    color: #CCCCCC
+}
+/* 资料上传 */
+.data-upload{
+    margin-top:24rpx;
+    padding: 24rpx ;
+    background: #fff;
+}
+.data-upload-top{
+    padding: 24rpx 0; 
+}
+.data-upload-text{
+    font-size: 30rpx;
+}
+.data-upload-note{
+    text-indent: 6rpx;
+    font-size: 24rpx;
+    color: #ccc;
+}
+.data-upload-out{
+    width: 120rpx;
+    height: 120rpx;
+    padding: 1rpx;
+    border:1rpx dashed #666
+}
+
+/* 图片列表 */
+.land-pic{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10rpx 0;
+}
+.land-pic-box{
+    position: relative;
+    width: 350rpx;
+    height: 300rpx;
+    margin:6rpx 10rpx;
+    border: 1rpx dashed #ccc
+}
+/* 删除图片 */
+.img-de {
+  width:0;
+  height:0;
+  border-width: 45rpx 0 0 45rpx;
+  border-style:solid;
+  border-color: rgba(0,0,0,0.4) transparent transparent transparent;
+  position: absolute;
+  right: 0rpx;
+  top: 0rpx;
+}
+.img-de image{
+  width: 25rpx;
+  height: 25rpx;
+  position: absolute;
+  right: 0rpx;
+  top: -40rpx;
+}
+
+.appraise-save{
+    background: #fff;
+    padding: 160rpx 30rpx 0 30rpx;
+}
+.appraise-save-btn{
+    width: 100%;
+    color: #fff;
+    background-image: linear-gradient(to right,#0066FD,#002EFB) 
+}

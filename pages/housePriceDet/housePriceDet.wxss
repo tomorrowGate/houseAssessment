@@ -1,0 +1,171 @@
+.user-main{
+    position: relative;
+    padding-bottom: 30rpx;
+}
+.user-bg{
+    height: 336rpx;
+     /* height: 455rpx; */
+}
+.user-card-out{
+    position: absolute;
+    top: 60rpx;
+    width: 100%;
+    box-sizing: border-box;
+    z-index: 2;
+}
+.user-head{
+    margin: auto;
+    text-align: center;
+    color: #fff
+}
+.house-src{
+    letter-spacing: 4rpx;
+    font-size: 40rpx;
+}
+.house-num{
+    letter-spacing: 2rpx;
+    font-size: 32rpx;
+    margin-top: 30rpx
+}
+.user-card{
+    display: flex;
+    margin-top: 40rpx;
+    background: #1165FF;
+    color: #CADCFC;
+    border-top:1rpx solid #0F66FF;
+}
+.user-card-item{
+    flex: 1;
+    padding: 27rpx;
+    text-align: center;
+}
+.user-card-itemnum{
+    font-size: 30rpx;
+}
+.user-card-itemtxt{
+    margin-top: 12rpx;
+}
+
+/* 价格修正 */
+.housepd-fun{
+    display: flex;
+    padding: 30rpx 0;
+    border-bottom: 20rpx solid #F6F6F6;
+}
+.housepd-fun-item{
+    flex:1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.housepd-item-imgbox{
+    width: 60rpx;
+    height: 60rpx;
+    margin-bottom: 24rpx;
+}
+
+/* 房产信息 */
+.housepd-table{
+    padding: 50rpx 30rpx;
+    border-bottom: 20rpx solid #F6F6F6;
+
+}
+.housepd-table-head{
+    padding-bottom: 8rpx;
+    font-size: 30rpx;
+    font-weight: 600;
+}
+.house-datas-text:first-letter{
+    display: inline-block;
+    line-height: 20rpx;
+    border-radius: 6rpx 14rpx 14rpx 6rpx; 
+    background: #7FAEFF;
+}
+.housepd-cell-block{
+    padding: 25rpx 0;
+}
+.housepd-cell-inlineb{
+    padding: 25rpx 0;
+    display: inline-block;
+    width: 50%;
+}
+.housepd-cell-key{
+    color: #999
+}
+
+
+.tableScroll{
+  white-space: nowrap;
+  box-sizing: border-box;
+  position: relative;
+}
+.tr{
+    border-bottom: 1rpx solid #F6F6F6;
+}
+.th {
+    min-width: 230rpx;
+    font-weight: 400;
+    box-sizing: border-box;
+    display: inline-block;
+    color: #999999;
+}
+.td{
+ /*  border-bottom: 1px dashed #d7d7d7; */
+  color: #999999;
+  box-sizing: border-box;
+  display: inline-flex;
+  justify-content: center;
+}
+.tr .tablest{
+  /* width: 190rpx;
+  padding: 20rpx 2rpx; */
+  width: 230rpx;
+  padding: 20rpx 50rpx 20rpx 10rpx;
+  /* white-space: normal; */
+  /* 换行后文字居中麻烦 */
+}
+.th, .td {
+  width: 230rpx;
+  padding: 20rpx 10rpx;  
+  text-align: center;
+  font-size: 26rpx;
+}
+.tr:nth-of-type(1) {
+  height: 75rpx;
+  color: white;
+  position: relative;
+  z-index: 1;
+}
+.td-imgbox{
+    width: 15rpx;
+    height: 22rpx;
+    margin-left: 4rpx;
+}
+/* 房屋数据 */
+.house-datas{
+    padding: 30rpx;
+   border-bottom: 20rpx solid #F6F6F6
+}
+.house-datas-head{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+}
+.house-datas-text{
+    font-size: 30rpx;
+    font-weight: 600;
+}
+.house-data-tag{
+    padding: 0 20rpx;
+    height: 44rpx;
+    line-height: 44rpx;
+    font-size: 20rpx;
+    background: #F0F4FA;
+    color: #999999;
+    border-radius: 22rpx;
+}
+.house-data-body{
+    height: 550rpx;
+}

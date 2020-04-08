@@ -1,13 +1,92 @@
-<!--index.wxml-->
-<view class="container">
-  <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
-  </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
-  </view>
+<view class="index-content">
+    <view class="banner-view">
+        <swiper 
+        indicator-dots="{{swiperStatic.indicatorDots}}" 
+        indicator-color="{{swiperStatic.indicatorColor}}" 
+        indicator-active-color="{{swiperStatic.indicatorActiveColor}}" 
+        autoplay="{{swiperStatic.autoplay}}" 
+        interval="{{swiperStatic.interval}}" 
+        duration="{{swiperStatic.duration}}"
+        circular="{{swiperStatic.circular}}" class="swiper">
+            <block wx:for="{{swiperimg}}" wx:key="index">
+                <swiper-item class="swiper-item">
+                    <image src="{{item.path}}" class="slide-image" mode="aspectFill" data-url="{{item.path}}" />
+                </swiper-item>
+            </block>
+        </swiper>
+        <!-- <view class="shadow-box"></view> -->
+    </view>
+
+    <!-- 楼市宫格 -->
+    <view class="index-grid">
+        <view class="index-grid-item " bindtap="functionQuery">
+            <view class="grid-item-imgbox">
+                <image class="grid-item-img" src="/static/img/floor_icon.png"></image>
+            </view>
+            <view class="grid-item-textbox">
+                <view class="grid-item-textup">楼盘房价</view>
+                <view class="grid-item-textdown">查看区域楼盘评估</view>
+            </view>
+        </view>
+        <view class="index-grid-item" bindtap="toOtherFour" data-type="land">
+            <view class="grid-item-imgbox">
+                <image class="grid-item-img" src="/static/img/land_icon.png"></image>
+            </view>
+            <view class="grid-item-textbox">
+                <view class="grid-item-textup">土地</view>
+                <view class="grid-item-textdown">查看土地市场监测</view>
+            </view>
+        </view>
+        <view class="index-grid-item bubble" bindtap="toOtherFour" data-type="newhouse">
+            <view class="grid-item-imgbox">
+                <image class="grid-item-img" src="/static/img/new_room_icon.png"></image>
+            </view>
+            <view class="grid-item-textbox">
+                <view class="grid-item-textup">新房</view>
+                <view class="grid-item-textdown">查看新房市场监测</view>
+            </view>
+        </view>
+        <view class="index-grid-item bubble" bindtap="toOtherFour" data-type="secondhouse">
+            <view class="grid-item-imgbox">
+                <image class="grid-item-img" src="/static/img/second_house_icon.png"></image>
+            </view>
+            <view class="grid-item-textbox">
+                <view class="grid-item-textup">二手房</view>
+                <view class="grid-item-textdown">查看二手房市场监测</view>
+            </view>
+        </view>
+        <view class="index-grid-item" bindtap="toOtherFour" data-type="law">
+            <view class="grid-item-imgbox">
+                <image class="grid-item-img" src="/static/img/judicial_icon.png"></image>
+            </view>
+            <view class="grid-item-textbox">
+                <view class="grid-item-textup">司法</view>
+                <view class="grid-item-textdown">查看司法市场监测</view>
+            </view>
+        </view>
+    </view>
 </view>
+
+<dialog isShowDia="{{isShowDia}}">
+    <view class="index-mask-box">
+        <view class="index-mask-title">楼盘房价</view>
+        
+        <view class="index-mask-content">
+            <view class="mask-content-item">
+                <view class="houseprice-item-imgbox">
+                    <image class="" src="/static/img/area_icon.png"></image>
+                </view>
+                <view class="houseprice-item-iptbox">
+                    <input placeholder="小区名称" placeholder-class="iptbox-plc"/>
+                </view>
+            </view>
+        </view>
+
+        <view class="line"></view>
+
+        <view class="mask-btngroup">
+            <view class="mask-cencle" bindtap="hideDialog">取消</view>
+            <view class="liner-btn mask-search" bindtap="search" >查询</view>
+        </view>
+    </view>
+</dialog>
