@@ -7,7 +7,11 @@ Page({
     data: {
 
     },
-
+    nextTap(e){
+        wx.navigateTo({
+            url: '/pages/housePriceDet',
+        })
+    },
     /**
      * 生命周期函数--监听页面加载
      */

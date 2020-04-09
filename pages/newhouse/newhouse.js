@@ -13,6 +13,8 @@ Page({
         pickerCityValue:"",
         arrayHouse: [{ name: "青青家园" }, { name: "三墩古镇" }, { name: "地铁城" }, { name: "国际城" }],
         pickerHouseValue: "",
+
+        showModal:false,//是否显示日期弹框
         // 图表数据
         ecopt: {
             lazyLoad: true
@@ -51,6 +53,15 @@ Page({
      */
     onLoad: function (options) {
         //console.log(options)
+        let title = {
+            "land":"土地详情",
+            "newhouse":"新房详情",
+            "secondhouse":"二手房详情",
+            "law":"司法详情"
+        }
+        wx.setNavigationBarTitle({
+            title: title[options.type]
+        })
     },
 
     /**
@@ -165,13 +176,9 @@ Page({
         console.log(value)
     },
     confirmStart(){
-        /* wx.showModal({
-            title: '选择时间段',
-            content: '请选择开始时间',
-            success(res){
-                console.log("用户点了确定")
-            }
-        }) */
+        this.setData({
+            showModal: true,
+        })
     },
     bindPickerChangeTime(e){
 

@@ -19,7 +19,7 @@
 
     <!-- 楼市宫格 -->
     <view class="index-grid">
-        <view class="index-grid-item " bindtap="functionQuery">
+        <view class="index-grid-item bubble" bindtap="functionQuery">
             <view class="grid-item-imgbox">
                 <image class="grid-item-img" src="/static/img/floor_icon.png"></image>
             </view>
@@ -28,7 +28,7 @@
                 <view class="grid-item-textdown">查看区域楼盘评估</view>
             </view>
         </view>
-        <view class="index-grid-item" bindtap="toOtherFour" data-type="land">
+        <view class="index-grid-item bubble" bindtap="toOtherFour" data-type="land">
             <view class="grid-item-imgbox">
                 <image class="grid-item-img" src="/static/img/land_icon.png"></image>
             </view>
@@ -55,7 +55,7 @@
                 <view class="grid-item-textdown">查看二手房市场监测</view>
             </view>
         </view>
-        <view class="index-grid-item" bindtap="toOtherFour" data-type="law">
+        <view class="index-grid-item bubble" bindtap="toOtherFour" data-type="law">
             <view class="grid-item-imgbox">
                 <image class="grid-item-img" src="/static/img/judicial_icon.png"></image>
             </view>

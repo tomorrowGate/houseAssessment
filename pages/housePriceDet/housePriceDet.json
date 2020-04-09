@@ -1,6 +1,7 @@
 {
-  "usingComponents": {
-    "ec-canvas": "../../utils/ec-canvas/ec-canvas",
-    "Charts":"../../components/charts/charts"
-  }
+    "navigationBarTitleText": "一房一价详情",
+    "usingComponents": {
+        "ec-canvas": "../../utils/ec-canvas/ec-canvas",
+        "Charts": "../../components/charts/charts"
+    }
 }

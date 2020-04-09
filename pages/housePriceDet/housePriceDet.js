@@ -27,7 +27,22 @@ Page({
         },
         ecComponent1: null,
     },
-
+    priceModify(e){
+        wx.navigateTo({
+            url: '/pages/infowrite/infowrite',
+        })
+    },
+    nextTime(e){
+        wx.showToast({
+            title: '下次一定',
+            icon: 'none',
+        })
+    },
+    goUnderLinde(e){
+        wx.navigateTo({
+            url: '/pages/bindUser/bindUser',
+        })
+    },
     /**
      * 生命周期函数--监听页面加载
      */
@@ -77,10 +92,4 @@ Page({
 
     },
 
-    /**
-     * 用户点击右上角分享
-     */
-    onShareAppMessage: function () {
-
-    }
 })

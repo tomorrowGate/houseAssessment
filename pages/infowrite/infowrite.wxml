@@ -29,7 +29,7 @@
             <view class="appraise-cell">
                 <view class="appraise-cell-key">空间形式</view>
                 <view class="appraise-cell-value">
-                    <input type="number" class="cell-value-input" placeholder-class="plh-ipt" placeholder="请选择"></input>
+                    <input type="text" class="cell-value-input" placeholder-class="plh-ipt" placeholder="请选择"></input>
                 </view>
             </view>
         </view>
@@ -71,6 +71,6 @@
     </view>   
 
     <view class="modify-price-btns">
-        <view class="modify-price-btn">下一步</view>
+        <view class="modify-price-btn" bindtap="nextTap">下一步</view>
     </view>
 </view>
