@@ -1,4 +1,5 @@
 /**app.wxss**/
+@import "/static/font/iconfont.wxss";
 .container {
   height: 100%;
   display: flex;
@@ -17,8 +18,40 @@ cover-image{
   overflow:hidden;
 }
 view{
-  font-size: 26rpx;
+  font-size: 28rpx;
 }
 cover-view{
-  font-size: 26rpx;
+  font-size: 28rpx;
+}
+
+.liner-btn{
+    text-align: center;
+    margin: auto;
+    color: #fff;
+    background-image: linear-gradient(to right,#0066FD,#002EFB) 
+}
+
+/* 按钮点击后波纹效果 */
+.bubble{ 
+ position: relative;
+ overflow: hidden;
+}
+.bubble:after{
+ content: "";
+ background: #999;
+ position: absolute; 
+ width: 750rpx;
+ height: 750rpx;
+ left: calc(50% - 375rpx);
+ top: calc(50% - 375rpx);
+ opacity: 0;
+ margin: auto;
+ border-radius: 50%;
+ transform: scale(1);
+ transition: all 0.4s ease-in-out;
+}
+.bubble:active:after {
+ transform: scale(0);
+ opacity: 1;
+ transition: 0s;
 }

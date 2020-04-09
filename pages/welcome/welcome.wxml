@@ -1,6 +1,6 @@
 <!--pages/welcome/welcome.wxml-->
 <view class="welcome-content">
     <view class="wel-cin-imgbox">
-        <image class="wel-cin-img" src=""></image>
+        <image class="wel-cin-img" src="/static/img/welcome_page_bg.png"></image>
     </view>
 </view>

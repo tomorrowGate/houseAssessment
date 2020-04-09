@@ -1,0 +1,103 @@
+.user-main{
+    position: relative;
+    padding-bottom: 20rpx
+}
+.user-bg{
+     height: 445rpx;
+}
+.user-card-out{
+    position: absolute;
+    top:160rpx;
+    width: 100%;
+    height: 100%;
+   /*  transform: translateY(-50%); */
+    padding: 0 30rpx;
+    box-sizing: border-box;
+    z-index: 2;
+}
+.user-head{
+    margin: auto;
+    text-align: center;
+    color: #fff
+}
+.house-src{
+    letter-spacing: 4rpx;
+    font-size: 40rpx;
+}
+.house-num{
+    letter-spacing: 2rpx;
+    font-size: 32rpx;
+    margin-top: 30rpx
+}
+.user-card{
+    position: relative;
+    display: flex;
+    width: 554rpx;
+    height: 94rpx;
+    margin: 50rpx auto;
+   
+    border-radius: 0 24rpx 0 24rpx;
+}
+.user-card-bgimg{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  
+    z-index:1,
+}
+.build-more-do{
+    width: 100%;
+    height: 100%;
+    line-height: 84rpx;
+    font-size: 30rpx;
+    letter-spacing: 2rpx;
+    text-align: center;
+    color: #fff;
+    z-index: 3
+}
+.build-more-imgbox{
+    position: absolute;
+    top:50%;
+    transform: translateY(-50%);
+    right: 55rpx;
+    width: 30rpx;
+    height: 30rpx;
+    z-index: 3
+}
+
+.house-datas{
+    padding: 30rpx;
+   border-bottom: 20rpx solid #F6F6F6
+}
+.house-datas-head{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+}
+.house-datas-text{
+    font-size: 30rpx;
+    font-weight: 600;
+}
+.house-datas-text:first-letter{
+    display: inline-block;
+    line-height: 20rpx;
+    border-radius: 6rpx 14rpx 14rpx 6rpx; 
+    background: #7FAEFF;
+}
+.house-data-tag{
+    padding: 0 20rpx;
+    height: 44rpx;
+    line-height: 44rpx;
+    font-size: 20rpx;
+    background: #F0F4FA;
+    color: #999999;
+    border-radius: 22rpx;
+}
+.house-data-body{
+    height: 550rpx;
+}
+.container1,.ec-canvas{
+    width: 680rpx;
+    height: 550rpx;
+}

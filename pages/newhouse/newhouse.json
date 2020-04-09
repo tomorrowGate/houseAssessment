@@ -1,0 +1,8 @@
+{
+    "usingComponents": {
+        "ec-canvas": "../../utils/ec-canvas/ec-canvas",
+        "Table": "../../components/table/table",
+        "Charts": "../../components/charts/charts",
+        "Dialog":"../../components/dialog/dialog"
+    }
+}

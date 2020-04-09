@@ -17,7 +17,7 @@
             <view class="appraise-cell">
                 <view class="appraise-cell-key">电话</view>
                 <view class="appraise-cell-value">
-                    <input type="text" class="cell-value-input" placeholder-class="plh-ipt" placeholder="请输入"></input>
+                    <input type="number" class="cell-value-input" placeholder-class="plh-ipt" placeholder="请输入"></input>
                 </view>
             </view>
         </view>
@@ -27,12 +27,22 @@
                 <text class="data-upload-text">资料上传</text>
                 <text class="data-upload-note">(不动产权证或房屋所有权证和土地使用证)</text>
             </view>
-            <view class="data-upload-out">
-                <image class="data-upload-outimg" src="/static/img/pic_upload.png"></image>
+            <view class="data-upload-out" bindtap="addPic">
+                <image class="data-upload-outimg" src="/static/img/pic_upload.png" ></image>
+            </view>
+        </view>
+
+        <view class="land-pic">
+            <view class="land-pic-box" wx:for="{{imgbox}}" wx:key="index">
+                <view class='img-de' data-deindex='{{index}}' bindtap='imgDelete' data-type="4">
+                    <!-- 右上角的删除按钮图片 -->
+                    <image class='img' src='/static/img/Del.png'></image>
+                </view>
+                <image src="{{item}}"></image>
             </view>
         </view>
     </view>
     <view class="appraise-save">
-        <button  class="appraise-save-btn">保存</button>
+        <button  class="appraise-save-btn" style="width: 100%;" bindtap="saveData">保存</button>
     </view>
 </view>

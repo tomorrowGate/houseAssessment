@@ -1,9 +1,16 @@
 {
     "pages": [
+        "pages/index/index",
+        "pages/bindUser/bindUser",
+        "pages/infowrite/infowrite",
+        "pages/priceModify/priceModify",
+        "pages/housePriceDet/housePriceDet",
+        "pages/buildingdet/buildingdet",
+        "pages/newhouse/newhouse",
+        "components/dialog/dialog",
         "pages/houseprice/houseprice",
         "pages/user/user",
         "pages/appraise/appraise",
-        "pages/index/index",
         "pages/logs/logs",
         "pages/attestation/attestation",
         "pages/welcome/welcome"

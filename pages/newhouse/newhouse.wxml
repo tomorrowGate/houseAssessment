@@ -1,0 +1,164 @@
+<view class="user">
+    <view class="user-main">
+        <view class="user-bg">
+            <image class="user-bg-img" src="/static/img/mine_bg.png"></image>
+        </view>
+        <view class="user-card-out">
+            <view class="user-head">
+               <view class="house-src">挂牌房源量</view>
+               <view class="house-num">143896/套</view>
+            </view>
+
+            <view class="user-card">
+                <view class="user-card-item user-card-itemfirst">
+                    <view class="user-card-itemnum">15914</view>
+                    <view class="user-card-itemtxt">最近成交量(套)</view>
+                </view>
+                <view class="user-card-item">
+                    <view class="user-card-itemnum itemnum-same-ring">
+                        <text class="itemnum-raing-up">5%</text> 
+                        <view class="same-ring-imgbox">
+                            <image src="/static/img/red_arrow_icon.png"></image>
+                        </view>
+                    </view>
+                    <view class="user-card-itemtxt">环比</view>
+                </view>
+                <view class="user-card-item">
+                    <view class="user-card-itemnum itemnum-same-ring">
+                        <text class="itemnum-same-up">3%</text> 
+                        <view class="same-ring-imgbox">
+                            <image src="/static/img/red_arrow_icon.png"></image>
+                        </view>
+                    </view>
+                    <view class="user-card-itemtxt">同比</view>
+                </view>
+            </view>
+        </view>
+    </view>
+
+    <view class="house-tag-group">
+        <picker 
+        mode="selector" 
+        range="{{arrayCity}}" 
+        range-key="name"
+        class="house-tag-picker " 
+        bindchange="bindPickerChangeCity" >
+            <view class="house-tag-item bubble">
+                <view class="house-tag-text">{{pickerCityValue||"上城区"}}</view>
+                <view class="house-tag-imgbox">
+                    <image src="/static/img/drop-down_icon.png"></image>
+                </view>
+            </view>
+        </picker>
+
+        <picker 
+        mode="selector" 
+        range="{{arrayHouse}}" 
+        range-key="name"
+        class="house-tag-picker " 
+        bindchange="bindPickerChangeHouse" >
+            <view class="house-tag-item bubble">
+                <view class="house-tag-text">{{pickerHouseValue||"住宅"}}</view>
+                <view class="house-tag-imgbox">
+                    <image src="/static/img/drop-down_icon.png"></image>
+                </view>
+            </view>
+        </picker>
+
+        <!-- <picker 
+        mode="date" 
+        class="house-tag-picker "        
+        bindtap="confirmStart" 
+        bindchange="bindPickerChangeTime"  -->
+            <view class="house-tag-item bubble" bindtap="confirmStart">
+                <view class="house-tag-text"></view>
+                <view class="house-tag-imgbox">
+                    <image src="/static/img/date_icon.png"></image>
+                </view>
+            </view>
+        <!-- </picker> -->
+
+        <Dialog isShowDia = "{{!showModal}}">
+            <view class="modalDlg" wx:if="{{showModal}}">
+                <view class="time_text">请选择初始日期</view>
+                <picker-view 
+                wx:if="{{years.length>0 && months.length>0 && days.length>0}}" 
+                style="width: 100%; height: 500rpx;" 
+                indicator-style="height: 50px;" 
+                class="view_picker" 
+                value="{{value}}" 
+                bindchange="bindChange">
+                    <picker-view-column style='margin-left: 20rpx;'>
+                        <view wx:for="{{years}}" class="view_picker_text" wx:key="index">{{item}}年</view>
+                    </picker-view-column>
+                    <picker-view-column>
+                        <view wx:for="{{months}}" class="view_picker_text" wx:key="index">{{item}}月</view>
+                    </picker-view-column>
+                    <picker-view-column style='margin-right: 20rpx;'>
+                        <view wx:for="{{days}}" class="view_picker_text" wx:key="index">{{item}}日</view>
+                    </picker-view-column>
+                </picker-view>
+                <button style='width:100%;color:blue;' bindtap="go">继续</button>
+            </view>
+        </Dialog>
+
+
+        <Dialog isShowDia = "{{!showModals}}">
+            <view class="modalDlg" wx:if="{{showModals}}">
+                <view class="time_text">请选择结束日期</view>
+                <picker-view 
+                wx:if="{{years.length>0 && months.length>0 && days.length>0}}" 
+                style="width: 100%; height: 500rpx;" 
+                indicator-style="height: 50px;" 
+                class="view_picker" 
+                value="{{value}}" 
+                bindchange="bindChange">
+                    <picker-view-column style='margin-left: 20rpx;'>
+                        <view wx:for="{{years}}" class="view_picker_text" wx:key="index">{{item}}年</view>
+                    </picker-view-column>
+                    <picker-view-column>
+                        <view wx:for="{{months}}" class="view_picker_text" wx:key="index">{{item}}月</view>
+                    </picker-view-column>
+                    <picker-view-column style='margin-right: 20rpx;'>
+                        <view wx:for="{{days}}" class="view_picker_text" wx:key="index">{{item}}日</view>
+                    </picker-view-column>
+                </picker-view>
+                <view>
+                    <button class="data-picker-cencle" bindtap="cancel">取消</button>
+                    <button class="data-picker-sure" bindtap="gos">确定</button>
+                </view>
+            </view>
+        </Dialog>
+    </view>
+
+
+     <view class="house-datas">
+        <view class="house-datas-head">
+            <view class="house-datas-text">交叉查询-套数</view>
+            <view class="house-data-tag">单位：面积(m2)\总价(万元)</view>
+        </view>
+        <view class="house-data-body">
+            <Table thData="{{bdMessage}}" trDatas="{{bdCount}}" trtdWidth="{{trtdWidth}}"></Table>
+        </view>
+    </view>
+
+     <view class="house-datas">
+        <view class="house-datas-head">
+            <view class="house-datas-text">交叉查询-面积</view>
+            <view class="house-data-tag">单位：面积(m2)\总价(万元)</view>
+        </view>
+        <view class="house-data-body">
+           <Table thData="{{bdMessage}}" trDatas="{{bdCount}}" trtdWidth="{{trtdWidth}}"></Table>
+        </view>
+    </view>
+
+    
+     <view class="house-datas">
+        <view class="house-datas-head">
+            <view class="house-datas-text">挂牌和成交比</view>
+            <view class="house-data-tag">单位：%</view>
+        </view>
+        <Charts/>
+    </view>
+    
+</view>

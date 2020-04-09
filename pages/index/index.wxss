@@ -23,6 +23,7 @@
   height:332rpx;
   border-radius:0 10rpx 0 10rpx ;
   box-shadow: 1rpx 0 2rpx #aaa;
+  box-sizing: border-box;
   z-index: 1;
 }
 
@@ -60,4 +61,56 @@
     margin-top: 14rpx;
     font-size: 24rpx;
     color: #A6A6A6
+}
+
+/* 弹框 */
+.index-mask-box{
+    padding: 42rpx;
+}
+.index-mask-title{
+    text-align: center;
+    font-size: 30rpx;
+    margin-bottom: 18rpx;
+}
+.index-mask-content{
+    padding-bottom: 75rpx;
+    border-bottom: 1rpx solid #ccc
+}
+.mask-content-item{
+    display: flex;
+    align-items: center;
+}
+.houseprice-item-imgbox{
+    width: 30rpx;
+    height: 35rpx;
+    margin-right: 8rpx
+}
+.houseprice-item-iptbox .iptbox-plc{
+    color: #333;
+}
+.mask-btngroup{
+    display: flex;
+
+    margin-top: 75rpx;
+}
+.mask-cencle{
+    width: 246rpx;
+    height: 80rpx;
+    line-height: 80rpx;
+    text-align: center;
+    font-size: 30rpx;
+    color: #005DFC;
+    border:1rpx solid #005DFC;
+    border-radius: 10rpx;
+}
+.mask-search{
+    width: 246rpx;
+    height: 80rpx;
+    line-height: 80rpx;
+    text-align: center;
+    font-size: 30rpx;
+    color: #fff;
+    border:1rpx solid #005DFC;
+    border-radius: 10rpx;
+    background: #005DFC;
 }

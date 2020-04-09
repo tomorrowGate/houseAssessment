@@ -1,0 +1,24 @@
+<view class="appraise">
+    <view class="appraise-con">
+        <view class="appraise-cell-block">
+            <view class="appraise-cell">
+                <view class="appraise-cell-key">手机号</view>
+                <view class="appraise-cell-value">
+                    <input type="text" class="cell-value-input" placeholder-class="plh-ipt" placeholder="请输入"  bindinput="phoneInput"  value="{{phoneNumber}}"/>
+                </view>
+            </view>
+            <view class="appraise-cell">
+                <view class="appraise-cell-key">验证码</view>
+                <view class="appraise-cell-value">
+                    <input type="text" class="cell-value-input" placeholder-class="plh-ipt" placeholder="请输入"  bindinput="yzmInput"  value="{{yzmNumber}}"/>
+                    <view class="binduser-send" bindtap="send" hidden="{{isSended}}">发送</view>
+                    <view class="binduser-send" hidden="{{!isSended}}">{{timeDown}}</view>
+                </view>
+            </view>
+        </view>
+    </view>
+
+    <view class="modify-price-btns">
+        <view class="modify-price-btn" bindtap="bind">立即绑定</view>
+    </view>
+</view>

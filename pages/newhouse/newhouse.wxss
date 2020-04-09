@@ -1,0 +1,221 @@
+.user-main{
+    position: relative;
+    padding-bottom: 134rpx
+}
+.user-bg{
+    height: 286rpx;
+    /*  height: 455rpx; */
+}
+.user-card-out{
+    position: absolute;
+    top:70rpx;
+    /* bottom: 60rpx; */
+    width: 100%;
+    padding: 0 30rpx;
+    box-sizing: border-box;
+    z-index: 2;
+}
+.user-head{
+    margin: auto;
+    text-align: center;
+    color: #fff
+}
+.house-src{
+    letter-spacing: 4rpx;
+    font-size: 40rpx;
+}
+.house-num{
+    letter-spacing: 2rpx;
+    font-size: 32rpx;
+    margin-top: 30rpx
+}
+.user-card{
+    display: flex;
+    margin-top: 40rpx;
+    background: #fff;
+    box-shadow: 2rpx 10rpx 10rpx #eee;
+    border-radius: 0 24rpx 0 24rpx;
+}
+.user-card-item{
+    flex: 1;
+    padding: 27rpx;
+    text-align: center;
+}
+.user-card-itemfirst{
+    flex:1.5
+}
+.user-card-itemnum{
+    font-weight: 600;
+    font-size: 35rpx;
+    color: #000
+}
+.itemnum-same-ring{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start
+}
+.same-ring-imgbox{
+    width: 13rpx;
+    height: 19rpx;
+}
+.itemnum-same-up{
+    color: #FC0000;
+}
+.itemnum-raing-up{
+    color: #FF9442
+}
+.user-card-itemtxt{
+    color: #999999;
+    margin-top: 23rpx;
+}
+
+.house-tag-group{
+    display: flex;
+    margin-top: 10rpx;
+    margin-bottom: 30rpx;
+    padding: 10rpx 30rpx;
+}
+.house-tag-item{
+    display: flex;
+    align-items: center;
+    height: 68rpx;
+    line-height: 68rpx;
+    padding: 0rpx 32rpx;
+    font-size: 28rpx;
+    margin-right: 24rpx;
+    border-radius: 34rpx;
+    box-shadow: 2rpx 2rpx 2rpx #eee;
+}
+.house-tag-picker{
+   /*  width: 100%; */
+}
+.house-tag-imgbox{
+    width: 28rpx;
+    height: 28rpx;
+    margin-left: 16rpx;
+}
+.house-tag-imgbox image{
+    display: block;
+}
+
+/* 日期弹出层 */
+
+.modalDlg{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.time_text{
+    text-align: center;
+    font-size:40rpx;
+    height: 35px;
+    margin-top: 10px;
+}
+.view_picker{
+    margin-top: 20rpx;
+    margin-bottom: 20rpx; 
+}
+.view_picker_text{
+    padding-left:35rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.data-picker-cencle{
+    width:100px;
+    color:grey;
+    display:inline-block;
+    height:40px;
+    font-size:35rpx;
+}
+.data-picker-sure{
+    width:100px;
+    background:blue;
+    color:white;
+    display:inline-block;
+    margin-left:10px;
+    height:40px;
+    font-size:35rpx;
+}
+
+
+/* 房屋数据 */
+.house-datas{
+    padding: 30rpx;
+   border-bottom: 20rpx solid #F6F6F6
+}
+.house-datas-head{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 60rpx;
+}
+.house-datas-text:first-letter{
+    display: inline-block;
+    line-height: 20rpx;
+    border-radius: 6rpx 14rpx 14rpx 6rpx; 
+    background: #7FAEFF;
+}
+.house-datas-text{
+    font-size: 30rpx;
+    font-weight: 600;
+}
+.house-data-tag{
+    padding: 0 20rpx;
+    height: 44rpx;
+    line-height: 44rpx;
+    font-size: 20rpx;
+    background: #F0F4FA;
+    color: #999999;
+    border-radius: 22rpx;
+}
+.house-data-body{
+    
+}
+
+.tableScroll{
+  white-space: nowrap;
+  box-sizing: border-box;
+  position: relative;
+}
+.tr{
+    border-bottom: 1rpx solid #F6F6F6;
+}
+.th {
+  min-width: 100rpx;
+  font-weight: 400;
+  box-sizing: border-box;
+  display: inline-block;
+  color: #999999;
+}
+.td{
+  color: #999999;
+  box-sizing: border-box;
+  display: inline-block;
+}
+.tr .tablest{
+  /* width: 190rpx;
+  padding: 20rpx 2rpx; */
+  width: 150rpx;
+  padding: 20rpx 50rpx 20rpx 10rpx;
+  /* white-space: normal; */
+  /* 换行后文字居中麻烦 */
+}
+.th, .td {
+  width: 150rpx;
+  padding: 20rpx 10rpx;  
+  text-align: center;
+  font-size: 26rpx;
+}
+.tr:nth-of-type(1) {
+  height: 75rpx;
+  color: white;
+  position: relative;
+  z-index: 1;
+}
+
+.container1,.ec-canvas{
+    width: 680rpx;
+    height: 550rpx;
+}

@@ -1,4 +1,6 @@
 {
     "navigationBarTitleText": "市场监测",
-    "usingComponents": {}
+    "usingComponents": {
+        "dialog": "/components/dialog/dialog"
+    }
 }

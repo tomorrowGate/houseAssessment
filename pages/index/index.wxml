@@ -14,12 +14,12 @@
                 </swiper-item>
             </block>
         </swiper>
-        <view class="shadow-box"></view>
+        <!-- <view class="shadow-box"></view> -->
     </view>
 
     <!-- 楼市宫格 -->
     <view class="index-grid">
-        <view class="index-grid-item">
+        <view class="index-grid-item bubble" bindtap="functionQuery">
             <view class="grid-item-imgbox">
                 <image class="grid-item-img" src="/static/img/floor_icon.png"></image>
             </view>
@@ -28,7 +28,7 @@
                 <view class="grid-item-textdown">查看区域楼盘评估</view>
             </view>
         </view>
-        <view class="index-grid-item">
+        <view class="index-grid-item bubble" bindtap="toOtherFour" data-type="land">
             <view class="grid-item-imgbox">
                 <image class="grid-item-img" src="/static/img/land_icon.png"></image>
             </view>
@@ -37,7 +37,7 @@
                 <view class="grid-item-textdown">查看土地市场监测</view>
             </view>
         </view>
-        <view class="index-grid-item">
+        <view class="index-grid-item bubble" bindtap="toOtherFour" data-type="newhouse">
             <view class="grid-item-imgbox">
                 <image class="grid-item-img" src="/static/img/new_room_icon.png"></image>
             </view>
@@ -46,7 +46,7 @@
                 <view class="grid-item-textdown">查看新房市场监测</view>
             </view>
         </view>
-        <view class="index-grid-item">
+        <view class="index-grid-item bubble" bindtap="toOtherFour" data-type="secondhouse">
             <view class="grid-item-imgbox">
                 <image class="grid-item-img" src="/static/img/second_house_icon.png"></image>
             </view>
@@ -55,7 +55,7 @@
                 <view class="grid-item-textdown">查看二手房市场监测</view>
             </view>
         </view>
-        <view class="index-grid-item">
+        <view class="index-grid-item bubble" bindtap="toOtherFour" data-type="law">
             <view class="grid-item-imgbox">
                 <image class="grid-item-img" src="/static/img/judicial_icon.png"></image>
             </view>
@@ -65,5 +65,28 @@
             </view>
         </view>
     </view>
-
 </view>
+
+<dialog isShowDia="{{isShowDia}}">
+    <view class="index-mask-box">
+        <view class="index-mask-title">楼盘房价</view>
+        
+        <view class="index-mask-content">
+            <view class="mask-content-item">
+                <view class="houseprice-item-imgbox">
+                    <image class="" src="/static/img/area_icon.png"></image>
+                </view>
+                <view class="houseprice-item-iptbox">
+                    <input placeholder="小区名称" placeholder-class="iptbox-plc"/>
+                </view>
+            </view>
+        </view>
+
+        <view class="line"></view>
+
+        <view class="mask-btngroup">
+            <view class="mask-cencle" bindtap="hideDialog">取消</view>
+            <view class="liner-btn mask-search" bindtap="search" >查询</view>
+        </view>
+    </view>
+</dialog>
