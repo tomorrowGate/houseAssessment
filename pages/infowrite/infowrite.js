@@ -9,7 +9,7 @@ Page({
     },
     nextTap(e){
         wx.navigateTo({
-            url: '/pages/housePriceDet',
+            url: '/pages/priceModify/priceModify',
         })
     },
     /**

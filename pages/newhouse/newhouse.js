@@ -15,6 +15,8 @@ Page({
         pickerHouseValue: "",
 
         showModal:false,//是否显示日期弹框
+        startTime:"",
+        endTime:"",
         // 图表数据
         ecopt: {
             lazyLoad: true
@@ -59,7 +61,7 @@ Page({
             "secondhouse":"二手房详情",
             "law":"司法详情"
         }
-        wx.setNavigationBarTitle({
+        options.type && wx.setNavigationBarTitle({
             title: title[options.type]
         })
     },
@@ -182,6 +184,28 @@ Page({
     },
     bindPickerChangeTime(e){
 
+    },
+    getTimeCut(options){
+        console.log(options)
+        this.setData({
+            startTime: options.detail.startTime,
+            endTime: options.detail.endTime
+        })
+        if (!this.data.pickerCityValue){
+            wx.showToast({
+                title: '请选择城区',
+                icon:"none"
+            })
+            return
+        }
+
+        if (!this.data.pickerHouseValue) {
+            wx.showToast({
+                title: '请选择住宅',
+                icon: "none"
+            })
+            return
+        }
     },
     /**
      * 生命周期函数--监听页面隐藏

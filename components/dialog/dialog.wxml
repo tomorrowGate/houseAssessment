@@ -1,6 +1,6 @@
 <view class="dialog" hidden="{{isShowDia}}">
   <view class="dialog-mask" bindtap="cencleDia"></view>
-  <view class="dialog-main">
+  <view class="dialog-main" style="width:{{width}}rpx">
     <slot></slot>
   </view>
 </view>

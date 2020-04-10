@@ -1,0 +1,19 @@
+<view class="appraise">
+    <view class="appraise-con">
+        <view class="appraise-cell-block">
+            <view class="appraise-cell">
+                <view class="appraise-cell-key">请填写您的意见</view>
+            </view>
+        </view>
+
+         <view class="appraise-cell-block">
+                <view class="feed-text">
+                    <textarea bindblur="bindTextAreaBlur" auto-height placeholder="请输入" value="{{text}}" />
+                </view>
+            </view>
+    </view>
+
+    <view class="modify-price-btns">
+        <view class="modify-price-btn" bindtap="bind">提 交</view>
+    </view>
+</view>

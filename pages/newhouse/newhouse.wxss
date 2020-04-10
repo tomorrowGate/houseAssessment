@@ -98,46 +98,6 @@
     display: block;
 }
 
-/* 日期弹出层 */
-
-.modalDlg{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.time_text{
-    text-align: center;
-    font-size:40rpx;
-    height: 35px;
-    margin-top: 10px;
-}
-.view_picker{
-    margin-top: 20rpx;
-    margin-bottom: 20rpx; 
-}
-.view_picker_text{
-    padding-left:35rpx;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.data-picker-cencle{
-    width:100px;
-    color:grey;
-    display:inline-block;
-    height:40px;
-    font-size:35rpx;
-}
-.data-picker-sure{
-    width:100px;
-    background:blue;
-    color:white;
-    display:inline-block;
-    margin-left:10px;
-    height:40px;
-    font-size:35rpx;
-}
 
 
 /* 房屋数据 */
