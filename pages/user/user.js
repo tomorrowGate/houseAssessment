@@ -13,9 +13,8 @@ Page({
         })
     },
     editUserInfo(){
-        wx.showToast({
-            title: '敬请期待',
-            icon:"none"
+        wx.navigateTo({
+            url: '/pages/userinfoForm/userinfoForm',
         })
     },
     goFeedBack(){

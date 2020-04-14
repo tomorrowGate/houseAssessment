@@ -36,6 +36,11 @@
 .index-grid-item:nth-child(2n){
     margin-left: 22rpx;
 }
+.index-line .index-grid-item{
+    flex-direction: row;
+    width: 100%;
+    /* justify-content: flex-start */
+}
 .index-grid-item{
     display: flex;
     flex-direction: column;

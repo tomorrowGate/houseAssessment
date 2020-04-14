@@ -1,6 +1,5 @@
 {
     "pages": [
-        "pages/userinfoForm/userinfoForm",
         "pages/index/index",
         "pages/newhouse/newhouse",
         "pages/bindUser/bindUser",
@@ -16,6 +15,7 @@
         "pages/attestation/attestation",
         "pages/offlineCommit/offlineCommit",
         "pages/feedback/feedback",
+        "pages/userinfoForm/userinfoForm",
         "pages/welcome/welcome"
     ],
     "tabBar": {
