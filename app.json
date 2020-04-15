@@ -1,10 +1,10 @@
 {
     "pages": [
         "pages/index/index",
+        "pages/priceModify/priceModify",
         "pages/newhouse/newhouse",
         "pages/bindUser/bindUser",
         "pages/infowrite/infowrite",
-        "pages/priceModify/priceModify",
         "pages/housePriceDet/housePriceDet",
         "pages/buildingdet/buildingdet",
         "components/dialog/dialog",

@@ -11,12 +11,36 @@ Page({
             dong:"",
             unit:"",
             room:""
-        }
+        },
+        fuzzyQuery: {
+            city: ["西湖","杭州","萧山"],
+            filterData: [],
+            inputValue: "",
+            canSwitch: true
+        },
     },
     houseSearch(){
         wx.navigateTo({
             url: '/pages/housePriceDet/housePriceDet',
         })
+    },
+    filter(e) {
+        let keywords = e.detail.value
+        let result = []
+
+        e.currentTarget.dataset.filterdata.city.forEach((city, index) => {
+            result.push(city)
+        })
+        this.setData({
+            'fuzzyQuery.filterData': result,
+            "fuzzyQuery.inputValue": e.detail.value
+        })
+    },
+    makesure(e) {
+        this.setData({
+            'fuzzyQuery.inputValue': e.currentTarget.dataset.indexkey,
+            'fuzzyQuery.filterData': [],
+        }) 
     },
     /**
      * 生命周期函数--监听页面加载

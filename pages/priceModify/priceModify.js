@@ -5,12 +5,32 @@ Page({
      * 页面的初始数据
      */
     data: {
-
+        isDiaShow:false
     },
     modifyPrice(){
+        this.setData({
+            isDiaShow: !this.data.isDiaShow
+        })
+        /* wx.showToast({
+            title: '修改成功',
+        }) */
+    },
+    closeDia(){
+        this.setData({
+            isDiaShow: false
+        })
+    },
+    submit(){
         wx.showToast({
             title: '修改成功',
+            duration:1000
         })
+        setTimeout(()=>{
+            this.setData({
+                isDiaShow: false
+            })
+        },1000)
+        
     },
     /**
      * 生命周期函数--监听页面加载

@@ -67,3 +67,42 @@
         <view class="modify-price-btn" bindtap="modifyPrice">修正价格</view>
     </view>
 </view>
+
+<view class="mod-dialog" wx:if="{{isDiaShow}}">
+    <view class="mod-dia-close" bindtap="closeDia">
+        <image src="/static/img/popup_close_x.png"></image>
+    </view>
+    <view class="mod-dia-main">
+        <view class="mod-main-bgimgbox">
+            <image src="/static/img/popup_bg.png"></image>
+        </view>
+        <view class="mod-main-items">
+            <view class="mod-main-item">
+                <view class="main-item-bgimgbox">
+                    <image src="/static/img/popup_price_bg.png"></image>
+                </view>
+                <view class="main-item-outbox">
+                    <view class="mod-item-price">2334</view>
+                    <view class="mod-item-text">修正单价</view>
+                    <view class="mod-item-note">（单位：平方米）</view>
+                </view>
+            </view>
+
+            <view class="mod-main-item mod-item-all">
+                <view class="main-item-bgimgbox">
+                    <image src="/static/img/popup_price_bg.png"></image>
+                </view>
+                <view class="main-item-outbox">
+                    <view class="mod-item-price">8678</view>
+                    <view class="mod-item-text">修正总价</view>
+                    <view class="mod-item-note">（单位：万元）</view>
+                </view>
+            </view>
+        </view>
+        
+        <view class="mod-dia-submit" bindtap="submit">
+            提交
+        </view>
+    </view>
+
+</view>

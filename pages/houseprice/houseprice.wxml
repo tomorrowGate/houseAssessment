@@ -11,7 +11,20 @@
                         <image class="" src="/static/img/county_icon.png"></image>
                     </view>
                     <view class="houseprice-item-iptbox">
-                        <input placeholder="请输入区县" placeholder-class="iptbox-plc"/>
+                        <input 
+                        placeholder="请输入区县" 
+                        placeholder-class="iptbox-plc" 
+                        bindinput="filter" 
+                        bindblur="clearFilter"
+                        data-filterdata="{{fuzzyQuery}}"
+                        value="{{fuzzyQuery.inputValue}}"/>
+                    </view>
+                    <view  
+                        class="input-items" 
+                        wx:for="{{fuzzyQuery.filterData}}" 
+                        wx:key="index" 
+                        bindtap="makesure" >
+                        {{item.brand_name}}
                     </view>
                 </view>
                 <view class="houseprice-body-item">
