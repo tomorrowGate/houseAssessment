@@ -42,7 +42,8 @@
             </view>
         </view>
     </view>
+    
     <view class="appraise-save">
-        <button  class="appraise-save-btn" style="width: 100%;" bindtap="saveData">保存</button>
+        <view  class="appraise-save-btn" style="width: 100%;" bindtap="saveData">保存</view>
     </view>
 </view>

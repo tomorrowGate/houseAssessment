@@ -17,8 +17,7 @@
         <!-- <view class="shadow-box"></view> -->
     </view>
 
-    <!-- 楼市宫格 -->
-    <view class="index-grid">
+    <view class="index-line">
         <view class="index-grid-item bubble" bindtap="functionQuery">
             <view class="grid-item-imgbox">
                 <image class="grid-item-img" src="/static/img/floor_icon.png"></image>
@@ -28,6 +27,19 @@
                 <view class="grid-item-textdown">查看区域楼盘评估</view>
             </view>
         </view>
+    </view>
+
+    <!-- 楼市宫格 -->
+    <view class="index-grid">
+        <!-- <view class="index-grid-item bubble" bindtap="functionQuery">
+            <view class="grid-item-imgbox">
+                <image class="grid-item-img" src="/static/img/floor_icon.png"></image>
+            </view>
+            <view class="grid-item-textbox">
+                <view class="grid-item-textup">楼盘房价</view>
+                <view class="grid-item-textdown">查看区域楼盘评估</view>
+            </view>
+        </view> -->
         <view class="index-grid-item bubble" bindtap="toOtherFour" data-type="land">
             <view class="grid-item-imgbox">
                 <image class="grid-item-img" src="/static/img/land_icon.png"></image>

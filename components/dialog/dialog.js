@@ -11,6 +11,10 @@ Component({
         isAcCenCle: {
             type: Boolean,
             value: true
+        },
+        width:{
+            type:Number,
+            value: 634
         }
     },
 

@@ -1,0 +1,45 @@
+
+/* 日期弹出层 */
+
+.modalDlg{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.time_text{
+    text-align: center;
+    font-size:40rpx;
+    height: 35px;
+    margin-top: 20rpx;
+}
+.view_picker{
+    margin-top: 20rpx;
+    margin-bottom: 20rpx; 
+}
+.view_picker_text{
+    padding-left:35rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.data-picker-btngroup{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%
+}
+.data-picker-cencle{
+    padding: 18rpx 70rpx;
+    color:grey;
+    background-color: #dedede;
+    font-size:35rpx;
+    border-radius: 10rpx
+}
+.data-picker-sure{
+    padding: 18rpx 70rpx;
+    background:blue;
+    color:white;
+    font-size:35rpx;
+    border-radius: 10rpx
+}

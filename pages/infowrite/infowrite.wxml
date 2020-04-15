@@ -3,10 +3,17 @@
         <view class="appraise-cell-block">
             <view class="appraise-cell">
                 <view class="appraise-cell-key">物业品质</view>
-                <view class="appraise-cell-value">
-                    <input type="text" class="cell-value-input" placeholder-class="plh-ipt" placeholder="请选择"></input>
-                    <text class="iconfont icon-arrowRight-fill"></text>
-                </view>
+                <picker 
+                    mode="selector" 
+                    range="{{qualityArr}}" 
+                    range-key="name"
+                    class="house-tag-picker " 
+                    bindchange="bindPickerChangeCity" >
+                    <view class="appraise-cell-value">
+                        <input type="text" class="cell-value-input" placeholder-class="plh-ipt" placeholder="请选择" disabled="true"></input>
+                        <text class="iconfont icon-arrowRight-fill"></text>
+                    </view>
+                </picker>
             </view>
             <view class="appraise-cell">
                 <view class="appraise-cell-key">户型</view>
@@ -17,19 +24,21 @@
             <view class="appraise-cell">
                 <view class="appraise-cell-key">层高</view>
                 <view class="appraise-cell-value">
-                    <input type="number" class="cell-value-input" placeholder-class="plh-ipt" placeholder="请选择"></input>
+                    <input type="number" class="cell-value-input" placeholder-class="plh-ipt" placeholder="请输入"></input>
                 </view>
             </view>
             <view class="appraise-cell">
                 <view class="appraise-cell-key">户型格局</view>
                 <view class="appraise-cell-value">
-                    <input type="text" class="cell-value-input" placeholder-class="plh-ipt" placeholder="请选择"></input>
+                    <input type="text" class="cell-value-input" placeholder-class="plh-ipt" placeholder="请选择" disabled="true"></input>
+                    <text class="iconfont icon-arrowRight-fill"></text>
                 </view>
             </view>
             <view class="appraise-cell">
                 <view class="appraise-cell-key">空间形式</view>
                 <view class="appraise-cell-value">
-                    <input type="text" class="cell-value-input" placeholder-class="plh-ipt" placeholder="请选择"></input>
+                    <input type="text" class="cell-value-input" placeholder-class="plh-ipt" placeholder="请选择" disabled="true"></input>
+                    <text class="iconfont icon-arrowRight-fill"></text>
                 </view>
             </view>
         </view>
@@ -40,25 +49,27 @@
             <view class="appraise-cell">
                 <view class="appraise-cell-key">户外景观</view>
                 <view class="appraise-cell-value">
-                    <input type="text" class="cell-value-input" placeholder-class="plh-ipt" placeholder="请选择"></input>
+                    <input type="text" class="cell-value-input" placeholder-class="plh-ipt" placeholder="请选择" disabled="true"></input>
+                    <text class="iconfont icon-arrowRight-fill"></text>
                 </view>
             </view>
             <view class="appraise-cell">
                 <view class="appraise-cell-key">装修档次</view>
                 <view class="appraise-cell-value">
-                    <input type="text" class="cell-value-input" placeholder-class="plh-ipt" placeholder="请选择"></input>
+                    <input type="text" class="cell-value-input" placeholder-class="plh-ipt" placeholder="请选择" disabled="true"></input>
+                    <text class="iconfont icon-arrowRight-fill"></text>
                 </view>
             </view>
             <view class="appraise-cell">
                 <view class="appraise-cell-key">空间形式</view>
                 <view class="appraise-cell-value">
-                    <input type="number" class="cell-value-input" placeholder-class="plh-ipt" placeholder="请输入"></input>
+                    <input type="text" class="cell-value-input" placeholder-class="plh-ipt" placeholder="请输入"></input>
                 </view>
             </view>
             <view class="appraise-cell">
                 <view class="appraise-cell-key">户外景观</view>
                 <view class="appraise-cell-value">
-                    <input type="text" class="cell-value-input" placeholder-class="plh-ipt" placeholder="请选择"></input>
+                    <input type="text" class="cell-value-input" placeholder-class="plh-ipt" placeholder="请输入"></input>
                 </view>
             </view>
             <view class="appraise-cell">

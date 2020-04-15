@@ -34,13 +34,13 @@ Page({
     },
     nextTime(e){
         wx.showToast({
-            title: '下次一定',
+            title: '敬请期待',
             icon: 'none',
         })
     },
     goUnderLinde(e){
         wx.navigateTo({
-            url: '/pages/bindUser/bindUser',
+            url: '/pages/offlineCommit/offlineCommit',
         })
     },
     /**
