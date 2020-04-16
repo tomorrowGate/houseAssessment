@@ -39,7 +39,9 @@
 .index-line .index-grid-item{
     flex-direction: row;
     width: 100%;
+    margin: 0;
     /* justify-content: flex-start */
+    box-sizing: border-box;
 }
 .index-grid-item{
     display: flex;

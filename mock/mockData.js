@@ -16,22 +16,22 @@ export const yard = [{ name: "无" }, { name: "面积较小 " }, { name: "面积
 export const other = [{ name: "无" }, { name: "走破户型 " }, { name: "房屋内发生命案" }, { name: "其他" }]
 
 /* 模拟列表数据 */
-const table1 = [
+export const table1 = [
     {
         name: "0-500",
-        arr: [622, 3424, 33, 6]
+        arr: [5622, 234, 1025, 546]
     },
     {
         name: "500-800",
-        arr: [622, 3424, 33, 6]
+        arr: [9833, 9845, 3203, 7856]
     },
     {
         name: "800-1200",
-        arr: [622, 3424, 33, 6]
+        arr: ["", 9840, 1023, 359]
     },
     {
         name: "1200-1500",
-        arr: ["", 3424, 33, 6]
+        arr: ["", 45614, 7032, 654]
     },
     {
         name: "1500-2000",
@@ -39,12 +39,12 @@ const table1 = [
     },
     {
         name: "2000以上",
-        arr: ["", "", "", 6]
+        arr: ["", "", "", 998]
     }
 ]
 
 
-const table2 = [
+export const table2 = [
     {
         name: "0-500",
         arr: [226, 1424, 233, 60]
@@ -72,7 +72,7 @@ const table2 = [
 ]
 
 
-const table3 = [
+export const table3 = [
     {
         name: "0-500",
         arr: [3314, 5154, 3548, 1569]
@@ -100,7 +100,7 @@ const table3 = [
 ]
 
 
-const table4 = [
+export const table4 = [
     {
         name: "0-500",
         arr: [7896, 53, 153, 786]
@@ -128,7 +128,7 @@ const table4 = [
 ]
 
 /* 模拟折线图数据 */
-const option = {
+export const option = {
     color: ["#03A174", "#FF9442"],
     legend: {
         data: ['幢', '小区']
@@ -171,6 +171,49 @@ const option = {
     ]
 };
 
+export const option1_1 = {
+    color: ["#03A174", "#FF9442"],
+    legend: {
+        data: ['幢', '小区']
+    },
+    xAxis: [
+        {
+            type: 'category',
+            boundaryGap: false,
+            data: ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"]
+        }
+    ],
+    yAxis: [{
+        type: 'value'
+    }],
+    series: [
+        {
+            name: '幢',
+            type: 'line',
+            smooth: true,
+            animation: true,
+            lineStyle: {
+                normal: {
+                    color: "#03A174"
+                }
+            },
+            data: [4, 4.4, 5.3, 2.4, 2.8, 3.7, 4, 5.4, 3.3, 3, 2.3, 1]
+        },
+        {
+            name: '小区',
+            type: 'line',
+            smooth: true,
+            animation: true,
+            lineStyle: {
+                normal: {
+                    color: "#FF9442"
+                }
+            },
+            data: [1.2, 1.9, 2.7, 4.7,5.3, 5.2,4.6, 5.6, 4.4, 2.4, 1.3, 0.7]
+        }
+    ]
+};
+
 export const option2 = {
     title: {
         text: ''
@@ -205,7 +248,7 @@ export const option2 = {
         {
             name: '月度',
             type: 'line',
-            data: [50, 77, 82, 71, 64, 50, 42, 37, 82, 41, 64, 100],
+            data: [20, 37, 42, 61, 64, 50, 42, 67, 62, 71, 64, 80],
             animation:true,
             lineStyle:{
                 normal:{
@@ -229,7 +272,7 @@ export const option2 = {
         {
             name: '年度',
             type: 'line',
-            data: [77, 32, 21, 15, 19, 30, 41, 5, 53, 69, 44, 75],
+            data: [77, 32, 21, 15, 29, 40, 51, 55, 53, 69, 44, 75],
             animation: true,
             lineStyle: {
                 normal: {
@@ -312,7 +355,7 @@ export const option2_1 = {
     ]
 }
 
-const option3 = {
+export const option3 = {
     color: ["#03A174", "#FF9442"],
     legend: {
         data: ['小区', '杭州']
@@ -355,7 +398,7 @@ const option3 = {
     ]
 };
 
-const option3_1 = {
+export const option3_1 = {
     color: ["#03A174", "#FF9442"],
     legend: {
         data: ['小区', '杭州']
@@ -432,7 +475,7 @@ export const option4 = {
         {
             name: '月度',
             type: 'line',
-            data: [50, 77, 82, 71, 64, 50, 42, 37, 82, 41, 64, 100],
+            data: [50, 77, 82, 71, 54, 20, 42, 37, 82, 41, 64, 40],
             animation: true,
             lineStyle: {
                 normal: {
@@ -456,7 +499,7 @@ export const option4 = {
         {
             name: '年度',
             type: 'line',
-            data: [77, 32, 21, 15, 19, 30, 41, 5, 53, 69, 44, 75],
+            data: [77, 32, 21, 15, 49, 30, 41, 5, 53, 69, 44, 75],
             animation: true,
             lineStyle: {
                 normal: {
@@ -502,7 +545,7 @@ export const option4_1 = {
         {
             name: '月度',
             type: 'line',
-            data: [150, 117, 102, 151, 64, 80, 62, 57, 42, 81, 94, 109],
+            data: [150, 117, 102, 151, 64, 80, 62, 57, 42, 81, 94, 79],
             animation: true,
             lineStyle: {
                 normal: {
@@ -537,3 +580,35 @@ export const option4_1 = {
         },
     ]
 }
+
+
+export const optionTime = {
+    color: ["#03A174"],
+    legend: {
+        data: ['幢']
+    },
+    xAxis: [
+        {
+            type: 'category',
+            boundaryGap: false,
+            data: []//填入时间
+        }
+    ],
+    yAxis: [{
+        type: 'value'
+    }],
+    series: [
+        {
+            name: '幢',
+            type: 'line',
+            smooth: true,
+            animation: true,
+            lineStyle: {
+                normal: {
+                    color: "#03A174"
+                }
+            },
+            data: [],//填入数量
+        },
+    ]
+};

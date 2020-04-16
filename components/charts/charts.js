@@ -11,7 +11,13 @@ Component({
      * 组件的属性列表
      */
     properties: {
-
+        chartData:{
+            type: Object,
+            value: {},
+            observer: function (newVal, oldVal) { 
+               console.log(newVal)
+            }
+        }
     },
 
     /**
@@ -23,8 +29,6 @@ Component({
             lazyLoad: true
         },
         ecComponent1: null,
-        option,
-        option2,
     },
 
     /**
@@ -33,7 +37,8 @@ Component({
     methods: {
         setOptionLine(chart, data) {
             let _this = this
-            chart.setOption(_this.data.option2);
+            console.log(data)
+            chart.setOption(data);
         },
         initLine(data) {
             this.ecComponent1.init((canvas, width, height) => {
@@ -51,7 +56,8 @@ Component({
         attached: function () {
             // 在组件实例进入页面节点树时执行
             this.ecComponent1 = this.selectComponent('#ecdom1');
-            this.initLine(22)
+            console.log(this.properties.chartData)
+            this.initLine(this.properties.chartData || option)
         },
         detached: function () {
             // 在组件实例被从页面节点树移除时执行

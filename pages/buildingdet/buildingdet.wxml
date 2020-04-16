@@ -37,13 +37,13 @@
             <view class="house-datas-text">商业成交价格走势</view>
             <view class="house-data-tag">单位：元</view>
         </view>
-        <Charts chartData="{{chartData}}"></Charts>
+        <Charts chartData="{{chartData}}" id="chart"></Charts>
     </view>
      <view class="house-datas">
         <view class="house-datas-head">
             <view class="house-datas-text">办公成交价格走势</view>
             <view class="house-data-tag">单位：元</view>
         </view>
-       <Charts chartData="{{chartData}}"></Charts>
+       <Charts chartData="{{chartData2}}" id="chart2"></Charts>
     </view>
 </view>

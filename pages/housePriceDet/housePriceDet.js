@@ -1,5 +1,5 @@
 // pages/housePriceDet/housePriceDet.js
-import { option, option2, option2_1, option3, option3_1, option4, option4_1} from "../../mock/mockData.js"
+import {  option2, option2_1, option4, option4_1} from "../../mock/mockData.js"
 Page({
 
     /**
@@ -27,20 +27,15 @@ Page({
             lazyLoad: true
         },
         ecComponent1: null,
-        //折线图数据
-        option, 
-        option2, 
-        option2_1, 
-        option3, 
-        option3_1, 
-        option4, 
-        option4_1
+        chart:{}
     },
     randoms(){
-        let arr = [option, option2, option2_1, option3, option3_1, option4, option4_1]
-            ,randomInit = Math.ceil(Math.random()*7)
-
-        
+        let arr = [option2, option2_1, option4, option4_1]
+            , randomInit = parseInt(Math.random() * arr.length)
+        this.setData({
+            chartData: arr[randomInit]
+        })
+        this.chart.initLine(arr[randomInit])
     },
     priceModify(e){
         wx.navigateTo({
@@ -62,14 +57,14 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-
     },
 
     /**
      * 生命周期函数--监听页面初次渲染完成
      */
     onReady: function () {
-
+        this.chart = this.selectComponent("#chart");
+        this.randoms()
     },
 
     /**
