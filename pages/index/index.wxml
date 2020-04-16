@@ -89,7 +89,27 @@
                     <image class="" src="/static/img/area_icon.png"></image>
                 </view>
                 <view class="houseprice-item-iptbox">
-                    <input placeholder="小区名称" placeholder-class="iptbox-plc"/>
+                    <input 
+                        placeholder="小区名称" 
+                        placeholder-class="iptbox-plc"
+                        
+                        bindfocus="filter" 
+                        bindinput="filter" 
+                        bindblur="clearFilter5"
+                        data-filterkey = "village"
+                        data-filterdata="{{village}}"
+                        value="{{village.inputValue}}"/>
+                </view>
+                <view class="houseprice-input-items">
+                    <view  
+                        data-filterkey = "village"
+                        class="houseprice-input-item" 
+                        wx:for="{{village.filterData}}" 
+                        wx:key="index" 
+                        bindtap="makesure"
+                        data-value="{{item}}" >
+                        {{item}}
+                    </view>
                 </view>
             </view>
         </view>

@@ -29,6 +29,7 @@
     color: #CCCCCC
 }
 .cell-value-input{
+    min-width: 400rpx;
     text-align: right;
     color: #000
 }
@@ -58,7 +59,78 @@
     border-radius: 10rpx;
 }
 
-/* 弹框 */
+/* 地下室等弹框 */
+.index-mask-box{
+    padding: 42rpx;
+}
+.index-mask-title{
+    text-align: center;
+    font-size: 30rpx;
+    margin-bottom: 18rpx;
+}
+.index-mask-content{
+    padding-bottom: 75rpx;
+    border-bottom: 1rpx solid #ccc
+}
+.mask-content-item{
+   /*  display: flex;
+    align-items: center; */
+}
+.houseprice-item-iptbox{
+    width: 100%;
+    height: 55rpx;
+    line-height: 55rpx;
+}
+.houseprice-item-iptbox input{
+    display: inline-block;
+    vertical-align: middle;
+    width: 100rpx;
+    height: 100%;
+    padding: 0 10rpx;
+    margin: 0 10rpx;
+    border-radius: 10rpx;
+    border:1rpx solid #ccc;
+}
+.radio-group radio{
+    display: block;
+    margin-top: 10rpx;
+}
+.houseprice-item-imgbox{
+    width: 30rpx;
+    height: 35rpx;
+    margin-right: 8rpx
+}
+.houseprice-item-iptbox .iptbox-plc{
+    color: #333;
+}
+.mask-btngroup{
+    display: flex;
+
+    margin-top: 75rpx;
+}
+.mask-cencle{
+    width: 246rpx;
+    height: 80rpx;
+    line-height: 80rpx;
+    text-align: center;
+    font-size: 30rpx;
+    color: #005DFC;
+    border:1rpx solid #005DFC;
+    border-radius: 10rpx;
+}
+.mask-search{
+    width: 246rpx;
+    height: 80rpx;
+    line-height: 80rpx;
+    text-align: center;
+    font-size: 30rpx;
+    color: #fff;
+    border:1rpx solid #005DFC;
+    border-radius: 10rpx;
+    background: #005DFC;
+}
+
+/* 修正价格弹框 */
 .mod-dialog{
     position: fixed;
     top:0;

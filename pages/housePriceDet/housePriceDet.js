@@ -1,4 +1,5 @@
 // pages/housePriceDet/housePriceDet.js
+import { option, option2, option2_1, option3, option3_1, option4, option4_1} from "../../mock/mockData.js"
 Page({
 
     /**
@@ -26,6 +27,20 @@ Page({
             lazyLoad: true
         },
         ecComponent1: null,
+        //折线图数据
+        option, 
+        option2, 
+        option2_1, 
+        option3, 
+        option3_1, 
+        option4, 
+        option4_1
+    },
+    randoms(){
+        let arr = [option, option2, option2_1, option3, option3_1, option4, option4_1]
+            ,randomInit = Math.ceil(Math.random()*7)
+
+        
     },
     priceModify(e){
         wx.navigateTo({

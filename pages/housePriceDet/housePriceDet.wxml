@@ -51,7 +51,9 @@
 
     
     <view class="housepd-table">
-        <view class="housepd-table-head">房产基本信息</view>
+        <view class="housepd-table-head"> 
+            <view class="house-datas-text">房产基本信息</view>
+        </view>
         <view class="housepd-table-cells">
             <view class="housepd-cell-block">
                 <text class="housepd-cell-key">房屋坐落: </text>
@@ -100,8 +102,10 @@
         </view>
     </view>
 
-    <view class="housepd-table">
-        <view class="housepd-table-head">房产价格同比环比</view>
+    <view class="house-datas">
+        <view class="housepd-table-head">
+            <view class="house-datas-text">房产价格同比环比</view>
+        </view>
         <view class="housepd-table-datas">
             <scroll-view class="tableScroll" scroll-x="true">
                 <view class="tr">
@@ -119,17 +123,12 @@
         </view>
     </view>
 
-    <Charts chartData="{{chartData}}"></Charts>
     
-    <!--  <view class="house-datas">
+     <view class="house-datas">
         <view class="house-datas-head">
             <view class="house-datas-text">价格走势图</view>
             <view class="house-data-tag">单位：元</view>
         </view>
-        <view class="house-data-body">
-           <view class='container1'>
-                <ec-canvas class="ec-canvas" id="ecdom1" canvas-id="eccolumn1" ec="{{ ecopt }}"></ec-canvas>
-            </view>
-        </view>
-    </view> -->
+        <Charts chartData="{{chartData}}"></Charts>
+    </view>
 </view>

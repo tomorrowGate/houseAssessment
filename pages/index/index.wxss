@@ -79,9 +79,10 @@
 }
 .index-mask-content{
     padding-bottom: 75rpx;
-    border-bottom: 1rpx solid #ccc
+    border-bottom: 1rpx solid #f5f5f5
 }
 .mask-content-item{
+    position: relative;
     display: flex;
     align-items: center;
 }
@@ -91,7 +92,7 @@
     margin-right: 8rpx
 }
 .houseprice-item-iptbox .iptbox-plc{
-    color: #333;
+    color: #D6D6D6;
 }
 .mask-btngroup{
     display: flex;
@@ -118,4 +119,22 @@
     border:1rpx solid #005DFC;
     border-radius: 10rpx;
     background: #005DFC;
+}
+
+
+.houseprice-input-items{
+    position: absolute;
+    top:60rpx;
+    left: 10rpx;
+    width: calc(100% - 20rpx);
+    padding:0rpx 25rpx;
+    background: #f5f5f5;
+   /*  border: 1rpx solid #ddd; */
+    box-sizing: border-box;
+    z-index:3;
+}
+.houseprice-input-item{
+    height: 68rpx;
+    line-height: 68rpx;
+    width:100%
 }

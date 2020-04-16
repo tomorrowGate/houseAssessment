@@ -1,14 +1,14 @@
 {
     "pages": [
         "pages/index/index",
+        "pages/houseprice/houseprice",
         "pages/priceModify/priceModify",
+        "pages/infowrite/infowrite",
         "pages/newhouse/newhouse",
         "pages/bindUser/bindUser",
-        "pages/infowrite/infowrite",
         "pages/housePriceDet/housePriceDet",
         "pages/buildingdet/buildingdet",
         "components/dialog/dialog",
-        "pages/houseprice/houseprice",
         "pages/user/user",
         "pages/appraise/appraise",
         "pages/logs/logs",

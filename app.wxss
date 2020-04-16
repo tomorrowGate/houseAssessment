@@ -55,3 +55,10 @@ cover-view{
  opacity: 1;
  transition: 0s;
 }
+
+/* 重写微信单选框的背景色 */
+/* checkbox .wx-checkbox-input {
+    border: 4rpx solid #005DFC;
+    background: #005DFC;
+    color: #005DFC;
+} */

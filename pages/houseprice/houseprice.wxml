@@ -14,25 +14,54 @@
                         <input 
                         placeholder="请输入区县" 
                         placeholder-class="iptbox-plc" 
+                        bindfocus="filter" 
                         bindinput="filter" 
                         bindblur="clearFilter"
+                        data-filterkey = "fuzzyQuery"
                         data-filterdata="{{fuzzyQuery}}"
                         value="{{fuzzyQuery.inputValue}}"/>
                     </view>
-                    <view  
-                        class="input-items" 
-                        wx:for="{{fuzzyQuery.filterData}}" 
-                        wx:key="index" 
-                        bindtap="makesure" >
-                        {{item.brand_name}}
+                    <view class="houseprice-input-items">
+                        <view  
+                            class="houseprice-input-item" 
+                            data-filterkey = "fuzzyQuery"
+                            wx:for="{{fuzzyQuery.filterData}}" 
+                            wx:key="index" 
+                            bindtap="makesure"
+                            data-value="{{item}}" >
+                            {{item}}
+                        </view>
                     </view>
+                    
                 </view>
+                
                 <view class="houseprice-body-item">
                     <view class="houseprice-item-imgbox">
                         <image class="" src="/static/img/house_area_icon.png"></image>
                     </view>
                     <view class="houseprice-item-iptbox">
-                        <input placeholder="请输入小区名称" placeholder-class="iptbox-plc"/>
+                        <input 
+                        placeholder="请输入小区名称" 
+                        placeholder-class="iptbox-plc"
+                       
+                        bindfocus="filter" 
+                        bindinput="filter" 
+                        bindblur="clearFilter"
+                        data-filterkey = "village"
+                        data-filterdata="{{village}}"
+                        value="{{village.inputValue}}"/>
+                    </view>
+                    
+                    <view class="houseprice-input-items">
+                        <view  
+                            data-filterkey = "village"
+                            class="houseprice-input-item" 
+                            wx:for="{{village.filterData}}" 
+                            wx:key="index" 
+                            bindtap="makesure"
+                            data-value="{{item}}" >
+                            {{item}}
+                        </view>
                     </view>
                 </view>
                 <view class="houseprice-body-item">

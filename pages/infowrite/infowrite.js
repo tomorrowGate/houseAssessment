@@ -1,15 +1,37 @@
 // pages/infowrite/infowrite.js
+import { qualityArr, houseTypeArr, housePatternArr, spatialForm, outdoorLandscape, decorationGrade} from "../../mock/mockData.js"
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
-
+        qualityArr,
+        houseTypeArr,
+        housePatternArr,
+        spatialForm,
+        outdoorLandscape,
+        decorationGrade,
+        pickValue:{
+            qualityArr:"",
+            houseTypeArr:"",
+            housePatternArr:"",
+            spatialForm: "",
+            outdoorLandscape: "",
+            decorationGrade: "",
+        }
     },
     nextTap(e){
         wx.navigateTo({
             url: '/pages/priceModify/priceModify',
+        })
+    },
+    bindPickerChange(e){
+        let selectarr = e.currentTarget.dataset.selectarr
+            , value = this.data[selectarr][e.detail.value]["name"]
+            , pickValue = 'pickValue.' + selectarr 
+        this.setData({
+            [pickValue]: value
         })
     },
     /**

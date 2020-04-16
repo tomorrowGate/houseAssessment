@@ -8,9 +8,10 @@
                     range="{{qualityArr}}" 
                     range-key="name"
                     class="house-tag-picker " 
-                    bindchange="bindPickerChangeCity" >
+                    data-selectarr='qualityArr'
+                    bindchange="bindPickerChange" >
                     <view class="appraise-cell-value">
-                        <input type="text" class="cell-value-input" placeholder-class="plh-ipt" placeholder="请选择" disabled="true"></input>
+                        <input type="text" class="cell-value-input" placeholder-class="plh-ipt" placeholder="请选择" disabled="true" value="{{pickValue.qualityArr}}"></input>
                         <text class="iconfont icon-arrowRight-fill"></text>
                     </view>
                 </picker>
@@ -30,14 +31,30 @@
             <view class="appraise-cell">
                 <view class="appraise-cell-key">户型格局</view>
                 <view class="appraise-cell-value">
-                    <input type="text" class="cell-value-input" placeholder-class="plh-ipt" placeholder="请选择" disabled="true"></input>
+                 <picker 
+                    mode="selector" 
+                    range="{{housePatternArr}}" 
+                    range-key="name"
+                    class="house-tag-picker " 
+                    data-selectarr='housePatternArr'
+                    bindchange="bindPickerChange" >
+                    <input type="text" class="cell-value-input" placeholder-class="plh-ipt" placeholder="请选择" disabled="true" value="{{pickValue.housePatternArr}}"/>
+                    </picker>
                     <text class="iconfont icon-arrowRight-fill"></text>
                 </view>
             </view>
             <view class="appraise-cell">
                 <view class="appraise-cell-key">空间形式</view>
                 <view class="appraise-cell-value">
-                    <input type="text" class="cell-value-input" placeholder-class="plh-ipt" placeholder="请选择" disabled="true"></input>
+                    <picker 
+                        mode="selector" 
+                        range="{{spatialForm}}" 
+                        range-key="name"
+                        class="house-tag-picker " 
+                        data-selectarr='spatialForm'
+                        bindchange="bindPickerChange" >
+                        <input type="text" class="cell-value-input" placeholder-class="plh-ipt" placeholder="请选择" disabled="true" value="{{pickValue.spatialForm}}"/>
+                    </picker>
                     <text class="iconfont icon-arrowRight-fill"></text>
                 </view>
             </view>
@@ -49,33 +66,31 @@
             <view class="appraise-cell">
                 <view class="appraise-cell-key">户外景观</view>
                 <view class="appraise-cell-value">
-                    <input type="text" class="cell-value-input" placeholder-class="plh-ipt" placeholder="请选择" disabled="true"></input>
+                    <picker 
+                        mode="selector" 
+                        range="{{outdoorLandscape}}" 
+                        range-key="name"
+                        class="house-tag-picker " 
+                        data-selectarr='outdoorLandscape'
+                        bindchange="bindPickerChange" >
+                        <input type="text" class="cell-value-input" placeholder-class="plh-ipt" placeholder="请选择" disabled="true" value="{{pickValue.outdoorLandscape}}"/>
+                    </picker>
                     <text class="iconfont icon-arrowRight-fill"></text>
                 </view>
             </view>
             <view class="appraise-cell">
                 <view class="appraise-cell-key">装修档次</view>
                 <view class="appraise-cell-value">
-                    <input type="text" class="cell-value-input" placeholder-class="plh-ipt" placeholder="请选择" disabled="true"></input>
+                    <picker 
+                        mode="selector" 
+                        range="{{decorationGrade}}" 
+                        range-key="name"
+                        class="house-tag-picker " 
+                        data-selectarr='decorationGrade'
+                        bindchange="bindPickerChange" >
+                        <input type="text" class="cell-value-input" placeholder-class="plh-ipt" placeholder="请选择" disabled="true" value="{{pickValue.decorationGrade}}"/>
+                    </picker>
                     <text class="iconfont icon-arrowRight-fill"></text>
-                </view>
-            </view>
-            <view class="appraise-cell">
-                <view class="appraise-cell-key">空间形式</view>
-                <view class="appraise-cell-value">
-                    <input type="text" class="cell-value-input" placeholder-class="plh-ipt" placeholder="请输入"></input>
-                </view>
-            </view>
-            <view class="appraise-cell">
-                <view class="appraise-cell-key">户外景观</view>
-                <view class="appraise-cell-value">
-                    <input type="text" class="cell-value-input" placeholder-class="plh-ipt" placeholder="请输入"></input>
-                </view>
-            </view>
-            <view class="appraise-cell">
-                <view class="appraise-cell-key">装修档次</view>
-                <view class="appraise-cell-value">
-                    <input type="number" class="cell-value-input" placeholder-class="plh-ipt" placeholder="请输入"></input>
                 </view>
             </view>
         </view>

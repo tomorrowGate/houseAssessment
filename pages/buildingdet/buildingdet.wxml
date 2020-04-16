@@ -37,22 +37,13 @@
             <view class="house-datas-text">商业成交价格走势</view>
             <view class="house-data-tag">单位：元</view>
         </view>
-        <view class="house-data-body">
-           <view class=' container1'>
-                <ec-canvas class="ec-canvas" id="ecdom2" canvas-id="eccolumn2" ec="{{ ecopt }}"></ec-canvas>
-            </view>
-        </view>
+        <Charts chartData="{{chartData}}"></Charts>
     </view>
      <view class="house-datas">
         <view class="house-datas-head">
             <view class="house-datas-text">办公成交价格走势</view>
             <view class="house-data-tag">单位：元</view>
         </view>
-        <view class="house-data-body">
-           <view class=' container1'>
-                <ec-canvas class="ec-canvas" id="ecdom3" canvas-id="eccolumn3" ec="{{ ecopt }}"></ec-canvas>
-            </view>
-           
-        </view>
+       <Charts chartData="{{chartData}}"></Charts>
     </view>
 </view>
