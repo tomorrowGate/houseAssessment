@@ -5,7 +5,7 @@ Page({
      * 页面的初始数据
      */
     data: {
-
+        portrait:""
     },
     removeBind(){
         wx.showToast({
@@ -40,7 +40,10 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-
+        let portrait = wx.getStorageSync('portrait') || "/static/img/portrait2.jpg"
+        this.setData({
+            portrait,
+        })
     },
 
     /**

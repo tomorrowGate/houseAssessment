@@ -4,9 +4,9 @@ export function countMonthList(begin,end) {
     let beginMon = begin.split("/")[0] * 12 + begin.split("/")[1]*1
         , endMon = end.split("/")[0] * 12 + end.split("/")[1]*1
         , mons = endMon - beginMon
-        , arr = [begin]
+        , arr = []
         , beginOut = begin
-
+    console.log(begin,end,mons)
     for( let i = 0;i<mons;i++){
         if ((beginOut.split("/")[1] * 1 + 1)*1 > 12){
             beginOut = parseInt(beginOut.split("/")[0]*1+1) + "/" + "01"
@@ -15,5 +15,6 @@ export function countMonthList(begin,end) {
         }
         arr.push(beginOut)
     }
+    arr.unshift(begin.split("/")[0] + "-" + begin.split("/")[1])
     return arr
 }

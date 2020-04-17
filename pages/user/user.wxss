@@ -25,6 +25,9 @@
     border-radius: 50%;
     background: #aaa
 }
+.user-head-left image{
+    border-radius: 50%
+}
 .user-head-mid{
     width: 440rpx;
     margin-left: 18rpx;

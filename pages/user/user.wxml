@@ -6,7 +6,7 @@
         <view class="user-card-out">
             <view class="user-head">
                 <view class="user-head-left">
-                    <image class="user-head-img" src=""></image>
+                    <image class="user-head-img" src="{{portrait}}"></image>
                 </view>
                 <view class="user-head-mid">
                     <view class="user-head-name">张某某</view>

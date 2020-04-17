@@ -1,5 +1,6 @@
 {
     "pages": [
+        "pages/welcome/welcome",
         "pages/index/index",
         "pages/houseprice/houseprice",
         "pages/priceModify/priceModify",
@@ -15,8 +16,7 @@
         "pages/attestation/attestation",
         "pages/offlineCommit/offlineCommit",
         "pages/feedback/feedback",
-        "pages/userinfoForm/userinfoForm",
-        "pages/welcome/welcome"
+        "pages/userinfoForm/userinfoForm"
     ],
     "tabBar": {
         "color": "#3D3D3D",
