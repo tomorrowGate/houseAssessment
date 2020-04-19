@@ -18,7 +18,7 @@
                 <view wx:for="{{days}}" class="view_picker_text" wx:key="index">{{item}}日</view>
             </picker-view-column>
         </picker-view>
-        <button style='width:100%;color:blue;' bindtap="go">继续</button>
+        <view class="cus-continiue" bindtap="go">继 续</view>
     </view>
 </Dialog>
 

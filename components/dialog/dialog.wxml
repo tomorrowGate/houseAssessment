@@ -1,6 +1,6 @@
-<view class="dialog" hidden="{{isShowDia}}">
-  <view class="dialog-mask" bindtap="cencleDia"></view>
-  <view class="dialog-main" style="width:{{width}}rpx">
-    <slot></slot>
-  </view>
+<view class="dialog " hidden="{{isShowDia}}" catchtouchmove="noscroll">
+    <view class="dialog-mask" bindtap="cencleDia"></view>
+    <view class="dialog-main animated zoomIn" style="width:{{width}}rpx">
+        <slot></slot>
+    </view>
 </view>

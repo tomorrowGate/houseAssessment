@@ -6,7 +6,15 @@
     flex-direction: column;
     align-items: center;
 }
-
+.cus-continiue{
+    width: 100%;
+    height: 100rpx;
+    line-height: 100rpx;
+    text-align: center;
+    font-size: 34rpx;
+    background: #eee;
+    color: #005DFE;
+}
 .time_text{
     text-align: center;
     font-size:40rpx;
@@ -33,12 +41,12 @@
     padding: 18rpx 70rpx;
     color:grey;
     background-color: #dedede;
-    font-size:35rpx;
+    font-size:34rpx;
     border-radius: 10rpx
 }
 .data-picker-sure{
     padding: 18rpx 70rpx;
-    background:blue;
+    background:#005DFE;
     color:white;
     font-size:35rpx;
     border-radius: 10rpx

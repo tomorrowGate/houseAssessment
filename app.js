@@ -25,6 +25,7 @@ App({
                     // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
                     wx.getUserInfo({
                         success: res => {
+                            //console.log(res)
                             // 可以将 res 发送给后台解码出 unionId
                             this.globalData.userInfo = res.userInfo
 
@@ -39,7 +40,19 @@ App({
             }
         })
 
-
+    },
+    //检查是否授权过期
+    checksession: function () {
+        wx.checkSession({
+            success: function (res) {
+                
+            },
+            fail: function (res) {
+                wx.reLaunch({
+                    url: "/pages/index/authorize"
+                });
+            }
+        })
     },
     isShareIn(options) {
         // 判断是否由分享进入小程序

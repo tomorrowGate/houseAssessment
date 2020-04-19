@@ -1,7 +1,7 @@
 {
     "pages": [
-        "pages/welcome/welcome",
         "pages/index/index",
+        "pages/user/user",
         "pages/houseprice/houseprice",
         "pages/priceModify/priceModify",
         "pages/infowrite/infowrite",
@@ -10,12 +10,12 @@
         "pages/housePriceDet/housePriceDet",
         "pages/buildingdet/buildingdet",
         "components/dialog/dialog",
-        "pages/user/user",
         "pages/appraise/appraise",
         "pages/logs/logs",
         "pages/attestation/attestation",
         "pages/offlineCommit/offlineCommit",
         "pages/feedback/feedback",
+        "pages/welcome/welcome",
         "pages/userinfoForm/userinfoForm"
     ],
     "tabBar": {

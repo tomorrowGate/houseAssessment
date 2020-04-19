@@ -36,5 +36,8 @@ Component({
                 })
             }
         },
+        noscroll(){
+            
+        }
     }
 })

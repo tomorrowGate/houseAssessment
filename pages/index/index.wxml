@@ -80,7 +80,7 @@
 </view>
 
 <dialog isShowDia="{{isShowDia}}">
-    <view class="index-mask-box">
+    <view class="index-mask-box ">
         <view class="index-mask-title">楼盘房价</view>
         
         <view class="index-mask-content">

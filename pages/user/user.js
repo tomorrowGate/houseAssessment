@@ -1,11 +1,15 @@
 // pages/user/user.js
+let app = getApp()
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
-        portrait:""
+        portrait:"",
+        userName:"",
+        userWork:"",
+        isShowEdit:true,
     },
     removeBind(){
         wx.showToast({
@@ -22,11 +26,37 @@ Page({
             url: '/pages/feedback/feedback',
         })
     },
+    isAttestation(){
+        if (!app.globalData.userInfo){
+            this.setData({
+                userName:"请授权认证",
+                userWork:"授权后查看更多信息",
+                isShowEdit:false,
+                portrait:"/static/img/portrait2.jpg"
+            })
+        }else{
+            let portrait = wx.getStorageSync("portrait") || app.globalData.userInfo.avatarUrl
+            this.setData({
+                userName: app.globalData.userInfo.nickName,
+                userWork: "房地产评估员",
+                isShowEdit: true,
+                portrait,
+            })
+        }
+    },
+    goAttestation(){
+        if (!app.globalData.userInfo){
+            wx.navigateTo({
+                url: '/pages/bindUser/bindUser',
+            })
+        }
+       
+    },
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-
+       
     },
 
     /**
@@ -40,10 +70,11 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-        let portrait = wx.getStorageSync('portrait') || "/static/img/portrait2.jpg"
+        this.isAttestation()
+        /* let portrait = wx.getStorageSync('portrait') || "/static/img/portrait2.jpg" 
         this.setData({
             portrait,
-        })
+        })*/
     },
 
     /**

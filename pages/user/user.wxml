@@ -5,12 +5,12 @@
         </view>
         <view class="user-card-out">
             <view class="user-head">
-                <view class="user-head-left">
-                    <image class="user-head-img" src="{{portrait}}"></image>
+                <view class="user-head-left" bindtap="goAttestation">
+                    <image class="user-head-img" mode="aspectFill" src="{{portrait}}"></image>
                 </view>
-                <view class="user-head-mid">
-                    <view class="user-head-name">张某某</view>
-                    <view class="user-head-ident">房地产评估管理员</view>
+                <view class="user-head-mid" bindtap="goAttestation">
+                    <view class="user-head-name">{{userName}}</view>
+                    <view class="user-head-ident">{{userWork}}</view>
                 </view>
                 <view class="user-head-right" bindtap="editUserInfo">
                     <text class="user-head-edit">编辑</text>

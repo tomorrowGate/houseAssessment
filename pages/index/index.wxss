@@ -1,5 +1,6 @@
 @import "/app.wxss";
 .index-content{
+    min-height: 100vh;
     padding: 8rpx;
     background: #F7F5F6;
 }

@@ -125,11 +125,11 @@
     </view>
 </Dialog>
 <!-- 修正价格弹窗 -->
-<view class="mod-dialog" wx:if="{{isDiaShow}}">
+<view class="mod-dialog" wx:if="{{isDiaShow}}" >
     <view class="mod-dia-close" bindtap="closeDia">
         <image src="/static/img/popup_close_x.png"></image>
     </view>
-    <view class="mod-dia-main">
+    <view class="mod-dia-main animated zoomIn">
         <view class="mod-main-bgimgbox">
             <image src="/static/img/popup_bg.png"></image>
         </view>

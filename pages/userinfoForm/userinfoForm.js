@@ -1,4 +1,5 @@
 // pages/bindUser/bindUser.js
+const app = getApp()
 Page({
 
     /**
@@ -48,7 +49,7 @@ Page({
                 self.setData({
                     portrait: res.tempFilePaths,
                 })
-                wx.setStorageSync('portrait', res.tempFilePaths)
+                //wx.setStorageSync('portrait', res.tempFilePaths)
                 return
             }
         })
@@ -60,6 +61,7 @@ Page({
         })
     },
     bind(e) {
+        let _this = this
         let errArr = ["未添加头像", "未填写姓名", "手机号码格式错误", "未填写性别", "未填写公司","未填写职务"]
         let verifyArr = [this.data.portrait, this.data.name, this.data.isPhoneTrue, this.data.sex, this.data.company, this.data.job]
         let isFormErr = false
@@ -85,8 +87,8 @@ Page({
         //         return false
         //     }
         // })
-
         console.log("对了", this.data)
+        wx.setStorageSync('portrait', _this.data.portrait)
         wx.showLoading({
             title: '正在提交',
         })
@@ -97,7 +99,7 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        let portrait = wx.getStorageSync('portrait')
+        let portrait = wx.getStorageSync('portrait') || app.globalData.userInfo.avatarUrl
 
         this.setData({
             portrait,
