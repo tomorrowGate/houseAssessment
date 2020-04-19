@@ -5,7 +5,7 @@
         </view>
         <view class="user-card-out">
             <view class="user-head">
-               <view class="house-src">挂牌房源量</view>
+               <view class="house-src">{{transactionType}}</view>
                <view class="house-num">143896/套</view>
             </view>
 
@@ -44,7 +44,7 @@
         class="house-tag-picker " 
         bindchange="bindPickerChangeCity" >
             <view class="house-tag-item bubble">
-                <view class="house-tag-text">{{pickerCityValue||"上城区"}}</view>
+                <view class="house-tag-text">{{pickerCityValue||"选择城区"}}</view>
                 <view class="house-tag-imgbox">
                     <image src="/static/img/drop-down_icon.png"></image>
                 </view>
@@ -58,37 +58,37 @@
         class="house-tag-picker " 
         bindchange="bindPickerChangeHouse" >
             <view class="house-tag-item bubble">
-                <view class="house-tag-text">{{pickerHouseValue||"住宅"}}</view>
+                <view class="house-tag-text">{{pickerHouseValue||arrHouseInit}}</view>
                 <view class="house-tag-imgbox">
                     <image src="/static/img/drop-down_icon.png"></image>
                 </view>
             </view>
         </picker>
 
-        <picker 
+        <!-- <picker 
         mode="date" 
         class="house-tag-picker "        
         bindtap="confirmStart" 
-        bindchange="bindPickerChangeTime" >
-            <view class="house-tag-item bubble">
+        bindchange="bindPickerChangeTime"  -->
+            <view class="house-tag-item bubble" bindtap="confirmStart">
                 <view class="house-tag-text"></view>
                 <view class="house-tag-imgbox">
                     <image src="/static/img/date_icon.png"></image>
                 </view>
             </view>
-        </picker>
+        <!-- </picker> -->
     </view>
 
 
-     <view class="house-datas">
+   <!--   <view class="house-datas">
         <view class="house-datas-head">
             <view class="house-datas-text">交叉查询-套数</view>
             <view class="house-data-tag">单位：面积(m2)\总价(万元)</view>
         </view>
         <view class="house-data-body">
-            <Table thData="{{bdMessage}}" trDatas="{{bdCount}}" trtdWidth="{{trtdWidth}}"></Table>
+            <Table thData="{{bdMessage}}" trDatas="{{tableDataNum}}" trtdWidth="{{trtdWidth}}"></Table>
         </view>
-    </view>
+    </view> -->
 
      <view class="house-datas">
         <view class="house-datas-head">
@@ -96,7 +96,7 @@
             <view class="house-data-tag">单位：面积(m2)\总价(万元)</view>
         </view>
         <view class="house-data-body">
-           <Table thData="{{bdMessage}}" trDatas="{{bdCount}}" trtdWidth="{{trtdWidth}}"></Table>
+           <Table thData="{{bdMessage}}" trDatas="{{tableDataArea}}" trtdWidth="{{trtdWidth}}" wx:if="{{tableDataArea&&tableDataArea.length}}"></Table>
         </view>
     </view>
 
@@ -106,7 +106,8 @@
             <view class="house-datas-text">挂牌和成交比</view>
             <view class="house-data-tag">单位：%</view>
         </view>
-        <Charts/>
+        <Charts chartData="{{chartData}}" id="chart"/>
     </view>
     
 </view>
+<CusTimePicker isShowDia = "{{!showModal}}" bind:getTimeCut="getTimeCut"/>

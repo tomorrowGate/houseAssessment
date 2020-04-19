@@ -1,5 +1,6 @@
 /**app.wxss**/
 @import "/static/font/iconfont.wxss";
+@import "/static/css/animate.wxss";
 .container {
   height: 100%;
   display: flex;
@@ -54,4 +55,17 @@ cover-view{
  transform: scale(0);
  opacity: 1;
  transition: 0s;
+}
+
+/* 重写微信单选框的背景色 */
+/* checkbox .wx-checkbox-input {
+    border: 4rpx solid #005DFC;
+    background: #005DFC;
+    color: #005DFC;
+} */
+
+.button.clear-button{
+    width: auto;
+    padding: 0;
+    font-weight: 300;
 }

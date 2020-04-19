@@ -4,31 +4,37 @@
             <view class="appraise-cell">
                 <view class="appraise-cell-key">地下室</view>
                 <view class="appraise-cell-value">
-                    <input type="text" class="cell-value-input" placeholder-class="plh-ipt" placeholder="请输入"></input>
-                </view>
-            </view>
-            <view class="appraise-cell">
-                <view class="appraise-cell-key">未计入建筑面积</view>
-                <view class="appraise-cell-value">
-                    <input type="text" class="cell-value-input" placeholder-class="plh-ipt" placeholder="请输入"></input>
+                    <input type="text" class="cell-value-input" placeholder-class="plh-ipt" disabled="true" placeholder="请选择" bindtap="showBasement" data-type="basement" value="{{pickValue.basement}}"></input>
+                    <text class="iconfont icon-arrowRight-fill"></text>
                 </view>
             </view>
             <view class="appraise-cell">
                 <view class="appraise-cell-key">阁楼</view>
                 <view class="appraise-cell-value">
-                    <input type="number" class="cell-value-input" placeholder-class="plh-ipt" placeholder="请选择"></input>
+                    <input type="text" class="cell-value-input" placeholder-class="plh-ipt" disabled="true" placeholder="请选择" bindtap="showBasement" data-type="attic" value="{{pickValue.attic}}"></input>
+                    <text class="iconfont icon-arrowRight-fill"></text>
                 </view>
             </view>
             <view class="appraise-cell">
                 <view class="appraise-cell-key">公共设施完善度</view>
                 <view class="appraise-cell-value">
-                    <input type="text" class="cell-value-input" placeholder-class="plh-ipt" placeholder="请选择"></input>
+                   <picker 
+                        mode="selector" 
+                        range="{{publicFacilities}}" 
+                        range-key="name"
+                        class="house-tag-picker " 
+                        data-selectarr='publicFacilities'
+                        bindchange="bindPickerChange" >
+                        <input type="text" class="cell-value-input" placeholder-class="plh-ipt" placeholder="请选择" disabled="true" value="{{pickValue.publicFacilities}}"/>
+                    </picker>
+                    <text class="iconfont icon-arrowRight-fill"></text>
                 </view>
             </view>
             <view class="appraise-cell">
                 <view class="appraise-cell-key">露台</view>
                 <view class="appraise-cell-value">
-                    <input type="number" class="cell-value-input" placeholder-class="plh-ipt" placeholder="请选择"></input>
+                    <input type="text" class="cell-value-input" placeholder-class="plh-ipt" disabled="true" placeholder="请选择" bindtap="showBasement" data-type="terrace" value="{{pickValue.terrace}}"></input>
+                    <text class="iconfont icon-arrowRight-fill"></text>
                 </view>
             </view>
         </view>
@@ -39,25 +45,121 @@
             <view class="appraise-cell">
                 <view class="appraise-cell-key">厌恶设施</view>
                 <view class="appraise-cell-value">
-                    <input type="text" class="cell-value-input" placeholder-class="plh-ipt" placeholder="请选择"></input>
+                     <picker 
+                        mode="selector" 
+                        range="{{aversionFacility}}" 
+                        range-key="name"
+                        class="house-tag-picker " 
+                        data-selectarr='aversionFacility'
+                        bindchange="bindPickerChange" >
+                        <input type="text" class="cell-value-input" placeholder-class="plh-ipt" placeholder="请选择" disabled="true" value="{{pickValue.aversionFacility}}"/>
+                    </picker>
+                    <text class="iconfont icon-arrowRight-fill"></text>
                 </view>
             </view>
             <view class="appraise-cell">
                 <view class="appraise-cell-key">独用花园(院子)</view>
                 <view class="appraise-cell-value">
-                    <input type="text" class="cell-value-input" placeholder-class="plh-ipt" placeholder="请选择"></input>
+                     <picker 
+                        mode="selector" 
+                        range="{{yard}}" 
+                        range-key="name"
+                        class="house-tag-picker " 
+                        data-selectarr='yard'
+                        bindchange="bindPickerChange" >
+                        <input type="text" class="cell-value-input" placeholder-class="plh-ipt" placeholder="请选择" disabled="true" value="{{pickValue.yard}}"/>
+                    </picker>
+                    <text class="iconfont icon-arrowRight-fill"></text>
                 </view>
             </view>
             <view class="appraise-cell">
                 <view class="appraise-cell-key">其他因素</view>
                 <view class="appraise-cell-value">
-                    <input type="number" class="cell-value-input" placeholder-class="plh-ipt" placeholder="请输入"></input>
+                     <picker 
+                        mode="selector" 
+                        range="{{other}}" 
+                        range-key="name"
+                        class="house-tag-picker " 
+                        data-selectarr='other'
+                        bindchange="bindPickerChange" >
+                        <input type="text" class="cell-value-input" placeholder-class="plh-ipt" placeholder="请选择" disabled="true" value="{{pickValue.other}}"/>
+                    </picker>
+                    <text class="iconfont icon-arrowRight-fill"></text>
                 </view>
             </view>
         </view>
     </view>   
 
     <view class="modify-price-btns">
-        <view class="modify-price-btn">修正价格</view>
+        <view class="modify-price-btn" bindtap="modifyPrice">修正价格</view>
     </view>
+</view>
+
+<!-- 地下室等弹窗 -->
+<Dialog isShowDia="{{isShowBasement}}">
+    <view class="index-mask-box">
+        <!-- <view class="index-mask-title">楼盘房价</view> -->
+        
+        <view class="index-mask-content">
+            <view class="mask-content-item">
+                <radio-group class="radio-group" bindchange="radioChange">
+                    <radio class="radio" value="{{0}}" checked="{{checkedInit}}">
+                        <text>无</text>
+                    </radio>
+                    <radio class="radio" value="{{1}}">
+                         <view class="houseprice-item-iptbox">
+                            <text>{{typeText}}</text>
+                            <input placeholder-class="iptbox-plc" type="number" maxlength="5" bindinput="setUnknowArea" value="{{unknowArea}}"/>平方米
+                        </view>
+                    </radio>
+                </radio-group>
+            </view>
+        </view>
+
+        <view class="line"></view>
+
+        <view class="mask-btngroup">
+            <view class="mask-cencle" bindtap="hideDialog">取消</view>
+            <view class="liner-btn mask-search" bindtap="determine" >确定</view>
+        </view>
+    </view>
+</Dialog>
+<!-- 修正价格弹窗 -->
+<view class="mod-dialog" wx:if="{{isDiaShow}}" >
+    <view class="mod-dia-close" bindtap="closeDia">
+        <image src="/static/img/popup_close_x.png"></image>
+    </view>
+    <view class="mod-dia-main animated zoomIn">
+        <view class="mod-main-bgimgbox">
+            <image src="/static/img/popup_bg.png"></image>
+        </view>
+        <view class="mod-main-items">
+            <view class="mod-main-item">
+                <view class="main-item-bgimgbox">
+                    <image src="/static/img/popup_price_bg.png"></image>
+                </view>
+                <view class="main-item-outbox">
+                    <view class="mod-item-price"><input class="mod-item-price" value="2334"></input></view>
+                    <view class="mod-item-text">修正单价</view>
+                    <view class="mod-item-note">（单位：平方米）</view>
+                </view>
+            </view>
+
+            <view class="mod-main-item mod-item-all">
+                <view class="main-item-bgimgbox">
+                    <image src="/static/img/popup_price_bg.png"></image>
+                </view>
+                <view class="main-item-outbox">
+                    <view class="mod-item-price"><input class="mod-item-price" value="8678"></input> </view>
+                    <view class="mod-item-text">修正总价</view>
+                    <view class="mod-item-note">（单位：万元）</view>
+                </view>
+            </view>
+        </view>
+        
+        <view class="mod-dia-submit" bindtap="submit">
+            提交
+        </view>
+    </view>
+
 </view>

@@ -1,3 +1,5 @@
+import { table1, table2, table3, table4, option, option1_1, option3, option3_1, optionTime } from "../../mock/mockData.js"
+import {countMonthList } from "../../utils/dateCalc.js"
 let echarts = require('../../utils/ec-canvas/echarts');
 let wxCharts = require('../../utils/wxcharts.js');
 
@@ -8,42 +10,26 @@ Page({
      * 页面的初始数据
      */
     data: {
+        charts:{},
+        transactionType:"",//交易类型
         //picker数据
-        arrayCity: [{ name: "上城区"}, {name: "滨江区"}, {name: "萧山区"}, {name: "西湖区"}],
+        arrayCity: [{ name: "上城区" }, { name: "下城区" }, { name: "西湖区" }, { name: "拱墅区" }, { name: "江干区" }, { name: "滨江区" }, { name: "萧山区" }, { name: "余杭区" }, { name: "富阳区" } ],
         pickerCityValue:"",
-        arrayHouse: [{ name: "青青家园" }, { name: "三墩古镇" }, { name: "地铁城" }, { name: "国际城" }],
+        arrHouseInit:"",
+        arrayHouse: [{ name: "住宅" }, { name: "办公" }, { name: "商业" }, { name: "其他" }],
         pickerHouseValue: "",
+
+        showModal:false,//是否显示日期弹框
+        startTime:"",
+        endTime:"",
         // 图表数据
         ecopt: {
             lazyLoad: true
         },
+        chartData:{},
+        tableDataNum: [],
+        tableDataArea: [],
         bdMessage:["0-90","90-144","144-180","180以上"],
-        bdCount:[
-            {
-                name:"0-500",
-                arr:[622,3424,33,6]
-            },
-            {
-                name: "500-800",
-                arr: [622, 3424, 33, 6]
-            },
-            {
-                name: "800-1200",
-                arr: [622, 3424, 33, 6]
-            },
-            {
-                name: "1200-1500",
-                arr: ["", 3424, 33, 6]
-            },
-            {
-                name: "1500-2000",
-                arr: ["", "", 33, 6]
-            },
-            {
-                name: "2000以上",
-                arr: ["", "", "", 6]
-            }
-        ],
         trtdWidth:"140"
     },
     /**
@@ -51,13 +37,41 @@ Page({
      */
     onLoad: function (options) {
         //console.log(options)
+        let title = {
+            "land":"土地详情",
+            "newhouse":"新房详情",
+            "secondhouse":"二手房详情",
+            "law":"司法详情"
+        }
+        options.type && wx.setNavigationBarTitle({
+            title: title[options.type]
+        })
+        if (options.type == "law"){
+            this.setData({
+                transactionType: "挂拍房源量",
+                arrHouseInit: "产品类型"
+            })
+        }else if (options.type == "land") {
+            this.setData({
+                arrHouseInit: "土地性质",
+                transactionType: "挂拍量",
+                arrayHouse: [{ name: "工业" }, { name: "集体" }, { name: "居住" }, { name: "商业" }, { name: "商住" }, { name: "其他" }],
+            })
+        }else{
+            this.setData({
+                transactionType: "挂牌房源量",
+                arrHouseInit:"产品类型"
+            })
+        }
+
+        //this.randoms()
     },
 
     /**
      * 生命周期函数--监听页面初次渲染完成
      */
     onReady: function () {
-
+        this.charts = this.selectComponent("#chart");
     },
 
     /**
@@ -67,85 +81,17 @@ Page({
 
     },
 
-    setOptionLine(chart, data) {
-        let value = [30000, 40000, 30000, 40000, 30000, 40000, 30000, 40000, 30000, 40000, 30000, 40000];
-
-        const option = {
-            xAxis: [
-                {
-                    type: 'category',
-                    axisTick: {
-                        alignWithLabel: true
-                    },
-                    axisLine: {
-                        onZero: false,
-                        lineStyle: {
-                            color: '#17d399'
-                        }
-                    },
-                    axisPointer: {
-                        label: {
-                            formatter: function (params) {
-                                return '价格  ' + params.value
-                                    + (params.seriesData.length ? '：' + params.seriesData[0].data : '');
-                            }
-                        }
-                    },
-                    data: ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"]
-                },
-                {
-                    type: 'category',
-                    axisTick: {
-                        alignWithLabel: true
-                    },
-                    axisLine: {
-                        onZero: false,
-                        lineStyle: {
-                            color: '#FF9442'
-                        }
-                    },
-                    axisPointer: {
-                        label: {
-                            formatter: function (params) {
-                                return '价格  ' + params.value
-                                    + (params.seriesData.length ? '：' + params.seriesData[0].data : '');
-                            }
-                        }
-                    },
-                    data: ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"]
-                }
-            ],
-            yAxis: [{
-                type: 'value'
-            }],
-            series: [
-                {
-                    name: '价格走势',
-                    type: 'line',
-                    xAxisIndex: 1,
-                    smooth: true,
-                    data: [1, 0.4, 1.3, 2.4, 4.3, 2, 1.3, 0.4, 3.3, 3.8, 2.3, 4]
-                },
-                {
-                    name: '价格走势2',
-                    type: 'line',
-                    smooth: true,
-                    data: [3.9, 5.9, 1.1, 0.7, 3.3, 2.2, 1.6, 4.6, 5.4, 1.4, 1.3, 0.7]
-                }
-            ]
-        };
-        chart.setOption(option);
-    },
-    initLine(data) {
-        this.ecComponent1.init((canvas, width, height) => {
-            const chartLine = echarts.init(canvas, null, {
-                width: width,
-                height: height
-            });
-            this.setOptionLine(chartLine, data);
-            this.chartLine = chartLine;
-            return chartLine;
-        });
+    randoms() {
+        let arr = [ option, option1_1, option3, option3_1]
+            , arrTable = [table1, table2, table3, table4,]
+            , randomInit = parseInt(Math.random() * arr.length)
+            , tableDataNum = arrTable[parseInt(Math.random() * arr.length)]
+            , tableDataArea = arrTable[parseInt(Math.random() * arr.length)]
+        this.setData({
+           /*  chartData: arr[randomInit], */
+            tableDataArea,
+        })
+        console.log(arr[randomInit])
     },
     tapCityPicker(e){
         console.log(e)
@@ -165,16 +111,48 @@ Page({
         console.log(value)
     },
     confirmStart(){
-        /* wx.showModal({
-            title: '选择时间段',
-            content: '请选择开始时间',
-            success(res){
-                console.log("用户点了确定")
-            }
-        }) */
+        this.setData({
+            showModal: true,
+        })
     },
     bindPickerChangeTime(e){
 
+    },
+    //获取时间段
+    getTimeCut(options){
+        this.setData({
+            startTime: options.detail.startTime,
+            endTime: options.detail.endTime
+        })
+        let arr = countMonthList(options.detail.startTime, options.detail.endTime)
+            ,randomData = [];
+            arr.forEach((v,i)=>{
+                randomData.push(parseInt(5+Math.random() * 95))
+            })
+
+        optionTime.xAxis[0].data = arr
+        optionTime.series[0].data = randomData
+        //console.log(arr, optionTime)
+        this.setData({
+            chartData: optionTime
+        })
+        if (!this.data.pickerCityValue){
+            wx.showToast({
+                title: '请选择城区',
+                icon:"none"
+            })
+            return
+        }
+
+        if (!this.data.pickerHouseValue) {
+            wx.showToast({
+                title: '请选择住宅',
+                icon: "none"
+            })
+            return
+        }
+        this.charts.initLine(optionTime)
+        this.randoms()
     },
     /**
      * 生命周期函数--监听页面隐藏

@@ -1,0 +1,60 @@
+<view class="appraise">
+    <view class="appraise-con">
+        <view class="appraise-cell-block">
+        
+            <view class="appraise-cell portrait-out">
+                <view class="appraise-cell-key">头像</view>
+                <view class="appraise-cell-value">
+                    <view class="portrait-imgbox"  bindtap="addPic">
+                        <image class="" mode="aspectFill" src="{{portrait}}"></image>
+                    </view>
+                </view>
+            </view>
+
+            <view class="appraise-cell">
+                <view class="appraise-cell-key">姓名</view>
+                <view class="appraise-cell-value">
+                    <input type="text" class="cell-value-input" placeholder-class="plh-ipt" placeholder="请输入" value="{{name}}" bindinput="itemInput"  data-type="name"/>
+                </view>
+            </view>
+
+            <view class="appraise-cell">
+                <view class="appraise-cell-key">手机号码</view>
+                <view class="appraise-cell-value">
+                    <input type="number" class="cell-value-input" placeholder-class="plh-ipt" placeholder="请输入"  bindinput="phoneInput"  value="{{phoneNumber}}"/>
+                </view>
+            </view>
+            
+            <view class="appraise-cell">
+                <view class="appraise-cell-key">性别</view>
+                <view class="appraise-cell-value">
+                    <picker 
+                        mode="selector" 
+                        range="{{sexArr}}" 
+                        class="house-tag-picker " 
+                        bindchange="bindPickerChange" >
+                        <input type="text" class="cell-value-input" placeholder-class="plh-ipt" placeholder="请输入"  value="{{sex}}" disabled/>
+                    </picker>
+                </view>
+            </view>
+            
+            <view class="appraise-cell">
+                <view class="appraise-cell-key">公司</view>
+                <view class="appraise-cell-value">
+                    <input type="text" class="cell-value-input" placeholder-class="plh-ipt" placeholder="请输入" bindinput="itemInput"  value="{{company}}" data-type="company"/>
+                </view>
+            </view>
+            
+            <view class="appraise-cell">
+                <view class="appraise-cell-key">职务</view>
+                <view class="appraise-cell-value">
+                    <input type="text" class="cell-value-input" placeholder-class="plh-ipt" placeholder="请输入" bindinput="itemInput"  value="{{job}}" data-type="job"/>
+                </view>
+            </view>
+        </view>
+    </view>
+
+    <view class="modify-price-btns">
+        <view class="modify-price-btn" bindtap="bind">提交</view>
+    </view>
+</view>

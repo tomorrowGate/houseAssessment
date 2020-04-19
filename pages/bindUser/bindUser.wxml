@@ -19,6 +19,8 @@
     </view>
 
     <view class="modify-price-btns">
-        <view class="modify-price-btn" bindtap="bind">立即绑定</view>
+    <!-- bindtap="bind" -->
+        <button open-type="getUserInfo" bindgetuserinfo="getUserInfo" class="modify-price-btn button clear-button" >立即绑定</button>
+        <!-- <view class="modify-price-btn" bindtap="bind">立即绑定</view> -->
     </view>
 </view>

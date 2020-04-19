@@ -11,12 +11,67 @@ Page({
             dong:"",
             unit:"",
             room:""
-        }
+        },
+        fuzzyQuery: {
+            city: ["西湖", "杭州", "萧山", "西山", "西海"],
+            filterData: [],
+            inputValue: "",
+            canSwitch: true
+        },
+
+        village: {
+            city: ["国玺", "龙府", "青青家园", "三墩小区", "龙巢", "九龙小区", "三坝小区", "国际城"],
+            filterData: [],
+            inputValue: "",
+            canSwitch: true
+        },
     },
     houseSearch(){
         wx.navigateTo({
             url: '/pages/housePriceDet/housePriceDet',
         })
+    },
+    filter(e) {
+        let keywords = e.detail.value
+            ,result = []
+            ,filterdataArr = e.currentTarget.dataset.filterdata.city
+            , setDataKey = e.currentTarget.dataset.filterkey
+            , fliterDataKey = setDataKey + '.filterData'
+            , inputValueKey = setDataKey + '.inputValue'
+        console.log(fliterDataKey, inputValueKey)
+        e.detail.value && filterdataArr.forEach((city, index) => {
+            if (city.includes(keywords)) {
+                result.push(city)
+            }
+        })
+
+        this.setData({
+            [fliterDataKey]: result,
+            [inputValueKey]: e.detail.value
+        })
+    },
+    clearFilter(e){
+        let that = this
+            , setDataKey = e.currentTarget.dataset.filterkey
+            , fliterDataKey = setDataKey + '.filterData'
+            , inputValueKey = setDataKey + '.inputValue'
+
+        setTimeout(function () {
+            that.setData({
+                [fliterDataKey]: []
+            })
+        }, 300)
+    },
+    makesure(e) {
+        let that = this
+            , setDataKey = e.currentTarget.dataset.filterkey
+            , fliterDataKey = setDataKey + '.filterData'
+            , inputValueKey = setDataKey + '.inputValue'
+
+        this.setData({
+            [inputValueKey]: e.currentTarget.dataset.value,
+            [fliterDataKey]: [],
+        }) 
     },
     /**
      * 生命周期函数--监听页面加载

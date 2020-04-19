@@ -1,4 +1,5 @@
 // pages/bindUser/bindUser.js
+let app = getApp()
 Page({
 
     /**
@@ -11,6 +12,15 @@ Page({
         isPhoneTrue:false,//手机号码是否输入正确
         yzmNumber:"",//验证码
         isYzmTrue:true//验证码是否正确
+    },
+    getUserInfo: function (e) {
+        console.log(e)
+        if (e.detail.userInfo){
+            app.globalData.userInfo = e.detail.userInfo
+            this.bind()
+        }
+        
+        
     },
     send(){
         if (isPhoneTrue) {

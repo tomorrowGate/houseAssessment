@@ -1,0 +1,54 @@
+/* pages/bindUser/bindUser.wxss */
+.appraise-con{
+    background: #F7F5F6;
+    padding: 24rpx 0 0 0;
+    font-size: 32rpx;
+}
+.appraise-cell-block{
+    padding: 0rpx 24rpx;
+    background: #fff;
+    font-size: 32rpx;
+}
+.appraise-cell{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 44rpx 0;
+    font-size: 32rpx;
+}
+.appraise-cell+.appraise-cell{
+    border-top:1rpx solid #F2F2F2 
+}
+.appraise-cell-value{
+    display: flex;
+    align-items: center;
+    /* color: #CCCCCC */
+}
+.cell-value-input{
+    text-align: right;
+    color: #000
+}
+.plh-ipt{
+    color: #CCCCCC
+}
+.modify-price-btns{
+    width: 100%;
+    height: 120rpx;
+    background: #fff;
+    padding: 20rpx 30rpx;
+    margin-top: 140rpx;
+    box-sizing: border-box;
+    /* box-shadow: 2rpx 0 8rpx #f6f6f6; */
+    z-index:2;
+}
+.modify-price-btn{
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(to right,#0066FD,#002EFB);
+    text-align: center;
+    line-height: 80rpx;
+    color: #fff;
+    font-size: 32rpx;
+    border-radius: 10rpx;
+    letter-spacing: 2rpx;
+}

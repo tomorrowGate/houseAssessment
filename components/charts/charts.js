@@ -1,5 +1,6 @@
 // components/charts/charts.js
 //let charts = require('charts')
+import { option, option2} from "../../mock/mockData.js"
 let echarts = require('../../utils/ec-canvas/echarts');
 let wxCharts = require('../../utils/wxcharts.js');
 
@@ -10,7 +11,13 @@ Component({
      * 组件的属性列表
      */
     properties: {
-
+        chartData:{
+            type: Object,
+            value: {},
+            observer: function (newVal, oldVal) { 
+               console.log(newVal)
+            }
+        }
     },
 
     /**
@@ -29,70 +36,9 @@ Component({
      */
     methods: {
         setOptionLine(chart, data) {
-            const option = {
-                xAxis: [
-                    {
-                        type: 'category',
-                        axisTick: {
-                            alignWithLabel: true
-                        },
-                        axisLine: {
-                            onZero: false,
-                            lineStyle: {
-                                color: '#FF9442'
-                            }
-                        },
-                        axisPointer: {
-                            label: {
-                                formatter: function (params) {
-                                    return '价格  ' + params.value
-                                        + (params.seriesData.length ? '：' + params.seriesData[0].data : '');
-                                }
-                            }
-                        },
-                        data: ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"]
-                    },
-                    {
-                        type: 'category',
-                        axisTick: {
-                            alignWithLabel: true
-                        },
-                        axisLine: {
-                            onZero: false,
-                            lineStyle: {
-                                color: '#005DFC'
-                            }
-                        },
-                        axisPointer: {
-                            label: {
-                                formatter: function (params) {
-                                    return '价格  ' + params.value
-                                        + (params.seriesData.length ? '：' + params.seriesData[0].data : '');
-                                }
-                            }
-                        },
-                    }
-                ],
-                yAxis: [{
-                    type: 'value'
-                }],
-                series: [
-                    {
-                        name: '价格走势',
-                        type: 'line',
-                        xAxisIndex: 1,
-                        smooth: true,
-                        data: [1, 0.4, 1.3, 2.4, 4.3, 2, 1.3, 0.4, 3.3, 3.8, 2.3, 4]
-                    },
-                    {
-                        name: '价格走势2',
-                        type: 'line',
-                        smooth: true,
-                        data: [3.9, 5.9, 1.1, 0.7, 3.3, 2.2, 1.6, 4.6, 5.4, 1.4, 1.3, 0.7]
-                    }
-                ]
-            };
-            chart.setOption(option);
+            let _this = this
+            console.log(data)
+            chart.setOption(data);
         },
         initLine(data) {
             this.ecComponent1.init((canvas, width, height) => {
@@ -110,7 +56,8 @@ Component({
         attached: function () {
             // 在组件实例进入页面节点树时执行
             this.ecComponent1 = this.selectComponent('#ecdom1');
-            this.initLine(22)
+            console.log(this.properties.chartData)
+            this.initLine(this.properties.chartData || option)
         },
         detached: function () {
             // 在组件实例被从页面节点树移除时执行

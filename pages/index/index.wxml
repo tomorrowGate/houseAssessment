@@ -17,9 +17,8 @@
         <!-- <view class="shadow-box"></view> -->
     </view>
 
-    <!-- 楼市宫格 -->
-    <view class="index-grid">
-        <view class="index-grid-item " bindtap="functionQuery">
+    <view class="index-line">
+        <view class="index-grid-item bubble" bindtap="functionQuery">
             <view class="grid-item-imgbox">
                 <image class="grid-item-img" src="/static/img/floor_icon.png"></image>
             </view>
@@ -28,7 +27,20 @@
                 <view class="grid-item-textdown">查看区域楼盘评估</view>
             </view>
         </view>
-        <view class="index-grid-item" bindtap="toOtherFour" data-type="land">
+    </view>
+
+    <!-- 楼市宫格 -->
+    <view class="index-grid">
+        <!-- <view class="index-grid-item bubble" bindtap="functionQuery">
+            <view class="grid-item-imgbox">
+                <image class="grid-item-img" src="/static/img/floor_icon.png"></image>
+            </view>
+            <view class="grid-item-textbox">
+                <view class="grid-item-textup">楼盘房价</view>
+                <view class="grid-item-textdown">查看区域楼盘评估</view>
+            </view>
+        </view> -->
+        <view class="index-grid-item bubble" bindtap="toOtherFour" data-type="land">
             <view class="grid-item-imgbox">
                 <image class="grid-item-img" src="/static/img/land_icon.png"></image>
             </view>
@@ -55,7 +67,7 @@
                 <view class="grid-item-textdown">查看二手房市场监测</view>
             </view>
         </view>
-        <view class="index-grid-item" bindtap="toOtherFour" data-type="law">
+        <view class="index-grid-item bubble" bindtap="toOtherFour" data-type="law">
             <view class="grid-item-imgbox">
                 <image class="grid-item-img" src="/static/img/judicial_icon.png"></image>
             </view>
@@ -68,7 +80,7 @@
 </view>
 
 <dialog isShowDia="{{isShowDia}}">
-    <view class="index-mask-box">
+    <view class="index-mask-box ">
         <view class="index-mask-title">楼盘房价</view>
         
         <view class="index-mask-content">
@@ -77,7 +89,27 @@
                     <image class="" src="/static/img/area_icon.png"></image>
                 </view>
                 <view class="houseprice-item-iptbox">
-                    <input placeholder="小区名称" placeholder-class="iptbox-plc"/>
+                    <input 
+                        placeholder="小区名称" 
+                        placeholder-class="iptbox-plc"
+                        
+                        bindfocus="filter" 
+                        bindinput="filter" 
+                        bindblur="clearFilter5"
+                        data-filterkey = "village"
+                        data-filterdata="{{village}}"
+                        value="{{village.inputValue}}"/>
+                </view>
+                <view class="houseprice-input-items">
+                    <view  
+                        data-filterkey = "village"
+                        class="houseprice-input-item" 
+                        wx:for="{{village.filterData}}" 
+                        wx:key="index" 
+                        bindtap="makesure"
+                        data-value="{{item}}" >
+                        {{item}}
+                    </view>
                 </view>
             </view>
         </view>

@@ -1,4 +1,5 @@
 // pages/housePriceDet/housePriceDet.js
+import {  option2, option2_1, option4, option4_1} from "../../mock/mockData.js"
 Page({
 
     /**
@@ -26,20 +27,44 @@ Page({
             lazyLoad: true
         },
         ecComponent1: null,
+        chart:{}
     },
-
+    randoms(){
+        let arr = [option2, option2_1, option4, option4_1]
+            , randomInit = parseInt(Math.random() * arr.length)
+        this.setData({
+            chartData: arr[randomInit]
+        })
+        this.chart.initLine(arr[randomInit])
+    },
+    priceModify(e){
+        wx.navigateTo({
+            url: '/pages/infowrite/infowrite',
+        })
+    },
+    nextTime(e){
+        wx.showToast({
+            title: '敬请期待',
+            icon: 'none',
+        })
+    },
+    goUnderLinde(e){
+        wx.navigateTo({
+            url: '/pages/offlineCommit/offlineCommit',
+        })
+    },
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-
     },
 
     /**
      * 生命周期函数--监听页面初次渲染完成
      */
     onReady: function () {
-
+        this.chart = this.selectComponent("#chart");
+        this.randoms()
     },
 
     /**
@@ -77,10 +102,4 @@ Page({
 
     },
 
-    /**
-     * 用户点击右上角分享
-     */
-    onShareAppMessage: function () {
-
-    }
 })

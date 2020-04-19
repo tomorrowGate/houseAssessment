@@ -82,10 +82,16 @@
 
 .appraise-save{
     background: #fff;
-    padding: 160rpx 30rpx 0 30rpx;
+    padding: 160rpx 30rpx;
 }
 .appraise-save-btn{
-    width: 100%;
+    width: 580rpx;
+    height: 88rpx;
+    line-height: 88rpx;
+    text-align: center;
+    margin: auto;
     color: #fff;
+    font-size: 32rpx;
+    border-radius: 20rpx;
     background-image: linear-gradient(to right,#0066FD,#002EFB) 
 }

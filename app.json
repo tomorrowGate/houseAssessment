@@ -1,19 +1,22 @@
 {
     "pages": [
         "pages/index/index",
-        "pages/bindUser/bindUser",
-        "pages/infowrite/infowrite",
+        "pages/user/user",
+        "pages/houseprice/houseprice",
         "pages/priceModify/priceModify",
+        "pages/infowrite/infowrite",
+        "pages/newhouse/newhouse",
+        "pages/bindUser/bindUser",
         "pages/housePriceDet/housePriceDet",
         "pages/buildingdet/buildingdet",
-        "pages/newhouse/newhouse",
         "components/dialog/dialog",
-        "pages/houseprice/houseprice",
-        "pages/user/user",
         "pages/appraise/appraise",
         "pages/logs/logs",
         "pages/attestation/attestation",
-        "pages/welcome/welcome"
+        "pages/offlineCommit/offlineCommit",
+        "pages/feedback/feedback",
+        "pages/welcome/welcome",
+        "pages/userinfoForm/userinfoForm"
     ],
     "tabBar": {
         "color": "#3D3D3D",
