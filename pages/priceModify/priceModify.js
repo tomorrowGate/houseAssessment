@@ -93,6 +93,21 @@ Page({
         })
         this.hideDialog()
     },
+    determineOther() {
+        let _this = this
+        let typeArr = {
+            "0": "无",
+            "1": "房屋内发生命案",
+            "2":  _this.data.unknowArea 
+        }
+        let selectarr = this.data.basementType
+            , pickValue = 'pickValue.' + selectarr
+            , typeKey = this.data.radioValue
+        this.setData({
+            [pickValue]: typeArr[typeKey]
+        })
+        this.hideDialog()
+    },
     closeDia(){
         this.setData({
             isDiaShow: false

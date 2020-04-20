@@ -5,8 +5,8 @@
         </view>
         <view class="user-card-out">
             <view class="user-head">
-               <view class="house-src">杭州国玺悦龙府</view>
-               <view class="house-num">( 5幢1单元1201室 )</view>
+               <view class="house-src">{{searchParameter.county + searchParameter.countyName}}</view>
+               <view class="house-num">( {{searchParameter.dong}}幢{{searchParameter.unit}}单元{{searchParameter.room}}室 )</view>
             </view>
 
             <view class="user-card">
@@ -57,7 +57,7 @@
         <view class="housepd-table-cells">
             <view class="housepd-cell-block">
                 <text class="housepd-cell-key">房屋坐落: </text>
-                <text class="housepd-cell-value">杭州国玺悦龙府5幢1单元1201室</text>
+                <text class="housepd-cell-value">{{compliteRoom}}</text>
             </view>
             <view class="housepd-cell-inlineb">
                 <text class="housepd-cell-key">权证信息: </text>
@@ -69,11 +69,11 @@
             </view>
             <view class="housepd-cell-inlineb">
                 <text class="housepd-cell-key">所属城区: </text>
-                <text class="housepd-cell-value">上城区 </text>
+                <text class="housepd-cell-value">{{searchParameter.county}} </text>
             </view>
             <view class="housepd-cell-inlineb">
                 <text class="housepd-cell-key">小区名称: </text>
-                <text class="housepd-cell-value">国玺悦龙府</text>
+                <text class="housepd-cell-value">{{searchParameter.countyName}}</text>
             </view>
             <view class="housepd-cell-inlineb">
                 <text class="housepd-cell-key">建成年份: </text>

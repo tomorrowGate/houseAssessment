@@ -111,6 +111,7 @@ Component({
      */
     methods: {
         go(e){
+            console.log(111)
             let startTime = this.data.year + "/" + this.data.month + "/" + this.data.day
             this.setData({
                 isShowDia:true,
@@ -118,6 +119,10 @@ Component({
                 showModals: true,
                 startTime,
             })
+            console.log(221)
+        },
+        test(e){
+            console.log(e)
         },
         bindChange: function (e) {
             let val = e.detail.value

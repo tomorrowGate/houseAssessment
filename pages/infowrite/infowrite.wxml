@@ -18,8 +18,12 @@
             </view>
             <view class="appraise-cell">
                 <view class="appraise-cell-key">户型</view>
-                <view class="appraise-cell-value">
-                    <input type="text" class="cell-value-input" placeholder-class="plh-ipt" placeholder="请输入"></input>
+                <view class="appraise-cell-value appraise-cell-housetype">
+                    <input type="number" class="cell-value-input"/>室
+                    <input type="number" class="cell-value-input"/>厅
+                    <input type="number" class="cell-value-input"/>厨
+                    <input type="number" class="cell-value-input"/>卫
+                    <input type="number" class="cell-value-input"/>阳台
                 </view>
             </view>
             <view class="appraise-cell">

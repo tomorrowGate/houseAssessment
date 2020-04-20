@@ -18,7 +18,7 @@
                     <view class="user-card-itemnum itemnum-same-ring">
                         <text class="itemnum-raing-up">5%</text> 
                         <view class="same-ring-imgbox">
-                            <image src="/static/img/red_arrow_icon.png"></image>
+                            <image src="/static/img/orage_arrow_icon.png"></image>
                         </view>
                     </view>
                     <view class="user-card-itemtxt">环比</view>
@@ -65,20 +65,25 @@
             </view>
         </picker>
 
+    </view>
+
+    <view class="house-tag-group">
         <!-- <picker 
         mode="date" 
         class="house-tag-picker "        
         bindtap="confirmStart" 
         bindchange="bindPickerChangeTime"  -->
             <view class="house-tag-item bubble" bindtap="confirmStart">
-                <view class="house-tag-text"></view>
+                <view class="house-tag-text">{{pickerTime||"选择时间"}}</view>
                 <view class="house-tag-imgbox">
                     <image src="/static/img/date_icon.png"></image>
                 </view>
             </view>
         <!-- </picker> -->
+
     </view>
 
+    <CusTimePicker isShowDia = "{{!showModal}}" bind:getTimeCut="getTimeCut"/>
 
    <!--   <view class="house-datas">
         <view class="house-datas-head">
@@ -110,4 +115,3 @@
     </view>
     
 </view>
-<CusTimePicker isShowDia = "{{!showModal}}" bind:getTimeCut="getTimeCut"/>

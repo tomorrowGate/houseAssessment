@@ -27,6 +27,11 @@
     align-items: center;
     color: #CCCCCC
 }
+.appraise-cell-housetype input{
+    width: 40rpx;
+    text-align: center;
+    border-bottom:1rpx solid #ddd;
+}
 .cell-value-input{
     text-align: right;
     color: #000

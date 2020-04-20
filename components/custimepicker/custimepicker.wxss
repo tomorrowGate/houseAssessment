@@ -6,7 +6,14 @@
     flex-direction: column;
     align-items: center;
 }
+.modal-pick-out{
+    width: 100%; 
+    height:400rpx;
+}
 .cus-continiue{
+   /*  position: relative;
+    left: 0rpx;
+    bottom: 10rpx; */
     width: 100%;
     height: 100rpx;
     line-height: 100rpx;
@@ -14,16 +21,21 @@
     font-size: 34rpx;
     background: #eee;
     color: #005DFE;
+    z-index:10
+}
+.selected-date{
+    height: 80rpx;
+    line-height: 80rpx;
 }
 .time_text{
     text-align: center;
     font-size:40rpx;
-    height: 35px;
-    margin-top: 20rpx;
+    height: 70rpx;
+    margin: 20rpx 0;
 }
 .view_picker{
-    margin-top: 20rpx;
-    margin-bottom: 20rpx; 
+    width: 100%; 
+    height:100%
 }
 .view_picker_text{
     padding-left:35rpx;

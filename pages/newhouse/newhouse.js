@@ -18,6 +18,7 @@ Page({
         arrHouseInit:"",
         arrayHouse: [{ name: "住宅" }, { name: "办公" }, { name: "商业" }, { name: "其他" }],
         pickerHouseValue: "",
+        pickerTime:"",
 
         showModal:false,//是否显示日期弹框
         startTime:"",
@@ -122,8 +123,10 @@ Page({
     getTimeCut(options){
         this.setData({
             startTime: options.detail.startTime,
-            endTime: options.detail.endTime
+            endTime: options.detail.endTime,
+            pickerTime: options.detail.startTime + '-' + options.detail.endTime
         })
+        console.log(this.data.pickerTime)
         let arr = countMonthList(options.detail.startTime, options.detail.endTime)
             ,randomData = [];
             arr.forEach((v,i)=>{
