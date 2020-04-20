@@ -123,7 +123,8 @@
                     <radio class="radio" value="{{2}}" wx:if="{{basementType =='other'}}">
                          <view class="houseprice-item-iptbox">
                             <text>其他</text>
-                            <input placeholder-class="iptbox-plc" type="text"placeholder="请输入原因" bindinput="setUnknowArea" value="{{unknowArea}}"/>
+                            <input placeholder-class="iptbox-plc " class="other-class" type="text"placeholder="请输入原因" bindinput="setUnknowArea" value="{{unknowArea}}"/>
+                            <!-- <textarea placeholder-class="iptbox-plc " class="other-class" type="text"placeholder="请输入原因" bindinput="setUnknowArea" value="{{unknowArea}}"></textarea> -->
                         </view>
                     </radio>
 

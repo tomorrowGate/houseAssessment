@@ -74,12 +74,16 @@
         bindtap="confirmStart" 
         bindchange="bindPickerChangeTime"  -->
             <view class="house-tag-item bubble" bindtap="confirmStart">
-                <view class="house-tag-text">{{pickerTime||"选择时间"}}</view>
+                <!-- <view class="house-tag-text">{{pickerTime||"选择时间"}}</view> -->
                 <view class="house-tag-imgbox">
                     <image src="/static/img/date_icon.png"></image>
                 </view>
             </view>
         <!-- </picker> -->
+
+        <view> 
+            <text>选择时间：</text> <text> {{pickerTime}} </text>
+        </view>
 
     </view>
 

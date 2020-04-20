@@ -71,6 +71,7 @@
 
 .house-tag-group{
     display: flex;
+    align-items: center;
     margin-top: 10rpx;
     margin-bottom: 30rpx;
     padding: 10rpx 30rpx;

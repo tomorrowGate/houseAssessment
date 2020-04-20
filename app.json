@@ -1,7 +1,7 @@
 {
     "pages": [
-        "pages/priceModify/priceModify",
         "pages/index/index",
+        "pages/priceModify/priceModify",
         "pages/user/user",
         "pages/houseprice/houseprice",
         "pages/infowrite/infowrite",

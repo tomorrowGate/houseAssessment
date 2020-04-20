@@ -95,6 +95,16 @@
     border-radius: 10rpx;
     border:1rpx solid #ccc;
 }
+.houseprice-item-iptbox .other-class{
+    display: inline-block;
+    vertical-align: middle;
+    width: 350rpx;
+    height: 100%;
+    padding: 0 10rpx;
+    margin: 0 10rpx;
+    border-radius: 10rpx;
+    border:1rpx solid #ccc;
+}
 .radio-group radio{
     display: block;
     margin-top: 10rpx;
