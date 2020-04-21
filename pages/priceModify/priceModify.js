@@ -88,22 +88,7 @@ Page({
         } 
         if (this.data.basementType == "other"){
             typeArr['1'] = text
-            typeArr['2'] = _this.data.unknowArea
-        }
-        let selectarr = this.data.basementType
-            , pickValue = 'pickValue.' + selectarr
-            , typeKey = this.data.radioValue
-        this.setData({
-            [pickValue]: typeArr[typeKey]
-        })
-        this.hideDialog()
-    },
-    determineOther() {
-        let _this = this
-        let typeArr = {
-            "0": "无",
-            "1": "房屋内发生命案",
-            "2":  _this.data.unknowArea 
+            typeArr['2'] = "其他："+_this.data.unknowArea
         }
         let selectarr = this.data.basementType
             , pickValue = 'pickValue.' + selectarr
