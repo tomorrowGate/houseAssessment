@@ -79,12 +79,17 @@ Page({
         let _this = this
             ,arr = {
                 "terrace": "独用面积",
+                "other":"房屋发生命案"
             },
             text = arr[_this.data.basementType] || "未计入建筑面积"
         let typeArr = {
             "0":"无",
             "1": text + _this.data.unknowArea + "平方米"
         } 
+        if (this.data.basementType == "other"){
+            typeArr['1'] = text
+            typeArr['2'] = "其他："+_this.data.unknowArea
+        }
         let selectarr = this.data.basementType
             , pickValue = 'pickValue.' + selectarr
             , typeKey = this.data.radioValue

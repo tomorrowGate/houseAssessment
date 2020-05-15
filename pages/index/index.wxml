@@ -18,7 +18,7 @@
     </view>
 
     <view class="index-line">
-        <view class="index-grid-item bubble" bindtap="functionQuery">
+        <view class="index-grid-item index-grid-first bubble" bindtap="functionQuery">
             <view class="grid-item-imgbox">
                 <image class="grid-item-img" src="/static/img/floor_icon.png"></image>
             </view>

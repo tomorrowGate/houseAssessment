@@ -612,3 +612,111 @@ export const optionTime = {
         },
     ]
 };
+/* 模拟直方图 */
+export const optionBarPic = {
+    xAxis: {
+        type: 'category',
+        data: ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"]
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [{
+        data: (function () {
+            var res = [];
+            var len = 12;
+            while (len--) {
+                res.push(Math.round(Math.random() * 1000));
+            }
+            return res;
+        })(),
+        type: 'bar'
+    }]
+}
+
+/* 模拟直方图和折线图的和图 */
+export const optionTotcalLine = {
+    title: {
+        text: '动态数据',
+       /*  subtext: '纯属虚构' */
+    },
+    legend: {
+        data: ['最新成交价', '预购队列']
+    },
+    xAxis: [
+        {
+            type: 'category',
+            boundaryGap: true,
+            data: (function () {
+                var now = new Date();
+                var res = [];
+                var len = 10;
+                while (len--) {
+                    res.unshift(now.toLocaleTimeString().replace(/^\D*/, ''));
+                    now = new Date(now - 2000);
+                }
+                return res;
+            })()
+        },
+        {
+            show:false,
+            type: 'category',
+            boundaryGap: true,
+            data: (function () {
+                var res = [];
+                var len = 10;
+                while (len--) {
+                    res.push(10 - len - 1);
+                }
+                return res;
+            })()
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value',
+            scale: true,
+            name: '价格',
+            max: 30,
+            min: 0,
+            boundaryGap: [0.2, 0.2]
+        },
+        {
+            type: 'value',
+            scale: true,
+            name: '预购量',
+            max: 1200,
+            min: 0,
+            boundaryGap: [0.2, 0.2]
+        }
+    ],
+    series: [
+        {
+            name: '预购队列',
+            type: 'bar',
+            xAxisIndex: 1,
+            yAxisIndex: 1,
+            data: (function () {
+                var res = [];
+                var len = 10;
+                while (len--) {
+                    res.push(Math.round(Math.random() * 1000));
+                }
+                return res;
+            })()
+        },
+        {
+            name: '最新成交价',
+            type: 'line',
+            data: (function () {
+                var res = [];
+                var len = 0;
+                while (len < 10) {
+                    res.push((Math.random() * 10 + 5).toFixed(1) - 0);
+                    len++;
+                }
+                return res;
+            })()
+        }
+    ]
+};

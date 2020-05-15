@@ -1,13 +1,13 @@
 {
     "pages": [
+        "pages/housePriceDet/housePriceDet",
         "pages/index/index",
+        "pages/priceModify/priceModify",
         "pages/user/user",
         "pages/houseprice/houseprice",
-        "pages/priceModify/priceModify",
         "pages/infowrite/infowrite",
         "pages/newhouse/newhouse",
         "pages/bindUser/bindUser",
-        "pages/housePriceDet/housePriceDet",
         "pages/buildingdet/buildingdet",
         "components/dialog/dialog",
         "pages/appraise/appraise",
@@ -34,7 +34,7 @@
                 "pagePath": "pages/houseprice/houseprice",
                 "iconPath": "/static/img/house_price_icon.png",
                 "selectedIconPath": "/static/img/house_price_sel_icon.png",
-                "text": "房价"
+                "text": "一房一价"
             },
             {
                 "pagePath": "pages/appraise/appraise",

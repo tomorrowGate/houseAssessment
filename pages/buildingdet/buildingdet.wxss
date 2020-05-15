@@ -1,6 +1,8 @@
 .user-main{
     position: relative;
-    padding-bottom: 20rpx
+    padding-bottom: 20rpx;
+    border-bottom: 20rpx solid #F6F6F6;
+
 }
 .user-bg{
      height: 445rpx;
@@ -65,6 +67,36 @@
     z-index: 3
 }
 
+
+/* 房产信息 */
+.housepd-table{
+    padding: 50rpx 30rpx;
+    border-bottom: 20rpx solid #F6F6F6;
+
+}
+.housepd-table-head{
+    padding-bottom: 8rpx;
+    font-size: 30rpx;
+    font-weight: 600;
+}
+.house-datas-text:first-letter{
+    display: inline-block;
+    line-height: 20rpx;
+    border-radius: 6rpx 14rpx 14rpx 6rpx; 
+    background: #7FAEFF;
+}
+.housepd-cell-block{
+    padding: 25rpx 0;
+}
+.housepd-cell-inlineb{
+    padding: 25rpx 0;
+    display: inline-block;
+    width: 50%;
+}
+.housepd-cell-key{
+    color: #999
+}
+
 .house-datas{
     padding: 30rpx;
    border-bottom: 20rpx solid #F6F6F6
@@ -100,4 +132,19 @@
 .container1,.ec-canvas{
     width: 680rpx;
     height: 550rpx;
+}
+
+/* 价格走势 三合一 */
+.charts-box{
+    display: flex;
+}
+.charts-box-slid{
+}
+
+.charts-slid-btn{
+    background: #7FAEFF;
+    color: #fff;
+    margin-top: 10rpx;
+    margin-right: 6rpx;
+    padding: 10rpx 4rpx;
 }

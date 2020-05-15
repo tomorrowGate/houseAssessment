@@ -6,6 +6,14 @@ Page({
      * 页面的初始数据
      */
     data: {
+        searchParameter:{
+            county: "杭州",
+            countyName: "国玺悦龙府",
+            dong: "5",
+            unit: "1",
+            room: "1201"
+        },
+        compliteRoom:"",
         housePriceTh: ["月","年"],
         housePriceTable:[
             {
@@ -53,10 +61,24 @@ Page({
             url: '/pages/offlineCommit/offlineCommit',
         })
     },
+    getPrePage(){
+        let pages = getCurrentPages();
+        if (pages.length >= 2) {
+            let prevPage = pages[pages.length - 2]; //上一个页面
+            return prevPage.data.searchParameter
+        }
+    },
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
+        // let searchParameter = this.getPrePage()
+        // let compliteRoom = searchParameter.county + searchParameter.countyName + searchParameter.dong + '幢' + searchParameter.unit + '单元' + searchParameter.room + '室'
+        // //console.log(this.getPrePage())
+        // this.setData({
+        //     searchParameter,
+        //     compliteRoom,
+        // })
     },
 
     /**

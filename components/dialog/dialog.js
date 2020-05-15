@@ -15,6 +15,10 @@ Component({
         width:{
             type:Number,
             value: 634
+        },
+        padding:{
+            type: Number,
+            value: 40
         }
     },
 
@@ -30,6 +34,7 @@ Component({
      */
     methods: {
         cencleDia(e) {
+            console.log(e)
             if (this.properties.isAcCenCle) {
                 this.setData({
                     isShowDia: true

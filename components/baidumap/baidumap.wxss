@@ -1,0 +1,79 @@
+/* components/baidumap/baidumap.wxss */
+.map_container{ 
+    position: relative;
+    height: 1000rpx;
+    width: 100%; 
+} 
+
+.map { 
+    height: 100%; 
+    width: 100%; 
+} 
+
+.map-control{
+    position: absolute;
+    top:10rpx;
+    right: 20rpx;
+    background: #fff;
+    border-radius: 8rpx;
+    box-shadow: 0 0 10rpx #ddd; 
+}
+.control-head-out{
+    display: flex;
+    height: 70rpx;
+    line-height: 70rpx;
+    border-bottom: 2rpx solid #f00;
+    background: #f2f2f2;
+}
+.control-head-down{
+    display: flex;
+    height: 70rpx;
+    line-height: 70rpx;
+    padding: 0 12rpx;
+    border-bottom: 1rpx solid #eee
+}
+.control-head-item{
+    padding: 6rpx 8rpx;
+    margin-right: 6rpx;
+}
+.head-item-active{
+    background: #f00;
+    color: #fff
+}
+
+.map-control-body{
+    height: 300rpx;
+}
+.control-body-item{
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 70rpx;
+    line-height: 70rpx;
+}
+.body-item-lefticon{
+    width: 40rpx;
+    height: 40rpx;
+    margin: 0 10rpx 4rpx 10rpx;
+}
+
+.body-item-lefticon{
+    position: relative;
+}
+.body-item-index{
+    position: absolute;
+    top:50%;
+    left: 50%;
+    color:#fff;
+    font-size: 24rpx;
+    transform: translate(-50%,-50%);
+}
+.body-item-img{
+
+}
+.body-item-distance{
+    position: absolute;
+    top:50%;
+    right: 16rpx;
+    transform: translateY( -50% );
+}

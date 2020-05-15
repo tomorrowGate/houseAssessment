@@ -1,0 +1,36 @@
+
+<view class="map_container"> 
+    <map 
+        class="map" 
+        id="map" 
+        longitude="{{selfGeo.longitude}}" 
+        latitude="{{selfGeo.latitude}}" 
+        scale="14" 
+        show-location="true" 
+        markers="{{markers}}" 
+        bindmarkertap="makertap"></map> 
+
+    <view class="map-control">
+        <view class="map-control-head">
+            <view class="control-head-out">
+                <view class="control-head-item" wx:for="{{mapControlArr}}" wx:key="index">{{item.name}}</view>
+            </view>
+            <view class="control-head-down">
+                <view class="control-head-item" wx:for="{{mapSubControl}}" wx:key="index">{{item.name}}</view>
+            </view>
+        </view>
+        <scroll-view class="map-control-body" wx:if="{{wxMarkerData}}" scroll-y>
+            <view class="control-body-item" wx:for="{{wxMarkerData}}" wx:key="index">
+                <view class="body-item-lefticon">
+                    <text class="body-item-index">{{index*1+1}}</text>
+                    <image src="/static/img/marker_red_head.png" mode="aspectFit" class="body-item-img"></image>
+                </view>
+                <view class="body-item-name">{{item.title}}</view>
+                <view class="body-item-distance">
+                    <i class="body-distance-icon iconfont icon-location"/>
+                    <text class="body-distance-text">{{item.distance}} 米</text>
+                </view>
+            </view>
+        </scroll-view>
+    </view>
+</view>

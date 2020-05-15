@@ -21,7 +21,74 @@
         </view>
     </view>
 
-     <view class="house-datas">
+    <view class="housepd-table">
+        <view class="housepd-table-head"> 
+            <view class="house-datas-text">房产基本信息</view>
+        </view>
+        <view class="housepd-table-cells">
+            <view class="housepd-cell-inlineb">
+                <text class="housepd-cell-key">建筑年代: </text>
+                <text class="housepd-cell-value">{{villageInfo.years}}</text>
+            </view>
+            <view class="housepd-cell-inlineb">
+                <text class="housepd-cell-key">物业费用: </text>
+                <text class="housepd-cell-value">{{villageInfo.propertyCost}}</text>
+            </view>
+            <view class="housepd-cell-inlineb">
+                <text class="housepd-cell-key">建筑面积: </text>
+                <text class="housepd-cell-value">{{villageInfo.buildArea}} </text>
+            </view>
+            <view class="housepd-cell-inlineb">
+                <text class="housepd-cell-key">物业类型: </text>
+                <text class="housepd-cell-value">{{villageInfo.propertyType}}</text>
+            </view>
+            <view class="housepd-cell-inlineb">
+                <text class="housepd-cell-key">车位数: </text>
+                <text class="housepd-cell-value">{{villageInfo.cars}} </text>
+            </view>
+            <view class="housepd-cell-inlineb">
+                <text class="housepd-cell-key">总户数: </text>
+                <text class="housepd-cell-value">{{villageInfo.houseTotal}}</text>
+            </view>
+            <view class="housepd-cell-inlineb">
+                <text class="housepd-cell-key">容积率: </text>
+                <text class="housepd-cell-value">{{villageInfo.volume}}</text>
+            </view>
+            <view class="housepd-cell-inlineb">
+                <text class="housepd-cell-key">绿化率: </text>
+                <text class="housepd-cell-value">{{villageInfo.green}} </text>
+            </view>
+            <view class="housepd-cell-block">
+                <text class="housepd-cell-key">物业公司: </text>
+                <text class="housepd-cell-value">{{villageInfo.propertCompony}}</text>
+            </view>
+        </view>
+    </view>
+
+    <view class="house-datas">
+        <view class="house-datas-head">
+            <view class="house-datas-text">价格走势</view>
+            <view class="house-data-tag">单位：元</view>
+        </view>
+        <view class="charts-box">
+            <view class="charts-box-slid">
+                <view class="charts-slid-btn" bindtap="changeChartsShow" data-type="0">住宅</view>
+                <view class="charts-slid-btn" bindtap="changeChartsShow" data-type="1">商业</view>
+                <view class="charts-slid-btn" bindtap="changeChartsShow" data-type="2">办公</view>
+            </view>
+            <view class="charts-main">
+                <!-- <view class=' container1' wx:if="{{!chartShowList[0]}}">
+                    <ec-canvas class="ec-canvas" id="ecdom1" canvas-id="eccolumn1" ec="{{ ecopt }}"></ec-canvas>
+                </view> -->
+                <Charts wx:if="{{!chartShowList[0]}}" chartData="{{chartDataBar}}" id="ecdom1"></Charts>
+                <Charts wx:if="{{!chartShowList[1]}}" chartData="{{chartData}}" id="chart"></Charts>
+                <Charts wx:if="{{!chartShowList[2]}}" chartData="{{chartData2}}" id="chart2"></Charts>
+            </view>
+        </view>
+       
+    </view>
+
+    <!--  <view class="house-datas">
         <view class="house-datas-head">
             <view class="house-datas-text">住宅成交价格走势</view>
             <view class="house-data-tag">单位：元</view>
@@ -45,5 +112,5 @@
             <view class="house-data-tag">单位：元</view>
         </view>
        <Charts chartData="{{chartData2}}" id="chart2"></Charts>
-    </view>
+    </view> -->
 </view>

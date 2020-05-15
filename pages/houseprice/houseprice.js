@@ -26,9 +26,22 @@ Page({
             canSwitch: true
         },
     },
+    vModule(e){
+        console.log(e.currentTarget.dataset.option,e.detail.value)
+        let data = `searchParameter.${e.currentTarget.dataset.option}`
+        this.setData({
+            [data]: e.detail.value
+        })
+    },
     houseSearch(){
+        this.setData({
+            'searchParameter.county': this.data.fuzzyQuery.inputValue,
+            'searchParameter.countyName': this.data.village.inputValue
+        })
+        let  searchParameter  = this.data.searchParameter
+        console.log(searchParameter)
         wx.navigateTo({
-            url: '/pages/housePriceDet/housePriceDet',
+            url: '/pages/housePriceDet/housePriceDet?searchParameter=' + searchParameter,
         })
     },
     filter(e) {

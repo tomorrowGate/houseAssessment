@@ -111,13 +111,18 @@ Component({
      */
     methods: {
         go(e){
-            let startTime = this.data.year + "/" + this.data.month + "/" + this.data.day
+            //let startTime = this.data.year + "/" + this.data.month + "/" + this.data.day
+            let startTime = this.data.year + "/" + this.data.month 
             this.setData({
                 isShowDia:true,
                 showModal: true,
                 showModals: true,
                 startTime,
             })
+            console.log(221)
+        },
+        test(e){
+            console.log(e)
         },
         bindChange: function (e) {
             let val = e.detail.value
@@ -126,7 +131,7 @@ Component({
         gos: function () {
             let _this = this;
             let startTime = this.data.startTime
-            let endTime = this.data.year + "/" + this.data.month + "/" + this.data.day
+            let endTime = this.data.year + "/" + this.data.month 
             this.setData({
                 showModals: false,
                 endTime,

@@ -2,6 +2,7 @@
     "navigationBarTitleText": "一房一价详情",
     "usingComponents": {
         "ec-canvas": "../../utils/ec-canvas/ec-canvas",
+        "baidumap": "../../components/baidumap/baidumap",
         "Charts": "../../components/charts/charts"
     }
 }

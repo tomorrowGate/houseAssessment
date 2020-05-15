@@ -12,7 +12,7 @@ Page({
             circular: true,
         },
         swiperimg:[
-            {path:"/static/img/banner.png"}
+            { path:"https://s1.ax1x.com/2020/04/20/JQT3mq.png"}
         ],
         village: {
             city: ["国玺", "龙府", "青青家园", "三墩小区", "龙巢", "九龙小区", "三坝小区", "国际城"],

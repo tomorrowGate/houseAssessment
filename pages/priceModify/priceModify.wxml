@@ -75,6 +75,10 @@
             <view class="appraise-cell">
                 <view class="appraise-cell-key">其他因素</view>
                 <view class="appraise-cell-value">
+                    <input type="text" class="cell-value-input" placeholder-class="plh-ipt" disabled="true" placeholder="请选择" bindtap="showBasement" data-type="other" value="{{pickValue.other}}"></input>
+                    <text class="iconfont icon-arrowRight-fill"></text>
+                </view>
+                <!-- <view class="appraise-cell-value">
                      <picker 
                         mode="selector" 
                         range="{{other}}" 
@@ -85,7 +89,7 @@
                         <input type="text" class="cell-value-input" placeholder-class="plh-ipt" placeholder="请选择" disabled="true" value="{{pickValue.other}}"/>
                     </picker>
                     <text class="iconfont icon-arrowRight-fill"></text>
-                </view>
+                </view> -->
             </view>
         </view>
     </view>   
@@ -96,22 +100,34 @@
 </view>
 
 <!-- 地下室等弹窗 -->
-<Dialog isShowDia="{{isShowBasement}}">
+<Dialog isShowDia="{{isShowBasement }}">
     <view class="index-mask-box">
-        <!-- <view class="index-mask-title">楼盘房价</view> -->
-        
         <view class="index-mask-content">
             <view class="mask-content-item">
                 <radio-group class="radio-group" bindchange="radioChange">
                     <radio class="radio" value="{{0}}" checked="{{checkedInit}}">
                         <text>无</text>
                     </radio>
-                    <radio class="radio" value="{{1}}">
+                    <radio class="radio" value="{{1}}" wx:if="{{basementType!='other'}}">
                          <view class="houseprice-item-iptbox">
                             <text>{{typeText}}</text>
                             <input placeholder-class="iptbox-plc" type="number" maxlength="5" bindinput="setUnknowArea" value="{{unknowArea}}"/>平方米
                         </view>
                     </radio>
+
+                     <radio class="radio" value="{{1}}"  wx:if="{{basementType =='other'}}">
+                         <view class="houseprice-item-iptbox">
+                            <text>房屋发生命案</text>
+                        </view>
+                    </radio>
+                    <radio class="radio" value="{{2}}" wx:if="{{basementType =='other'}}">
+                         <view class="houseprice-item-iptbox">
+                            <text>其他</text>
+                            <input placeholder-class="iptbox-plc " class="other-class" type="text"placeholder="请输入原因" bindinput="setUnknowArea" value="{{unknowArea}}"/>
+                            <!-- <textarea placeholder-class="iptbox-plc " class="other-class" type="text"placeholder="请输入原因" bindinput="setUnknowArea" value="{{unknowArea}}"></textarea> -->
+                        </view>
+                    </radio>
+
                 </radio-group>
             </view>
         </view>
@@ -124,6 +140,7 @@
         </view>
     </view>
 </Dialog>
+
 <!-- 修正价格弹窗 -->
 <view class="mod-dialog" wx:if="{{isDiaShow}}" >
     <view class="mod-dia-close" bindtap="closeDia">
