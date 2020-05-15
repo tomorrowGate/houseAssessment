@@ -104,7 +104,7 @@
 
     <view class="house-datas">
         <view class="housepd-table-head">
-            <view class="house-datas-text">房产价格同比环比</view>
+            <view class="house-datas-text">小区房价同比环比</view>
         </view>
         <view class="housepd-table-datas">
             <scroll-view class="tableScroll" scroll-x="true">
@@ -126,9 +126,11 @@
     
      <view class="house-datas">
         <view class="house-datas-head">
-            <view class="house-datas-text">价格走势图</view>
+            <view class="house-datas-text">小区房价走势图</view>
             <view class="house-data-tag">单位：元</view>
         </view>
         <Charts chartData="{{chartData}}" id="chart"></Charts>
     </view>
+
+    <baidumap class="baidu-map" />
 </view>

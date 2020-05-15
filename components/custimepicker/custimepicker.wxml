@@ -14,9 +14,9 @@
                 <picker-view-column>
                     <view wx:for="{{months}}" class="view_picker_text" wx:key="index">{{item}}月</view>
                 </picker-view-column>
-                <picker-view-column style='margin-right: 20rpx;'>
+                <!-- <picker-view-column style='margin-right: 20rpx;'>
                     <view wx:for="{{days}}" class="view_picker_text" wx:key="index">{{item}}日</view>
-                </picker-view-column>
+                </picker-view-column> -->
             </picker-view>
         </view>
         
@@ -41,9 +41,9 @@
                 <picker-view-column>
                     <view wx:for="{{months}}" class="view_picker_text" wx:key="index">{{item}}月</view>
                 </picker-view-column>
-                <picker-view-column style='margin-right: 20rpx;'>
+                <!-- <picker-view-column style='margin-right: 20rpx;'>
                     <view wx:for="{{days}}" class="view_picker_text" wx:key="index">{{item}}日</view>
-                </picker-view-column>
+                </picker-view-column> -->
             </picker-view>
         </view>
          <view class="data-picker-btngroup">

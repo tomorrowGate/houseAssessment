@@ -1,0 +1,37 @@
+
+<view class="user-card-out">
+    <view class="houseprice-card-head">精准搜索</view>
+    <view class="houseprice-card-body">
+        <view class="houseprice-body-item">
+            <view class="houseprice-item-imgbox">
+                <image class="" src="/static/img/county_icon.png"></image>
+            </view>
+            <view class="houseprice-item-iptbox">
+                <input 
+                placeholder="请输入区县" 
+                placeholder-class="iptbox-plc" 
+                bindfocus="filter" 
+                bindinput="filter" 
+                bindblur="clearFilter"
+                data-filterkey = "fuzzyQuery"
+                data-filterdata="{{fuzzyQuery}}"
+                value="{{fuzzyQuery.inputValue}}"/>
+            </view>
+            <view class="houseprice-input-items">
+                <view  
+                    class="houseprice-input-item" 
+                    data-filterkey = "fuzzyQuery"
+                    wx:for="{{fuzzyQuery.filterData}}" 
+                    wx:key="index" 
+                    bindtap="makesure"
+                    data-value="{{item}}" >
+                    {{item}}
+                </view>
+            </view>
+        </view>
+    </view>
+
+    <view class="houseprice-card-foot">
+        <view class="user-del-btn" style="width: 580rpx;height: 88rpx" bindtap="houseSearch">搜索</view>
+    </view>
+</view>

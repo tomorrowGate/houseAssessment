@@ -10,6 +10,9 @@ Page({
      * 页面的初始数据
      */
     data: {
+        pageConfig:{
+            "":{}
+        },
         charts:{},
         transactionType:"",//交易类型
         //picker数据
@@ -19,6 +22,7 @@ Page({
         arrayHouse: [{ name: "住宅" }, { name: "办公" }, { name: "商业" }, { name: "其他" }],
         pickerHouseValue: "",
         pickerTime:"",
+        unitKeyword:"套",
 
         showModal:false,//是否显示日期弹框
         startTime:"",
@@ -50,13 +54,14 @@ Page({
         if (options.type == "law"){
             this.setData({
                 transactionType: "挂拍房源量",
-                arrHouseInit: "产品类型"
+                arrHouseInit: "产品类型",
             })
         }else if (options.type == "land") {
             this.setData({
                 arrHouseInit: "土地性质",
                 transactionType: "挂拍量",
                 arrayHouse: [{ name: "工业" }, { name: "集体" }, { name: "居住" }, { name: "商业" }, { name: "商住" }, { name: "其他" }],
+                unitKeyword: "宗"
             })
         }else{
             this.setData({

@@ -1,0 +1,51 @@
+
+.houseprice-item-imgbox{
+    width: 40rpx;
+    height: 40rpx;
+    margin: 0 24rpx 0 29rpx
+}
+.houseprice-item-imgbox image{
+    display: block;
+}
+.houseprice-body-item{
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 580rpx;
+    height: 88rpx;
+    line-height: 88rpx;
+    margin: 50rpx auto;
+    background: #F2F3F7;
+    border-radius: 16rpx;
+}
+.houseprice-input-items{
+    position: absolute;
+    top:88rpx;
+    left: 10rpx;
+    width: calc(100% - 20rpx);
+    padding:0rpx 25rpx;
+    background: #fff;
+    border: 1rpx solid #f5f5f5;
+    box-sizing: border-box;
+    z-index:3;
+}
+.houseprice-input-item{
+    height: 68rpx;
+    line-height: 68rpx;
+    width:100%
+}
+.iptbox-plc{
+    color: #D6D6D6
+}
+
+.user-del-btn{
+    width: 580rpx;
+    height: 88rpx;
+    line-height: 88rpx;
+    text-align: center;
+    margin: auto;
+    color: #fff;
+    font-size: 32rpx;
+    border-radius: 20rpx;
+    background-image: linear-gradient(to right,#0066FD,#002EFB) 
+}

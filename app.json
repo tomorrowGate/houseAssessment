@@ -1,5 +1,6 @@
 {
     "pages": [
+        "pages/housePriceDet/housePriceDet",
         "pages/index/index",
         "pages/priceModify/priceModify",
         "pages/user/user",
@@ -7,7 +8,6 @@
         "pages/infowrite/infowrite",
         "pages/newhouse/newhouse",
         "pages/bindUser/bindUser",
-        "pages/housePriceDet/housePriceDet",
         "pages/buildingdet/buildingdet",
         "components/dialog/dialog",
         "pages/appraise/appraise",
