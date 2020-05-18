@@ -1,5 +1,5 @@
 import { table1, table2, table3, table4, option, option1_1, option3, option3_1, optionTime } from "../../mock/mockData.js"
-import {countMonthList } from "../../utils/dateCalc.js"
+import { countMonthList } from "../../utils/dateCalc.js"
 let echarts = require('../../utils/ec-canvas/echarts');
 let wxCharts = require('../../utils/wxcharts.js');
 
@@ -10,10 +10,10 @@ Page({
      * 页面的初始数据
      */
     data: {
-        pageConfig:{
-            land:{
-                topKeyword:"拍卖量",
-                unitKeyword:"宗",
+        pageConfig: {
+            land: {
+                topKeyword: "拍卖量",
+                unitKeyword: "宗",
                 recentKeyword: "当前累计成交量(宗)",
                 chartNameArr: [
                     {
@@ -34,7 +34,7 @@ Page({
                     }
                 ]
             },
-            newhouse:{
+            newhouse: {
                 topKeyword: "当月领证房源量",
                 unitKeyword: "套",
                 recentKeyword: "近一个月成交量(套)",
@@ -57,15 +57,15 @@ Page({
                     }
                 ]
             },
-            secondhouse:{
+            secondhouse: {
                 topKeyword: "挂牌房源量",
                 unitKeyword: "套",
                 recentKeyword: "近一个月成交量(套)",
                 chartNameArr: [
                     {
-                        name:"挂牌量/成交量",
-                        type:"双折线图,单位套"
-                    }, 
+                        name: "挂牌量/成交量",
+                        type: "双折线图,单位套"
+                    },
                     {
                         name: "价格走势",
                         type: "line"
@@ -88,63 +88,34 @@ Page({
                 ]
             }
         },
-        charts:{},
-        transactionType:"挂牌房源量",//交易类型
+        charts: {},
+        transactionType: "",//交易类型
         //picker数据
-        arrayCity: [{ name: "杭州主城区" }, { name: "杭州市区" },{ name: "上城区" }, { name: "下城区" }, { name: "西湖区" }, { name: "拱墅区" }, { name: "江干区" }, { name: "滨江区" }, { name: "萧山区" }, { name: "余杭区" }, { name: "富阳区" } ],
-        activeLandCity: [{ name: "杭州主城区" }, { name: "杭州市区" }],
-        pickerCityValue:"",
-        arrHouseInit:"产品类型",
-        arrayHouse: [{ name: "住宅" }, { name: "办公" }, { name: "商业" }, { name: "其他" }],
+        arrayCity: [{ name: "杭州主城区" }, { name: "杭州市区" }],
+        pickerCityValue: "",
+        arrHouseInit: "土地性质", 
+        arrayHouse: [{ name: "工业" }, { name: "集体" }, { name: "居住" }, { name: "商业" }, { name: "商住" }, { name: "其他" }],
         pickerHouseValue: "",
-        pickerTime:"",
-        unitKeyword:"套",
+        pickerTime: "",
 
-        showModal:false,//是否显示日期弹框
-        startTime:"",
-        endTime:"",
+        showModal: false,//是否显示日期弹框
+        startTime: "",
+        endTime: "",
         // 图表数据
         ecopt: {
             lazyLoad: true
         },
-        chartData:{},
+        chartData: {},
         tableDataNum: [],
         tableDataArea: [],
-        bdMessage:["0-90","90-144","144-180","180以上"],
-        trtdWidth:"140"
+        bdMessage: ["0-90", "90-144", "144-180", "180以上"],
+        trtdWidth: "140"
     },
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
         //console.log(options)
-        // let title = {
-        //     "land":"土地详情",
-        //     "newhouse":"新房详情",
-        //     "secondhouse":"二手房详情",
-        //     "law":"司法详情"
-        // }
-        // options.type && wx.setNavigationBarTitle({
-        //     title: title[options.type]
-        // })
-        // if (options.type == "law"){
-        //     this.setData({
-        //         transactionType: "挂拍房源量",
-        //         arrHouseInit: "产品类型",
-        //     })
-        // }else if (options.type == "land") {
-        //     this.setData({
-        //         arrHouseInit: "土地性质",
-        //         transactionType: "挂拍量",
-        //         arrayHouse: [{ name: "工业" }, { name: "集体" }, { name: "居住" }, { name: "商业" }, { name: "商住" }, { name: "其他" }],
-        //         unitKeyword: "宗"
-        //     })
-        // }else{
-        //     this.setData({
-        //         transactionType: "挂牌房源量",
-        //         arrHouseInit:"产品类型"
-        //     })
-        // }
 
         //this.randoms()
     },
@@ -153,7 +124,7 @@ Page({
      * 生命周期函数--监听页面初次渲染完成
      */
     onReady: function () {
-        this.charts = this.selectComponent("#chart");
+        this.charts1 = this.selectComponent("#chart1");
     },
 
     /**
@@ -164,24 +135,24 @@ Page({
     },
 
     randoms() {
-        let arr = [ option, option1_1, option3, option3_1]
+        let arr = [option, option1_1, option3, option3_1]
             , arrTable = [table1, table2, table3, table4,]
             , randomInit = parseInt(Math.random() * arr.length)
             , tableDataNum = arrTable[parseInt(Math.random() * arr.length)]
             , tableDataArea = arrTable[parseInt(Math.random() * arr.length)]
         this.setData({
-           /*  chartData: arr[randomInit], */
+            /*  chartData: arr[randomInit], */
             tableDataArea,
         })
         console.log(arr[randomInit])
     },
-    tapCityPicker(e){
+    tapCityPicker(e) {
         console.log(e)
     },
-    bindPickerChangeCity(e){
+    bindPickerChangeCity(e) {
         let value = this.data.arrayCity[e.detail.value]["name"]
         this.setData({
-            pickerCityValue:value
+            pickerCityValue: value
         })
         console.log(value)
     },
@@ -192,16 +163,16 @@ Page({
         })
         console.log(value)
     },
-    confirmStart(){
+    confirmStart() {
         this.setData({
             showModal: true,
         })
     },
-    bindPickerChangeTime(e){
+    bindPickerChangeTime(e) {
 
     },
     //获取时间段
-    getTimeCut(options){
+    getTimeCut(options) {
         this.setData({
             startTime: options.detail.startTime,
             endTime: options.detail.endTime,
@@ -209,10 +180,10 @@ Page({
         })
         console.log(this.data.pickerTime)
         let arr = countMonthList(options.detail.startTime, options.detail.endTime)
-            ,randomData = [];
-            arr.forEach((v,i)=>{
-                randomData.push(parseInt(5+Math.random() * 95))
-            })
+            , randomData = [];
+        arr.forEach((v, i) => {
+            randomData.push(parseInt(5 + Math.random() * 95))
+        })
 
         optionTime.xAxis[0].data = arr
         optionTime.series[0].data = randomData
@@ -220,10 +191,10 @@ Page({
         this.setData({
             chartData: optionTime
         })
-        if (!this.data.pickerCityValue){
+        if (!this.data.pickerCityValue) {
             wx.showToast({
                 title: '请选择城区',
-                icon:"none"
+                icon: "none"
             })
             return
         }
@@ -235,7 +206,7 @@ Page({
             })
             return
         }
-        this.charts.initLine(optionTime)
+        this.charts1.initLine(optionTime)
         this.randoms()
     },
     /**

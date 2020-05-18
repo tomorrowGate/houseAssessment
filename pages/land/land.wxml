@@ -5,8 +5,8 @@
         </view>
         <view class="user-card-out">
             <view class="user-head">
-               <view class="house-src">{{transactionType}}</view>
-               <view class="house-num">143896/{{unitKeyword}}</view>
+               <view class="house-src">挂拍量</view>
+               <view class="house-num">143896/宗</view>
             </view>
 
             <view class="user-card">
@@ -68,38 +68,20 @@
     </view>
 
     <view class="house-tag-group">
-        <!-- <picker 
-        mode="date" 
-        class="house-tag-picker "        
-        bindtap="confirmStart" 
-        bindchange="bindPickerChangeTime"  -->
-            <view class="house-tag-item bubble" bindtap="confirmStart">
-                <!-- <view class="house-tag-text">{{pickerTime||"选择时间"}}</view> -->
-                <view class="house-tag-imgbox">
-                    <image src="/static/img/date_icon.png"></image>
-                </view>
+        <view class="house-tag-item bubble" bindtap="confirmStart">
+            <view class="house-tag-imgbox">
+                <image src="/static/img/date_icon.png"></image>
             </view>
-        <!-- </picker> -->
-
+        </view>
         <view> 
             <text>选择时间：</text> <text> {{pickerTime}} </text>
         </view>
-
     </view>
 
     <CusTimePicker isShowDia = "{{!showModal}}" bind:getTimeCut="getTimeCut"/>
 
-   <!--   <view class="house-datas">
-        <view class="house-datas-head">
-            <view class="house-datas-text">交叉查询-套数</view>
-            <view class="house-data-tag">单位：面积(m2)\总价(万元)</view>
-        </view>
-        <view class="house-data-body">
-            <Table thData="{{bdMessage}}" trDatas="{{tableDataNum}}" trtdWidth="{{trtdWidth}}"></Table>
-        </view>
-    </view> -->
-
-     <!-- <view class="house-datas">
+  
+    <!-- <view class="house-datas">
         <view class="house-datas-head">
             <view class="house-datas-text">交叉查询-面积</view>
             <view class="house-data-tag">单位：面积(m2)\总价(万元)</view>
@@ -117,24 +99,27 @@
         </view>
         <Charts chartData="{{chartData}}" id="chart"/>
     </view> -->
-
+    
     <view class="house-datas">
         <view class="house-datas-head">
-            <view class="house-datas-text">交叉查询-面积</view>
-            <view class="house-data-tag">单位：面积(m2)\总价(万元)</view>
+            <view class="house-datas-text">成交金额</view>
+            <view class="house-data-tag">单位：亿元</view>
         </view>
-        <view class="house-data-body">
-           <Table thData="{{bdMessage}}" trDatas="{{tableDataArea}}" trtdWidth="{{trtdWidth}}" wx:if="{{tableDataArea&&tableDataArea.length}}"></Table>
-        </view>
+        <Charts chartData="{{chartData}}" id="chart1"/>
     </view>
-
-    
-     <view class="house-datas">
+    <view class="house-datas">
         <view class="house-datas-head">
-            <view class="house-datas-text">挂牌和成交比</view>
-            <view class="house-data-tag">单位：%</view>
+            <view class="house-datas-text">成交宗数/建面</view>
+            <view class="house-data-tag">单位：宗/万㎡</view>
         </view>
-        <Charts chartData="{{chartData}}" id="chart"/>
+        <Charts chartData="{{chartData}}" id="chart2"/>
+    </view>
+    <view class="house-datas">
+        <view class="house-datas-head">
+            <view class="house-datas-text">挂牌宗数/建面</view>
+            <view class="house-data-tag">单位：宗/万㎡</view>
+        </view>
+        <Charts chartData="{{chartData}}" id="chart3"/>
     </view>
     
 </view>

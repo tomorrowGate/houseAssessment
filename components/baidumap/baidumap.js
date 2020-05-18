@@ -40,12 +40,24 @@ Component({
             name: "写字楼",
             nameID: "2"
         }],
+        topActiveIndex:0,
+        bottomActiveIndex:0,
         ak: "lORax9Vc3aYWyYwaTK95egAcCpZ3yvWH", //填写申请到的ak  
         markers: [],
-        selfGeo:{},
+        currentMark:{},//点击的mark点
+        mapGeo:{},//地图的定位
+        selfGeo:{},//自身的定位
         wxMarkerData:[],
         placeData: {},
-        cityInfo: {}     //城市信息  
+        cityInfo: {},     //城市信息  
+        searchTopText:"",
+        searchBottomText:"",
+        activeSearchID:"",//点击搜索结果时保存的id
+        isSearchShow:false,//是否显示搜索结果
+
+
+        /* 弹窗信息 */
+        mapdiaShow:false,
     },
 
     /**
@@ -76,12 +88,39 @@ Component({
                     success(res) {
                         console.log(res)
                         that.setData({
-                            selfGeo: res.wxMarkerData[0]
+                            selfGeo: res.wxMarkerData[0],
+                            mapGeo: res.wxMarkerData[0],
                         })
                         resolve(res.wxMarkerData[0])
                     }
                 });
             })
+        },
+        //点击改变POI请求
+        changeSearchTop(e){
+            let searchTopText = this.data.searchTopText
+                , searchBottomText = this.data.searchBottomText
+                , text = ""
+                , topActiveIndex = this.data.topActiveIndex
+                , bottomActiveIndex = this.data.bottomActiveIndex
+            if (e.currentTarget.dataset.type == 'top'){
+                searchTopText = e.currentTarget.dataset.text
+                searchBottomText = ""
+                topActiveIndex = e.currentTarget.dataset.index
+                bottomActiveIndex = 0
+            }else{
+                searchBottomText =  e.currentTarget.dataset.text
+                bottomActiveIndex = e.currentTarget.dataset.index
+            }
+            text = searchTopText +" "+ searchBottomText
+            this.sendPOISearch(text)
+            this.setData({
+                searchTopText,
+                searchBottomText,
+                topActiveIndex,
+                bottomActiveIndex
+            })
+            console.log(text)
         },
         // 发起POI检索请求 
         sendPOISearch(text) {
@@ -96,13 +135,19 @@ Component({
                     success: function (data) {
                         console.log(data, "success")
                         wxMarkerData = data.wxMarkerData;
+                        wxMarkerData.forEach((v, i) => {
+                            v.distance = parseInt(that.calcDistance(that.data.selfGeo.latitude, that.data.selfGeo.longitude, v.latitude, v.longitude)*1000)
+                            v.callout = {
+                                content: v.title,
+                                textAlign:"left",
+                                borderRadius:"4",
+                                padding:"5"
+                            }
+                        })
                         that.setData({
                             markers: wxMarkerData,
                             wxMarkerData,
                         });
-                        wxMarkerData.forEach((v,i)=>{
-                            that.calcDistance(that.data.selfGeo.latitude, that.data.selfGeo.longitude, v.latitude, v.longitude)
-                        })
                         //that.calcDistance()
                         resolve(data.wxMarkerData)
                     },
@@ -111,35 +156,40 @@ Component({
                 });
             })
         },
-        showSearchInfo: function (data, i) {
-            var that = this;
-            that.setData({
-                placeData: {
-                    title: '名称：' + data[i].title + '\n',
-                    address: '地址：' + data[i].address + '\n',
-                    telephone: '电话：' + data[i].telephone
-                }
-            });
+        closeSearch(e){
+            this.setData({
+                isSearchShow: !this.data.isSearchShow
+            })
         },
-        changeMarkerColor: function (data, i) {
-            var that = this;
-            var markers = [];
-            for (var j = 0; j < data.length; j++) {
-                if (j == i) {
-                    // 此处需要在相应路径放置图片文件 
-                    data[j].iconPath = "../../img/marker_yellow.png";
-                } else {
-                    // 此处需要在相应路径放置图片文件 
-                    data[j].iconPath = "../../img/marker_red.png";
+        clickSearchItem(e){
+            let currentMark = this.data.mapGeo
+            this.data.markers.forEach((v,i)=>{
+                if (v.id == e.currentTarget.dataset.id){
+                    console.log(111)
+                    currentMark = v
+                    v.iconPath = "../../static/img/marker_blue.png";
+                }else{
+                    v.iconPath = "../../static/img/marker_red.png"
                 }
-                markers[j](data[j]);
-            }
-            that.setData({
-                markers: markers
-            });
+               
+            })
+            this.setData({
+                mapGeo: currentMark,
+                markers: this.data.markers,
+                activeSearchID: e.currentTarget.dataset.id
+            })
+            console.log(currentMark, this.data.markers)
         },
         makertap(e){
-            console.log(e)
+            let currentMark = this.data.wxMarkerData.find((v,i)=>{
+               return v.id == e.markerId
+            })
+            this.setData({
+                mapdiaShow: true,
+                currentMark,
+            })
+            console.log(e, currentMark)
+            
             // wx.openLocation({
             //     latitude: 39.915378,
             //     longitude: 116.403694,
@@ -147,6 +197,14 @@ Component({
             //     name: '天安门广场',
             //     address: '北京市东城区长安街'
             // })
+        },
+        closeDia(){
+            this.setData({
+                mapdiaShow: false
+            })
+        },
+        goHouseDet(){
+            this.closeDia()
         },
         //进行经纬度转换为距离的计算
         latToRad(d){
@@ -163,7 +221,7 @@ Component({
                 Math.cos(radLat1) * Math.cos(radLat2) * Math.pow(Math.sin(b / 2), 2)));
             s = s * 6378.137;// EARTH_RADIUS;
             s = Math.round(s * 10000) / 10000; 
-            //s=s.toFixed(2);
+            //s=s.toFixed(3);
             return s;
         }
     },

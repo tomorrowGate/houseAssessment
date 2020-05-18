@@ -3,8 +3,8 @@
     <map 
         class="map" 
         id="map" 
-        longitude="{{selfGeo.longitude}}" 
-        latitude="{{selfGeo.latitude}}" 
+        longitude="{{mapGeo.longitude}}" 
+        latitude="{{mapGeo.latitude}}" 
         scale="14" 
         show-location="true" 
         markers="{{markers}}" 
@@ -13,14 +13,35 @@
     <view class="map-control">
         <view class="map-control-head">
             <view class="control-head-out">
-                <view class="control-head-item" wx:for="{{mapControlArr}}" wx:key="index">{{item.name}}</view>
+                <view class="map-control-colse" bindtap="closeSearch" hidden="{{isSearchShow}}">X</view>
+                <view class="map-control-colse" bindtap="closeSearch" hidden="{{!isSearchShow}}">...</view>
+                <view 
+                class="{{topActiveIndex==index?'head-item-active':''}} control-head-item" 
+                wx:for="{{mapControlArr}}" 
+                wx:key="index" 
+                bindtap="changeSearchTop" 
+                data-text="{{item.name}}" 
+                data-index="{{index}}"
+                data-type="top">{{item.name}}</view>
             </view>
-            <view class="control-head-down">
-                <view class="control-head-item" wx:for="{{mapSubControl}}" wx:key="index">{{item.name}}</view>
+            <view class="control-head-down" hidden="{{isSearchShow}}" >
+                <view 
+                class="{{bottomActiveIndex==index?'head-item-activetwo':''}} control-head-item" 
+                wx:for="{{mapSubControl}}"
+                wx:key="index"
+                bindtap="changeSearchTop" 
+                data-text="{{item.name}}"
+                data-index="{{index}}"
+                data-type="bottom">{{item.name}}</view>
             </view>
         </view>
-        <scroll-view class="map-control-body" wx:if="{{wxMarkerData}}" scroll-y>
-            <view class="control-body-item" wx:for="{{wxMarkerData}}" wx:key="index">
+        <scroll-view class="map-control-body" hidden="{{isSearchShow}}" scroll-y>
+            <view 
+            class="{{activeSearchID == item.id?'control-body-itemact':''}} control-body-item " 
+            wx:for="{{wxMarkerData}}" 
+            wx:key="index"
+            bindtap="clickSearchItem"
+            data-id="{{item.id}}">
                 <view class="body-item-lefticon">
                     <text class="body-item-index">{{index*1+1}}</text>
                     <image src="/static/img/marker_red_head.png" mode="aspectFit" class="body-item-img"></image>
@@ -32,5 +53,19 @@
                 </view>
             </view>
         </scroll-view>
+    </view>
+
+    <view class="map-dia" hidden="{{!mapdiaShow}}">
+        <view class="map-dia-mask" bindtap="closeDia"></view>
+        <view class="map-dia-main  animated fadeInUp">
+            <view class="map-dia-top">
+                <view class="map-top-diatitle map-dia-text">{{currentMark.title}}</view> 
+                <view class="map-top-diadetail map-dia-text" bindtap="goHouseDet">详情</view>
+            </view>
+            <view class="map-dia-bottom">
+                <view class="map-bot-price map-dia-text">均价：{{currentMark.price}} </view>
+                <view class="map-bot-addr map-dia-text">详细地址：{{currentMark.address}} </view>
+            </view>
+        </view>
     </view>
 </view>

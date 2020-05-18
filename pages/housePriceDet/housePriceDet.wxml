@@ -132,5 +132,10 @@
         <Charts chartData="{{chartData}}" id="chart"></Charts>
     </view>
 
-    <baidumap class="baidu-map" />
+    <view class="house-datas">
+        <view class="house-datas-head">
+            <view class="house-datas-text">周边配套</view>
+        </view>
+    </view>
+        <baidumap class="baidu-map" />
 </view>

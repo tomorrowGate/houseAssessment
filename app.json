@@ -1,7 +1,7 @@
 {
     "pages": [
-        "pages/housePriceDet/housePriceDet",
         "pages/index/index",
+        "pages/housePriceDet/housePriceDet",
         "pages/priceModify/priceModify",
         "pages/user/user",
         "pages/houseprice/houseprice",
@@ -16,7 +16,10 @@
         "pages/offlineCommit/offlineCommit",
         "pages/feedback/feedback",
         "pages/welcome/welcome",
-        "pages/userinfoForm/userinfoForm"
+        "pages/userinfoForm/userinfoForm",
+        "pages/land/land",
+        "pages/secondhouse/secondhouse",
+        "pages/law/law"
     ],
     "tabBar": {
         "color": "#3D3D3D",

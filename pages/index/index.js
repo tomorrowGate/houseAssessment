@@ -79,7 +79,7 @@ Page({
     toOtherFour(e){
         console.log(e.currentTarget.dataset.type)
         wx.navigateTo({
-            url: '/pages/newhouse/newhouse?type=' + e.currentTarget.dataset.type,
+            url: `/pages/${e.currentTarget.dataset.type}/${e.currentTarget.dataset.type}?type=${e.currentTarget.dataset.type}`,
         })
     },
     search(){

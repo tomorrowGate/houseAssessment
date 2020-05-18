@@ -1,4 +1,7 @@
-/* components/baidumap/baidumap.wxss */
+@import "/static/css/animate.wxss";
+.animated{
+    animation-duration: 0.3s;
+}
 .map_container{ 
     position: relative;
     height: 1000rpx;
@@ -14,16 +17,31 @@
     position: absolute;
     top:10rpx;
     right: 20rpx;
+    width: 650rpx;
     background: #fff;
     border-radius: 8rpx;
     box-shadow: 0 0 10rpx #ddd; 
 }
 .control-head-out{
+    position: relative;
     display: flex;
     height: 70rpx;
     line-height: 70rpx;
     border-bottom: 2rpx solid #f00;
     background: #f2f2f2;
+}
+.map-control-colse{
+    position: absolute;
+    top:50%;
+    transform: translateY(-50%);
+    right:20rpx;
+    height: 40rpx;
+    line-height: 40rpx;
+    width: 40rpx;
+    background: #f00;
+    color: #fff;
+    border-radius: 8rpx;
+    text-align: center;
 }
 .control-head-down{
     display: flex;
@@ -40,7 +58,10 @@
     background: #f00;
     color: #fff
 }
-
+.head-item-activetwo{
+    color: #f00;
+    border-bottom: 1rpx solid #f00 
+}
 .map-control-body{
     height: 300rpx;
 }
@@ -51,6 +72,10 @@
     height: 70rpx;
     line-height: 70rpx;
 }
+.control-body-itemact{
+    background: #eee
+}
+
 .body-item-lefticon{
     width: 40rpx;
     height: 40rpx;
@@ -68,6 +93,12 @@
     font-size: 24rpx;
     transform: translate(-50%,-50%);
 }
+.body-item-name{
+    width: calc( 100% - 220rpx);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
 .body-item-img{
 
 }
@@ -76,4 +107,51 @@
     top:50%;
     right: 16rpx;
     transform: translateY( -50% );
+}
+
+/* map的弹窗 */
+.map-dia{
+    position:absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 3
+}
+.map-dia-mask{
+    position:absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 4;
+    background: rgba(0,0,0,.5)
+}
+.map-dia-main{
+    position:absolute;
+    bottom: 0;
+    width: 100%;
+    height: 300rpx;
+    padding: 16rpx;
+    background: #fff;
+    box-sizing: border-box;
+    z-index: 5;
+}
+.map-dia-top{
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 20rpx;
+    border-bottom: 1rpx solid #ddd;
+}
+.map-top-diadetail{
+    background: #7FAEFF;
+    color: #fff;
+    border-radius: 6rpx;
+    padding: 0rpx 30rpx;
+    margin-right: 30rpx;
+}
+.map-top-diatitle{
+    font-size: 32rpx;
+    font-weight: bold;
+}
+.map-dia-text{
+    height: 50rpx;
+    line-height: 50rpx;
 }

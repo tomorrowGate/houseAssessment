@@ -3,8 +3,7 @@
         "ec-canvas": "../../utils/ec-canvas/ec-canvas",
         "Table": "../../components/table/table",
         "Charts": "../../components/charts/charts",
-        "Dialog":"../../components/dialog/dialog",
+        "Dialog": "../../components/dialog/dialog",
         "CusTimePicker": "../../components/custimepicker/custimepicker"
-    },
-    "NavigationBarTitle":"新房详情"
+    }
 }
