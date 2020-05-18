@@ -6,5 +6,5 @@
         "Dialog":"../../components/dialog/dialog",
         "CusTimePicker": "../../components/custimepicker/custimepicker"
     },
-    "NavigationBarTitle":"新房详情"
+    "navigationBarTitleText":"新房详情"
 }

@@ -5,14 +5,14 @@
         </view>
         <view class="user-card-out">
             <view class="user-head">
-               <view class="house-src">{{transactionType}}</view>
-               <view class="house-num">143896/{{unitKeyword}}</view>
+               <view class="house-src">挂牌房源量</view>
+               <view class="house-num">143896/套</view>
             </view>
 
             <view class="user-card">
                 <view class="user-card-item user-card-itemfirst">
                     <view class="user-card-itemnum">15914</view>
-                    <view class="user-card-itemtxt">最近成交量(套)</view>
+                    <view class="user-card-itemtxt">近1个月成交量(套)</view>
                 </view>
                 <view class="user-card-item">
                     <view class="user-card-itemnum itemnum-same-ring">
@@ -80,24 +80,18 @@
 
     <CusTimePicker isShowDia = "{{!showModal}}" bind:getTimeCut="getTimeCut"/>
 
-  
     <view class="house-datas">
         <view class="house-datas-head">
-            <view class="house-datas-text">交叉查询-面积</view>
-            <view class="house-data-tag">单位：面积(m2)\总价(万元)</view>
+            <view class="house-datas-text">挂牌量/成交量</view>
+            <view class="house-data-tag">单位：宗/万㎡</view>
         </view>
-        <view class="house-data-body">
-           <Table thData="{{bdMessage}}" trDatas="{{tableDataArea}}" trtdWidth="{{trtdWidth}}" wx:if="{{tableDataArea&&tableDataArea.length}}"></Table>
-        </view>
+        <Charts chartData="{{chartData}}" id="chart2"/>
     </view>
-
-    
-     <view class="house-datas">
+    <view class="house-datas">
         <view class="house-datas-head">
-            <view class="house-datas-text">挂牌和成交比</view>
+            <view class="house-datas-text">价格走势</view>
             <view class="house-data-tag">单位：%</view>
         </view>
-        <Charts chartData="{{chartData}}" id="chart"/>
+        <Charts chartData="{{chartData}}" id="chart1"/>
     </view>
-    
 </view>

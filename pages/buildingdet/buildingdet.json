@@ -2,6 +2,7 @@
     "navigationBarTitleText": "楼盘详情",
     "usingComponents": {
         "ec-canvas": "../../utils/ec-canvas/ec-canvas",
+        "dialog": "/components/dialog/dialog",
         "Charts": "../../components/charts/charts"
     }
 }

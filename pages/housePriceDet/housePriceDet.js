@@ -72,13 +72,15 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        // let searchParameter = this.getPrePage()
-        // let compliteRoom = searchParameter.county + searchParameter.countyName + searchParameter.dong + '幢' + searchParameter.unit + '单元' + searchParameter.room + '室'
-        // //console.log(this.getPrePage())
-        // this.setData({
-        //     searchParameter,
-        //     compliteRoom,
-        // })
+        let searchParameter = this.getPrePage()
+        //let compliteRoom = searchParameter.county + searchParameter.countyName + searchParameter.dong + '幢' + searchParameter.unit + '单元' + searchParameter.room + '室'
+
+        let compliteRoom = searchParameter.county + searchParameter.countyName + searchParameter.dong + '幢' + searchParameter.unit + '单元' + searchParameter.room + '室'
+        console.log(this.getPrePage())
+        this.setData({
+            searchParameter,
+            compliteRoom,
+        })
     },
 
     /**

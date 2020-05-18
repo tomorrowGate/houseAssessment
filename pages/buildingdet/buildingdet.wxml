@@ -1,5 +1,6 @@
 <view class="user">
     <view class="user-main">
+
         <view class="user-bg">
             <image class="user-bg-img" src="/static/img/floor_banner.png"></image>
         </view>
@@ -9,7 +10,7 @@
                <view class="house-num">38500元/m2</view>
             </view>
 
-            <view class="user-card">
+            <view class="user-card" bindtap="showInputSearch">
                 <view class="user-card-bgimg">
                     <image src="/static/img/More_button.png"></image>
                 </view>
@@ -19,6 +20,7 @@
                 </view>
             </view>
         </view>
+
     </view>
 
     <view class="housepd-table">
@@ -114,3 +116,46 @@
        <Charts chartData="{{chartData2}}" id="chart2"></Charts>
     </view> -->
 </view>
+
+<dialog isShowDia="{{isShowDia}}">
+    <view class="index-mask-box ">
+        <view class="index-mask-title">搜索房价</view>
+        
+        <view class="index-mask-content">
+            <view class="mask-content-item">
+                <view class="houseprice-item-imgbox">
+                    <image class="" src="/static/img/area_icon.png"></image>
+                </view>
+                <view class="houseprice-item-iptbox">
+                    <input 
+                        placeholder="输入格式：区县-小区-栋-单元-室" 
+                        placeholder-class="iptbox-plc"
+                        bindfocus="filter" 
+                        bindinput="filter" 
+                        bindblur="clearFilter"
+                        data-filterkey = "fuzzyQuery"
+                        data-filterdata="{{fuzzyQuery}}"
+                        value="{{fuzzyQuery.inputValue}}"/>
+                </view>
+                <view class="houseprice-input-items">
+                    <view  
+                        data-filterkey = "village"
+                        class="houseprice-input-item" 
+                        wx:for="{{fuzzyQuery.filterData}}" 
+                        wx:key="index" 
+                        bindtap="makesure"
+                        data-value="{{item}}" >
+                        {{item}}
+                    </view>
+                </view>
+            </view>
+        </view>
+
+        <view class="line"></view>
+
+        <view class="mask-btngroup">
+            <view class="mask-cencle" bindtap="hideDialog">取消</view>
+            <view class="liner-btn mask-search" bindtap="search" >查询</view>
+        </view>
+    </view>
+</dialog>

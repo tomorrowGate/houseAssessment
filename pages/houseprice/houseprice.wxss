@@ -4,13 +4,16 @@
 }
 .user-bg{
     height: 455rpx;
+    /* height: 100vh; */
 }
 .user-card-out{
     position: absolute;
     top:220rpx;
     left: 50%;
     width: 690rpx;
-    transform: translateX( -50%);
+    height: 720rpx;
+    box-shadow: 0 0 20rpx #aaa;
+    transform: translateX( -50% );
     border-radius: 20rpx;
     background: #fff;
     z-index: 2;
@@ -32,6 +35,9 @@
 }
 .houseprice-item-imgbox image{
     display: block;
+}
+.houseprice-item-iptbox{
+    width: calc(100% - 100rpx)
 }
 .houseprice-body-item{
     position: relative;
@@ -62,6 +68,20 @@
 }
 .iptbox-plc{
     color: #D6D6D6
+}
+
+.houseprice-item-first{
+    position: absolute;
+    top:50%;
+    left: 50%;
+    transform: translate( -50% , calc( -50% - 180rpx ))
+}
+
+.houseprice-card-foot{
+    position: absolute;
+    bottom: 70rpx;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .user-del-btn{

@@ -42,3 +42,20 @@
   position: relative;
   z-index: 1;
 }
+
+.level1-cls{
+    color: #000;
+    background: #7ac47c;
+}
+.level2-cls{
+    color: #000;
+    background: #d4de81;
+}
+.level3-cls{
+    color: #000;
+    background: #ffdf82;
+}
+.level4-cls{
+    color: #000;
+    background: #f8696b;
+}

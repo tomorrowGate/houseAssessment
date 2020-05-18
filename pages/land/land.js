@@ -1,5 +1,5 @@
-import { table1, table2, table3, table4, option, option1_1, option3, option3_1, optionTime } from "../../mock/mockData.js"
-import { countMonthList } from "../../utils/dateCalc.js"
+import { table1, table2, table3, table4, option, option1_1, option3, option3_1, optionTime, optionTotcalLine, backBarAndLine} from "../../mock/mockData.js"
+import { countMonthList, getMonths } from "../../utils/dateCalc.js"
 let echarts = require('../../utils/ec-canvas/echarts');
 let wxCharts = require('../../utils/wxcharts.js');
 
@@ -10,84 +10,6 @@ Page({
      * 页面的初始数据
      */
     data: {
-        pageConfig: {
-            land: {
-                topKeyword: "拍卖量",
-                unitKeyword: "宗",
-                recentKeyword: "当前累计成交量(宗)",
-                chartNameArr: [
-                    {
-                        name: "成交金额",
-                        type: "折线图,单位<亿元>默认数据近一年"
-                    },
-                    {
-                        name: "成交宗数/建面",
-                        type: "(柱状图(宗数),折线图(建筑面积),单位宗,万㎡,默认数据近一年)"
-                    },
-                    {
-                        name: "挂牌宗数/建面",
-                        type: "(柱状图(宗数),折线图(建筑面积),单位宗,万㎡,默认数据近一年)"
-                    },
-                    {
-                        name: "月均出清周期图",
-                        type: "折线(当月库存量/近年的月成交量,生成一个折线图"
-                    }
-                ]
-            },
-            newhouse: {
-                topKeyword: "当月领证房源量",
-                unitKeyword: "套",
-                recentKeyword: "近一个月成交量(套)",
-                chartNameArr: [
-                    {
-                        name: "供求情况",
-                        type: "柱状(供应套数),柱状(成交套数),单位套,默认数据近一年)"
-                    },
-                    {
-                        name: "成交价",
-                        type: "折线(成交价),单位元/㎡,默认数据近一年"
-                    },
-                    {
-                        name: "交叉分析",
-                        type: "原本的交叉分析（表格）"
-                    },
-                    {
-                        name: "月均出清周期图",
-                        type: "折线(当月库存量/近年的月成交量,生成一个折线图"
-                    }
-                ]
-            },
-            secondhouse: {
-                topKeyword: "挂牌房源量",
-                unitKeyword: "套",
-                recentKeyword: "近一个月成交量(套)",
-                chartNameArr: [
-                    {
-                        name: "挂牌量/成交量",
-                        type: "双折线图,单位套"
-                    },
-                    {
-                        name: "价格走势",
-                        type: "line"
-                    }
-                ]
-            },
-            law: {
-                topKeyword: "挂牌房源量",
-                unitKeyword: "套",
-                recentKeyword: "当月成交量(宗)",
-                chartNameArr: [
-                    {
-                        name: "拍卖成交-评估价比",
-                        type: "(折线图,默认数据近一年)①:月总成交价/月总评估价②成交价/评估价(月平均)"
-                    },
-                    {
-                        name: "拍卖成交情况",
-                        type: "(折线(成交金额),柱状(成交宗数),单位亿元,宗"
-                    },
-                ]
-            }
-        },
         charts: {},
         transactionType: "",//交易类型
         //picker数据
@@ -116,8 +38,6 @@ Page({
      */
     onLoad: function (options) {
         //console.log(options)
-
-        //this.randoms()
     },
 
     /**
@@ -125,6 +45,12 @@ Page({
      */
     onReady: function () {
         this.charts1 = this.selectComponent("#chart1");
+        this.charts2 = this.selectComponent("#chart2");
+        this.charts3 = this.selectComponent("#chart3");
+
+        this.charts1.initLine(optionTime)
+        this.charts2.initLine(backBarAndLine("成交宗数", "建面", getMonths()))
+        this.charts3.initLine(backBarAndLine("挂牌宗数", "建面", getMonths()))
     },
 
     /**
@@ -187,7 +113,7 @@ Page({
 
         optionTime.xAxis[0].data = arr
         optionTime.series[0].data = randomData
-        //console.log(arr, optionTime)
+        console.log(arr, optionTime)
         this.setData({
             chartData: optionTime
         })
@@ -208,6 +134,8 @@ Page({
         }
         this.charts1.initLine(optionTime)
         this.randoms()
+        this.charts2.initLine(backBarAndLine("成交宗数", "建面", arr))
+        this.charts3.initLine(backBarAndLine("挂牌宗数", "建面", arr))
     },
     /**
      * 生命周期函数--监听页面隐藏

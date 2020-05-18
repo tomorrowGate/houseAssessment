@@ -15,7 +15,19 @@ Component({
             type: Array,
             value: [],
             observer() {
-
+                let sum = 0
+                this.properties.trDatas.forEach((v,i)=>{
+                    let sumpre =  v.arr.reduce((prev, curr) => {
+                        return prev*1 + curr*1
+                    })
+                    sum = sumpre*1 + sum*1
+                })
+                console.log(sum, parseInt(sum / 12) )
+                this.setData({
+                    level1: parseInt(sum / 24),
+                    level2: parseInt(sum / 12),
+                    level3: parseInt(sum / 12)*2,
+                })
             }
         },
         trtdWidth:{
@@ -28,7 +40,9 @@ Component({
      * 组件的初始数据
      */
     data: {
-
+        level1: 0,
+        level2: 0,
+        level3: 0,
     },
 
     /**

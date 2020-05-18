@@ -1,4 +1,4 @@
- <view class="house-data-body">
+<view class="house-data-body">
     <scroll-view class="tableScroll" scroll-x="true">
         <view class="tr">
             <view class="th tablest" style="width:{{trtdWidth}}rpx">套数</view>
@@ -6,7 +6,12 @@
         </view>
         <view class="tr" wx:for="{{trDatas}}" wx:for-item="item" wx:key="index">
             <view class='td tablest' style="width:{{trtdWidth}}rpx"> {{item.name}} </view>
-            <view class="td" wx:for="{{item.arr}}" wx:for-item="items" wx:key="idx" style="width:{{trtdWidth}}rpx"> {{items}} </view>
+            <view 
+                class="td {{items*1 ? items*1<level1 ? 'level1-cls' : items*1<level2 ? 'level2-cls' : items*1<level3 ? 'level3-cls' : 'level4-cls' : ''}}" 
+                wx:for="{{item.arr}}" 
+                wx:for-item="items" 
+                wx:key="idx" 
+                style="width:{{trtdWidth}}rpx"> {{items}} </view>
         </view>
     </scroll-view>
 </view>

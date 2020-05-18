@@ -1,4 +1,5 @@
 {
+    "navigationBarTitleText": "司法详情",
     "usingComponents": {
         "ec-canvas": "../../utils/ec-canvas/ec-canvas",
         "Table": "../../components/table/table",

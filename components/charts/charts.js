@@ -15,7 +15,6 @@ Component({
             type: Object,
             value: {},
             observer: function (newVal, oldVal) { 
-               console.log(newVal)
             }
         }
     },
@@ -37,7 +36,6 @@ Component({
     methods: {
         setOptionLine(chart, data) {
             let _this = this
-            console.log(data)
             chart.setOption(data);
         },
         initLine(data) {
@@ -56,7 +54,6 @@ Component({
         attached: function () {
             // 在组件实例进入页面节点树时执行
             this.ecComponent1 = this.selectComponent('#ecdom1');
-            console.log(this.properties.chartData)
             this.initLine(this.properties.chartData || option)
         },
         detached: function () {

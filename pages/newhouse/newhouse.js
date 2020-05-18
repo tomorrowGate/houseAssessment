@@ -1,5 +1,5 @@
-import { table1, table2, table3, table4, option, option1_1, option3, option3_1, optionTime } from "../../mock/mockData.js"
-import {countMonthList } from "../../utils/dateCalc.js"
+import { table1, table2, table3, table4, option, option1_1, option3, option3_1, optionTime, backBarAndLine} from "../../mock/mockData.js"
+import { countMonthList, getMonths } from "../../utils/dateCalc.js"
 let echarts = require('../../utils/ec-canvas/echarts');
 let wxCharts = require('../../utils/wxcharts.js');
 
@@ -117,13 +117,6 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        //console.log(options)
-        // let title = {
-        //     "land":"土地详情",
-        //     "newhouse":"新房详情",
-        //     "secondhouse":"二手房详情",
-        //     "law":"司法详情"
-        // }
         // options.type && wx.setNavigationBarTitle({
         //     title: title[options.type]
         // })
@@ -145,15 +138,22 @@ Page({
         //         arrHouseInit:"产品类型"
         //     })
         // }
-
-        //this.randoms()
     },
 
     /**
      * 生命周期函数--监听页面初次渲染完成
      */
     onReady: function () {
-        this.charts = this.selectComponent("#chart");
+        this.charts1 = this.selectComponent("#chart1");
+        this.charts2 = this.selectComponent("#chart2");
+        this.charts3 = this.selectComponent("#chart3");
+
+        this.charts1.initLine(backBarAndLine("供应套数", "成交套数", getMonths()))
+        this.charts2.initLine(optionTime)
+        this.charts3.initLine(optionTime)
+        //this.charts3.initLine(backBarAndLine("当月库存量", "近年的月成交量", getMonths()))
+
+        this.randoms()
     },
 
     /**
@@ -235,7 +235,9 @@ Page({
             })
             return
         }
-        this.charts.initLine(optionTime)
+        this.charts1.initLine(backBarAndLine("供应套数", "成交套数", arr))
+        this.charts2.initLine(optionTime)
+        this.charts3.initLine(optionTime)
         this.randoms()
     },
     /**

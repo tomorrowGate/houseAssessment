@@ -148,3 +148,82 @@
     margin-right: 6rpx;
     padding: 10rpx 4rpx;
 }
+
+
+/* 弹框 */
+.index-mask-box{
+    padding: 42rpx;
+}
+.index-mask-title{
+    text-align: center;
+    font-size: 30rpx;
+    margin-bottom: 18rpx;
+}
+.index-mask-content{
+    padding-bottom: 75rpx;
+    border-bottom: 1rpx solid #f5f5f5
+}
+.mask-content-item{
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+.houseprice-item-imgbox{
+    width: 30rpx;
+    height: 35rpx;
+    margin-right: 8rpx
+}
+.houseprice-item-iptbox{
+    height: 50rpx;
+    line-height: 50rpx;
+    width: 90%;
+    border-bottom:1rpx solid #ccc;
+    text-indent: 10rpx;
+}
+.houseprice-item-iptbox .iptbox-plc{
+    color: #D6D6D6;
+}
+.mask-btngroup{
+    display: flex;
+
+    margin-top: 75rpx;
+}
+.mask-cencle{
+    width: 246rpx;
+    height: 80rpx;
+    line-height: 80rpx;
+    text-align: center;
+    font-size: 30rpx;
+    color: #005DFC;
+    border:1rpx solid #005DFC;
+    border-radius: 10rpx;
+}
+.mask-search{
+    width: 246rpx;
+    height: 80rpx;
+    line-height: 80rpx;
+    text-align: center;
+    font-size: 30rpx;
+    color: #fff;
+    border:1rpx solid #005DFC;
+    border-radius: 10rpx;
+    background: #005DFC;
+}
+
+
+.houseprice-input-items{
+    position: absolute;
+    top:60rpx;
+    left: 10rpx;
+    width: calc(100% - 20rpx);
+    padding:0rpx 25rpx;
+    background: #f5f5f5;
+   /*  border: 1rpx solid #ddd; */
+    box-sizing: border-box;
+    z-index:3;
+}
+.houseprice-input-item{
+    height: 68rpx;
+    line-height: 68rpx;
+    width:100%
+}

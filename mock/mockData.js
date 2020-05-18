@@ -1,3 +1,4 @@
+import {getMonths } from "../utils/dateCalc.js"
 export const qualityArr = [{ name: "一般" }, { name: "较高" }, { name: "较低" }]
 export const houseTypeArr = [{ name: "一般" }, { name: "较高" }, { name: "较低" }]
 export const housePatternArr = [{ name: "合理" }, { name: "不合理" }]
@@ -584,6 +585,12 @@ export const option4_1 = {
 
 export const optionTime = {
     color: ["#03A174"],
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross'
+        }
+    },
     legend: {
         data: ['幢']
     },
@@ -591,7 +598,8 @@ export const optionTime = {
         {
             type: 'category',
             boundaryGap: false,
-            data: []//填入时间
+            data: getMonths()
+            //data: []//填入时间
         }
     ],
     yAxis: [{
@@ -608,12 +616,26 @@ export const optionTime = {
                     color: "#03A174"
                 }
             },
-            data: [],//填入数量
+            //data: [],//填入数量
+            data: (function () {
+                var res = [];
+                var len = 12;
+                while (len--) {
+                    res.push(Math.round(Math.random() * 1000));
+                }
+                return res;
+            })()
         },
     ]
 };
 /* 模拟直方图 */
 export const optionBarPic = {
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross'
+        }
+    },
     xAxis: {
         type: 'category',
         data: ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"]
@@ -636,10 +658,6 @@ export const optionBarPic = {
 
 /* 模拟直方图和折线图的和图 */
 export const optionTotcalLine = {
-    title: {
-        text: '动态数据',
-       /*  subtext: '纯属虚构' */
-    },
     legend: {
         data: ['最新成交价', '预购队列']
     },
@@ -723,10 +741,12 @@ export const optionTotcalLine = {
 
 
 export function backBarAndLine(title1,title2,times){
-    const optionTotcalLine = {}
-    return optionTotcalLine = {
-        title: {
-            text: '动态数据',
+    return {
+        tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+                type: 'cross'
+            }
         },
         legend: {
             data: [title1, title2]
@@ -735,16 +755,7 @@ export function backBarAndLine(title1,title2,times){
             {
                 type: 'category',
                 boundaryGap: true,
-                data: (function () {
-                    var now = new Date();
-                    var res = [];
-                    var len = 10;
-                    while (len--) {
-                        res.unshift(now.toLocaleTimeString().replace(/^\D*/, ''));
-                        now = new Date(now - 2000);
-                    }
-                    return res;
-                })()
+                data: times
             },
             {
                 show: false,
@@ -752,7 +763,7 @@ export function backBarAndLine(title1,title2,times){
                 boundaryGap: true,
                 data: (function () {
                     var res = [];
-                    var len = 10;
+                    var len = times.length||10;
                     while (len--) {
                         res.push(10 - len - 1);
                     }
@@ -764,7 +775,7 @@ export function backBarAndLine(title1,title2,times){
             {
                 type: 'value',
                 scale: true,
-                name: '价格',
+                name: title1,
                 max: 30,
                 min: 0,
                 boundaryGap: [0.2, 0.2]
@@ -772,7 +783,7 @@ export function backBarAndLine(title1,title2,times){
             {
                 type: 'value',
                 scale: true,
-                name: '预购量',
+                name: title2,
                 max: 1200,
                 min: 0,
                 boundaryGap: [0.2, 0.2]
@@ -780,13 +791,13 @@ export function backBarAndLine(title1,title2,times){
         ],
         series: [
             {
-                name: '预购队列',
+                name: title1,
                 type: 'bar',
                 xAxisIndex: 1,
                 yAxisIndex: 1,
                 data: (function () {
                     var res = [];
-                    var len = 10;
+                    var len = times.length||10;
                     while (len--) {
                         res.push(Math.round(Math.random() * 1000));
                     }
@@ -794,12 +805,97 @@ export function backBarAndLine(title1,title2,times){
                 })()
             },
             {
-                name: '最新成交价',
+                name: title2,
                 type: 'line',
                 data: (function () {
                     var res = [];
                     var len = 0;
-                    while (len < 10) {
+                    while (len < times.length) {
+                        res.push((Math.random() * 10 + 5).toFixed(1) - 0);
+                        len++;
+                    }
+                    return res;
+                })()
+            }
+        ]
+    };
+}
+
+export function doubleLine (title1, title2, times) {
+    return {
+        legend: {
+            data: [title1, title2]
+        },
+        tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+                type: 'cross'
+            }
+        },
+        xAxis: [
+            {
+                type: 'category',
+                boundaryGap: true,
+                data: times,
+            },
+            {
+                show: false,
+                type: 'category',
+                boundaryGap: true,
+                data: (function () {
+                    var res = [];
+                    var len = times.length || 10;
+                    while (len--) {
+                        res.push(10 - len - 1);
+                    }
+                    return res;
+                })()
+            }
+        ],
+        yAxis: [
+            {
+                type: 'value',
+                scale: true,
+                name: title1,
+                max: 30,
+                min: 0,
+                boundaryGap: [0.2, 0.2]
+            },
+            {
+                type: 'value',
+                scale: true,
+                name: title2,
+                max: 1200,
+                min: 0,
+                boundaryGap: [0.2, 0.2]
+            }
+        ],
+        series: [
+            {
+                name: title1,
+                type: 'line',
+                xAxisIndex: 1,
+                yAxisIndex: 1,
+                smooth: true,
+                animation: true,
+                data: (function () {
+                    var res = [];
+                    var len = times.length || 10;
+                    while (len--) {
+                        res.push(Math.round(Math.random() * 1000));
+                    }
+                    return res;
+                })()
+            },
+            {
+                name: title2,
+                type: 'line',
+                smooth: true,
+                animation: true,
+                data: (function () {
+                    var res = [];
+                    var len = 0;
+                    while (len < times.length) {
                         res.push((Math.random() * 10 + 5).toFixed(1) - 0);
                         len++;
                     }

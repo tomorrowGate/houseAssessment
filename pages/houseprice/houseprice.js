@@ -13,12 +13,11 @@ Page({
             room:""
         },
         fuzzyQuery: {
-            city: ["西湖", "杭州", "萧山", "西山", "西海"],
+            city: ["西湖-国玺", "杭州-三墩小区", "萧山-龙府", "西山-九龙小区", "中铁-国际城"],
             filterData: [],
             inputValue: "",
             canSwitch: true
         },
-
         village: {
             city: ["国玺", "龙府", "青青家园", "三墩小区", "龙巢", "九龙小区", "三坝小区", "国际城"],
             filterData: [],
@@ -35,8 +34,11 @@ Page({
     },
     houseSearch(){
         this.setData({
-            'searchParameter.county': this.data.fuzzyQuery.inputValue,
-            'searchParameter.countyName': this.data.village.inputValue
+            'searchParameter.county': this.data.fuzzyQuery.inputValue.split('-')[0],
+            'searchParameter.countyName': this.data.fuzzyQuery.inputValue.split('-')[1],
+            'searchParameter.dong': this.data.fuzzyQuery.inputValue.split('-')[2],
+            'searchParameter.unit': this.data.fuzzyQuery.inputValue.split('-')[3],
+            'searchParameter.room': this.data.fuzzyQuery.inputValue.split('-')[4],
         })
         let  searchParameter  = this.data.searchParameter
         console.log(searchParameter)
