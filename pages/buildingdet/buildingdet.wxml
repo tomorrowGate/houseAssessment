@@ -139,7 +139,7 @@
                 </view>
                 <view class="houseprice-input-items">
                     <view  
-                        data-filterkey = "village"
+                        data-filterkey = "fuzzyQuery"
                         class="houseprice-input-item" 
                         wx:for="{{fuzzyQuery.filterData}}" 
                         wx:key="index" 
@@ -155,7 +155,7 @@
 
         <view class="mask-btngroup">
             <view class="mask-cencle" bindtap="hideDialog">取消</view>
-            <view class="liner-btn mask-search" bindtap="search" >查询</view>
+            <view class="liner-btn mask-search" bindtap="goHousePrice" >查询</view>
         </view>
     </view>
 </dialog>

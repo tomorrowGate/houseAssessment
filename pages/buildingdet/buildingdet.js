@@ -37,6 +37,12 @@ Page({
             inputValue: "",
             canSwitch: true
         },
+        village: {
+            city: ["国玺", "龙府", "青青家园", "三墩小区", "龙巢", "九龙小区", "三坝小区", "国际城"],
+            filterData: [],
+            inputValue: "",
+            canSwitch: true
+        },
         isShowDia: true,//是否显示弹框，true是不显示
         // 图表数据
         chartShowList:[false,true,true],
@@ -101,7 +107,7 @@ Page({
             , setDataKey = e.currentTarget.dataset.filterkey
             , fliterDataKey = setDataKey + '.filterData'
             , inputValueKey = setDataKey + '.inputValue'
-
+        console.log(setDataKey, inputValueKey)
         this.setData({
             [inputValueKey]: e.currentTarget.dataset.value,
             [fliterDataKey]: [],
@@ -120,6 +126,20 @@ Page({
     },
     showInputSearch(e){
         this.showDiaLog()
+    },
+    goHousePrice(e){
+        this.setData({
+            'searchParameter.county': this.data.fuzzyQuery.inputValue.split('-')[0],
+            'searchParameter.countyName': this.data.fuzzyQuery.inputValue.split('-')[1],
+            'searchParameter.dong': this.data.fuzzyQuery.inputValue.split('-')[2],
+            'searchParameter.unit': this.data.fuzzyQuery.inputValue.split('-')[3],
+            'searchParameter.room': this.data.fuzzyQuery.inputValue.split('-')[4],
+        })
+        let searchParameter = this.data.searchParameter
+        console.log(searchParameter)
+        wx.navigateTo({
+            url: '/pages/housePriceDet/housePriceDet?searchParameter=' + searchParameter,
+        })
     },
     /* 搜索框方法结束 */
     initLine(data){
