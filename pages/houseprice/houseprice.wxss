@@ -11,7 +11,7 @@
     top:220rpx;
     left: 50%;
     width: 690rpx;
-    height: 720rpx;
+    height: 860rpx;
     box-shadow: 0 0 20rpx #aaa;
     transform: translateX( -50% );
     border-radius: 20rpx;
@@ -74,7 +74,7 @@
     position: absolute;
     top:50%;
     left: 50%;
-    transform: translate( -50% , calc( -50% - 180rpx ))
+    transform: translate( -50% , calc( -50% - 270rpx ))
 }
 
 .houseprice-card-foot{

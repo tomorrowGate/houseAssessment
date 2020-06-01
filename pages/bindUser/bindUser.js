@@ -134,8 +134,8 @@ Page({
                        that.setData({
                            yzmNumber: res.data.data.vocde
                        })
-                        app.globalData.vcode = res.data.data.vocde
-                        wx.setStorageSync("vcode", res.data.data.vcode);
+                        // app.globalData.vocde = res.data.data.vocde
+                        // wx.setStorageSync("vocde", res.data.data.vcode);
                         resove(res.data.data)
                     } else if (res.data.code == 102){
                         wx.showToast({
@@ -173,9 +173,11 @@ Page({
                         that.setData({
                             userid: res.data.data.userid
                         })
+                        app.globalData.cellnumber = res.data.data.cellnumber
                         app.globalData.userid = res.data.data.userid
                         app.globalData.vocde = res.data.data.vocde
                         app.globalData.userServiceInfo = res.data.data
+                        wx.setStorageSync("cellnumber", res.data.data.cellnumber);
                         wx.setStorageSync("userid", res.data.data.userid);
                         wx.setStorageSync("vocde", res.data.data.vocde);
                         wx.setStorageSync("userServiceInfo", res.data.data);

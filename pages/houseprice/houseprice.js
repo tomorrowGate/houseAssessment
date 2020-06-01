@@ -48,13 +48,6 @@ Page({
             url: '/pages/housePriceDet/housePriceDet?searchParameter=' + searchParameter,
         })
     },
-    filter1(e) {
-        debounce(() => {
-            this.filter1(e)
-            console.log("节流")
-        }, 1000)
-        
-    },
     filter: debounce(function(e) {
         let keywords = e.detail.value
             ,_this = this
@@ -65,19 +58,21 @@ Page({
             ,inputValueKey = setDataKey + '.inputValue'
             , userid = wx.getStorageSync('userid')
             , vocde = wx.getStorageSync('vocde')
-        console.log(fliterDataKey, inputValueKey)
+        //console.log(fliterDataKey, inputValueKey)
         this.queryFuzzyPort(userid, vocde, keywords, 1)
-        
-        e.detail.value && filterdataArr.forEach((city, index) => {
-            if (city.includes(keywords)) {
-                result.push(city)
-            }
-        })
+            .then((res)=>{
+                // e.detail.value && filterdataArr.forEach((city, index) => {
+                //     if (city.includes(keywords)) {
+                //         result.push(city)
+                //     }
+                // })
 
-        this.setData({
-            [fliterDataKey]: result,
-            [inputValueKey]: e.detail.value
-        })
+                this.setData({
+                    [fliterDataKey]: res,
+                    [inputValueKey]: e.detail.value
+                })
+            })
+        
     },1000),
     clearFilter(e){
         let that = this
@@ -120,14 +115,16 @@ Page({
                 success: function (res) {
                     console.log(res)
                     if (res.data.code == 101) {
-                        let city = res.data.data.filter((v,i)=>{
-                            return v.address
+                        let city = []
+                        res.data.data.forEach((v,i)=>{
+                            city.push(v.address)
                         })
                         that.setData({
                             fuzzyPortData: res.data.data,
                             "fuzzyQuery.city": city
                         })
-                        resove(res.data.data)
+                        console.log(that.data.fuzzyQuery.city,city)
+                        resove(city)
                     } else if (res.data.code == 102) {
                         wx.showToast({
                             title: res.data.message,
