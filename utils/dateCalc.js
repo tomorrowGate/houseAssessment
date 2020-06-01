@@ -30,6 +30,6 @@ export function getMonths() {
         m = m < 10 ? "0" + m : m;
         dataArr.push(data.getFullYear() + "-" + m);
     }
-    console.log(dataArr);
+    //console.log(dataArr);
     return dataArr.reverse();
 }

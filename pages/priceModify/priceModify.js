@@ -115,6 +115,40 @@ Page({
         },1000)
         
     },
+    /* 后台接口 */
+    //提交修改
+    submitModify(userid, vcode, houseid,modify){
+        return new Promise((resove, rej) => {
+            let that = this;
+            wx.request({
+                url: app.globalData.url + 'yzservice/rest/yzapp/house/AppFactorQuery',
+                method: 'GET',
+                data: {
+                    userid,
+                    vcode,
+                    houseid,
+                },
+                success: function (res) {
+                    console.log(res)
+                    if (res.data.code == 101) {
+                        resove(res.data.data)
+                    } else if (res.data.code == 102) {
+                        wx.showToast({
+                            title: res.data.message,
+                            icon: "none"
+                        })
+                        rej(res.data.data)
+                    }
+                    else {
+                        rej("err")
+                    }
+                },
+                fail: function (err) {
+                    rej("err")
+                }
+            })
+        })
+    },
     /**
      * 生命周期函数--监听页面加载
      */

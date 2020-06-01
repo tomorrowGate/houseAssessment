@@ -35,7 +35,8 @@ Page({
             lazyLoad: true
         },
         ecComponent1: null,
-        chart:{}
+        chart:{},
+        housePriceDetPort:null,//后台返回的房屋详细信息
     },
     randoms(){
         let arr = [option2, option2_1, option4, option4_1]
@@ -67,6 +68,46 @@ Page({
             let prevPage = pages[pages.length - 2]; //上一个页面
             return prevPage.data.searchParameter
         }
+    },
+    /* 后台接口 */
+    //估价对象信息获取
+    getHousePriDetInfo(userid, vcode, houseid){
+        return new Promise((resove, rej) => {
+            let that = this;
+            wx.request({
+                url: app.globalData.url + 'yzservice/rest/yzapp/house/HouseQuery',
+                method: 'GET',
+                data: {
+                    userid,
+                    vcode,
+                    houseid,
+                },
+                success: function (res) {
+                    console.log(res)
+                    if (res.data.code == 101) {
+                        let city = res.data.data.filter((v, i) => {
+                            return v.address
+                        })
+                        that.setData({
+                            housePriceDetPort: res.data.data,
+                        })
+                        resove(res.data.data)
+                    } else if (res.data.code == 102) {
+                        wx.showToast({
+                            title: res.data.message,
+                            icon: "none"
+                        })
+                        rej(res.data.data)
+                    }
+                    else {
+                        rej("err")
+                    }
+                },
+                fail: function (err) {
+                    rej("err")
+                }
+            })
+        })
     },
     /**
      * 生命周期函数--监听页面加载

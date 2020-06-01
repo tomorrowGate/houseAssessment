@@ -1,6 +1,7 @@
 // pages/houseprice/houseprice.js
+let app = getApp()
+import { debounce } from "../../utils/myfunctions.js"
 Page({
-
     /**
      * 页面的初始数据
      */
@@ -24,6 +25,7 @@ Page({
             inputValue: "",
             canSwitch: true
         },
+        fuzzyPortData:{}//模糊查询的后台返回数据
     },
     vModule(e){
         console.log(e.currentTarget.dataset.option,e.detail.value)
@@ -46,14 +48,26 @@ Page({
             url: '/pages/housePriceDet/housePriceDet?searchParameter=' + searchParameter,
         })
     },
-    filter(e) {
+    filter1(e) {
+        debounce(() => {
+            this.filter1(e)
+            console.log("节流")
+        }, 1000)
+        
+    },
+    filter: debounce(function(e) {
         let keywords = e.detail.value
+            ,_this = this
             ,result = []
             ,filterdataArr = e.currentTarget.dataset.filterdata.city
-            , setDataKey = e.currentTarget.dataset.filterkey
-            , fliterDataKey = setDataKey + '.filterData'
-            , inputValueKey = setDataKey + '.inputValue'
+            ,setDataKey = e.currentTarget.dataset.filterkey
+            ,fliterDataKey = setDataKey + '.filterData'
+            ,inputValueKey = setDataKey + '.inputValue'
+            , userid = wx.getStorageSync('userid')
+            , vocde = wx.getStorageSync('vocde')
         console.log(fliterDataKey, inputValueKey)
+        this.queryFuzzyPort(userid, vocde, keywords, 1)
+        
         e.detail.value && filterdataArr.forEach((city, index) => {
             if (city.includes(keywords)) {
                 result.push(city)
@@ -64,7 +78,7 @@ Page({
             [fliterDataKey]: result,
             [inputValueKey]: e.detail.value
         })
-    },
+    },1000),
     clearFilter(e){
         let that = this
             , setDataKey = e.currentTarget.dataset.filterkey
@@ -88,6 +102,50 @@ Page({
             [fliterDataKey]: [],
         }) 
     },
+    /* 后台接口 */
+    //模糊查询
+    queryFuzzyPort(userid, vcode, key, page=1){
+        console.log(userid, vcode, key, page)
+        return new Promise((resove, rej) => {
+            let that = this;
+            wx.request({
+                url: app.globalData.url + 'yzservice/rest/yzapp/house/HouseQuery' ,
+                method: 'GET',
+                data:{
+                    userid,
+                    vcode,
+                    key,
+                    page
+                },
+                success: function (res) {
+                    console.log(res)
+                    if (res.data.code == 101) {
+                        let city = res.data.data.filter((v,i)=>{
+                            return v.address
+                        })
+                        that.setData({
+                            fuzzyPortData: res.data.data,
+                            "fuzzyQuery.city": city
+                        })
+                        resove(res.data.data)
+                    } else if (res.data.code == 102) {
+                        wx.showToast({
+                            title: res.data.message,
+                            icon: "none"
+                        })
+                        rej(res.data.data)
+                    }
+                    else {
+                        rej(["error"])
+                    }
+                },
+                fail: function (err) {
+                    rej("error1")
+                }
+            })
+        })
+    },
+
     /**
      * 生命周期函数--监听页面加载
      */

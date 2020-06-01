@@ -19,7 +19,8 @@ Page({
             spatialForm: "",
             outdoorLandscape: "",
             decorationGrade: "",
-        }
+        },
+        allPriceModifyList:null,
     },
     nextTap(e){
         wx.navigateTo({
@@ -32,6 +33,65 @@ Page({
             , pickValue = 'pickValue.' + selectarr 
         this.setData({
             [pickValue]: value
+        })
+    },
+    /* 后台接口 */
+    //获取估价对象因素
+    getHousePricePort(userid, vcode, houseid){
+        return new Promise((resove, rej) => {
+            let that = this;
+            wx.request({
+                url: app.globalData.url + 'yzservice/rest/yzapp/house/AppFactorQuery',
+                method: 'GET',
+                data: {
+                    userid,
+                    vcode,
+                    houseid,
+                },
+                success: function (res) {
+                    console.log(res)
+                    if (res.data.code == 101) {
+                        let allPriceModifyList = res.data.data.factorlist
+                        let mapArr = {
+                            "景观":"",
+                            "临街":"",
+                            "物业品质":"qualityArr",
+                            "户型格局":"",
+                            "空间形式":"",
+                            "装修档次":"",
+                            "其他因素":""
+                        }
+                        let city = allPriceModifyList.filter((v, i) => {
+                            return v.address
+                        })
+
+                        // pickValue:{
+                        //     qualityArr:"",
+                        //     houseTypeArr:"",
+                        //     housePatternArr:"",
+                        //     spatialForm: "",
+                        //     outdoorLandscape: "",
+                        //     decorationGrade: "",
+                        // }
+                        that.setData({
+                            allPriceModifyList: res.data.data.factorlist,
+                        })
+                        resove(res.data.data)
+                    } else if (res.data.code == 102) {
+                        wx.showToast({
+                            title: res.data.message,
+                            icon: "none"
+                        })
+                        rej(res.data.data)
+                    }
+                    else {
+                        rej("err")
+                    }
+                },
+                fail: function (err) {
+                    rej("err")
+                }
+            })
         })
     },
     /**
@@ -83,10 +143,4 @@ Page({
 
     },
 
-    /**
-     * 用户点击右上角分享
-     */
-    onShareAppMessage: function () {
-
-    }
 })

@@ -3,8 +3,8 @@ let CryptoJS = require('./utils/crypto-js.js');
 require('./utils/aes.js');
 App({
     data: {
-        url: 'https://www.xaqnxl.com/',
-        urlex: 'https://www.xazhyl.com/',
+       // url: 'https://www.xaqnxl.com/',
+        url:"https://yz.hzhfeidian.com/",
     },
     onLaunch: function (options) {
         // 展示本地存储能力
@@ -39,7 +39,12 @@ App({
                 }
             }
         })
-
+        //this.checkAuthorize()
+    },
+    onShow(option){
+        // this.globalData.prevRoute = '/' + option.path
+        // this.globalData.options = option.query
+        //console.log(option, 11111)
     },
     //检查是否授权过期
     checksession: function () {
@@ -49,8 +54,68 @@ App({
             },
             fail: function (res) {
                 wx.reLaunch({
-                    url: "/pages/index/authorize"
+                    url: "/pages/bindUser/bindUser"
                 });
+            }
+        })
+    },
+    //检查是否授权
+    checkAuthorize(path) {
+        let that = this
+        wx.getSetting({
+            success(res) {
+                if (res.authSetting['scope.userInfo']) {
+                    //已经授权
+                    console.log("已经授权");
+                    //检查登录有没有过期
+                    that.checksession()
+                } else {
+                    // wx.reLaunch({
+                    //     url: "/pages/attestation/attestation"
+                    // });
+                    wx.reLaunch({
+                        url: "/pages/bindUser/bindUser"
+                    });
+                }
+            }
+        })
+    },
+    //心跳刷新
+    heartReafsh(){
+
+    },
+    getOpenid(){
+        return new Promise((resove, rej) => {
+            var user_id = wx.getStorageSync('user_id')
+            var that = this;
+            if (user_id) {
+                //查询好多数据
+                wx.request({
+                    url: that.globalData.url + 'index.php?app=nyms_myinfo&act=get_info',
+                    method: 'POST',
+                    header: {
+                        'content-type': 'application/x-www-form-urlencoded',
+                    },
+                    data: {
+                        user_id,
+                    },
+                    success: function (res) {
+                        if (res.data.done) {
+                           
+                            wx.setStorageSync("openid", res.data.retval.openid);
+
+                            resove("OK")
+                        } else {
+                            rej("err")
+                        }
+                    },
+                    fail: function (err) {
+                        rej("err")
+                    },
+                    complete: function (res) {
+                        //console.log(res);
+                    }
+                })
             }
         })
     },
@@ -90,15 +155,17 @@ App({
         return encrypted.toString();
     },
     globalData: {
+        userid:"",
+        vocde:"",//验证码，配合userid来发请求的;注意不是vcode
+        userServiceInfo:null,
         share: false,  // 分享默认为false
         height: 0,
-
+        url: "https://yz.hzhfeidian.com/",
         systemInfo: null, //客户端设备信息
         userInfo: null,
         userData: null,
         dataId: { openid: null, },
 
-        v_WEBSET: "https://www.xaqnxl.com",
         v_APPID: "wxc94fcf2ca6357311", //小程序ID
         //v_MCHID: "1490258882",
         //v_KEY: "Hzzndq12345665432157491239823212",
