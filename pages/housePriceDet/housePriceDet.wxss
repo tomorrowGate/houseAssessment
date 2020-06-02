@@ -93,7 +93,8 @@
 .housepd-cell-key{
     color: #999
 }
-
+.housepd-cell-value{
+}
 
 .tableScroll{
   white-space: nowrap;

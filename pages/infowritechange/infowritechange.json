@@ -1,0 +1,6 @@
+{
+    "navigationBarTitleText": "修正价格",
+    "usingComponents": {
+        "Dialog": "/components/dialog/dialog"
+    }
+}

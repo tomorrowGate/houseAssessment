@@ -1,12 +1,12 @@
 {
     "pages": [
+        "pages/houseprice/houseprice",
         "pages/index/index",
         "pages/bindUser/bindUser",
         "pages/infowrite/infowrite",
         "pages/user/user",
         "pages/housePriceDet/housePriceDet",
         "pages/priceModify/priceModify",
-        "pages/houseprice/houseprice",
         "pages/newhouse/newhouse",
         "pages/buildingdet/buildingdet",
         "components/dialog/dialog",
@@ -19,7 +19,8 @@
         "pages/userinfoForm/userinfoForm",
         "pages/land/land",
         "pages/secondhouse/secondhouse",
-        "pages/law/law"
+        "pages/law/law",
+        "pages/infowritechange/infowritechange"
     ],
     "tabBar": {
         "color": "#3D3D3D",

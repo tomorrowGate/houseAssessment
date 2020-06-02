@@ -1,4 +1,5 @@
 // pages/housePriceDet/housePriceDet.js
+let app = getApp()
 import {  option2, option2_1, option4, option4_1} from "../../mock/mockData.js"
 Page({
 
@@ -6,6 +7,8 @@ Page({
      * 页面的初始数据
      */
     data: {
+        houseDet:null,
+        houseid:"",
         searchParameter:{
             county: "杭州",
             countyName: "国玺悦龙府",
@@ -47,8 +50,9 @@ Page({
         this.chart.initLine(arr[randomInit])
     },
     priceModify(e){
+        let houseid = this.data.houseid
         wx.navigateTo({
-            url: '/pages/infowrite/infowrite',
+            url: '/pages/infowritechange/infowritechange?houseid=' + houseid,
         })
     },
     nextTime(e){
@@ -70,12 +74,13 @@ Page({
         }
     },
     /* 后台接口 */
-    //估价对象信息获取
-    getHousePriDetInfo(userid, vcode, houseid){
+    //根据房屋id获取房屋信息
+    getHouseDetailById(userid,vcode,houseid){
+        console.log(userid, vcode, houseid)
         return new Promise((resove, rej) => {
             let that = this;
             wx.request({
-                url: app.globalData.url + 'yzservice/rest/yzapp/house/HouseQuery',
+                url: app.globalData.url + 'yzservice/rest/yzapp/house/HouseQueryByHouseid',
                 method: 'GET',
                 data: {
                     userid,
@@ -85,26 +90,26 @@ Page({
                 success: function (res) {
                     console.log(res)
                     if (res.data.code == 101) {
-                        let city = res.data.data.filter((v, i) => {
-                            return v.address
-                        })
+                        res.data.data.showHouseName = res.data.data.address
                         that.setData({
-                            housePriceDetPort: res.data.data,
+                            houseDet: res.data.data
                         })
                         resove(res.data.data)
-                    } else if (res.data.code == 102) {
-                        wx.showToast({
+                    } else if (res.data.code == 201) {
+                        wx.navigateTo({
+                            url: '/pages/bindUser/bindUser',
+                        })
+                        rej(res.data.data)
+                    } else {
+                        res.data.message && wx.showToast({
                             title: res.data.message,
                             icon: "none"
                         })
-                        rej(res.data.data)
-                    }
-                    else {
-                        rej("err")
+                        rej(["error"])
                     }
                 },
                 fail: function (err) {
-                    rej("err")
+                    rej("error1")
                 }
             })
         })
@@ -113,15 +118,13 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        let searchParameter = this.getPrePage()
-        //let compliteRoom = searchParameter.county + searchParameter.countyName + searchParameter.dong + '幢' + searchParameter.unit + '单元' + searchParameter.room + '室'
-
-        let compliteRoom = searchParameter.county + searchParameter.countyName + searchParameter.dong + '幢' + searchParameter.unit + '单元' + searchParameter.room + '室'
-        console.log(this.getPrePage())
+        let userid = wx.getStorageSync('userid')
+            ,vocde = wx.getStorageSync('vocde')
+            , houseid = options.houseid
         this.setData({
-            searchParameter,
-            compliteRoom,
+            houseid,
         })
+        this.getHouseDetailById(userid, vocde, houseid)
     },
 
     /**

@@ -17,12 +17,8 @@ Page({
             city: ["西湖-国玺", "杭州-三墩小区", "萧山-龙府", "西山-九龙小区", "中铁-国际城"],
             filterData: [],
             inputValue: "",
-            canSwitch: true
-        },
-        village: {
-            city: ["国玺", "龙府", "青青家园", "三墩小区", "龙巢", "九龙小区", "三坝小区", "国际城"],
-            filterData: [],
-            inputValue: "",
+            all:[],
+            selectHouse:"",
             canSwitch: true
         },
         fuzzyPortData:{}//模糊查询的后台返回数据
@@ -35,17 +31,19 @@ Page({
         })
     },
     houseSearch(){
-        this.setData({
-            'searchParameter.county': this.data.fuzzyQuery.inputValue.split('-')[0],
-            'searchParameter.countyName': this.data.fuzzyQuery.inputValue.split('-')[1],
-            'searchParameter.dong': this.data.fuzzyQuery.inputValue.split('-')[2],
-            'searchParameter.unit': this.data.fuzzyQuery.inputValue.split('-')[3],
-            'searchParameter.room': this.data.fuzzyQuery.inputValue.split('-')[4],
-        })
-        let  searchParameter  = this.data.searchParameter
-        console.log(searchParameter)
+        // this.setData({
+        //     'searchParameter.county': this.data.fuzzyQuery.inputValue.split('-')[0],
+        //     'searchParameter.countyName': this.data.fuzzyQuery.inputValue.split('-')[1],
+        //     'searchParameter.dong': this.data.fuzzyQuery.inputValue.split('-')[2],
+        //     'searchParameter.unit': this.data.fuzzyQuery.inputValue.split('-')[3],
+        //     'searchParameter.room': this.data.fuzzyQuery.inputValue.split('-')[4],
+        // })
+        // let  searchParameter  = this.data.searchParameter
+        // console.log(searchParameter)
+        let houseid = this.data.fuzzyQuery.selectHouse.houseid
+        console.log(houseid)
         wx.navigateTo({
-            url: '/pages/housePriceDet/housePriceDet?searchParameter=' + searchParameter,
+            url: '/pages/housePriceDet/housePriceDet?houseid=' + houseid,
         })
     },
     filter: debounce(function(e) {
@@ -66,7 +64,7 @@ Page({
                 //         result.push(city)
                 //     }
                 // })
-
+                console.log(e.detail.value)
                 this.setData({
                     [fliterDataKey]: res,
                     [inputValueKey]: e.detail.value
@@ -89,13 +87,15 @@ Page({
     makesure(e) {
         let that = this
             , setDataKey = e.currentTarget.dataset.filterkey
+            , houseValueKey = setDataKey + '.selectHouse'
             , fliterDataKey = setDataKey + '.filterData'
             , inputValueKey = setDataKey + '.inputValue'
-
         this.setData({
-            [inputValueKey]: e.currentTarget.dataset.value,
+            [houseValueKey]: e.currentTarget.dataset.value,
+            [inputValueKey]: e.currentTarget.dataset.value.address,
             [fliterDataKey]: [],
-        }) 
+        })
+        console.log(this.data.fuzzyQuery.selectHouse)
     },
     /* 后台接口 */
     //模糊查询
@@ -123,16 +123,18 @@ Page({
                             fuzzyPortData: res.data.data,
                             "fuzzyQuery.city": city
                         })
-                        console.log(that.data.fuzzyQuery.city,city)
-                        resove(city)
-                    } else if (res.data.code == 102) {
-                        wx.showToast({
+                        console.log(that.data.fuzzyQuery.city)
+                        resove(res.data.data)
+                    } else if (res.data.code == 201) {
+                        wx.navigateTo({
+                            url: '/pages/bindUser/bindUser',
+                        })
+                        rej(res.data.data)
+                    } else {
+                        res.data.message &&  wx.showToast({
                             title: res.data.message,
                             icon: "none"
                         })
-                        rej(res.data.data)
-                    }
-                    else {
                         rej(["error"])
                     }
                 },

@@ -5,17 +5,17 @@
         </view>
         <view class="user-card-out">
             <view class="user-head">
-               <view class="house-src">{{searchParameter.county + searchParameter.countyName}}</view>
-               <view class="house-num">( {{searchParameter.dong}}幢{{searchParameter.unit}}单元{{searchParameter.room}}室 )</view>
+               <view class="house-src">{{houseDet.cname + houseDet.zname + houseDet.bname}}</view>
+               <view class="house-num">{{houseDet.ename + houseDet.fname}}</view>
             </view>
 
             <view class="user-card">
                 <view class="user-card-item">
-                    <view class="user-card-itemnum">339万元</view>
+                    <view class="user-card-itemnum">{{houseDet.apppall_init}}万元</view>
                     <view class="user-card-itemtxt">估算总价</view>
                 </view>
                 <view class="user-card-item">
-                    <view class="user-card-itemnum">38500元/m2</view>
+                    <view class="user-card-itemnum">{{houseDet.apppavg_init}}元/m2</view>
                     <view class="user-card-itemtxt">估算单价</view>
                 </view>
             </view>
@@ -57,47 +57,47 @@
         <view class="housepd-table-cells">
             <view class="housepd-cell-block">
                 <text class="housepd-cell-key">房屋坐落: </text>
-                <text class="housepd-cell-value">{{compliteRoom}}</text>
+                <text class="housepd-cell-value">{{houseDet.address}}</text>
             </view>
             <view class="housepd-cell-inlineb">
                 <text class="housepd-cell-key">权证信息: </text>
-                <text class="housepd-cell-value"></text>
+                <text class="housepd-cell-value">{{}}</text>
             </view>
             <view class="housepd-cell-inlineb">
                 <text class="housepd-cell-key">所属城市: </text>
-                <text class="housepd-cell-value">杭州市</text>
+                <text class="housepd-cell-value">{{houseDet.cname}}</text>
             </view>
             <view class="housepd-cell-inlineb">
                 <text class="housepd-cell-key">所属城区: </text>
-                <text class="housepd-cell-value">{{searchParameter.county}} </text>
+                <text class="housepd-cell-value">{{houseDet.zname}} </text>
             </view>
             <view class="housepd-cell-inlineb">
                 <text class="housepd-cell-key">小区名称: </text>
-                <text class="housepd-cell-value">{{searchParameter.countyName}}</text>
+                <text class="housepd-cell-value">{{houseDet.bname}}</text>
             </view>
             <view class="housepd-cell-inlineb">
                 <text class="housepd-cell-key">建成年份: </text>
-                <text class="housepd-cell-value">2000 </text>
+                <text class="housepd-cell-value">{{houseDet.byear}}年</text>
             </view>
             <view class="housepd-cell-inlineb">
                 <text class="housepd-cell-key">建筑面积: </text>
-                <text class="housepd-cell-value">87.8㎡</text>
+                <text class="housepd-cell-value">{{houseDet.area}}㎡</text>
             </view>
             <view class="housepd-cell-inlineb">
                 <text class="housepd-cell-key">套内面积: </text>
-                <text class="housepd-cell-value">75.5㎡ </text>
+                <text class="housepd-cell-value">{{houseDet.area}}㎡ </text>
             </view>
             <view class="housepd-cell-inlineb">
                 <text class="housepd-cell-key">规划用途: </text>
-                <text class="housepd-cell-value">住宅 </text>
+                <text class="housepd-cell-value">{{houseDet.fusage}}</text>
             </view>
             <view class="housepd-cell-inlineb">
                 <text class="housepd-cell-key">总  层  次: </text>
-                <text class="housepd-cell-value">10</text>
+                <text class="housepd-cell-value">{{houseDet.flooronstr}}</text>
             </view>
             <view class="housepd-cell-inlineb">
                 <text class="housepd-cell-key">建筑结构: </text>
-                <text class="housepd-cell-value"></text>
+                <text class="housepd-cell-value">{{houseDet.fstruct}}</text>
             </view>
         </view>
     </view>
@@ -137,5 +137,5 @@
             <view class="house-datas-text">周边配套</view>
         </view>
     </view>
-        <baidumap class="baidu-map" />
+        <baidumap class="baidu-map" searchName="{{houseDet.address}}"/>
 </view>

@@ -6,7 +6,14 @@ Component({
      * 组件的属性列表
      */
     properties: {
-
+        searchName: {
+            type: String,
+            value:"",
+            observer:function(newVal,oldVal){
+                console.log(newVal,oldVal,this)
+                this.initSearchHouse(newVal)
+            }
+        },
     },
 
     /**
@@ -55,7 +62,6 @@ Component({
         activeSearchID:"",//点击搜索结果时保存的id
         isSearchShow:false,//是否显示搜索结果
 
-
         /* 弹窗信息 */
         mapdiaShow:false,
     },
@@ -73,8 +79,29 @@ Component({
             this.setData({
                 BMap,
             })
-            this.locatSelf()
+            //this.locatSelf()
             this.sendPOISearch("楼盘 住宅")
+            
+        },
+        //初始搜素房屋
+        initSearchHouse(text){
+            let that = this
+            text && this.data.BMap.search({
+                "query": text,
+                fail: function (data) {
+                    console.log(data, "fail")
+                },
+                success: function (data) {
+                    console.log(data.wxMarkerData)
+                    that.setData({
+                        selfGeo: data.wxMarkerData[0],
+                        mapGeo: data.wxMarkerData[0],
+                    })
+                },
+                fail(err) {
+                    console.log(err)
+                }
+            })
         },
         // 用百度地图来定位 
         locatSelf(){

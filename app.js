@@ -46,7 +46,7 @@ App({
         // this.globalData.options = option.query
         //console.log(option, 11111)
         let that = this
-        let timer = setInterval(that.heartReafsh,6600000)
+        let timer = setInterval(that.heartReafsh,600000)
         let phone = wx.getStorageSync("cellnumber")
         let yzm = wx.getStorageSync("vocde")
     console.log(phone,yzm)
@@ -94,13 +94,12 @@ App({
     },
     //心跳刷新
     heartReafsh(){
-        return new Promise((resove, rej) => {
             let that = this;
             let cellnumber = wx.getStorageInfoSync("cellnumber")
             let vocde = wx.getStorageInfoSync("vocde")
             if (cellnumber && vocde){
                 wx.request({
-                    url: app.globalData.url + 'yzservice/rest/yzapp/user/VcodeHeartbeat',
+                    url: that.globalData.url + 'yzservice/rest/yzapp/user/VcodeHeartbeat',
                     method: 'GET',
                     data: {
                         cellnumber,
@@ -109,20 +108,19 @@ App({
                     success: function (res) {
                         console.log(res)
                         if (res.data.code == 101) {
-                            resove(res.data.message)
+                            //resove(res.data.message)
                         } else if (res.data.code == 102) {
-                            rej(res.data.message)
+                            // rej(res.data.message)
                         }
                         else {
-                            rej("error")
+                            //rej("error")
                         }
                     },
                     fail: function (err) {
-                        rej("error")
+                        //rej("error")
                     }
                 })
             }
-        })
     },
     //验证验证码是否合法
     userLoginVeryfy(phone, yzmNumber) {

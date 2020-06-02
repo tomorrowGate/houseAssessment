@@ -1,0 +1,69 @@
+<view class="appraise">
+    <view class="appraise-con">
+        <view class="appraise-cell-block">
+            <view class="appraise-cell" wx:for="{{houseModifyInfo}}" wx:key="index">
+                <view class="appraise-cell-key">{{item.fname}}</view>
+                <view class="appraise-cell-value">
+                     <picker 
+                        mode="selector" 
+                        range="{{item.oplist}}" 
+                        class="house-tag-picker " 
+                        data-selectarr="{{item}}"
+                        data-index="{{index}}"
+                        bindchange="bindPickerChange" >
+                        <input type="text" 
+                        class="cell-value-input" 
+                        placeholder-class="plh-ipt" 
+                        placeholder="请选择" 
+                        disabled="true" 
+                        value="{{item.fModify}}"/>
+                    </picker>
+                    <text class="iconfont icon-arrowRight-fill"></text>
+                </view>
+            </view>
+        </view>
+    </view>   
+
+    <view class="modify-price-btns">
+        <view class="modify-price-btn" bindtap="modifyPrice">修正价格</view>
+    </view>
+</view>
+
+<!-- 修正价格弹窗 -->
+<view class="mod-dialog" wx:if="{{isDiaShow}}" >
+    <view class="mod-dia-close" bindtap="closeDia">
+        <image src="/static/img/popup_close_x.png"></image>
+    </view>
+    <view class="mod-dia-main animated zoomIn">
+        <view class="mod-main-bgimgbox">
+            <image src="/static/img/popup_bg.png"></image>
+        </view>
+        <view class="mod-main-items">
+            <view class="mod-main-item">
+                <view class="main-item-bgimgbox">
+                    <image src="/static/img/popup_price_bg.png"></image>
+                </view>
+                <view class="main-item-outbox">
+                    <view class="mod-item-price"><input class="mod-item-price" value="2334"></input></view>
+                    <view class="mod-item-text">修正单价</view>
+                    <view class="mod-item-note">（单位：平方米）</view>
+                </view>
+            </view>
+
+            <view class="mod-main-item mod-item-all">
+                <view class="main-item-bgimgbox">
+                    <image src="/static/img/popup_price_bg.png"></image>
+                </view>
+                <view class="main-item-outbox">
+                    <view class="mod-item-price"><input class="mod-item-price" value="8678"></input> </view>
+                    <view class="mod-item-text">修正总价</view>
+                    <view class="mod-item-note">（单位：万元）</view>
+                </view>
+            </view>
+        </view>
+        <view class="mod-dia-submit" bindtap="submit">
+            提交
+        </view>
+    </view>
+
+</view>

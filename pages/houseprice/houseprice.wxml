@@ -29,7 +29,7 @@
                             wx:key="index" 
                             bindtap="makesure"
                             data-value="{{item}}" >
-                            {{item}}
+                            {{item.address}}
                         </view>
                     </view>
                     
