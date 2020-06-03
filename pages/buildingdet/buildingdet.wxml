@@ -7,7 +7,7 @@
         <view class="user-card-out">
             <view class="user-head">
                <view class="house-src">国玺悦珑府</view>
-               <view class="house-num">38500元/m2</view>
+               <view class="house-num">{{randomPrice + '元/m2'}}</view>
             </view>
 
             <view class="user-card" bindtap="showInputSearch">
@@ -127,27 +127,9 @@
                     <image class="" src="/static/img/area_icon.png"></image>
                 </view>
                 <view class="houseprice-item-iptbox">
-                    <input 
-                        placeholder="输入格式：区县-小区-栋-单元-室" 
-                        placeholder-class="iptbox-plc"
-                        bindfocus="filter" 
-                        bindinput="filter" 
-                        bindblur="clearFilter"
-                        data-filterkey = "fuzzyQuery"
-                        data-filterdata="{{fuzzyQuery}}"
-                        value="{{fuzzyQuery.inputValue}}"/>
+                    <funcinput id="funcinput"/>
                 </view>
-                <view class="houseprice-input-items">
-                    <view  
-                        data-filterkey = "fuzzyQuery"
-                        class="houseprice-input-item" 
-                        wx:for="{{fuzzyQuery.filterData}}" 
-                        wx:key="index" 
-                        bindtap="makesure"
-                        data-value="{{item}}" >
-                        {{item}}
-                    </view>
-                </view>
+                
             </view>
         </view>
 

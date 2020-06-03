@@ -5,8 +5,9 @@
         </view>
         <view class="user-card-out">
             <view class="user-head">
-               <view class="house-src">{{houseDet.cname + houseDet.zname + houseDet.bname}}</view>
-               <view class="house-num">{{houseDet.ename + houseDet.fname}}</view>
+                <view class="house-src">{{houseDet.bname}}</view>
+              <!--  <view class="house-src">{{houseDet.cname + houseDet.zname + houseDet.bname}}</view> -->
+               <view class="house-num">{{houseDet.showUnitName}}</view>
             </view>
 
             <view class="user-card">
@@ -59,6 +60,10 @@
                 <text class="housepd-cell-key">房屋坐落: </text>
                 <text class="housepd-cell-value">{{houseDet.address}}</text>
             </view>
+            <view class="housepd-cell-block">
+                <text class="housepd-cell-key">小区名称: </text>
+                <text class="housepd-cell-value">{{houseDet.bname}}</text>
+            </view>
             <view class="housepd-cell-inlineb">
                 <text class="housepd-cell-key">权证信息: </text>
                 <text class="housepd-cell-value">{{}}</text>
@@ -70,10 +75,6 @@
             <view class="housepd-cell-inlineb">
                 <text class="housepd-cell-key">所属城区: </text>
                 <text class="housepd-cell-value">{{houseDet.zname}} </text>
-            </view>
-            <view class="housepd-cell-inlineb">
-                <text class="housepd-cell-key">小区名称: </text>
-                <text class="housepd-cell-value">{{houseDet.bname}}</text>
             </view>
             <view class="housepd-cell-inlineb">
                 <text class="housepd-cell-key">建成年份: </text>
@@ -93,11 +94,11 @@
             </view>
             <view class="housepd-cell-inlineb">
                 <text class="housepd-cell-key">总  层  次: </text>
-                <text class="housepd-cell-value">{{houseDet.flooronstr}}</text>
+                <text class="housepd-cell-value">{{"-"}}</text>
             </view>
             <view class="housepd-cell-inlineb">
                 <text class="housepd-cell-key">建筑结构: </text>
-                <text class="housepd-cell-value">{{houseDet.fstruct}}</text>
+                <text class="housepd-cell-value">{{houseDet.fstruct?houseDet.fstruct:'-'}}</text>
             </view>
         </view>
     </view>

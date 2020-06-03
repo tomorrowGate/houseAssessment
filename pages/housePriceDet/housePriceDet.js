@@ -90,7 +90,14 @@ Page({
                 success: function (res) {
                     console.log(res)
                     if (res.data.code == 101) {
-                        res.data.data.showHouseName = res.data.data.address
+                        let reg = /\d+/g
+                        res.data.data.showHouseName = res.data.data.address.split(reg)[0]
+                        if (res.data.data.fusagesub == "独栋" || res.data.data.fusagesub == "别墅" ){
+                            res.data.data.showUnitName = res.data.data.ename
+                        }else{
+                            res.data.data.showUnitName = res.data.data.ename + res.data.data.fname
+                        }
+                        //res.data.data.showUnitName = fusagesub
                         that.setData({
                             houseDet: res.data.data
                         })
@@ -125,6 +132,9 @@ Page({
             houseid,
         })
         this.getHouseDetailById(userid, vocde, houseid)
+            .catch(err=>[
+                console.log(err)
+            ])
     },
 
     /**

@@ -3,6 +3,7 @@
     "usingComponents": {
         "ec-canvas": "../../utils/ec-canvas/ec-canvas",
         "dialog": "/components/dialog/dialog",
+        "funcinput": "/components/funcinput/funcinput",
         "Charts": "../../components/charts/charts"
     }
 }

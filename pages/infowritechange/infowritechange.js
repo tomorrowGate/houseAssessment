@@ -9,6 +9,8 @@ Page({
         houseModifyInfo:null,
         selectVal:[],
         houseid:'',
+        modifyAppavg:10,
+        modifyAppall:10,
         isDiaShow: false,
         isShowBasement: true,
         basementType: "",
@@ -31,7 +33,7 @@ Page({
         let userid = wx.getStorageSync('userid')
             , vocde = wx.getStorageSync('vocde')
             , houseid = this.data.houseid
-            , modify = { userid, vocde, houseid}
+            , modify = { userid, vcode:vocde, houseid}
         this.data.houseModifyInfo.forEach((v, i) => {
             let vn = "v" + v.n
             Object.assign(modify, {
@@ -41,9 +43,12 @@ Page({
         console.log(modify)
         this.submitModify(modify)
             .then((res)=>{
-                this.setData({
-                    isDiaShow: !this.data.isDiaShow
-                })
+                this.getHouseDetailById(userid, vocde, houseid)
+                    .then(res=>{
+                        this.setData({
+                            isDiaShow: !this.data.isDiaShow
+                        })
+                    })
             })
             .catch((err)=>{
                 console.log(err)
@@ -90,7 +95,7 @@ Page({
             wx.request({
                 url: app.globalData.url + 'yzservice/rest/yzapp/house/AppFactorUpdate',
                 method: 'GET',
-                data: modify,
+                data: {...modify},
                 success: function (res) {
                     console.log(res)
                     if (res.data.code == 101) {
@@ -160,6 +165,46 @@ Page({
             })
         })
     },
+    //获取房屋信息，更新完后的回调
+    getHouseDetailById(userid, vcode, houseid) {
+        console.log(userid, vcode, houseid)
+        return new Promise((resove, rej) => {
+            let that = this;
+            wx.request({
+                url: app.globalData.url + 'yzservice/rest/yzapp/house/HouseQueryByHouseid',
+                method: 'GET',
+                data: {
+                    userid,
+                    vcode,
+                    houseid,
+                },
+                success: function (res) {
+                    console.log(res)
+                    if (res.data.code == 101) {
+                        that.setData({
+                            modifyAppavg: res.data.data.apppavg,
+                            modifyAppall: res.data.data.apppall
+                        })
+                        resove(res.data.data)
+                    } else if (res.data.code == 201) {
+                        wx.navigateTo({
+                            url: '/pages/bindUser/bindUser',
+                        })
+                        rej(res.data.data)
+                    } else {
+                        res.data.message && wx.showToast({
+                            title: res.data.message,
+                            icon: "none"
+                        })
+                        rej(["error"])
+                    }
+                },
+                fail: function (err) {
+                    rej("error1")
+                }
+            })
+        })
+    },
     /**
      * 生命周期函数--监听页面加载
      */
@@ -171,6 +216,9 @@ Page({
             houseid
         })
         this.getHouseModifyInfoByid(userid, vocde, houseid)
+            .catch((err)=>{
+                console.log(err)
+            })
     },
 
     /**

@@ -10,7 +10,7 @@ Component({
             type: String,
             value:"",
             observer:function(newVal,oldVal){
-                console.log(newVal,oldVal,this)
+                console.log(newVal,oldVal)
                 this.initSearchHouse(newVal)
             }
         },
@@ -50,11 +50,11 @@ Component({
         topActiveIndex:0,
         bottomActiveIndex:0,
         ak: "lORax9Vc3aYWyYwaTK95egAcCpZ3yvWH", //填写申请到的ak  
-        markers: [],
+        markers: [],//地图上的mark点
         currentMark:{},//点击的mark点
         mapGeo:{},//地图的定位
         selfGeo:{},//自身的定位
-        wxMarkerData:[],
+        wxMarkerData:[],//
         placeData: {},
         cityInfo: {},     //城市信息  
         searchTopText:"",
@@ -80,7 +80,7 @@ Component({
                 BMap,
             })
             //this.locatSelf()
-            this.sendPOISearch("楼盘 住宅")
+            //this.sendPOISearch("楼盘 住宅")
             
         },
         //初始搜素房屋
@@ -93,9 +93,14 @@ Component({
                 },
                 success: function (data) {
                     console.log(data.wxMarkerData)
+                    that.sendPOISearch("楼盘 住宅")
+                    data.wxMarkerData[0].iconPath = "../../static/img/marker_blue.png";
+                    data.wxMarkerData[0].id = 101//这里是自己定义了id为101的mark点就是搜索的点
+                    that.data.markers.push(data.wxMarkerData[0])//这里会被后面的数据给冲掉
                     that.setData({
                         selfGeo: data.wxMarkerData[0],
                         mapGeo: data.wxMarkerData[0],
+                        markers :that.data.markers
                     })
                 },
                 fail(err) {
@@ -161,7 +166,7 @@ Component({
                     },
                     success: function (data) {
                         console.log(data, "success")
-                        wxMarkerData = data.wxMarkerData;
+                        let wxMarkerData = data.wxMarkerData;
                         wxMarkerData.forEach((v, i) => {
                             v.distance = parseInt(that.calcDistance(that.data.selfGeo.latitude, that.data.selfGeo.longitude, v.latitude, v.longitude)*1000)
                             v.callout = {
@@ -171,8 +176,10 @@ Component({
                                 padding:"5"
                             }
                         })
+                        let wxMarkerDataPlus = [...wxMarkerData]
+                        wxMarkerDataPlus.push(that.data.selfGeo)
                         that.setData({
-                            markers: wxMarkerData,
+                            markers: wxMarkerDataPlus,
                             wxMarkerData,
                         });
                         //that.calcDistance()

@@ -1,7 +1,8 @@
 {
     "pages": [
-        "pages/houseprice/houseprice",
         "pages/index/index",
+        "components/funcinput/funcinput",
+        "pages/houseprice/houseprice",
         "pages/bindUser/bindUser",
         "pages/infowrite/infowrite",
         "pages/user/user",
@@ -9,7 +10,6 @@
         "pages/priceModify/priceModify",
         "pages/newhouse/newhouse",
         "pages/buildingdet/buildingdet",
-        "components/dialog/dialog",
         "pages/appraise/appraise",
         "pages/logs/logs",
         "pages/attestation/attestation",

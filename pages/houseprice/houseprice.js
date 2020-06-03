@@ -6,22 +6,17 @@ Page({
      * 页面的初始数据
      */
     data: {
-        searchParameter:{
-            county:"",
-            countyName:"",
-            dong:"",
-            unit:"",
-            room:""
-        },
         fuzzyQuery: {
-            city: ["西湖-国玺", "杭州-三墩小区", "萧山-龙府", "西山-九龙小区", "中铁-国际城"],
+            city: [],
             filterData: [],
             inputValue: "",
             all:[],
             selectHouse:"",
             canSwitch: true
         },
-        fuzzyPortData:{}//模糊查询的后台返回数据
+        fuzzyPortData:{},//模糊查询的后台返回数据
+        page:1,
+        blurTimer:null,
     },
     vModule(e){
         console.log(e.currentTarget.dataset.option,e.detail.value)
@@ -31,20 +26,38 @@ Page({
         })
     },
     houseSearch(){
-        // this.setData({
-        //     'searchParameter.county': this.data.fuzzyQuery.inputValue.split('-')[0],
-        //     'searchParameter.countyName': this.data.fuzzyQuery.inputValue.split('-')[1],
-        //     'searchParameter.dong': this.data.fuzzyQuery.inputValue.split('-')[2],
-        //     'searchParameter.unit': this.data.fuzzyQuery.inputValue.split('-')[3],
-        //     'searchParameter.room': this.data.fuzzyQuery.inputValue.split('-')[4],
-        // })
-        // let  searchParameter  = this.data.searchParameter
-        // console.log(searchParameter)
         let houseid = this.data.fuzzyQuery.selectHouse.houseid
         console.log(houseid)
         wx.navigateTo({
             url: '/pages/housePriceDet/housePriceDet?houseid=' + houseid,
         })
+    },
+    mockFilter:function(e){
+        let setDataKey = e.currentTarget.dataset.filterkey
+            , fliterDataKey = setDataKey + '.filterData'
+            , userid = wx.getStorageSync('userid')
+            , vocde = wx.getStorageSync('vocde')
+            , keywords = this.data.fuzzyQuery.inputValue
+            , page = this.data.page
+        if (e.currentTarget.dataset.type == 1){
+            page = page<=1 ? 1 : page - 1
+        }else{
+            page++
+        }
+        this.setData({
+            page,
+        })
+        
+        this.queryFuzzyPort(userid, vocde, keywords, this.data.page)
+            .then((res) => {
+                console.log(res)
+                this.setData({
+                    [fliterDataKey]: res,
+                })
+            })
+            .catch(err => {
+                console.log(err)
+            })
     },
     filter: debounce(function(e) {
         let keywords = e.detail.value
@@ -57,7 +70,10 @@ Page({
             , userid = wx.getStorageSync('userid')
             , vocde = wx.getStorageSync('vocde')
         //console.log(fliterDataKey, inputValueKey)
-        this.queryFuzzyPort(userid, vocde, keywords, 1)
+        this.setData({
+            page:1,
+        })
+        this.queryFuzzyPort(userid, vocde, keywords, this.data.page)
             .then((res)=>{
                 // e.detail.value && filterdataArr.forEach((city, index) => {
                 //     if (city.includes(keywords)) {
@@ -75,13 +91,18 @@ Page({
             })
         
     },1000),
+    handleScroll(e){
+        let that = this
+        clearTimeout(that.data.blurTimer)
+        this.data.blurTimer = null
+    },
     clearFilter(e){
         let that = this
             , setDataKey = e.currentTarget.dataset.filterkey
             , fliterDataKey = setDataKey + '.filterData'
             , inputValueKey = setDataKey + '.inputValue'
 
-        setTimeout(function () {
+        this.data.blurTimer = setTimeout(function () {
             that.setData({
                 [fliterDataKey]: []
             })

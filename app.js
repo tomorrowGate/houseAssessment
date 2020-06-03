@@ -46,7 +46,7 @@ App({
         // this.globalData.options = option.query
         //console.log(option, 11111)
         let that = this
-        let timer = setInterval(that.heartReafsh,600000)
+        let timer = setInterval(that.heartReafsh,660000)
         let phone = wx.getStorageSync("cellnumber")
         let yzm = wx.getStorageSync("vocde")
     console.log(phone,yzm)
@@ -94,16 +94,17 @@ App({
     },
     //心跳刷新
     heartReafsh(){
-            let that = this;
-            let cellnumber = wx.getStorageInfoSync("cellnumber")
-            let vocde = wx.getStorageInfoSync("vocde")
+        let that = this;
+        let cellnumber = wx.getStorageSync("cellnumber")
+        let vocde = wx.getStorageSync("vocde")
+        console.log(that.globalData.url + 'yzservice/rest/yzapp/user/VcodeHeartbeat', cellnumber, vocde)
             if (cellnumber && vocde){
                 wx.request({
                     url: that.globalData.url + 'yzservice/rest/yzapp/user/VcodeHeartbeat',
                     method: 'GET',
                     data: {
                         cellnumber,
-                        vcode: vocde,
+                        vcode: vocde
                     },
                     success: function (res) {
                         console.log(res)

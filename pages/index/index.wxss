@@ -101,8 +101,8 @@
     margin-right: 8rpx
 }
 .houseprice-item-iptbox{
-    height: 50rpx;
-    line-height: 50rpx;
+   /*  height: 50rpx;
+    line-height: 50rpx; */
     width: 90%;
     border-bottom:1rpx solid #ccc;
     text-indent: 10rpx;

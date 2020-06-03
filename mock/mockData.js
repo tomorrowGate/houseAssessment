@@ -16,6 +16,22 @@ export const aversionFacility = [{ name: "无" }, { name: "近 " },{ name: "中�
 export const yard = [{ name: "无" }, { name: "面积较小 " }, { name: "面积一般" }, { name: "面积较大" }, { name: "面积大" }]
 export const other = [{ name: "无" }, { name: "走破户型 " }, { name: "房屋内发生命案" }, { name: "其他" }]
 
+/* 模拟房产信息 */
+
+export const villageInfo = {
+    years: Math.floor(Math.random() * 19 + 2000)
+    , propertyCost: Math.floor(Math.random() * 2048 + 2000) + "元/年"
+    , buildArea: Math.floor(Math.random() * 100 + 30) + "㎡"
+    , propertyType: Math.random() > 0.6 ?"居住物业"
+            : Math.random() > 0.3 ? "商业物业" :"工业物业"
+    , cars: Math.floor(Math.random() * 300 + 500)
+    , houseTotal: Math.floor(Math.random() * 3000 + 8000)
+    , volume: Math.floor(Math.random() * 90 + 10) + "%"
+    , green: Math.floor(Math.random() * 70 + 30) + "%"
+    , propertCompony: Math.random() > 0.6 ? "绿城西子紫兰公寓物业"
+        : Math.random() > 0.3 ? "莱德绅华府物业" : "绿之江物业"
+}
+
 /* 模拟列表数据 */
 export const table1 = [
     {

@@ -44,7 +44,7 @@
                     <image src="/static/img/popup_price_bg.png"></image>
                 </view>
                 <view class="main-item-outbox">
-                    <view class="mod-item-price"><input class="mod-item-price" value="2334"></input></view>
+                    <view class="mod-item-price"><input class="mod-item-price" value="{{modifyAppavg}}"></input></view>
                     <view class="mod-item-text">修正单价</view>
                     <view class="mod-item-note">（单位：平方米）</view>
                 </view>
@@ -55,7 +55,7 @@
                     <image src="/static/img/popup_price_bg.png"></image>
                 </view>
                 <view class="main-item-outbox">
-                    <view class="mod-item-price"><input class="mod-item-price" value="8678"></input> </view>
+                    <view class="mod-item-price"><input class="mod-item-price" value="{{modifyAppall}}" disabled="true"></input> </view>
                     <view class="mod-item-text">修正总价</view>
                     <view class="mod-item-note">（单位：万元）</view>
                 </view>
