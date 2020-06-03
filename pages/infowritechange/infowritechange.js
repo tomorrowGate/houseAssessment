@@ -8,6 +8,7 @@ Page({
     data: {
         houseModifyInfo:null,
         selectVal:[],
+        houseid:'',
         isDiaShow: false,
         isShowBasement: true,
         basementType: "",
@@ -18,17 +19,36 @@ Page({
         let selectarr = e.currentTarget.dataset.selectarr
             , value = e.detail.value
             , index = e.currentTarget.dataset.index
-        selectarr.fModify = value
+        selectarr.fModify = selectarr.oplist[value] 
         this.data.houseModifyInfo[index] = selectarr
         console.log(selectarr, this.data.houseModifyInfo)
+        
         this.setData({
             houseModifyInfo: this.data.houseModifyInfo
         })
     },
     modifyPrice() {
-        this.setData({
-            isDiaShow: !this.data.isDiaShow
+        let userid = wx.getStorageSync('userid')
+            , vocde = wx.getStorageSync('vocde')
+            , houseid = this.data.houseid
+            , modify = { userid, vocde, houseid}
+        this.data.houseModifyInfo.forEach((v, i) => {
+            let vn = "v" + v.n
+            Object.assign(modify, {
+                [vn]: v.fModify
+            });
         })
+        console.log(modify)
+        this.submitModify(modify)
+            .then((res)=>{
+                this.setData({
+                    isDiaShow: !this.data.isDiaShow
+                })
+            })
+            .catch((err)=>{
+                console.log(err)
+            })
+       
         /* wx.showToast({
             title: '修改成功',
         }) */
@@ -63,17 +83,14 @@ Page({
     },
     /* 后台接口 */
     //提交修改
-    submitModify(userid, vcode, houseid, modify) {
+    submitModify(modify) {
+        console.log(modify)
         return new Promise((resove, rej) => {
             let that = this;
             wx.request({
                 url: app.globalData.url + 'yzservice/rest/yzapp/house/AppFactorUpdate',
                 method: 'GET',
-                data: {
-                    userid,
-                    vcode,
-                    houseid,
-                },
+                data: modify,
                 success: function (res) {
                     console.log(res)
                     if (res.data.code == 101) {
@@ -150,6 +167,9 @@ Page({
         let userid = wx.getStorageSync('userid')
             , vocde = wx.getStorageSync('vocde')
             , houseid = options.houseid
+        this.setData({
+            houseid
+        })
         this.getHouseModifyInfoByid(userid, vocde, houseid)
     },
 

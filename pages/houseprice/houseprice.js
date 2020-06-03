@@ -70,6 +70,9 @@ Page({
                     [inputValueKey]: e.detail.value
                 })
             })
+            .catch(err=>{
+                console.log(err)
+            })
         
     },1000),
     clearFilter(e){
