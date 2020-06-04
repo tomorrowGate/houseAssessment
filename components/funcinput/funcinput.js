@@ -85,6 +85,7 @@ Component({
             //console.log(fliterDataKey, inputValueKey)
             this.setData({
                 page: 1,
+                "fuzzyQuery.selectHouse.houseid": 0,
             })
             // if (e.detail.cursor != this.data.cursor) {
             //     cursor: e.detail.cursor

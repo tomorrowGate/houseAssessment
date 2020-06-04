@@ -114,6 +114,7 @@ Page({
                         })
                         rej(["error"])
                     }
+                    wx.hideLoading()
                 },
                 fail: function (err) {
                     rej("error1")
@@ -125,16 +126,20 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
+        console.log(options)
         let userid = wx.getStorageSync('userid')
             ,vocde = wx.getStorageSync('vocde')
             , houseid = options.houseid
         this.setData({
             houseid,
         })
+        wx.showLoading({
+            title: '正在查询',
+        })
         this.getHouseDetailById(userid, vocde, houseid)
-            .catch(err=>[
+            .catch(err=>{
                 console.log(err)
-            ])
+            })
     },
 
     /**

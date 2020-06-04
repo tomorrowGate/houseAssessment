@@ -77,11 +77,16 @@
     font-size: 30rpx;
     font-weight: 600;
 }
-.house-datas-text:first-letter{
-    display: inline-block;
-    line-height: 20rpx;
-    border-radius: 6rpx 14rpx 14rpx 6rpx; 
-    background: #7FAEFF;
+.house-datas-text::before{
+    position: absolute;
+    display: block;
+    transform: translateY( 12rpx );
+    width: 26rpx;
+    height: 26rpx;
+    content: "";
+    border-radius: 16rpx 24rpx 14rpx 6rpx; 
+    background:rgb(127,174,255);
+    z-index: -1;
 }
 .housepd-cell-block{
     padding: 25rpx 0;

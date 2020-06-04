@@ -44,7 +44,7 @@
                     <image src="/static/img/popup_price_bg.png"></image>
                 </view>
                 <view class="main-item-outbox">
-                    <view class="mod-item-price"><input class="mod-item-price" value="{{modifyAppavg}}"></input></view>
+                    <view class="mod-item-price"><input class="mod-item-price" value="{{modifyAppavg}}" disabled="true"></input></view>
                     <view class="mod-item-text">修正单价</view>
                     <view class="mod-item-note">（单位：平方米）</view>
                 </view>
@@ -61,9 +61,9 @@
                 </view>
             </view>
         </view>
-        <view class="mod-dia-submit" bindtap="submit">
+        <!-- <view class="mod-dia-submit" bindtap="submit">
             提交
-        </view>
+        </view> -->
     </view>
 
 </view>

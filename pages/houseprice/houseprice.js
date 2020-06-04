@@ -72,6 +72,7 @@ Page({
         //console.log(fliterDataKey, inputValueKey)
         this.setData({
             page:1,
+            "fuzzyQuery.selectHouse.houseid":0,
         })
         this.queryFuzzyPort(userid, vocde, keywords, this.data.page)
             .then((res)=>{

@@ -79,12 +79,6 @@
     font-size: 30rpx;
     font-weight: 600;
 }
-.house-datas-text:first-letter{
-    display: inline-block;
-    line-height: 20rpx;
-    border-radius: 6rpx 14rpx 14rpx 6rpx; 
-    background: #7FAEFF;
-}
 .housepd-cell-block{
     padding: 25rpx 0;
 }
@@ -111,12 +105,23 @@
     font-size: 30rpx;
     font-weight: 600;
 }
-.house-datas-text:first-letter{
+.house-datas-text::before{
+    position: absolute;
+    display: block;
+    transform: translateY( 12rpx );
+    width: 26rpx;
+    height: 26rpx;
+    content: "";
+    border-radius: 16rpx 24rpx 14rpx 6rpx; 
+    background:rgb(127,174,255);
+    z-index: -1;
+}
+/* .house-datas-text:first-letter{
     display: inline-block;
     line-height: 20rpx;
     border-radius: 6rpx 14rpx 14rpx 6rpx; 
     background: #7FAEFF;
-}
+} */
 .house-data-tag{
     padding: 0 20rpx;
     height: 44rpx;
@@ -139,9 +144,22 @@
     display: flex;
 }
 .charts-box-slid{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .charts-slid-btn{
+    background: #fff;
+    color: #000;
+    margin-top: 10rpx;
+    margin-right: 6rpx;
+    padding: 10rpx 4rpx;
+    border: 1rpx solid #7faeff;
+}
+
+.charts-slid-btn-active{
     background: #7FAEFF;
     color: #fff;
     margin-top: 10rpx;
