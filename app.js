@@ -49,7 +49,7 @@ App({
         let timer = setInterval(that.heartReafsh,660000)
         let phone = wx.getStorageSync("cellnumber")
         let yzm = wx.getStorageSync("vocde")
-    console.log(phone,yzm)
+        console.log(phone,yzm)
         this.userLoginVeryfy(phone, yzm)
             .catch((err)=>{
                 console.log(err)

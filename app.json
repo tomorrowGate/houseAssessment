@@ -15,11 +15,11 @@
         "pages/attestation/attestation",
         "pages/offlineCommit/offlineCommit",
         "pages/feedback/feedback",
-        "pages/welcome/welcome",
         "pages/userinfoForm/userinfoForm",
         "pages/land/land",
         "pages/secondhouse/secondhouse",
         "pages/law/law",
+        "pages/welcome/welcome",
         "pages/infowritechange/infowritechange"
     ],
     "tabBar": {

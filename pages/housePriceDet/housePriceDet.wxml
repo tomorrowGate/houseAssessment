@@ -66,7 +66,7 @@
             </view>
             <view class="housepd-cell-inlineb">
                 <text class="housepd-cell-key">权证信息: </text>
-                <text class="housepd-cell-value">{{}}</text>
+                <text class="housepd-cell-value">{{"-"}}</text>
             </view>
             <view class="housepd-cell-inlineb">
                 <text class="housepd-cell-key">所属城市: </text>
@@ -103,7 +103,7 @@
         </view>
     </view>
 
-    <view class="house-datas">
+  <!--   <view class="house-datas">
         <view class="housepd-table-head">
             <view class="house-datas-text">小区房价同比环比</view>
         </view>
@@ -122,7 +122,7 @@
                 </view>
             </scroll-view>
         </view>
-    </view>
+    </view> -->
 
     
      <view class="house-datas">

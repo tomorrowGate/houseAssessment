@@ -71,7 +71,9 @@
     line-height: 36rpx; 
     padding: 10rpx 0 ;
     width:100%;
-    
+}
+.houseprice-input-item:active{
+    background: #F2F3F7
 }
 .houseprice-input-page{
     display: flex;

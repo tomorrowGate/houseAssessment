@@ -16,7 +16,7 @@
         </view>
         
         <view class="houseprice-input-items" hidden="{{fuzzyQuery.filterData.length<=0}}">
-            <scroll-view scroll-y class="scroll-div" bindscroll="handleScroll">
+            <scroll-view scroll-y class="scroll-div" bindscroll="handleScroll" >
                 <!-- <view class="houseprice-input-item houseprice-input-page" >
                     <view class="" bindtap="mockFilter" data-type="1"  data-filterkey = "fuzzyQuery">上一页</view>
                     <view class="" bindtap="mockFilter" data-type="2"  data-filterkey = "fuzzyQuery">下一页</view>
@@ -28,7 +28,7 @@
                     wx:key="index" 
                     bindtap="makesure"
                     data-value="{{item}}" >
-                    {{item.address+"杭州市是浙江省是"}}
+                    {{item.address}}
                 </view>
             </scroll-view>
         </view>

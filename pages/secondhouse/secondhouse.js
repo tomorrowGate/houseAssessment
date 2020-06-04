@@ -72,6 +72,12 @@ Page({
             pickerCityValue: value
         })
         console.log(value)
+        this.getTimeCut({
+            detail: {
+                startTime: "2019/6",
+                endTime: "2020/6"
+            }
+        })
     },
     bindPickerChangeHouse(e) {
         let value = this.data.arrayHouse[e.detail.value]["name"]
@@ -108,7 +114,7 @@ Page({
         this.setData({
             chartData: optionTime
         })
-        if (!this.data.pickerCityValue) {
+       /*  if (!this.data.pickerCityValue) {
             wx.showToast({
                 title: '请选择城区',
                 icon: "none"
@@ -122,7 +128,7 @@ Page({
                 icon: "none"
             })
             return
-        }
+        } */
         this.charts1.initLine(optionTime)
         this.randoms()
         this.charts2.initLine(doubleLine("成交宗数", "建面", arr))

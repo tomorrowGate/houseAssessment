@@ -1,4 +1,8 @@
 @import "../../pages/houseprice/houseprice.wxss";
+.houseprice-input-items{
+    width: 100%;
+    padding: 0rpx 5rpx;
+}
 .houseprice-body-item{
     position: relative;
     display: flex;
@@ -7,7 +11,7 @@
     height: 80rpx;
     line-height:80rpx;
     margin: 0rpx auto 0;
-    background: #F2F3F7;
+    background: #fff;
     border-radius: 16rpx;
 }
 .houseprice-item-iptbox {
@@ -17,4 +21,7 @@
 
 .houseprice-item-iptbox input{
     width: 100%
+}
+.houseprice-input-item{
+    width: calc( 100% - 25rpx)
 }

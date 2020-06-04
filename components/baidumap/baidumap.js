@@ -92,16 +92,19 @@ Component({
                     console.log(data, "fail")
                 },
                 success: function (data) {
-                    console.log(data.wxMarkerData)
-                    that.sendPOISearch("楼盘 住宅")
-                    data.wxMarkerData[0].iconPath = "../../static/img/marker_blue.png";
-                    data.wxMarkerData[0].id = 101//这里是自己定义了id为101的mark点就是搜索的点
-                    that.data.markers.push(data.wxMarkerData[0])//这里会被后面的数据给冲掉
-                    that.setData({
-                        selfGeo: data.wxMarkerData[0],
-                        mapGeo: data.wxMarkerData[0],
-                        markers :that.data.markers
-                    })
+                    console.log(data)
+                    that.sendPOISearch(" 楼盘 住宅")
+                    if (data.wxMarkerData && data.wxMarkerData.length){
+                        data.wxMarkerData[0].iconPath = "../../static/img/marker_blue.png";
+                        data.wxMarkerData[0].id = 101//这里是自己定义了id为101的mark点就是搜索的点
+                        that.data.markers.push(data.wxMarkerData[0])//这里会被后面的数据给冲掉
+                        that.setData({
+                            selfGeo: data.wxMarkerData[0],
+                            mapGeo: data.wxMarkerData[0],
+                            markers: that.data.markers
+                        })
+                    }
+                   
                 },
                 fail(err) {
                     console.log(err)

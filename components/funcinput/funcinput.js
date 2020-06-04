@@ -100,14 +100,14 @@ Component({
                     console.log(e.detail.value)
                     this.setData({
                         [fliterDataKey]: res,
-                        [inputValueKey]: e.detail.value
+                       /*  [inputValueKey]: e.detail.value */
                     })
                 })
                 .catch(err => {
                     console.log(err)
                 })
 
-        }, 1000),
+        }, 600),
         handleScroll(e) {
             let that = this
             clearTimeout(that.data.blurTimer)
@@ -124,6 +124,7 @@ Component({
                     [fliterDataKey]: []
                 })
             }, 300)
+            console.log(wx.getSystemInfoSync().windowHeight)
         },
         makesure(e) {
             let that = this
@@ -172,10 +173,14 @@ Component({
                             })
                             rej(res.data.data)
                         } else {
-                            res.data.message && wx.showToast({
+                            that.setData({
+                                fuzzyPortData: res.data.data,
+                                "fuzzyQuery.city": []
+                            })
+                           /*  res.data.message && wx.showToast({
                                 title: res.data.message,
                                 icon: "none"
-                            })
+                            }) */
                             rej(["error"])
                         }
                     },

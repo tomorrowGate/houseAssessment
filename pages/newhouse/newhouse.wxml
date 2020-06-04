@@ -51,7 +51,7 @@
             </view>
         </picker>
 
-        <picker 
+       <!--  <picker 
         mode="selector" 
         range="{{arrayHouse}}" 
         range-key="name"
@@ -63,29 +63,22 @@
                     <image src="/static/img/drop-down_icon.png"></image>
                 </view>
             </view>
-        </picker>
+        </picker> -->
 
     </view>
 
-    <view class="house-tag-group">
-        <!-- <picker 
-        mode="date" 
-        class="house-tag-picker "        
-        bindtap="confirmStart" 
-        bindchange="bindPickerChangeTime"  -->
+   <!--  <view class="house-tag-group">
             <view class="house-tag-item bubble" bindtap="confirmStart">
-                <!-- <view class="house-tag-text">{{pickerTime||"选择时间"}}</view> -->
                 <view class="house-tag-imgbox">
                     <image src="/static/img/date_icon.png"></image>
                 </view>
             </view>
-        <!-- </picker> -->
 
         <view> 
             <text>选择时间：</text> <text> {{pickerTime}} </text>
         </view>
 
-    </view>
+    </view> -->
 
     <CusTimePicker isShowDia = "{{!showModal}}" bind:getTimeCut="getTimeCut"/>
 

@@ -30,6 +30,9 @@ Page({
                 isSended: true
             })
             this.getUserYzmNumber(this.data.phoneNumber)
+                .catch(err=>{
+                    console.log(err)
+                })
         } else {
             wx.showToast({
                 title: '手机号码有问题',
@@ -131,9 +134,9 @@ Page({
                     console.log(res)
                     if (res.data.code == 101) {
                         //立即把验证码设置在input框里
-                       that.setData({
+                      /*  that.setData({
                            yzmNumber: res.data.data.vocde
-                       })
+                       }) */
                         // app.globalData.vocde = res.data.data.vocde
                         // wx.setStorageSync("vocde", res.data.data.vcode);
                         resove(res.data.data)
@@ -149,7 +152,7 @@ Page({
                     }
                 },
                 fail: function (err) {
-                    rej("err")
+                    rej("errfil")
                 }
             })
         })

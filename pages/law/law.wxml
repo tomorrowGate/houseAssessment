@@ -36,7 +36,7 @@
         </view>
     </view>
 
-    <view class="house-tag-group">
+    <!-- <view class="house-tag-group">
         <picker 
         mode="selector" 
         range="{{arrayCity}}" 
@@ -77,7 +77,7 @@
             <text>选择时间：</text> <text> {{pickerTime}} </text>
         </view>
     </view>
-
+ -->
     <CusTimePicker isShowDia = "{{!showModal}}" bind:getTimeCut="getTimeCut"/>
 
     <view class="house-datas">

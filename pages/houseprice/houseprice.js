@@ -84,14 +84,15 @@ Page({
                 console.log(e.detail.value)
                 this.setData({
                     [fliterDataKey]: res,
-                    [inputValueKey]: e.detail.value
+                   /*  [inputValueKey]: e.detail.value */
                 })
             })
             .catch(err=>{
                 console.log(err)
             })
-        
-    },1000),
+
+        console.log(wx.getSystemInfoSync().windowHeight)
+    },600),
     handleScroll(e){
         let that = this
         clearTimeout(that.data.blurTimer)
@@ -102,12 +103,12 @@ Page({
             , setDataKey = e.currentTarget.dataset.filterkey
             , fliterDataKey = setDataKey + '.filterData'
             , inputValueKey = setDataKey + '.inputValue'
-
         this.data.blurTimer = setTimeout(function () {
             that.setData({
                 [fliterDataKey]: []
             })
         }, 300)
+        console.log(wx.getSystemInfoSync().windowHeight)
     },
     makesure(e) {
         let that = this
@@ -156,10 +157,14 @@ Page({
                         })
                         rej(res.data.data)
                     } else {
-                        res.data.message &&  wx.showToast({
+                        that.setData({
+                            fuzzyPortData: res.data.data,
+                            "fuzzyQuery.city": []
+                        })
+                        /* res.data.message &&  wx.showToast({
                             title: res.data.message,
                             icon: "none"
-                        })
+                        }) */
                         rej(["error"])
                     }
                 },
@@ -174,7 +179,6 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-
     },
 
     /**
@@ -188,7 +192,7 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-
+        console.log(wx.getSystemInfoSync().windowHeight)
     },
 
     /**

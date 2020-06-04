@@ -4,7 +4,7 @@
 }
 .user-bg{
     /* height: 336rpx; */
-    height: 376rpx;
+    height: 396rpx;
      /* height: 455rpx; */
 }
 .user-card-out{
