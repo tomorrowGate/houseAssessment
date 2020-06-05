@@ -1,4 +1,4 @@
-import { table1, table2, table3, table4, option, option1_1, option3, option3_1, optionTime, backBarAndLine} from "../../mock/mockData.js"
+import { table1, table2, table3, table4, option, option1_1, option3, option3_1, optionTime, backBarAndLine, backBarAndBar} from "../../mock/mockData.js"
 import { countMonthList, getMonths } from "../../utils/dateCalc.js"
 let echarts = require('../../utils/ec-canvas/echarts');
 let wxCharts = require('../../utils/wxcharts.js');
@@ -91,7 +91,7 @@ Page({
         charts:{},
         transactionType:"挂牌房源量",//交易类型
         //picker数据
-        arrayCity: [{ name: "杭州主城区" }, { name: "杭州市区" },{ name: "上城区" }, { name: "下城区" }, { name: "西湖区" }, { name: "拱墅区" }, { name: "江干区" }, { name: "滨江区" }, { name: "萧山区" }, { name: "余杭区" }, { name: "富阳区" } ],
+        arrayCity: [{ name: "杭州主城区" }, { name: "杭州市区" }],
         activeLandCity: [{ name: "杭州主城区" }, { name: "杭州市区" }],
         pickerCityValue:"",
         arrHouseInit:"产品类型",
@@ -144,11 +144,12 @@ Page({
      * 生命周期函数--监听页面初次渲染完成
      */
     onReady: function () {
+        let twoType=["bar","bar"]
         this.charts1 = this.selectComponent("#chart1");
         this.charts2 = this.selectComponent("#chart2");
         this.charts3 = this.selectComponent("#chart3");
 
-        this.charts1.initLine(backBarAndLine("供应套数", "成交套数", getMonths()))
+        this.charts1.initLine(backBarAndBar("供应套数", "成交套数", getMonths(),twoType))
         this.charts2.initLine(optionTime)
         this.charts3.initLine(optionTime)
         //this.charts3.initLine(backBarAndLine("当月库存量", "近年的月成交量", getMonths()))
@@ -241,7 +242,7 @@ Page({
             })
             return
         } */
-        this.charts1.initLine(backBarAndLine("供应套数", "成交套数", arr))
+        this.charts1.initLine(backBarAndBar("供应套数", "成交套数", arr))
         this.charts2.initLine(optionTime)
         this.charts3.initLine(optionTime)
         this.randoms()

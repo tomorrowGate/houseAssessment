@@ -124,13 +124,12 @@
         </view>
     </view> -->
 
-    
      <view class="house-datas">
         <view class="house-datas-head">
             <view class="house-datas-text">小区房价走势图</view>
             <view class="house-data-tag">单位：元</view>
         </view>
-        <Charts chartData="{{chartData}}" id="chart"></Charts>
+        <Charts chartData="{{chartData}}" id="chart2"></Charts>
     </view>
 
     <view class="house-datas">
@@ -138,5 +137,5 @@
             <view class="house-datas-text">周边配套</view>
         </view>
     </view>
-        <baidumap class="baidu-map" searchName="{{houseDet.address}}"/>
+    <baidumap class="baidu-map" searchName="{{houseDet.address}}"/>
 </view>

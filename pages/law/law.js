@@ -4,6 +4,8 @@ let echarts = require('../../utils/ec-canvas/echarts');
 let wxCharts = require('../../utils/wxcharts.js');
 
 let ringChart = null;
+optionTime.legend.data = ["成交价/评估价"]
+optionTime.series[0].name = ["成交价/评估价"]
 Page({
 
     /**
@@ -44,7 +46,7 @@ Page({
         this.charts2 = this.selectComponent("#chart2");
 
         this.charts1.initLine(optionTime)
-        this.charts2.initLine(backBarAndLine("成交宗数", "建面", getMonths()))
+        this.charts2.initLine(backBarAndLine("成交宗数", "成交金额", getMonths()))
     },
 
     /**

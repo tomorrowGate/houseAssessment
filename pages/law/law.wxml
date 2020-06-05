@@ -83,14 +83,14 @@
     <view class="house-datas">
         <view class="house-datas-head">
             <view class="house-datas-text">拍卖成交-评估价比</view>
-            <view class="house-data-tag">单位：亿元/宗 </view>
+            <view class="house-data-tag">单位：% </view>
         </view>
         <Charts chartData="{{chartData}}" id="chart1"/>
     </view>
     <view class="house-datas">
         <view class="house-datas-head">
             <view class="house-datas-text">拍卖成交情况</view>
-            <view class="house-data-tag">单位：%</view>
+            <view class="house-data-tag">单位：万元</view>
         </view>
         <Charts chartData="{{chartData}}" id="chart2"/>
     </view>

@@ -23,6 +23,9 @@ Page({
         //     green:"",
         //     propertCompony:""
         // },
+        houseDet:{
+            address:""
+        },
         villageInfo,
         randomPrice:Math.floor(Math.random() * 3000 + 8000),
         //搜索框的数据
@@ -87,6 +90,7 @@ Page({
         this.ecComponent1 && this.ecComponent1.initLine(optionBarPic)
         this.chart&&this.chart.initLine(arr[randomInit])
         this.chart2&&this.chart2.initLine(arr[parseInt(Math.random() * arr.length)])
+
     },
     changeChartsShow(e){
         let type = e.currentTarget.dataset.type
@@ -100,7 +104,7 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-
+        
     },
 
     /**
@@ -111,6 +115,9 @@ Page({
         this.chart = this.selectComponent("#chart");
         this.chart2 = this.selectComponent("#chart2");
         this.loadData()
+        this.setData({
+            "houseDet.address": "滨江区龙禧硅谷广场4幢"
+        })
     },
 
     /**

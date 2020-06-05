@@ -598,6 +598,77 @@ export const option4_1 = {
     ]
 }
 
+export const option5 = {
+    title: {
+        text: ''
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    color: ["#03A174", "#FF9442"],
+    legend: {
+        data: ['城区房价', '小区房价']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"]
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: '城区房价',
+            type: 'line',
+            data: (function () {
+                var res = [];
+                var len = 12;
+                while (len--) {
+                    res.push(Math.round(Math.random() * 1000));
+                }
+                return res;
+            })(),
+            animation: true,
+            lineStyle: {
+                normal: {
+                    color: "#03A174"
+                }
+            },
+            smooth: true
+        },
+        {
+            name: '小区房价',
+            type: 'line',
+            data: (function () {
+                var res = [];
+                var len = 12;
+                while (len--) {
+                    res.push(Math.round(Math.random() * 1000));
+                }
+                return res;
+            })(),
+            animation: true,
+            lineStyle: {
+                normal: {
+                    color: "#FF9442"
+                }
+            },
+            smooth: true
+        },
+    ]
+}
 
 export const optionTime = {
     color: ["#03A174"],
@@ -668,7 +739,8 @@ export const optionBarPic = {
             }
             return res;
         })(),
-        type: 'bar'
+        type: 'line',
+        smooth: true
     }]
 }
 
@@ -755,7 +827,7 @@ export const optionTotcalLine = {
     ]
 };
 
-
+/* 柱状 加 折线 */
 export function backBarAndLine(title1,title2,times){
     return {
         tooltip: {
@@ -837,6 +909,90 @@ export function backBarAndLine(title1,title2,times){
     };
 }
 
+/* 双柱状 */
+export function backBarAndBar(title1, title2, times, twoType = ["bar", "bar"]) {
+    return {
+        color: ['#4cabce', '#e5323e'],
+        tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+                type: 'shadow'
+            }
+        },
+        legend: {
+            data: [title1, title2]
+        },
+        xAxis: [
+            {
+                type: 'category',
+                boundaryGap: true,
+                data: times
+            },
+            {
+                show: false,
+                type: 'category',
+                boundaryGap: true,
+                data: (function () {
+                    var res = [];
+                    var len = times.length || 10;
+                    while (len--) {
+                        res.push(10 - len - 1);
+                    }
+                    return res;
+                })()
+            }
+        ],
+        yAxis: [
+            {
+                type: 'value',
+                scale: true,
+                name: title1,
+                max: 30,
+                min: 0,
+                boundaryGap: [0.2, 0.2]
+            },
+            {
+                type: 'value',
+                scale: true,
+                name: title2,
+                max: 1200,
+                min: 0,
+                boundaryGap: [0.2, 0.2]
+            }
+        ],
+        series: [
+            {
+                name: title1,
+                type: twoType[0],
+                xAxisIndex: 0,
+                yAxisIndex: 1,
+                data: (function () {
+                    var res = [];
+                    var len = times.length || 10;
+                    while (len--) {
+                        res.push(Math.round(Math.random() * 1000));
+                    }
+                    return res;
+                })()
+            },
+            {
+                name: title2,
+                type: twoType[1],
+                data: (function () {
+                    var res = [];
+                    var len = 0;
+                    while (len < times.length) {
+                        res.push((Math.random() * 10 + 5).toFixed(1) - 0);
+                        len++;
+                    }
+                    return res;
+                })()
+            }
+        ]
+    };
+}
+
+/* 双折线图 */
 export function doubleLine (title1, title2, times) {
     return {
         legend: {

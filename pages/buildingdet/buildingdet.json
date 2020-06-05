@@ -4,6 +4,7 @@
         "ec-canvas": "../../utils/ec-canvas/ec-canvas",
         "dialog": "/components/dialog/dialog",
         "funcinput": "/components/funcinput/funcinput",
+        "baidumap": "../../components/baidumap/baidumap",
         "Charts": "../../components/charts/charts"
     }
 }

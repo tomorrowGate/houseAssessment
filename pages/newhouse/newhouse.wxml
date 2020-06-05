@@ -126,7 +126,7 @@
         <Charts chartData="{{chartData}}" id="chart2"/>
     </view>
     
-    <view class="house-datas">
+   <!--  <view class="house-datas">
         <view class="house-datas-head">
             <view class="house-datas-text">交叉分析</view>
             <view class="house-data-tag">单位：面积(m2)\总价(万元)</view>
@@ -139,12 +139,12 @@
             wx:if="{{tableDataArea&&tableDataArea.length}}">
            </Table>
         </view>
-    </view>
+    </view> -->
 
      <view class="house-datas">
         <view class="house-datas-head">
-            <view class="house-datas-text">月均出清周期图</view>
-            <view class="house-data-tag">单位：%</view>
+            <view class="house-datas-text">出清周期</view>
+            <view class="house-data-tag">单位：/月</view>
         </view>
         <Charts chartData="{{chartData}}" id="chart3"/>
     </view>

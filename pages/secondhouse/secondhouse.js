@@ -13,7 +13,7 @@ Page({
         charts: {},
         transactionType: "",//交易类型
         //picker数据
-        arrayCity: [{ name: "杭州主城区" }, { name: "杭州市区" }, { name: "上城区" }, { name: "下城区" }, { name: "西湖区" }, { name: "拱墅区" }, { name: "江干区" }, { name: "滨江区" }, { name: "萧山区" }, { name: "余杭区" }, { name: "富阳区" }],
+        arrayCity: [{ name: "杭州主城区" }, { name: "杭州市区" }],
         pickerCityValue: "",
         arrHouseInit: "产品类型",
         arrayHouse: [{ name: "住宅" }, { name: "办公" }, { name: "商业" }, { name: "其他" }],
@@ -48,7 +48,7 @@ Page({
         this.charts2 = this.selectComponent("#chart2");
 
         this.charts1.initLine(optionTime)
-        this.charts2.initLine(doubleLine("成交宗数", "建面", getMonths()))
+        this.charts2.initLine(doubleLine("挂牌量", "成交量", getMonths()))
     },
 
     /**

@@ -73,11 +73,11 @@
             <view class="house-data-tag">单位：元</view>
         </view>
         <view class="charts-box">
-            <view class="charts-box-slid">
+            <!-- <view class="charts-box-slid">
                 <view class="{{!chartShowList[0]?'charts-slid-btn-active':'charts-slid-btn'}}" bindtap="changeChartsShow" data-type="0">住宅</view>
                 <view class="{{!chartShowList[1]?'charts-slid-btn-active':'charts-slid-btn'}}" bindtap="changeChartsShow" data-type="1">商业</view>
                 <view class="{{!chartShowList[2]?'charts-slid-btn-active':'charts-slid-btn'}}" bindtap="changeChartsShow" data-type="2">办公</view>
-            </view>
+            </view> -->
             <view class="charts-main">
                 <!-- <view class=' container1' wx:if="{{!chartShowList[0]}}">
                     <ec-canvas class="ec-canvas" id="ecdom1" canvas-id="eccolumn1" ec="{{ ecopt }}"></ec-canvas>
@@ -115,6 +115,14 @@
         </view>
        <Charts chartData="{{chartData2}}" id="chart2"></Charts>
     </view> -->
+
+    
+    <view class="house-datas">
+        <view class="house-datas-head">
+            <view class="house-datas-text">周边配套</view>
+        </view>
+    </view>
+    <baidumap class="baidu-map" searchName="{{houseDet.address}}"/>
 </view>
 
 <dialog isShowDia="{{isShowDia}}">

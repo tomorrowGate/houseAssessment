@@ -83,7 +83,7 @@
     <view class="house-datas">
         <view class="house-datas-head">
             <view class="house-datas-text">挂牌量/成交量</view>
-            <view class="house-data-tag">单位：宗/万㎡</view>
+            <view class="house-data-tag">单位：/套</view>
         </view>
         <Charts chartData="{{chartData}}" id="chart2"/>
     </view>
