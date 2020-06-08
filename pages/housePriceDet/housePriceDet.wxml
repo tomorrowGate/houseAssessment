@@ -86,7 +86,7 @@
             </view>
             <view class="housepd-cell-inlineb">
                 <text class="housepd-cell-key">套内面积: </text>
-                <text class="housepd-cell-value">{{houseDet.area}}㎡ </text>
+                <text class="housepd-cell-value">{{houseDet.areain}}㎡ </text>
             </view>
             <view class="housepd-cell-inlineb">
                 <text class="housepd-cell-key">规划用途: </text>
@@ -129,7 +129,7 @@
             <view class="house-datas-text">小区房价走势图</view>
             <view class="house-data-tag">单位：元</view>
         </view>
-        <Charts chartData="{{chartData}}" id="chart2"></Charts>
+        <Charts chartData="{{chartData}}" id="chart"></Charts>
     </view>
 
     <view class="house-datas">

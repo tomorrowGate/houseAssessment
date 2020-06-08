@@ -1,6 +1,6 @@
 // pages/housePriceDet/housePriceDet.js
 let app = getApp()
-import {  option2, option2_1, option4, option4_1} from "../../mock/mockData.js"
+import { option2, option2_1, option4, option4_1,option5} from "../../mock/mockData.js"
 Page({
 
     /**
@@ -42,12 +42,13 @@ Page({
         housePriceDetPort:null,//后台返回的房屋详细信息
     },
     randoms(){
-        let arr = [option2, option2_1, option4, option4_1]
-            , randomInit = parseInt(Math.random() * arr.length)
+        /* let arr = [option2, option2_1, option4, option4_1]
+            , randomInit = parseInt(Math.random() * arr.length) */
         this.setData({
-            chartData: arr[randomInit]
+            /* chartData: arr[randomInit], */
+             chartData: option5
         })
-        this.chart.initLine(arr[randomInit])
+        this.chart.initLine(option5)
     },
     priceModify(e){
         let houseid = this.data.houseid
@@ -96,7 +97,12 @@ Page({
                         if (res.data.data.uname == res.data.data.fname) {
                             res.data.data.showUnitName = res.data.data.uname
                         }else{
-                            res.data.data.showUnitName = res.data.data.uname + res.data.data.fname
+                            if (res.data.data.uname) {
+                                res.data.data.showUnitName = res.data.data.uname + res.data.data.fname
+                            }else{
+                                res.data.data.showUnitName = res.data.data.ename + res.data.data.fname
+                            }
+                            
                         }
                         //res.data.data.showUnitName = fusagesub
                         that.setData({
