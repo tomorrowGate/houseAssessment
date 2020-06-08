@@ -1,3 +1,17 @@
+//定时器
+export function timeout(fn, delay) {
+    let timer = null;
+
+    return function () {
+        const context = this;
+        const args = arguments;
+
+        timer = setTimeout(() => {
+            fn.apply(context, args);
+        }, delay);
+    };
+}
+
 //节流
 export function throttle(){
 

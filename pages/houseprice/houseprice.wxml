@@ -13,6 +13,7 @@
                     <view class="houseprice-item-iptbox">
                         <input 
                         placeholder="输入格式：区县 小区 栋 单元 室" 
+                        bindkeyboardheightchange="listenHeight"
                         placeholder-class="iptbox-plc" 
                         bindfocus="filter" 
                         bindinput="filter" 

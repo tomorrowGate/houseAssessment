@@ -1,6 +1,6 @@
 // pages/houseprice/houseprice.js
 let app = getApp()
-import { debounce } from "../../utils/myfunctions.js"
+import { debounce , timeout} from "../../utils/myfunctions.js"
 Page({
     /**
      * 页面的初始数据
@@ -17,6 +17,7 @@ Page({
         fuzzyPortData:{},//模糊查询的后台返回数据
         page:1,
         blurTimer:null,
+        isCanClose:true
     },
     vModule(e){
         console.log(e.currentTarget.dataset.option,e.detail.value)
@@ -98,18 +99,23 @@ Page({
         clearTimeout(that.data.blurTimer)
         this.data.blurTimer = null
     },
-    clearFilter(e){
+    clearFilter: function (e) {
         let that = this
             , setDataKey = e.currentTarget.dataset.filterkey
             , fliterDataKey = setDataKey + '.filterData'
             , inputValueKey = setDataKey + '.inputValue'
         this.data.blurTimer = setTimeout(function () {
-            that.setData({
-                [fliterDataKey]: []
-            })
+            if (1 || that.isCanClose) {
+                that.setData({
+                    [fliterDataKey]: []
+                })
+            }
+            console.log(wx.getSystemInfoSync().windowHeight)
         }, 300)
-        console.log(wx.getSystemInfoSync().windowHeight)
+
+        console.log(111)
     },
+    /* timeout(, 300), */
     makesure(e) {
         let that = this
             , setDataKey = e.currentTarget.dataset.filterkey
@@ -122,6 +128,18 @@ Page({
             [fliterDataKey]: [],
         })
         console.log(this.data.fuzzyQuery.selectHouse)
+    },
+    listenHeight(e){
+        console.log(e,e.detail.height)
+        let that = this
+        let timer2 = setTimeout(function(){
+            clearTimeout(that.data.blurTimer)
+            that.data.blurTimer = null
+        },200)
+        
+        /* this.setData({
+            isCanClose:false
+        }) */
     },
     /* 后台接口 */
     //模糊查询
