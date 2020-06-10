@@ -75,6 +75,12 @@ Page({
             page:1,
             "fuzzyQuery.selectHouse.houseid":0,
         })
+        if (keywords == "") {
+            this.setData({
+                [fliterDataKey]: [],
+            })
+            return
+        }
         this.queryFuzzyPort(userid, vocde, keywords, this.data.page)
             .then((res)=>{
                 // e.detail.value && filterdataArr.forEach((city, index) => {
@@ -89,33 +95,46 @@ Page({
                 })
             })
             .catch(err=>{
+                this.setData({
+                    [fliterDataKey]: [],
+                })
                 console.log(err)
             })
-
-        console.log(wx.getSystemInfoSync().windowHeight)
     },600),
     handleScroll(e){
         let that = this
         clearTimeout(that.data.blurTimer)
         this.data.blurTimer = null
     },
-    clearFilter: function (e) {
+    clearFilter11: function (e) {
         let that = this
             , setDataKey = e.currentTarget.dataset.filterkey
             , fliterDataKey = setDataKey + '.filterData'
             , inputValueKey = setDataKey + '.inputValue'
         this.data.blurTimer = setTimeout(function () {
-            if (1 || that.isCanClose) {
+            if (that.isCanClose) {
                 that.setData({
                     [fliterDataKey]: []
                 })
             }
             console.log(wx.getSystemInfoSync().windowHeight)
         }, 300)
-
         console.log(111)
     },
-    /* timeout(, 300), */
+    clearFilter: function (e) {
+        console.log("点击了空白",e)
+        let that = this
+            , setDataKey = "fuzzyQuery"
+            , fliterDataKey = setDataKey + '.filterData'
+            , inputValueKey = setDataKey + '.inputValue'
+        this.data.blurTimer = setTimeout(function () {
+            if ( that.data.isCanClose) {
+                that.setData({
+                    [fliterDataKey]: []
+                })
+            }
+        }, 300)
+    },
     makesure(e) {
         let that = this
             , setDataKey = e.currentTarget.dataset.filterkey
@@ -132,14 +151,18 @@ Page({
     listenHeight(e){
         console.log(e,e.detail.height)
         let that = this
-        let timer2 = setTimeout(function(){
+        /* let timer2 = setTimeout(function(){
             clearTimeout(that.data.blurTimer)
             that.data.blurTimer = null
-        },200)
-        
-        /* this.setData({
+        },200) */
+        this.setData({
             isCanClose:false
-        }) */
+        })
+        setTimeout(()=>{
+            that.setData({
+                isCanClose:true
+            })
+        },400)
     },
     /* 后台接口 */
     //模糊查询

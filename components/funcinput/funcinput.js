@@ -24,7 +24,7 @@ Component({
         fuzzyPortData: {},//模糊查询的后台返回数据
         page: 1,
         blurTimer: null,
-        cursor:null,//鼠标的光标
+        isCanClose: true
     },
 
     /**
@@ -87,9 +87,12 @@ Component({
                 page: 1,
                 "fuzzyQuery.selectHouse.houseid": 0,
             })
-            // if (e.detail.cursor != this.data.cursor) {
-            //     cursor: e.detail.cursor
-            // }
+            if (keywords == "") {
+                this.setData({
+                    [fliterDataKey]: [],
+                })
+                return
+            }
             this.queryFuzzyPort(userid, vocde, keywords, this.data.page)
                 .then((res) => {
                     // e.detail.value && filterdataArr.forEach((city, index) => {
@@ -104,9 +107,11 @@ Component({
                     })
                 })
                 .catch(err => {
+                    this.setData({
+                        [fliterDataKey]: [],
+                    })
                     console.log(err)
                 })
-
         }, 600),
         handleScroll(e) {
             let that = this
@@ -114,17 +119,18 @@ Component({
             this.data.blurTimer = null
         },
         clearFilter(e) {
+            console.log("点击了空白", e)
             let that = this
-                , setDataKey = e.currentTarget.dataset.filterkey
+                , setDataKey = "fuzzyQuery"
                 , fliterDataKey = setDataKey + '.filterData'
                 , inputValueKey = setDataKey + '.inputValue'
-
             this.data.blurTimer = setTimeout(function () {
-                that.setData({
-                    [fliterDataKey]: []
-                })
+                if (that.data.isCanClose) {
+                    that.setData({
+                        [fliterDataKey]: []
+                    })
+                }
             }, 300)
-            console.log(wx.getSystemInfoSync().windowHeight)
         },
         makesure(e) {
             let that = this
@@ -138,6 +144,22 @@ Component({
                 [fliterDataKey]: [],
             })
             console.log(this.data.fuzzyQuery.selectHouse)
+        },
+        listenHeight(e) {
+            console.log(e, e.detail.height)
+            let that = this
+            /* let timer2 = setTimeout(function(){
+                clearTimeout(that.data.blurTimer)
+                that.data.blurTimer = null
+            },200) */
+            this.setData({
+                isCanClose: false
+            })
+            setTimeout(() => {
+                that.setData({
+                    isCanClose: true
+                })
+            }, 400)
         },
         /* 后台接口 */
         //模糊查询

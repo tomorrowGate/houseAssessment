@@ -56,6 +56,10 @@ Page({
     showInputSearch(e){
         this.showDiaLog()
     },
+    clearFilter() {
+        let funcinput = this.selectComponent('#funcinput'); // 页面获取自定义组件实例
+        funcinput.clearFilter()
+    },
     goHousePrice(e){
         let funcinput = this.selectComponent('#funcinput'); // 页面获取自定义组件实例
         //funcinput.houseSearch(); // 通过实例调用组件事件

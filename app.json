@@ -1,8 +1,8 @@
 {
     "pages": [
         "pages/index/index",
-        "components/funcinput/funcinput",
         "pages/houseprice/houseprice",
+        "components/funcinput/funcinput",
         "pages/bindUser/bindUser",
         "pages/infowrite/infowrite",
         "pages/user/user",
