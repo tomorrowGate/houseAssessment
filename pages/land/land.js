@@ -4,6 +4,7 @@ let echarts = require('../../utils/ec-canvas/echarts');
 let wxCharts = require('../../utils/wxcharts.js');
 
 let ringChart = null;
+let app = getApp()
 Page({
 
     /**
@@ -31,7 +32,9 @@ Page({
         tableDataNum: [],
         tableDataArea: [],
         bdMessage: ["0-90", "90-144", "144-180", "180以上"],
-        trtdWidth: "140"
+        trtdWidth: "140",
+        /* 土地数据 */
+        landData:{},
     },
     /**
      * 生命周期函数--监听页面加载
@@ -77,10 +80,20 @@ Page({
     },
     bindPickerChangeCity(e) {
         let value = this.data.arrayCity[e.detail.value]["name"]
+            , imd = 0
+            , userid = wx.getStorageSync('userid')
+            , vocde = wx.getStorageSync('vocde')
         this.setData({
             pickerCityValue: value
         })
         console.log(value)
+        if (value == "杭州主城区") {
+            imd = 1
+        } else {
+            imd = 0
+        }
+        this.getLandDet(userid, vocde, imd)
+
         this.getTimeCut({
             detail:{
                 startTime:"2019/6",
@@ -142,6 +155,55 @@ Page({
         this.randoms()
         this.charts2.initLine(backBarAndLine("成交宗数", "建面", arr))
         this.charts3.initLine(backBarAndLine("挂牌宗数", "建面", arr))
+    },
+    /* 后台接口 */
+    getLandDet(userid, vcode, imd){
+        console.log(userid, vcode, imd)
+        return new Promise((resove, rej) => {
+            let that = this;
+            wx.request({
+                url: app.globalData.url + 'yzservice2/rest/yzapp/MarketMonitoring/land',
+                method: 'GET',
+                data: {
+                    userid,
+                    vcode,
+                    imd,
+                },
+                success: function (res) {
+                    console.log(res)
+                    if (res.data.code == 101) {
+                        let landData = { ...res.data.data }
+                       
+                        that.setData({
+                            landData
+                        })
+                        resove(res.data.data)
+                    } else if (res.data.code == 201) {
+                        wx.navigateTo({
+                            url: '/pages/bindUser/bindUser',
+                        })
+                        wx.hideLoading()
+                        rej(res.data.data)
+                    } else {
+                        let mesg = res.data.message ? res.data.message : "未能找到信息"
+                        res.data.message && wx.showToast({
+                            title: mesg,
+                            icon: "none"
+                        })
+                        let timer = setTimeout(() => {
+
+                            wx.navigateBack()
+                        }, 1500)
+                        //wx.hideLoading()
+                        rej(["error"])
+                    }
+                    //wx.hideLoading()
+                },
+                fail: function (err) {
+                    rej("error1")
+                }
+            })
+        })
     },
     /**
      * 生命周期函数--监听页面隐藏

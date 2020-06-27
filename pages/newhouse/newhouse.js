@@ -4,6 +4,7 @@ let echarts = require('../../utils/ec-canvas/echarts');
 let wxCharts = require('../../utils/wxcharts.js');
 
 let ringChart = null;
+let app = getApp()
 Page({
 
     /**
@@ -111,33 +112,23 @@ Page({
         tableDataNum: [],
         tableDataArea: [],
         bdMessage:["0-90","90-144","144-180","180以上"],
-        trtdWidth:"140"
+        trtdWidth:"140",
+        /* 后台返回的新房市场数据 */
+        supplyTao:0,
+        dealTao:0,
+        linkRatio:0,
+        yearOnYear:0,
+        supplyTaoList:[],
+        dealTaoList:[],
+        dealAvgList:[],
+        clearingCycleList:[],
+        monthList:[],
     },
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        // options.type && wx.setNavigationBarTitle({
-        //     title: title[options.type]
-        // })
-        // if (options.type == "law"){
-        //     this.setData({
-        //         transactionType: "挂拍房源量",
-        //         arrHouseInit: "产品类型",
-        //     })
-        // }else if (options.type == "land") {
-        //     this.setData({
-        //         arrHouseInit: "土地性质",
-        //         transactionType: "挂拍量",
-        //         arrayHouse: [{ name: "工业" }, { name: "集体" }, { name: "居住" }, { name: "商业" }, { name: "商住" }, { name: "其他" }],
-        //         unitKeyword: "宗"
-        //     })
-        // }else{
-        //     this.setData({
-        //         transactionType: "挂牌房源量",
-        //         arrHouseInit:"产品类型"
-        //     })
-        // }
+
     },
 
     /**
@@ -181,10 +172,19 @@ Page({
     },
     bindPickerChangeCity(e){
         let value = this.data.arrayCity[e.detail.value]["name"]
+            ,imd = 0
+            ,userid = wx.getStorageSync('userid')
+            , vocde = wx.getStorageSync('vocde')
         this.setData({
             pickerCityValue:value
         })
         console.log(value)
+        if (value == "杭州主城区"){
+            imd = 1
+        }else{
+            imd = 0
+        }
+        this.getNewHouseDet(userid, vocde, imd)
         this.getTimeCut({
             detail: {
                 startTime: "2019/6",
@@ -246,6 +246,64 @@ Page({
         this.charts2.initLine(optionTime)
         this.charts3.initLine(optionTime)
         this.randoms()
+    },
+    /* 后台接口 */
+    /* 获取所有新房详情 */
+    getNewHouseDet(userid, vcode, imd){
+        console.log(userid, vcode, imd)
+        return new Promise((resove, rej) => {
+            let that = this;
+            wx.request({
+                url: app.globalData.url + 'yzservice2/rest/yzapp/MarketMonitoring/newhouse',
+                method: 'GET',
+                data: {
+                    userid,
+                    vcode,
+                    imd,
+                },
+                success: function (res) {
+                    console.log(res)
+                    if (res.data.code == 101) {
+                        let newhouseData = {...res.data.data}
+                        let { supplyTao, dealTao, linkRatio, yearOnYear, supplyTaoList, dealTaoList, dealAvgList, clearingCycleList, monthList } = { newhouseData }
+                        that.setData({
+                            supplyTao, 
+                            dealTao, 
+                            linkRatio, 
+                            yearOnYear, 
+                            supplyTaoList, 
+                            dealTaoList, 
+                            dealAvgList, 
+                            clearingCycleList, 
+                            monthList
+                        })
+                        resove(res.data.data)
+                    } else if (res.data.code == 201) {
+                        wx.navigateTo({
+                            url: '/pages/bindUser/bindUser',
+                        })
+                        wx.hideLoading()
+                        rej(res.data.data)
+                    } else {
+                        let mesg = res.data.message ? res.data.message : "未能找到信息"
+                        res.data.message && wx.showToast({
+                            title: mesg,
+                            icon: "none"
+                        })
+                        let timer = setTimeout(() => {
+
+                            wx.navigateBack()
+                        }, 1500)
+                        //wx.hideLoading()
+                        rej(["error"])
+                    }
+                    //wx.hideLoading()
+                },
+                fail: function (err) {
+                    rej("error1")
+                }
+            })
+        })
     },
     /**
      * 生命周期函数--监听页面隐藏

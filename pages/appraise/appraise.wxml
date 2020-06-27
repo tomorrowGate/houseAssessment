@@ -5,19 +5,37 @@
             <view class="appraise-cell">
                 <view class="appraise-cell-key">房屋坐落地址</view>
                 <view class="appraise-cell-value">
-                    <input type="text" class="cell-value-input" placeholder-class="plh-ipt" placeholder="请输入"></input>
+                    <input 
+                    type="text" 
+                    class="cell-value-input" 
+                    placeholder-class="plh-ipt" 
+                    placeholder="请输入" 
+                    data-type="0"
+                    bindinput="bindInput"></input>
                 </view>
             </view>
             <view class="appraise-cell">
                 <view class="appraise-cell-key">委托方</view>
                 <view class="appraise-cell-value">
-                    <input type="text" class="cell-value-input" placeholder-class="plh-ipt" placeholder="请输入"></input>
+                    <input 
+                    type="text" 
+                    class="cell-value-input" 
+                    placeholder-class="plh-ipt" 
+                    placeholder="请输入"
+                    data-type="1"
+                    bindinput="bindInput"></input>
                 </view>
             </view>
             <view class="appraise-cell">
                 <view class="appraise-cell-key">电话</view>
                 <view class="appraise-cell-value">
-                    <input type="number" class="cell-value-input" placeholder-class="plh-ipt" placeholder="请输入"></input>
+                    <input 
+                    type="number" 
+                    class="cell-value-input" 
+                    placeholder-class="plh-ipt" 
+                    placeholder="请输入"
+                    data-type="2"
+                    bindinput="bindInput"></input>
                 </view>
             </view>
         </view>

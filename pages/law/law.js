@@ -6,6 +6,7 @@ let wxCharts = require('../../utils/wxcharts.js');
 let ringChart = null;
 optionTime.legend.data = ["成交价/评估价"]
 optionTime.series[0].name = ["成交价/评估价"]
+let app = getApp()
 Page({
 
     /**
@@ -30,6 +31,8 @@ Page({
             lazyLoad: true
         },
         chartData: {},
+        /* 司法数据 */
+        lawData: {},
     },
     /**
      * 生命周期函数--监听页面加载
@@ -42,11 +45,17 @@ Page({
      * 生命周期函数--监听页面初次渲染完成
      */
     onReady: function () {
+        let userid = wx.getStorageSync('userid')
+            , vocde = wx.getStorageSync('vocde')
+            ,imd = 0
+        this.getlawHouseDet(userid, vocde,imd)
+
         this.charts1 = this.selectComponent("#chart1");
         this.charts2 = this.selectComponent("#chart2");
 
         this.charts1.initLine(optionTime)
         this.charts2.initLine(backBarAndLine("成交宗数", "成交金额", getMonths()))
+        
     },
 
     /**
@@ -124,6 +133,55 @@ Page({
         this.charts1.initLine(optionTime)
         this.randoms()
         this.charts2.initLine(backBarAndLine("宗数", "亿元", arr))
+    },
+    /* 获取后台数据 */
+    getlawHouseDet(userid, vcode, imd){
+        console.log(userid, vcode, imd)
+        return new Promise((resove, rej) => {
+            let that = this;
+            wx.request({
+                url: app.globalData.url + 'yzservice2/rest/yzapp/MarketMonitoring/judicial',
+                method: 'GET',
+                data: {
+                    userid,
+                    vcode,
+                    imd,
+                },
+                success: function (res) {
+                    console.log(res)
+                    if (res.data.code == 101) {
+                        let lawData = { ...res.data.data }
+
+                        that.setData({
+                            lawData
+                        })
+                        resove(res.data.data)
+                    } else if (res.data.code == 201) {
+                        wx.navigateTo({
+                            url: '/pages/bindUser/bindUser',
+                        })
+                        wx.hideLoading()
+                        rej(res.data.data)
+                    } else {
+                        let mesg = res.data.message ? res.data.message : "未能找到信息"
+                        res.data.message && wx.showToast({
+                            title: mesg,
+                            icon: "none"
+                        })
+                        let timer = setTimeout(() => {
+
+                            wx.navigateBack()
+                        }, 1500)
+                        //wx.hideLoading()
+                        rej(["error"])
+                    }
+                    //wx.hideLoading()
+                },
+                fail: function (err) {
+                    rej("error1")
+                }
+            })
+        })
     },
     /**
      * 生命周期函数--监听页面隐藏

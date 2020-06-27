@@ -137,6 +137,53 @@ Page({
             })
         })
     },
+    /* 小区房价走势图 */
+    housePricetrend(userid, vcode, houseid){
+        console.log(userid, vcode, houseid)
+        return new Promise((resove, rej) => {
+            let that = this;
+            wx.request({
+                url: app.globalData.url + 'yzservice2/rest/yzapp/house/comAndDisPrice',
+                method: 'GET',
+                data: {
+                    userid,
+                    vcode,
+                    houseid,
+                },
+                success: function (res) {
+                    console.log(res)
+                    if (res.data.code == 101) {
+                        let xData = res.data.data.monthList
+                        let yDataCity = res.data.data.commList
+                        let yDataDistrict = res.data.data.districtList
+                        resove(res.data.data)
+                    } else if (res.data.code == 201) {
+                        wx.navigateTo({
+                            url: '/pages/bindUser/bindUser',
+                        })
+                        wx.hideLoading()
+                        rej(res.data.data)
+                    } else {
+                        let mesg = res.data.message ? res.data.message : "未能找到信息"
+                        res.data.message && wx.showToast({
+                            title: mesg,
+                            icon: "none"
+                        })
+                        let timer = setTimeout(() => {
+
+                            wx.navigateBack()
+                        }, 1500)
+                        //wx.hideLoading()
+                        rej(["error"])
+                    }
+                    //wx.hideLoading()
+                },
+                fail: function (err) {
+                    rej("error1")
+                }
+            })
+        })
+    },
     /**
      * 生命周期函数--监听页面加载
      */

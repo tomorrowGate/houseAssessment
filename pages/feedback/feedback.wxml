@@ -8,7 +8,11 @@
 
          <view class="appraise-cell-block">
                 <view class="feed-text">
-                    <textarea bindblur="bindTextAreaBlur" auto-height placeholder="请输入" value="{{text}}" />
+                    <textarea 
+                    bindblur="bindTextAreaBlur" 
+                    auto-height 
+                    placeholder="请输入" 
+                    value="{{text}}" />
                 </view>
             </view>
     </view>
