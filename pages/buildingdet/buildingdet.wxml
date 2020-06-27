@@ -126,7 +126,7 @@
 </view>
 
 <dialog isShowDia="{{isShowDia}}">
-    <view class="index-mask-box ">
+    <view class="index-mask-box " bindtap="clearFilter">
         <view class="index-mask-title">搜索房价</view>
         
         <view class="index-mask-content">
@@ -145,7 +145,7 @@
 
         <view class="mask-btngroup">
             <view class="mask-cencle" bindtap="hideDialog">取消</view>
-            <view class="liner-btn mask-search" bindtap="goHousePrice" >查询</view>
+            <view class="liner-btn mask-search" catchtap="goHousePrice" >查询</view>
         </view>
     </view>
 </dialog>

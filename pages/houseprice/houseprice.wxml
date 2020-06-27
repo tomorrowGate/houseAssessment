@@ -1,4 +1,9 @@
+
 <view class="houseprice" bindtap="clearFilter">
+<!-- 
+<view class="out-contain"  bindtap="clearFilter">
+
+<view class="houseprice">-->
     <view class="user-main">
         <view class="user-bg">
             <image class="user-bg-img" src="/static/img/mine_bg.png"></image>
@@ -17,10 +22,10 @@
                         placeholder-class="iptbox-plc" 
                         bindfocus="filter" 
                         bindinput="filter" 
-                        bindblur="clearFilter"
                         data-filterkey = "fuzzyQuery"
                         data-filterdata="{{fuzzyQuery}}"
-                        value="{{fuzzyQuery.inputValue}}"/>
+                        value="{{fuzzyQuery.inputValue}}"
+                        catchtap/>
                     </view>
                     
                     <view class="houseprice-input-items" hidden="{{fuzzyQuery.filterData.length<=0}}">
@@ -30,11 +35,12 @@
                             <view class="" bindtap="mockFilter" data-type="2"  data-filterkey = "fuzzyQuery">下一页</view>
                         </view> -->
                         <view  
+                            
                             class="houseprice-input-item" 
                             data-filterkey = "fuzzyQuery"
                             wx:for="{{fuzzyQuery.filterData}}" 
                             wx:key="index" 
-                            bindtap="makesure"
+                            catchtap="makesure"
                             data-value="{{item}}" >
                             {{item.address}}
                         </view>
@@ -99,7 +105,7 @@
            </view>
 
            <view class="houseprice-card-foot">
-                <view class="user-del-btn" style="width: 580rpx;height: 88rpx" bindtap="houseSearch">搜索</view>
+                <view class="user-del-btn" style="width: 580rpx;height: 88rpx" catchtap="houseSearch" >搜索</view>
            </view>
         </view>
     </view>

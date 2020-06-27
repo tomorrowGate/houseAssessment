@@ -1,7 +1,8 @@
 @import "../../pages/houseprice/houseprice.wxss";
 .houseprice-input-items{
-    width: 100%;
+    width: calc( 100% + 20rpx);
     padding: 0rpx 5rpx;
+    margin-left: -20rpx
 }
 .houseprice-body-item{
     position: relative;
@@ -23,5 +24,9 @@
     width: 100%
 }
 .houseprice-input-item{
-    width: calc( 100% - 25rpx)
+    width: calc( 100% - 25rpx);
+    margin-left: 15rpx;
+}
+.scroll-div{
+    height: 350rpx;
 }

@@ -51,6 +51,10 @@ Page({
         })
         this.hideDialog()
     },
+    clearFilter(){
+        let funcinput = this.selectComponent('#funcinput'); // 页面获取自定义组件实例
+        funcinput.clearFilter()
+    },
     nexTime(){
         wx.showToast({
             title: '敬请期待',
