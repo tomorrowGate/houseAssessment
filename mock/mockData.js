@@ -828,7 +828,7 @@ export const optionTotcalLine = {
 };
 
 /* 柱状 加 折线 */
-export function backBarAndLine(title1,title2,times){
+export function backBarAndLine(title1,title2,times,ydata1,ydata2){
     return {
         tooltip: {
             trigger: 'axis',
@@ -849,14 +849,7 @@ export function backBarAndLine(title1,title2,times){
                 show: false,
                 type: 'category',
                 boundaryGap: true,
-                data: (function () {
-                    var res = [];
-                    var len = times.length||10;
-                    while (len--) {
-                        res.push(10 - len - 1);
-                    }
-                    return res;
-                })()
+                data: ydata1
             }
         ],
         yAxis: [
@@ -864,16 +857,14 @@ export function backBarAndLine(title1,title2,times){
                 type: 'value',
                 scale: true,
                 name: title1,
-                max: 30,
-                min: 0,
+                splitLine: { show: false },
                 boundaryGap: [0.2, 0.2]
             },
             {
                 type: 'value',
                 scale: true,
                 name: title2,
-                max: 1200,
-                min: 0,
+                splitLine: { show: false },
                 boundaryGap: [0.2, 0.2]
             }
         ],
@@ -883,18 +874,12 @@ export function backBarAndLine(title1,title2,times){
                 type: 'bar',
                 xAxisIndex: 1,
                 yAxisIndex: 1,
-                data: (function () {
-                    var res = [];
-                    var len = times.length||10;
-                    while (len--) {
-                        res.push(Math.round(Math.random() * 1000));
-                    }
-                    return res;
-                })()
+                data: ydata2
             },
             {
                 name: title2,
                 type: 'line',
+                smooth: true,
                 data: (function () {
                     var res = [];
                     var len = 0;
@@ -991,6 +976,45 @@ export function backBarAndBar(title1, title2, times, twoType = ["bar", "bar"]) {
         ]
     };
 }
+/* 单折线 */
+export function oneLine(title1, times, yData) {
+    return {
+        color: ["#03A174"],
+        tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+                type: 'cross'
+            }
+        },
+        legend: {
+            data: [title1]
+        },
+        xAxis: [
+            {
+                type: 'category',
+                boundaryGap: false,
+                data: times
+            }
+        ],
+        yAxis: [{
+            type: 'value'
+        }],
+        series: [
+            {
+                name: 'title1',
+                type: 'line',
+                smooth: true,
+                animation: true,
+                lineStyle: {
+                    normal: {
+                        color: "#03A174"
+                    }
+                },
+                data: yData,//填入数量
+            },
+        ]
+    }
+} 
 
 /* 双折线图 */
 export function doubleLine (title1, title2, times) {

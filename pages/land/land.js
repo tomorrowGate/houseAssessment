@@ -1,4 +1,4 @@
-import { table1, table2, table3, table4, option, option1_1, option3, option3_1, optionTime, optionTotcalLine, backBarAndLine} from "../../mock/mockData.js"
+import { table1, table2, table3, table4, option, optionTime, optionTotcalLine, backBarAndLine, oneLine} from "../../mock/mockData.js"
 import { countMonthList, getMonths } from "../../utils/dateCalc.js"
 let echarts = require('../../utils/ec-canvas/echarts');
 let wxCharts = require('../../utils/wxcharts.js');
@@ -51,9 +51,12 @@ Page({
         this.charts2 = this.selectComponent("#chart2");
         this.charts3 = this.selectComponent("#chart3");
 
-        this.charts1.initLine(optionTime)
-        this.charts2.initLine(backBarAndLine("成交宗数", "建面", getMonths()))
-        this.charts3.initLine(backBarAndLine("挂牌宗数", "建面", getMonths()))
+        // this.charts1.initLine(optionTime)
+        // this.charts2.initLine(backBarAndLine("成交宗数", "建面", getMonths()))
+        // this.charts3.initLine(backBarAndLine("挂牌宗数", "建面", getMonths()))
+
+
+        this.bindPickerChangeCity()
     },
 
     /**
@@ -64,42 +67,55 @@ Page({
     },
 
     randoms() {
-        let arr = [option, option1_1, option3, option3_1]
-            , arrTable = [table1, table2, table3, table4,]
-            , randomInit = parseInt(Math.random() * arr.length)
-            , tableDataNum = arrTable[parseInt(Math.random() * arr.length)]
-            , tableDataArea = arrTable[parseInt(Math.random() * arr.length)]
+        let arrTable = [table1, table2, table3, table4,]
+            , randomInit = parseInt(Math.random() * 4)
+            , tableDataNum = arrTable[parseInt(Math.random() * 4)]
+            , tableDataArea = arrTable[parseInt(Math.random() * 4)]
         this.setData({
             /*  chartData: arr[randomInit], */
             tableDataArea,
         })
-        console.log(arr[randomInit])
     },
     tapCityPicker(e) {
         console.log(e)
     },
     bindPickerChangeCity(e) {
-        let value = this.data.arrayCity[e.detail.value]["name"]
-            , imd = 0
+        let value = "杭州主城区"
+        if (e && e.detail) {
+            value = this.data.arrayCity[e.detail.value]["name"]
+        }
+        let imd = 0
             , userid = wx.getStorageSync('userid')
             , vocde = wx.getStorageSync('vocde')
         this.setData({
             pickerCityValue: value
         })
-        console.log(value)
         if (value == "杭州主城区") {
             imd = 1
         } else {
             imd = 0
         }
         this.getLandDet(userid, vocde, imd)
+            .then(data=>{
+                let xdata = this.data.landData.monthList
+                let ydataMoney = this.data.landData.amountList
+                let ydataDeal = this.data.landData.dealCountList
+                let ydataDealArea = this.data.landData.dealCountList   
+                let ydataListing = this.data.landData.hangOutList
+                let ydataListingArea = this.data.landData.hangOutList  
+                
+                this.charts1.initLine(oneLine("成交价/评估价", xdata, ydataMoney)) 
+                this.charts2.initLine(backBarAndLine("成交宗数", "建面", xdata, ydataDeal, ydataDealArea))
+                this.charts3.initLine(backBarAndLine("挂牌宗数", "建面", xdata, ydataListing, ydataListingArea))
+            })
+            .catch(err=>console.log(err))
 
-        this.getTimeCut({
-            detail:{
-                startTime:"2019/6",
-                endTime:"2020/6"
-            }
-        })
+        // this.getTimeCut({
+        //     detail:{
+        //         startTime:"2019/6",
+        //         endTime:"2020/6"
+        //     }
+        // })
     },
     bindPickerChangeHouse(e) {
         let value = this.data.arrayHouse[e.detail.value]["name"]
@@ -151,8 +167,9 @@ Page({
             })
             return
         } */
-        this.charts1.initLine(optionTime)
-        this.randoms()
+        //this.charts1.initLine(optionTime)
+       
+        //this.randoms()
         this.charts2.initLine(backBarAndLine("成交宗数", "建面", arr))
         this.charts3.initLine(backBarAndLine("挂牌宗数", "建面", arr))
     },
@@ -173,7 +190,6 @@ Page({
                     console.log(res)
                     if (res.data.code == 101) {
                         let landData = { ...res.data.data }
-                       
                         that.setData({
                             landData
                         })
@@ -191,7 +207,6 @@ Page({
                             icon: "none"
                         })
                         let timer = setTimeout(() => {
-
                             wx.navigateBack()
                         }, 1500)
                         //wx.hideLoading()
@@ -200,6 +215,7 @@ Page({
                     //wx.hideLoading()
                 },
                 fail: function (err) {
+                    
                     rej("error1")
                 }
             })
