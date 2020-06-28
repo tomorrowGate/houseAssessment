@@ -48,13 +48,28 @@ Page({
         let userid = wx.getStorageSync('userid')
             , vocde = wx.getStorageSync('vocde')
             ,imd = 0
-        this.getlawHouseDet(userid, vocde,imd)
 
         this.charts1 = this.selectComponent("#chart1");
         this.charts2 = this.selectComponent("#chart2");
 
         this.charts1.initLine(optionTime)
         this.charts2.initLine(backBarAndLine("成交宗数", "成交金额", getMonths()))
+
+
+        this.getlawHouseDet(userid, vocde, imd)
+            .then(res => {
+                let xdata = this.data.landData.monthList
+                let ydataMoney = this.data.landData.amountList
+                let ydataDeal = this.data.landData.dealCountList
+                let ydataDealArea = this.data.landData.dealCountList
+                let ydataListing = this.data.landData.hangOutList
+                let ydataListingArea = this.data.landData.hangOutList
+
+                this.charts1.initLine(oneLine("成交价/评估价", xdata, ydataMoney))
+                this.charts2.initLine(backBarAndLine("成交宗数", "建面", xdata, ydataDeal, ydataDealArea))
+                this.charts3.initLine(backBarAndLine("挂牌宗数", "建面", xdata, ydataListing, ydataListingArea))
+            })
+            .catch(err => console.log(err))
         
     },
 

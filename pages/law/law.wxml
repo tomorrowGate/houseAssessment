@@ -6,17 +6,17 @@
         <view class="user-card-out">
             <view class="user-head">
                <view class="house-src">挂拍房源量</view>
-               <view class="house-num">143896/宗</view>
+               <view class="house-num">{{lawData.listing}}/宗</view>
             </view>
 
             <view class="user-card">
                 <view class="user-card-item user-card-itemfirst">
-                    <view class="user-card-itemnum">15914</view>
+                    <view class="user-card-itemnum">{{lawData.deal}}</view>
                     <view class="user-card-itemtxt">当月成交量(宗)</view>
                 </view>
                 <view class="user-card-item">
                     <view class="user-card-itemnum itemnum-same-ring">
-                        <text class="itemnum-raing-up">5%</text> 
+                        <text class="itemnum-raing-up">{{lawData.linkRatio}}%</text> 
                         <view class="same-ring-imgbox">
                             <image src="/static/img/orage_arrow_icon.png"></image>
                         </view>
@@ -25,7 +25,7 @@
                 </view>
                 <view class="user-card-item">
                     <view class="user-card-itemnum itemnum-same-ring">
-                        <text class="itemnum-same-up">3%</text> 
+                        <text class="itemnum-same-up">{{lawData.yearOnYear}}%</text> 
                         <view class="same-ring-imgbox">
                             <image src="/static/img/red_arrow_icon.png"></image>
                         </view>

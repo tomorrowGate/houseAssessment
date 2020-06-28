@@ -8,7 +8,7 @@ Page({
     data: {
         imgbox: [],
         photo:[],
-        fileid:0,
+        fileidArr:[],
         address:"",
         client:"",
         tel:"",
@@ -124,6 +124,7 @@ Page({
         let self = this
             , userid = wx.getStorageSync('userid')
             , vocde = wx.getStorageSync('vocde')
+            , targetFile = this.data.imgbox
             , address = this.data.address
             , client = this.data.client
             , tel = this.data.tel
@@ -135,49 +136,64 @@ Page({
             })
             return
         }
-        this.submitFile()
-        .then(()=>{
-            self.submitAllData()
-        })
-        wx.showToast({
+        this.submitFile(userid, vocde, targetFile)
+            .then((res)=>{
+                let arids = self.data.fileidArr.join(",")
+                self.submitAllData(userid, vocde, address, client, tel, arids)
+            })
+            .catch(err=>{
+                console.log(err)
+            })
+
+       /*  wx.showToast({
             icon:"none",
             title: '保存成功',
-        })
+        }) */
     },
     /* 后台接口 */
-    submitFile(userid, vcode){
+    submitFile(userid, vcode, targetFile){
         return new Promise((resove, rej) => {
             let that = this;
-            wx.request({
-                url: app.globalData.url + 'yz.hzhfeidian.com/yzservice2/rest/yzapp/file/uploadfile',
-                method: 'post',
-                data: {
-                    userid,
-                    vcode,
-                },
-                success: function (res) {
-                    console.log(res)
-                    if (res.data.code == 101) {
-                        let fileid = { ...res.data.data }
-
-                        that.setData({
-                            fileid
-                        })
-                        resove(res.data.data)
-                    } 
-                },
-                fail: function (err) {
-                    rej("error1")
-                }
+            targetFile.forEach((v,i)=>{
+                wx.uploadFile({
+                    url: app.globalData.url + '/yzservice2/rest/yzapp/file/uploadfile',
+                    filePath: v,
+                    name: 'file',
+                    formData: {
+                        userid,
+                        vcode,
+                    },
+                    success(res) {
+                        console.log(res, "后台接口上传", JSON.parse(res.data))
+                        let data = JSON.parse(res.data)
+                        if (data.code == 101) {
+                            let fileidArr = [...that.data.fileidArr]
+                            fileidArr.push(data.data)
+                            that.setData({
+                                fileidArr,
+                            })
+                            if (i == targetFile.length-1) {
+                                resove(res.data.data)
+                            }
+                        }
+                    },
+                    fail: function (err) {
+                        if (i == targetFile.length-1) {
+                            rej("error file upload")
+                        }
+                        
+                    }
+                })
             })
         })
     },
     //保存
     submitAllData(userid, vcode, address, client, tel, arids){
+        console.log(userid, vcode, address, client, tel, arids)
         return new Promise((resove, rej) => {
             let that = this;
             wx.request({
-                url: app.globalData.url + 'yz.hzhfeidian.com/yzservice2/rest/rest/yzapp/file/uploadfile',
+                url: app.globalData.url + 'yzservice2/rest/yzapp/evaluation/getproject',
                 method: 'post',
                 data: {
                     address,
@@ -190,16 +206,17 @@ Page({
                 success: function (res) {
                     console.log(res)
                     if (res.data.code == 101) {
-                        let lawData = { ...res.data.data }
-
-                        that.setData({
-                            lawData
+                        let message = res.data.message
+                        wx.showToast({
+                            icon: "none",
+                            title: message,
                         })
+                        that.imgbox = []
                         resove(res.data.data)
                     }
                 },
                 fail: function (err) {
-                    rej("error1")
+                    rej("error 提交所有")
                 }
             })
         })

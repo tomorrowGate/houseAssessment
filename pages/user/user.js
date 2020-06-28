@@ -9,6 +9,8 @@ Page({
         portrait:"",
         userName:"",
         userWork:"",
+        userHouseData: {},
+        userData: {},
         isShowEdit:true,
     },
     removeBind(){
@@ -52,6 +54,58 @@ Page({
         }
        
     },
+    /* 后台接口 */
+    getUserHouseData(userid, vcode){
+        return new Promise((resove, rej) => {
+            let that = this;
+            wx.request({
+                url: app.globalData.url + 'yzservice2/rest/yzapp/evaluation/getstate',
+                method: 'get',
+                data: {
+                    userid,
+                    vcode,
+                },
+                success: function (res) {
+                    console.log(res)
+                    if (res.data.code == 101) {
+                        that.setData({
+                            userHouseData: res.data.data
+                        })
+                        resove(res.data.data)
+                    }
+                },
+                fail: function (err) {
+                    rej("error 用户房产信息")
+                }
+            })
+        })
+    },
+    getUserData(userid, vcode){
+        return new Promise((resove, rej) => {
+            let that = this;
+            wx.request({
+                url: app.globalData.url + 'yzservice2/rest/yzapp/evaluation/getPesronInf',
+                method: 'get',
+                data: {
+                    userid,
+                    vcode,
+                },
+                success: function (res) {
+                    console.log(res)
+                    if (res.data.code == 101) {
+                       // let data = res.data.data
+                       this.setData({
+                           userData:res.data.data
+                       })
+                        resove(res.data.data)
+                    }
+                },
+                fail: function (err) {
+                    rej("error 用户信息")
+                }
+            })
+        })
+    },
     /**
      * 生命周期函数--监听页面加载
      */
@@ -70,7 +124,12 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
+        let self = this
+            , userid = wx.getStorageSync('userid')
+            , vocde = wx.getStorageSync('vocde')
         this.isAttestation()
+        this.getUserHouseData(userid, vocde)
+        this.getUserData(userid, vocde)
         /* let portrait = wx.getStorageSync('portrait') || "/static/img/portrait2.jpg" 
         this.setData({
             portrait,

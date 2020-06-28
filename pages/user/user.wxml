@@ -9,8 +9,8 @@
                     <image class="user-head-img" mode="aspectFill" src="{{portrait}}"></image>
                 </view>
                 <view class="user-head-mid" bindtap="goAttestation">
-                    <view class="user-head-name">{{userName}}</view>
-                    <view class="user-head-ident">{{userWork}}</view>
+                    <view class="user-head-name">{{userData.name||userName}}</view>
+                    <view class="user-head-ident">{{userData.duty||userWork}}</view>
                 </view>
                 <view class="user-head-right" bindtap="editUserInfo">
                     <text class="user-head-edit">编辑</text>
@@ -22,15 +22,15 @@
             </view>
             <view class="user-card">
                 <view class="user-card-item">
-                    <view class="user-card-itemnum">208</view>
+                    <view class="user-card-itemnum">{{userHouseData.applied}}</view>
                     <view class="user-card-itemtxt">已申请</view>
                 </view>
                 <view class="user-card-item">
-                    <view class="user-card-itemnum">604</view>
+                    <view class="user-card-itemnum">{{userHouseData.toBeAccepted}}</view>
                     <view class="user-card-itemtxt">待受理</view>
                 </view>
                 <view class="user-card-item">
-                    <view class="user-card-itemnum">458</view>
+                    <view class="user-card-itemnum">{{userHouseData.accepted}}</view>
                     <view class="user-card-itemtxt">已受理</view>
                 </view>
             </view>

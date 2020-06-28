@@ -14,6 +14,8 @@ Page({
         job: "",
         phoneNumber: "",//手机号码
         isPhoneTrue: false,//手机号码是否输入正确
+        id: "",//客户存在数据库里个人信息记录的id
+        userData:{},
     },
     virifyTel(str) {
         //验证手机号
@@ -27,7 +29,7 @@ Page({
             isPhoneTrue: isPhoneTrue
         })
         if (isPhoneTrue){
-            wx.setStorageSync(phoneNumber, e.detail.value)
+            wx.setStorageSync("phoneNumber", e.detail.value)
         }
         
     },
@@ -62,8 +64,8 @@ Page({
     },
     bind(e) {
         let _this = this
-        let errArr = ["未添加头像", "未填写姓名", "手机号码格式错误", "未填写性别", "未填写公司","未填写职务"]
-        let verifyArr = [this.data.portrait, this.data.name, this.data.isPhoneTrue, this.data.sex, this.data.company, this.data.job]
+        let errArr = [ "未填写姓名", "手机号码格式错误", "未填写性别", "未填写公司","未填写职务"]
+        let verifyArr = [ this.data.name, this.data.isPhoneTrue, this.data.sex, this.data.company, this.data.job]
         let isFormErr = false
         for(let i=0,len=verifyArr.length;i<len;i++){
             if (!verifyArr[i]){
@@ -92,18 +94,94 @@ Page({
         wx.showLoading({
             title: '正在提交',
         })
+        let self = this
+            , userid = wx.getStorageSync('userid')
+            , vocde = wx.getStorageSync('vocde')
         //发送请求
+        this.modifyUserData(userid, vocde, this.data.id, this.data.name, this.data.phoneNumber,this.data.sex,this.data.company,this.data.job)
         wx.hideLoading()
+    },
+    /* 后台接口 */
+    //获取用户信息
+    getUserData(userid, vcode) {
+        return new Promise((resove, rej) => {
+            let that = this;
+            wx.request({
+                url: app.globalData.url + 'yzservice2/rest/yzapp/evaluation/getPesronInf',
+                method: 'get',
+                data: {
+                    userid,
+                    vcode,
+                },
+                success: function (res) {
+                    console.log(res)
+                    if (res.data.code == 101) {
+                        let { id, name, phone, sex, company, duty, userid} = {...res.data.data }
+                        this.setData({
+                            userData: res.data.data,
+                            name,
+                            phoneNumber: phone,
+                            sex,
+                            company,
+                            job: duty,
+                            id,
+                        })
+                        resove(res.data.data)
+                    }
+                },
+                fail: function (err) {
+                    rej("error 用户信息")
+                }
+            })
+        })
+    },
+    //保存接口
+    modifyUserData(userid, vcode, id, name, phone, sex, company, duty) {
+        console.log(userid, vcode, id, name, phone, sex, company, duty)
+        return new Promise((resove, rej) => {
+            let that = this;
+            wx.request({
+                url: app.globalData.url + 'yzservice2/rest/yzapp/evaluation/modifyPesronInf',
+                method: 'post',
+                data: {
+                    userid,
+                    vcode,
+                    id,
+                    name,
+                    phone,
+                    sex,
+                    company,
+                    duty,
+
+                },
+                success: function (res) {
+                    console.log(res)
+                    if (res.data.code == 101) {
+                        this.setData({
+                            id:res.data.data,
+                        })
+                        resove(res.data.data)
+                    }
+                },
+                fail: function (err) {
+                    rej("error 提交用户信息")
+                }
+            })
+        })
     },
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
         let portrait = wx.getStorageSync('portrait') || app.globalData.userInfo.avatarUrl
-
+            , self = this
+            , userid = wx.getStorageSync('userid')
+            , vocde = wx.getStorageSync('vocde')
         this.setData({
             portrait,
         })
+
+        this.getUserData(userid, vocde)
     },
     /* 后台接口 */
 

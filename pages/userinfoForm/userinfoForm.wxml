@@ -5,7 +5,7 @@
             <view class="appraise-cell portrait-out">
                 <view class="appraise-cell-key">头像</view>
                 <view class="appraise-cell-value">
-                    <view class="portrait-imgbox"  bindtap="addPic">
+                    <view class="portrait-imgbox" ><!--  bindtap="addPic" -->
                         <image class="" mode="aspectFill" src="{{portrait}}"></image>
                     </view>
                 </view>
