@@ -195,6 +195,9 @@ Page({
             wx.request({
                 url: app.globalData.url + 'yzservice2/rest/yzapp/evaluation/getproject',
                 method: 'post',
+                header: {
+                    "content-type": "application/x-www-form-urlencoded"
+                },
                 data: {
                     address,
                     client,
@@ -211,7 +214,9 @@ Page({
                             icon: "none",
                             title: message,
                         })
-                        that.imgbox = []
+                        that.setData({
+                            imgbox:[]
+                        })
                         resove(res.data.data)
                     }
                 },

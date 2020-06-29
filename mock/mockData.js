@@ -849,7 +849,7 @@ export function backBarAndLine(title1,title2,times,ydata1,ydata2){
                 show: false,
                 type: 'category',
                 boundaryGap: true,
-                data: ydata1
+                data: times
             }
         ],
         yAxis: [
@@ -874,28 +874,20 @@ export function backBarAndLine(title1,title2,times,ydata1,ydata2){
                 type: 'bar',
                 xAxisIndex: 1,
                 yAxisIndex: 1,
-                data: ydata2
+                data: ydata1
             },
             {
                 name: title2,
                 type: 'line',
                 smooth: true,
-                data: (function () {
-                    var res = [];
-                    var len = 0;
-                    while (len < times.length) {
-                        res.push((Math.random() * 10 + 5).toFixed(1) - 0);
-                        len++;
-                    }
-                    return res;
-                })()
+                data: ydata1
             }
         ]
     };
 }
 
 /* 双柱状 */
-export function backBarAndBar(title1, title2, times, twoType = ["bar", "bar"]) {
+export function backBarAndBar(title1, title2, times,ydata1,ydata2, twoType = ["bar", "bar"]) {
     return {
         color: ['#4cabce', '#e5323e'],
         tooltip: {
@@ -917,14 +909,7 @@ export function backBarAndBar(title1, title2, times, twoType = ["bar", "bar"]) {
                 show: false,
                 type: 'category',
                 boundaryGap: true,
-                data: (function () {
-                    var res = [];
-                    var len = times.length || 10;
-                    while (len--) {
-                        res.push(10 - len - 1);
-                    }
-                    return res;
-                })()
+                data: times
             }
         ],
         yAxis: [
@@ -932,16 +917,12 @@ export function backBarAndBar(title1, title2, times, twoType = ["bar", "bar"]) {
                 type: 'value',
                 scale: true,
                 name: title1,
-                max: 30,
-                min: 0,
                 boundaryGap: [0.2, 0.2]
             },
             {
                 type: 'value',
                 scale: true,
                 name: title2,
-                max: 1200,
-                min: 0,
                 boundaryGap: [0.2, 0.2]
             }
         ],
@@ -951,27 +932,12 @@ export function backBarAndBar(title1, title2, times, twoType = ["bar", "bar"]) {
                 type: twoType[0],
                 xAxisIndex: 0,
                 yAxisIndex: 1,
-                data: (function () {
-                    var res = [];
-                    var len = times.length || 10;
-                    while (len--) {
-                        res.push(Math.round(Math.random() * 1000));
-                    }
-                    return res;
-                })()
+                data: ydata1
             },
             {
                 name: title2,
                 type: twoType[1],
-                data: (function () {
-                    var res = [];
-                    var len = 0;
-                    while (len < times.length) {
-                        res.push((Math.random() * 10 + 5).toFixed(1) - 0);
-                        len++;
-                    }
-                    return res;
-                })()
+                data: ydata2
             }
         ]
     };
@@ -1001,7 +967,7 @@ export function oneLine(title1, times, yData) {
         }],
         series: [
             {
-                name: 'title1',
+                name: title1,
                 type: 'line',
                 smooth: true,
                 animation: true,
@@ -1017,7 +983,7 @@ export function oneLine(title1, times, yData) {
 } 
 
 /* 双折线图 */
-export function doubleLine (title1, title2, times) {
+export function doubleLine(title1, title2, times, ydata1, ydata2) {
     return {
         legend: {
             data: [title1, title2]
@@ -1038,14 +1004,7 @@ export function doubleLine (title1, title2, times) {
                 show: false,
                 type: 'category',
                 boundaryGap: true,
-                data: (function () {
-                    var res = [];
-                    var len = times.length || 10;
-                    while (len--) {
-                        res.push(10 - len - 1);
-                    }
-                    return res;
-                })()
+                data: times
             }
         ],
         yAxis: [
@@ -1053,16 +1012,12 @@ export function doubleLine (title1, title2, times) {
                 type: 'value',
                 scale: true,
                 name: title1,
-                max: 30,
-                min: 0,
                 boundaryGap: [0.2, 0.2]
             },
             {
                 type: 'value',
                 scale: true,
                 name: title2,
-                max: 1200,
-                min: 0,
                 boundaryGap: [0.2, 0.2]
             }
         ],
@@ -1074,29 +1029,14 @@ export function doubleLine (title1, title2, times) {
                 yAxisIndex: 1,
                 smooth: true,
                 animation: true,
-                data: (function () {
-                    var res = [];
-                    var len = times.length || 10;
-                    while (len--) {
-                        res.push(Math.round(Math.random() * 1000));
-                    }
-                    return res;
-                })()
+                data: ydata1,
             },
             {
                 name: title2,
                 type: 'line',
                 smooth: true,
                 animation: true,
-                data: (function () {
-                    var res = [];
-                    var len = 0;
-                    while (len < times.length) {
-                        res.push((Math.random() * 10 + 5).toFixed(1) - 0);
-                        len++;
-                    }
-                    return res;
-                })()
+                data:  ydata2
             }
         ]
     };

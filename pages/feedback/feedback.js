@@ -8,7 +8,7 @@ Page({
     data: {
         text:""
     },
-    bindTextAreaBlur(e){
+    bindTextAreaInput(e){
         console.log(e)
         this.setData({
             text: e.detail.value
@@ -40,7 +40,10 @@ Page({
             let that = this;
             wx.request({
                 url: app.globalData.url + 'yzservice2/rest/yzapp/evaluation/feedback',
-                method: 'GET',
+                method: 'post',
+                header: {
+                    "content-type": "application/x-www-form-urlencoded"
+                },
                 data: {
                     userid,
                     vcode,

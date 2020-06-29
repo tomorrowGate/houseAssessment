@@ -117,7 +117,7 @@ Page({
                     console.log(res)
                     if (res.data.code == 101) {
                         let { id, name, phone, sex, company, duty, userid} = {...res.data.data }
-                        this.setData({
+                        that.setData({
                             userData: res.data.data,
                             name,
                             phoneNumber: phone,
@@ -143,6 +143,9 @@ Page({
             wx.request({
                 url: app.globalData.url + 'yzservice2/rest/yzapp/evaluation/modifyPesronInf',
                 method: 'post',
+                header: {
+                    "content-type": "application/x-www-form-urlencoded"
+                },
                 data: {
                     userid,
                     vcode,
@@ -157,7 +160,7 @@ Page({
                 success: function (res) {
                     console.log(res)
                     if (res.data.code == 101) {
-                        this.setData({
+                        that.setData({
                             id:res.data.data,
                         })
                         resove(res.data.data)

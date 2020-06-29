@@ -1,4 +1,4 @@
-import { doubleLine, optionTime, optionTotcalLine } from "../../mock/mockData.js"
+import { doubleLine, oneLine, optionTime, optionTotcalLine } from "../../mock/mockData.js"
 import { countMonthList, getMonths } from "../../utils/dateCalc.js"
 let echarts = require('../../utils/ec-canvas/echarts');
 let wxCharts = require('../../utils/wxcharts.js');
@@ -47,11 +47,26 @@ Page({
      * 生命周期函数--监听页面初次渲染完成
      */
     onReady: function () {
+        let userid = wx.getStorageSync('userid')
+            , vocde = wx.getStorageSync('vocde')
+            , imd = 0
         this.charts1 = this.selectComponent("#chart1");
         this.charts2 = this.selectComponent("#chart2");
 
-        this.charts1.initLine(optionTime)
-        this.charts2.initLine(doubleLine("挂牌量", "成交量", getMonths()))
+        /* this.charts1.initLine(optionTime)
+        this.charts2.initLine(doubleLine("挂牌量", "成交量", getMonths())) */
+
+        this.getSecHouseDet(userid, vocde, imd)
+            .then(res => {
+                let xdata = this.data.secHouseData.month
+                let ydataListing = this.data.secHouseData.listingCount 
+                let ydatalCount = this.data.secHouseData.dealCount 
+                let ydataAvg = this.data.secHouseData.dealAvg
+
+                this.charts1.initLine(doubleLine("挂牌量", "成交量", xdata, ydataListing, ydatalCount))
+                this.charts2.initLine(oneLine("成交价/评估价", xdata, ydataAvg))
+            })
+            .catch(err => console.log(err))
     },
 
     /**
@@ -84,12 +99,22 @@ Page({
             imd = 0
         }
         this.getSecHouseDet(userid, vocde, imd)
-        this.getTimeCut({
+            .then(res => {
+                let xdata = this.data.secHouseData.month
+                let ydataListing = this.data.secHouseData.listingCount
+                let ydatalCount = this.data.secHouseData.dealCount
+                let ydataAvg = this.data.secHouseData.dealAvg
+
+                this.charts1.initLine(backBarAndLine("挂牌量", "成交量", xdata, ydataListing, ydatalCount))
+                this.charts2.initLine(oneLine("成交价/评估价", xdata, ydataAvg))
+            })
+            .catch(err => console.log(err))
+        /* this.getTimeCut({
             detail: {
                 startTime: "2019/6",
                 endTime: "2020/6"
             }
-        })
+        }) */
     },
     bindPickerChangeHouse(e) {
         let value = this.data.arrayHouse[e.detail.value]["name"]

@@ -123,6 +123,7 @@ Page({
         dealAvgList:[],
         clearingCycleList:[],
         monthList:[],
+        newhouseData:{},
     },
     /**
      * 生命周期函数--监听页面加载
@@ -136,6 +137,9 @@ Page({
      */
     onReady: function () {
         let twoType=["bar","bar"]
+            ,userid = wx.getStorageSync('userid')
+            , vocde = wx.getStorageSync('vocde')
+            , imd = 0
         this.charts1 = this.selectComponent("#chart1");
         this.charts2 = this.selectComponent("#chart2");
         this.charts3 = this.selectComponent("#chart3");
@@ -145,6 +149,25 @@ Page({
         this.charts3.initLine(optionTime)
         //this.charts3.initLine(backBarAndLine("当月库存量", "近年的月成交量", getMonths()))
 
+        this.getNewHouseDet(userid, vocde, imd)
+            .then(res => {
+                let { supplyTao, dealTao, linkRatio, yearOnYear, supplyTaoList, dealTaoList, dealAvgList, clearingCycleList, monthList } = { res }
+                that.setData({
+                    supplyTao,
+                    dealTao,
+                    linkRatio,
+                    yearOnYear,
+                    supplyTaoList,
+                    dealTaoList,
+                    dealAvgList,
+                    clearingCycleList,
+                    monthList,
+                    newhouseData
+                })
+                this.charts1.initLine(backBarAndBar("供应套数", "成交套数", monthList, twoType))
+                this.charts2.initLine(backBarAndLine("成交宗数", "成交金额", xdata, ydataNum, ydataAmount))
+            })
+            .catch(err => console.log(err))
         this.randoms()
     },
 
@@ -265,18 +288,7 @@ Page({
                     console.log(res)
                     if (res.data.code == 101) {
                         let newhouseData = {...res.data.data}
-                        let { supplyTao, dealTao, linkRatio, yearOnYear, supplyTaoList, dealTaoList, dealAvgList, clearingCycleList, monthList } = { newhouseData }
-                        that.setData({
-                            supplyTao, 
-                            dealTao, 
-                            linkRatio, 
-                            yearOnYear, 
-                            supplyTaoList, 
-                            dealTaoList, 
-                            dealAvgList, 
-                            clearingCycleList, 
-                            monthList
-                        })
+                        
                         resove(res.data.data)
                     } else if (res.data.code == 201) {
                         wx.navigateTo({

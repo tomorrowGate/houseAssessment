@@ -6,7 +6,7 @@
         <view class="user-card-out">
             <view class="user-head">
                <view class="house-src">当月领证房源量</view>
-               <view class="house-num">143896/套</view>
+               <view class="house-num">{{newhouseData.a}}/套</view>
             </view>
 
             <view class="user-card">

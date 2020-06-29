@@ -94,7 +94,7 @@ Page({
                     console.log(res)
                     if (res.data.code == 101) {
                        // let data = res.data.data
-                       this.setData({
+                       that.setData({
                            userData:res.data.data
                        })
                         resove(res.data.data)

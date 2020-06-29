@@ -1,4 +1,4 @@
-import { backBarAndLine, optionTime, optionTotcalLine } from "../../mock/mockData.js"
+import { backBarAndLine, optionTime, optionTotcalLine,oneLine } from "../../mock/mockData.js"
 import { countMonthList, getMonths } from "../../utils/dateCalc.js"
 let echarts = require('../../utils/ec-canvas/echarts');
 let wxCharts = require('../../utils/wxcharts.js');
@@ -52,22 +52,18 @@ Page({
         this.charts1 = this.selectComponent("#chart1");
         this.charts2 = this.selectComponent("#chart2");
 
-        this.charts1.initLine(optionTime)
-        this.charts2.initLine(backBarAndLine("成交宗数", "成交金额", getMonths()))
-
+       /*  this.charts1.initLine(optionTime)
+        this.charts2.initLine(backBarAndLine("成交宗数", "成交金额", getMonths())) */
 
         this.getlawHouseDet(userid, vocde, imd)
             .then(res => {
-                let xdata = this.data.landData.monthList
-                let ydataMoney = this.data.landData.amountList
-                let ydataDeal = this.data.landData.dealCountList
-                let ydataDealArea = this.data.landData.dealCountList
-                let ydataListing = this.data.landData.hangOutList
-                let ydataListingArea = this.data.landData.hangOutList
+                let xdata = this.data.lawData.month
+                let ydataMoney = this.data.lawData.cdividedList
+                let ydataNum = this.data.lawData.dealCount
+                let ydataAmount = this.data.lawData.dealAmount
 
                 this.charts1.initLine(oneLine("成交价/评估价", xdata, ydataMoney))
-                this.charts2.initLine(backBarAndLine("成交宗数", "建面", xdata, ydataDeal, ydataDealArea))
-                this.charts3.initLine(backBarAndLine("挂牌宗数", "建面", xdata, ydataListing, ydataListingArea))
+                this.charts2.initLine(backBarAndLine("成交宗数", "成交金额", xdata, ydataNum, ydataAmount))
             })
             .catch(err => console.log(err))
         
