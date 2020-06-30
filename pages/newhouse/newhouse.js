@@ -143,7 +143,10 @@ Page({
         this.charts1 = this.selectComponent("#chart1");
         this.charts2 = this.selectComponent("#chart2");
         this.charts3 = this.selectComponent("#chart3");
-
+        wx.showLoading({
+            title: '正在加载...',
+            mask: true
+        })
 
         this.getNewHouseDet(userid, vocde, imd)
             .then(res => {
@@ -163,6 +166,7 @@ Page({
                 this.charts1.initLine(backBarAndBar("供应套数", "成交套数", monthList, supplyTaoList,dealTaoList,twoType))
                 this.charts2.initLine(oneLine("成交价/评估价", monthList, dealAvgList))
                 this.charts3.initLine(oneLine("成交价/评估价", monthList, clearingCycleList))
+                wx,wx.hideLoading()
             })
             .catch(err => console.log(err))
         //this.randoms()
@@ -205,6 +209,10 @@ Page({
         }else{
             imd = 0
         }
+        wx.showLoading({
+            title: '正在加载...',
+            mask: true
+        })
         this.getNewHouseDet(userid, vocde, imd)
             .then(res => {
                 let newhouseData = this.data.newhouseData
@@ -223,6 +231,7 @@ Page({
                 this.charts1.initLine(backBarAndBar("供应套数", "成交套数", monthList, supplyTaoList, dealTaoList, twoType))
                 this.charts2.initLine(oneLine("成交价/评估价", monthList, dealAvgList))
                 this.charts3.initLine(oneLine("成交价/评估价", monthList, clearingCycleList))
+                wx.hideLoading()
             })
             .catch(err => console.log(err))
 
@@ -258,7 +267,7 @@ Page({
         return new Promise((resove, rej) => {
             let that = this;
             wx.request({
-                url: app.globalData.url + 'yzservice2/rest/yzapp/MarketMonitoring/newhouse',
+                url: app.globalData.url + 'yzservice/rest/yzapp/MarketMonitoring/newhouse',
                 method: 'GET',
                 data: {
                     userid,

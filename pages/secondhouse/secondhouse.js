@@ -55,7 +55,10 @@ Page({
 
         /* this.charts1.initLine(optionTime)
         this.charts2.initLine(doubleLine("挂牌量", "成交量", getMonths())) */
-
+        wx.showLoading({
+            title: '正在加载...',
+            mask:true
+        })
         this.getSecHouseDet(userid, vocde, imd)
             .then(res => {
                 let xdata = this.data.secHouseData.month
@@ -65,6 +68,7 @@ Page({
 
                 this.charts1.initLine(doubleLine("挂牌量", "成交量", xdata, ydataListing, ydatalCount))
                 this.charts2.initLine(oneLine("成交价/评估价", xdata, ydataAvg))
+                wx.hideLoading()
             })
             .catch(err => console.log(err))
     },
@@ -98,6 +102,10 @@ Page({
         } else {
             imd = 0
         }
+        wx.showLoading({
+            title: '正在加载...',
+            mask:true
+        })
         this.getSecHouseDet(userid, vocde, imd)
             .then(res => {
                 let xdata = this.data.secHouseData.month
@@ -105,8 +113,9 @@ Page({
                 let ydatalCount = this.data.secHouseData.dealCount
                 let ydataAvg = this.data.secHouseData.dealAvg
 
-                this.charts1.initLine(backBarAndLine("挂牌量", "成交量", xdata, ydataListing, ydatalCount))
+                this.charts1.initLine(doubleLine("挂牌量", "成交量", xdata, ydataListing, ydatalCount))
                 this.charts2.initLine(oneLine("成交价/评估价", xdata, ydataAvg))
+                wx.hideLoading()
             })
             .catch(err => console.log(err))
         /* this.getTimeCut({
@@ -176,7 +185,7 @@ Page({
         return new Promise((resove, rej) => {
             let that = this;
             wx.request({
-                url: app.globalData.url + 'yzservice2/rest/yzapp/MarketMonitoring/secondhouse',
+                url: app.globalData.url + 'yzservice/rest/yzapp/MarketMonitoring/secondhouse',
                 method: 'GET',
                 data: {
                     userid,

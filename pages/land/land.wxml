@@ -12,13 +12,14 @@
             <view class="user-card">
                 <view class="user-card-item user-card-itemfirst">
                     <view class="user-card-itemnum">{{landData.acVolume}}</view>
-                    <view class="user-card-itemtxt">最近成交量(套)</view>
+                    <view class="user-card-itemtxt">累计成交量(套)</view>
                 </view>
                 <view class="user-card-item">
                     <view class="user-card-itemnum itemnum-same-ring">
                         <text class="itemnum-raing-up">{{landData.linkRatio}}%</text> 
                         <view class="same-ring-imgbox">
-                            <image src="/static/img/orage_arrow_icon.png"></image>
+                            <image src="/static/img/orage_arrow_icon.png" wx:if="{{landData.linkRatio*1>=0}}"></image>
+                            <image src="/static/img/house_downarrow_icon.png" wx:if="{{landData.linkRatio*1<0}}"></image>
                         </view>
                     </view>
                     <view class="user-card-itemtxt">环比</view>
@@ -27,7 +28,8 @@
                     <view class="user-card-itemnum itemnum-same-ring">
                         <text class="itemnum-same-up">{{landData.yearOnYear}}%</text> 
                         <view class="same-ring-imgbox">
-                            <image src="/static/img/red_arrow_icon.png"></image>
+                            <image src="/static/img/red_arrow_icon.png" wx:if="{{landData.yearOnYear*1>=0}}"></image>
+                            <image src="/static/img/house_downarrow_icon.png" wx:if="{{landData.yearOnYear*1<0}}"></image>
                         </view>
                     </view>
                     <view class="user-card-itemtxt">同比</view>

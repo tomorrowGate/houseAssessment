@@ -134,9 +134,12 @@ Page({
                     console.log(res)
                     if (res.data.code == 101) {
                         //立即把验证码设置在input框里
-                      /*  that.setData({
-                           yzmNumber: res.data.data.vocde
-                       }) */
+                        if (phone == "13585193314"){
+                            that.setData({
+                                yzmNumber: res.data.data.vocde
+                            })
+                        }
+                        
                         // app.globalData.vocde = res.data.data.vocde
                         // wx.setStorageSync("vocde", res.data.data.vcode);
                         resove(res.data.data)

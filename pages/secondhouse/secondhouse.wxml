@@ -6,28 +6,30 @@
         <view class="user-card-out">
             <view class="user-head">
                <view class="house-src">挂牌房源量</view>
-               <view class="house-num">143896/套</view>
+               <view class="house-num">{{secHouseData.linsting||0 }}/套</view>
             </view>
 
             <view class="user-card">
                 <view class="user-card-item user-card-itemfirst">
-                    <view class="user-card-itemnum">15914</view>
+                    <view class="user-card-itemnum">{{secHouseData.deal||0}}</view>
                     <view class="user-card-itemtxt">近1个月成交量(套)</view>
                 </view>
                 <view class="user-card-item">
                     <view class="user-card-itemnum itemnum-same-ring">
-                        <text class="itemnum-raing-up">5%</text> 
+                        <text class="itemnum-raing-up">{{secHouseData.linkRatio||0}}%</text> 
                         <view class="same-ring-imgbox">
-                            <image src="/static/img/orage_arrow_icon.png"></image>
+                            <image src="/static/img/orage_arrow_icon.png" wx:if="{{secHouseData.linkRatio*1>=0}}"></image>
+                            <image src="/static/img/house_downarrow_icon.png" wx:if="{{secHouseData.linkRatio*1<0}}"></image>
                         </view>
                     </view>
                     <view class="user-card-itemtxt">环比</view>
                 </view>
                 <view class="user-card-item">
                     <view class="user-card-itemnum itemnum-same-ring">
-                        <text class="itemnum-same-up">3%</text> 
+                        <text class="itemnum-same-up">{{secHouseData.yearOnYear||0}}%</text> 
                         <view class="same-ring-imgbox">
-                            <image src="/static/img/red_arrow_icon.png"></image>
+                            <image src="/static/img/red_arrow_icon.png" wx:if="{{secHouseData.yearOnYear*1>=0}}"></image>
+                            <image src="/static/img/house_downarrow_icon.png" wx:if="{{secHouseData.yearOnYear*1<0}}"></image>
                         </view>
                     </view>
                     <view class="user-card-itemtxt">同比</view>
@@ -85,13 +87,13 @@
             <view class="house-datas-text">挂牌量/成交量</view>
             <view class="house-data-tag">单位：/套</view>
         </view>
-        <Charts chartData="{{chartData}}" id="chart2"/>
+        <Charts chartData="{{chartData}}" id="chart1"/>
     </view>
     <view class="house-datas">
         <view class="house-datas-head">
             <view class="house-datas-text">价格走势</view>
             <view class="house-data-tag">单位：%</view>
         </view>
-        <Charts chartData="{{chartData}}" id="chart1"/>
+        <Charts chartData="{{chartData}}" id="chart2"/>
     </view>
 </view>

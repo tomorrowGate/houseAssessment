@@ -59,7 +59,7 @@ Page({
         return new Promise((resove, rej) => {
             let that = this;
             wx.request({
-                url: app.globalData.url + 'yzservice2/rest/yzapp/evaluation/getstate',
+                url: app.globalData.url + 'yzservice/rest/yzapp/evaluation/getstate',
                 method: 'get',
                 data: {
                     userid,
@@ -84,7 +84,7 @@ Page({
         return new Promise((resove, rej) => {
             let that = this;
             wx.request({
-                url: app.globalData.url + 'yzservice2/rest/yzapp/evaluation/getPesronInf',
+                url: app.globalData.url + 'yzservice/rest/yzapp/evaluation/getPesronInf',
                 method: 'get',
                 data: {
                     userid,

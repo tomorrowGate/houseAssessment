@@ -6,8 +6,8 @@
         </view>
         <view class="user-card-out">
             <view class="user-head">
-               <view class="house-src">{{houseDet.address}}</view>
-               <view class="house-num">{{randomPrice + '元/m2'}}</view>
+               <view class="house-src">{{houseDet.tName||houseDet.bName||houseDet.qName||" "}}</view>
+               <view class="house-num">{{houseDet.price + '元/m2'}}</view>
             </view>
 
             <view class="user-card" bindtap="showInputSearch">
@@ -36,10 +36,10 @@
                 <text class="housepd-cell-key">物业费用: </text>
                 <text class="housepd-cell-value">{{houseDet.wyf||"-"}}</text>
             </view>
-            <view class="housepd-cell-inlineb">
+           <!--  <view class="housepd-cell-inlineb">
                 <text class="housepd-cell-key">建筑面积: </text>
                 <text class="housepd-cell-value">{{houseDet.area||"-"}} </text>
-            </view>
+            </view> -->
             <view class="housepd-cell-inlineb">
                 <text class="housepd-cell-key">物业类型: </text>
                 <text class="housepd-cell-value">{{houseDet.buildingType||"-" }}</text>

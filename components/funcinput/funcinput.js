@@ -175,7 +175,7 @@ Component({
                 key,
                 page
             }
-            if (url == "yzservice2/rest/yzapp/house/getBuilding"){
+            if (url == "yzservice/rest/yzapp/house/getBuilding"){
                 queryData = {
                     userid,
                     vcode,
@@ -193,7 +193,7 @@ Component({
                         console.log(res)
                         if (res.data.code == 101) {
                             let city = []
-                            if (url == "yzservice2/rest/yzapp/house/getBuilding"){
+                            if (url == "yzservice/rest/yzapp/house/getBuilding"){
                                 res.data.data.forEach((v, i) => {
                                     v.address = v.name
                                     v.houseid = v.bid

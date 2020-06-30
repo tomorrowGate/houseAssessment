@@ -143,16 +143,17 @@ Page({
         return new Promise((resove, rej) => {
             let that = this;
             wx.request({
-                url: app.globalData.url + 'yzservice2/rest/yzapp/house/comAndDisPrice',
+                url: app.globalData.url + 'yzservice/rest/yzapp/house/comAndDisPrice',
                 method: 'GET',
                 data: {
                     userid,
                     vcode,
-                    houseid,
+                    bid:houseid,
                 },
                 success: function (res) {
                     console.log(res)
                     if (res.data.code == 101) {
+                        let houseTrend = {...res.data.data}
                         that.setData({
                             houseTrend
                         })
@@ -221,7 +222,7 @@ Page({
                 let yDataCity = houseTrend.commList
                 let yDataDistrict = houseTrend.districtList
 
-                this.chart.initLine(doubleLine("城区房价", "小区房价", xdata, yDataCity, yDataDistrict))
+                this.chart.initLine(doubleLine("城区房价", "小区房价", xData, yDataCity, yDataDistrict))
             })
             .catch(err => console.log(err))
 

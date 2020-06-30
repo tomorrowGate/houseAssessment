@@ -95,6 +95,10 @@ Page({
         } else {
             imd = 0
         }
+        wx.showLoading({
+            title: '正在加载...',
+            mask: true
+        })
         this.getLandDet(userid, vocde, imd)
             .then(data=>{
                 let xdata = this.data.landData.monthList
@@ -107,6 +111,7 @@ Page({
                 this.charts1.initLine(oneLine("成交价/评估价", xdata, ydataMoney)) 
                 this.charts2.initLine(backBarAndLine("成交宗数", "建面", xdata, ydataDeal, ydataDealArea))
                 this.charts3.initLine(backBarAndLine("挂牌宗数", "建面", xdata, ydataListing, ydataListingArea))
+                wx.hideLoading()
             })
             .catch(err=>console.log(err))
 
@@ -179,7 +184,7 @@ Page({
         return new Promise((resove, rej) => {
             let that = this;
             wx.request({
-                url: app.globalData.url + 'yzservice2/rest/yzapp/MarketMonitoring/land',
+                url: app.globalData.url + 'yzservice/rest/yzapp/MarketMonitoring/land',
                 method: 'GET',
                 data: {
                     userid,

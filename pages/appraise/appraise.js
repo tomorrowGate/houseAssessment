@@ -136,15 +136,24 @@ Page({
             })
             return
         }
+        wx.showLoading({
+            title: '正在提交',
+        })
         this.submitFile(userid, vocde, targetFile)
             .then((res)=>{
                 let arids = self.data.fileidArr.join(",")
                 self.submitAllData(userid, vocde, address, client, tel, arids)
+                .then(res=>{
+                    //wx.hideLoading()
+                })
             })
             .catch(err=>{
                 console.log(err)
+                //wx.hideLoading()
             })
-
+        setTimeout(()=>{
+            wx.hideLoading()
+        },2000)
        /*  wx.showToast({
             icon:"none",
             title: '保存成功',
@@ -156,7 +165,7 @@ Page({
             let that = this;
             targetFile.forEach((v,i)=>{
                 wx.uploadFile({
-                    url: app.globalData.url + '/yzservice2/rest/yzapp/file/uploadfile',
+                    url: app.globalData.url + '/yzservice/rest/yzapp/file/uploadfile',
                     filePath: v,
                     name: 'file',
                     formData: {
@@ -193,7 +202,7 @@ Page({
         return new Promise((resove, rej) => {
             let that = this;
             wx.request({
-                url: app.globalData.url + 'yzservice2/rest/yzapp/evaluation/getproject',
+                url: app.globalData.url + 'yzservice/rest/yzapp/evaluation/getproject',
                 method: 'post',
                 header: {
                     "content-type": "application/x-www-form-urlencoded"

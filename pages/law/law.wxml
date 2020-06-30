@@ -18,7 +18,9 @@
                     <view class="user-card-itemnum itemnum-same-ring">
                         <text class="itemnum-raing-up">{{lawData.linkRatio}}%</text> 
                         <view class="same-ring-imgbox">
-                            <image src="/static/img/orage_arrow_icon.png"></image>
+                            
+                            <image src="/static/img/orage_arrow_icon.png" wx:if="{{lawData.linkRatio*1>=0}}"></image>
+                            <image src="/static/img/house_downarrow_icon.png" wx:if="{{lawData.linkRatio*1<0}}"></image>
                         </view>
                     </view>
                     <view class="user-card-itemtxt">环比</view>
@@ -27,7 +29,8 @@
                     <view class="user-card-itemnum itemnum-same-ring">
                         <text class="itemnum-same-up">{{lawData.yearOnYear}}%</text> 
                         <view class="same-ring-imgbox">
-                            <image src="/static/img/red_arrow_icon.png"></image>
+                            <image src="/static/img/red_arrow_icon.png" wx:if="{{lawData.yearOnYear*1>=0}}"></image>
+                            <image src="/static/img/house_downarrow_icon.png" wx:if="{{lawData.yearOnYear*1<0}}"></image>
                         </view>
                     </view>
                     <view class="user-card-itemtxt">同比</view>

@@ -195,7 +195,7 @@ export function backBarAndLine(title1,title2,times,ydata1,ydata2){
         tooltip: {
             trigger: 'axis',
             axisPointer: {
-                type: 'cross'
+                type: 'shadow'
             }
         },
         legend: {
@@ -219,7 +219,10 @@ export function backBarAndLine(title1,title2,times,ydata1,ydata2){
                 type: 'value',
                 scale: true,
                 name: title1,
-                min:0,
+                 min: 0,
+                /*max: Math.max(...ydata1) * 2,
+                splitNumber: 6,
+                interval: (Math.max(...ydata1) * 2 - 0) / 6, */
                 splitLine: { show: false },
                 boundaryGap: [0.2, 0.2]
             },
@@ -227,7 +230,10 @@ export function backBarAndLine(title1,title2,times,ydata1,ydata2){
                 type: 'value',
                 scale: true,
                 name: title2,
-                min: 0,
+                 min: 0,
+                /*max: Math.max(...ydata2) * 2,
+                splitNumber: 6,
+                interval: (Math.max(...ydata2) * 2 - 0) / 6, */
                 splitLine: { show: false },
                 boundaryGap: [0.2, 0.2]
             }
@@ -244,7 +250,7 @@ export function backBarAndLine(title1,title2,times,ydata1,ydata2){
                 name: title2,
                 type: 'line',
                 smooth: true,
-                data: ydata1
+                data: ydata2
             }
         ]
     };
@@ -283,6 +289,9 @@ export function backBarAndBar(title1, title2, times,ydata1,ydata2, twoType = ["b
                 name: title1,
                 splitLine: { show: false },
                 min: 0,
+                max: Math.max(...ydata1) * 2,
+                splitNumber: 6,
+                interval: (Math.max(...ydata1) * 2 - 0) / 6,
                 boundaryGap: [0.2, 0.2]
             },
             {
@@ -290,6 +299,9 @@ export function backBarAndBar(title1, title2, times,ydata1,ydata2, twoType = ["b
                 scale: true,
                 name: title2,
                 min: 0,
+                max: Math.max(...ydata2) * 2,
+                splitNumber: 6,
+                interval: (Math.max(...ydata2) * 2 - 0) / 6,
                 splitLine: { show: false },
                 boundaryGap: [0.2, 0.2]
             }
@@ -321,7 +333,10 @@ export function oneLine(title1, times, yData) {
             }
         },
         legend: {
-            data: [title1]
+           /*  data: [title1] */
+        },
+        grid: {
+            left: "50",
         },
         xAxis: [
             {
@@ -331,6 +346,7 @@ export function oneLine(title1, times, yData) {
             }
         ],
         yAxis: [{
+            /* name: title1, */
             type: 'value',
         }],
         series: [
@@ -362,6 +378,9 @@ export function doubleLine(title1, title2, times, ydata1, ydata2) {
                 type: 'cross'
             }
         },
+        grid:{
+            left:"50",
+        },
         xAxis: [
             {
                 type: 'category',
@@ -381,6 +400,9 @@ export function doubleLine(title1, title2, times, ydata1, ydata2) {
                 scale: true,
                 name: title1,
                 min: 0,
+               /*  max: Math.max(...ydata1) * 2,
+                splitNumber: 6,
+                interval: (Math.max(...ydata1) * 2 - 0) / 6, */
                 splitLine: { show: false },
                 boundaryGap: [0.2, 0.2]
             },
@@ -389,6 +411,9 @@ export function doubleLine(title1, title2, times, ydata1, ydata2) {
                 scale: true,
                 name: title2,
                 min: 0,
+                /* max: Math.max(...ydata2) * 2,
+                splitNumber: 6,
+                interval: (Math.max(...ydata2) * 2 - 0) / 6, */
                 splitLine: { show: false },
                 boundaryGap: [0.2, 0.2]
             }
@@ -397,17 +422,17 @@ export function doubleLine(title1, title2, times, ydata1, ydata2) {
             {
                 name: title1,
                 type: 'line',
-                xAxisIndex: 1,
-                yAxisIndex: 1,
                 smooth: true,
                 animation: true,
                 data: ydata1,
+                yAxisIndex: 0,
             },
             {
                 name: title2,
                 type: 'line',
                 smooth: true,
                 animation: true,
+                yAxisIndex: 1,
                 data:  ydata2
             }
         ]

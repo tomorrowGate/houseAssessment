@@ -20,7 +20,7 @@ Page({
             inputValue: "",
             canSwitch: true
         },
-        fuzzyUrl: "yzservice2/rest/yzapp/house/getBuilding",
+        fuzzyUrl: "yzservice/rest/yzapp/house/getBuilding",
         isShowDia:true//是否显示弹框，true是不显示
     },
     showDiaLog(){

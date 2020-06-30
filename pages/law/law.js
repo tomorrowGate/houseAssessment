@@ -54,7 +54,10 @@ Page({
 
        /*  this.charts1.initLine(optionTime)
         this.charts2.initLine(backBarAndLine("成交宗数", "成交金额", getMonths())) */
-
+        wx.showLoading({
+            title: '正在加载...',
+            mask: true
+        })
         this.getlawHouseDet(userid, vocde, imd)
             .then(res => {
                 let xdata = this.data.lawData.month
@@ -64,6 +67,7 @@ Page({
 
                 this.charts1.initLine(oneLine("成交价/评估价", xdata, ydataMoney))
                 this.charts2.initLine(backBarAndLine("成交宗数", "成交金额", xdata, ydataNum, ydataAmount))
+                wx.hideLoading()
             })
             .catch(err => console.log(err))
         
@@ -151,7 +155,7 @@ Page({
         return new Promise((resove, rej) => {
             let that = this;
             wx.request({
-                url: app.globalData.url + 'yzservice2/rest/yzapp/MarketMonitoring/judicial',
+                url: app.globalData.url + 'yzservice/rest/yzapp/MarketMonitoring/judicial',
                 method: 'GET',
                 data: {
                     userid,

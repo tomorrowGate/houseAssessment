@@ -1,4 +1,4 @@
-import { oneLine, villageInfo } from "../../mock/mockData.js"
+import { oneLine, villageInfo,doubleLine } from "../../mock/mockData.js"
 let echarts = require('../../utils/ec-canvas/echarts');
 let wxCharts = require('../../utils/wxcharts.js');
 
@@ -94,10 +94,14 @@ Page({
     //获取价格走势
     getHouseTrend(userid, vcode, imd) {
         console.log(userid, vcode, imd)
+        wx.showLoading({
+            title: '正在加载...',
+            mask:true
+        })
         return new Promise((resove, rej) => {
             let that = this;
             wx.request({
-                url: app.globalData.url + 'yzservice2/rest/yzapp/MarketMonitoring/land',
+                url: app.globalData.url + 'yzservice/rest/yzapp/MarketMonitoring/secondhouse',
                 method: 'GET',
                 data: {
                     userid,
@@ -130,10 +134,10 @@ Page({
                         wx.hideLoading()
                         rej(["error"])
                     }
-                    //wx.hideLoading()
+                    wx.hideLoading()
                 },
                 fail: function (err) {
-
+                    wx.hideLoading()
                     rej("error1")
                 }
             })
@@ -146,7 +150,7 @@ Page({
         return new Promise((resove, rej) => {
             let that = this;
             wx.request({
-                url: app.globalData.url + 'yzservice2/rest/yzapp/house/getBuildingDetail',
+                url: app.globalData.url + 'yzservice/rest/yzapp/house/getBuildingDetail',
                 method: 'GET',
                 data: {
                     userid,
@@ -225,9 +229,10 @@ Page({
         })
         this.getHouseTrend(userid, vocde, imd)
             .then(data => {
-                let xdata = this.data.houseTrend.monthList
-                let ydataMoney = this.data.houseTrend.amountList
-                this.ecComponent1.initLine(oneLine("价格走势", xdata, ydataMoney))
+                let xdata = this.data.houseTrend.month
+                let ydataListing = this.data.houseTrend.listingCount
+                let ydatalCount = this.data.houseTrend.dealCount
+                this.ecComponent1.initLine(doubleLine("挂牌量", "成交量", xdata, ydataListing, ydatalCount))
             })
             .catch(err => console.log(err))
     },
