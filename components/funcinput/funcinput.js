@@ -6,7 +6,10 @@ Component({
      * 组件的属性列表
      */
     properties: {
-
+        url:{
+            type: String,
+            value: "yzservice/rest/yzapp/house/HouseQuery"
+        }
     },
 
     /**
@@ -165,21 +168,38 @@ Component({
         //模糊查询
         queryFuzzyPort(userid, vcode, key, page = 1) {
             console.log(userid, vcode, key, page)
+            let url = this.properties.url
+            let queryData = {
+                userid,
+                vcode,
+                key,
+                page
+            }
+            if (url == "yzservice2/rest/yzapp/house/getBuilding"){
+                queryData = {
+                    userid,
+                    vcode,
+                    bname:key,
+                    page
+                }
+            }
             return new Promise((resove, rej) => {
                 let that = this;
                 wx.request({
-                    url: app.globalData.url + 'yzservice/rest/yzapp/house/HouseQuery',
+                    url: app.globalData.url + url,
                     method: 'GET',
-                    data: {
-                        userid,
-                        vcode,
-                        key,
-                        page
-                    },
+                    data: queryData,
                     success: function (res) {
                         console.log(res)
                         if (res.data.code == 101) {
                             let city = []
+                            if (url == "yzservice2/rest/yzapp/house/getBuilding"){
+                                res.data.data.forEach((v, i) => {
+                                    v.address = v.name
+                                    v.houseid = v.bid
+                                    
+                                })
+                            }
                             res.data.data.forEach((v, i) => {
                                 city.push(v.address)
                             })

@@ -100,7 +100,7 @@
                         data-filterdata="{{village}}"
                         value="{{village.inputValue}}"/> -->
 
-                    <funcinput id="funcinput"/>
+                    <funcinput id="funcinput" url="{{fuzzyUrl}}"/>
                 </view>
             </view>
         </view>

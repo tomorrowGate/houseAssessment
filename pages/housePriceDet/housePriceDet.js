@@ -1,6 +1,6 @@
 // pages/housePriceDet/housePriceDet.js
 let app = getApp()
-import { option2, option2_1, option4, option4_1,option5} from "../../mock/mockData.js"
+import { option5, doubleLine } from "../../mock/mockData.js"
 Page({
 
     /**
@@ -40,10 +40,10 @@ Page({
         ecComponent1: null,
         chart:{},
         housePriceDetPort:null,//后台返回的房屋详细信息
+        
     },
     randoms(){
-        /* let arr = [option2, option2_1, option4, option4_1]
-            , randomInit = parseInt(Math.random() * arr.length) */
+        
         this.setData({
             /* chartData: arr[randomInit], */
              chartData: option5
@@ -153,9 +153,9 @@ Page({
                 success: function (res) {
                     console.log(res)
                     if (res.data.code == 101) {
-                        let xData = res.data.data.monthList
-                        let yDataCity = res.data.data.commList
-                        let yDataDistrict = res.data.data.districtList
+                        that.setData({
+                            houseTrend
+                        })
                         resove(res.data.data)
                     } else if (res.data.code == 201) {
                         wx.navigateTo({
@@ -169,11 +169,11 @@ Page({
                             title: mesg,
                             icon: "none"
                         })
-                        let timer = setTimeout(() => {
+                        // let timer = setTimeout(() => {
 
-                            wx.navigateBack()
-                        }, 1500)
-                        //wx.hideLoading()
+                        //     wx.navigateBack()
+                        // }, 1500)
+                        wx.hideLoading()
                         rej(["error"])
                     }
                     //wx.hideLoading()
@@ -209,8 +209,22 @@ Page({
      * 生命周期函数--监听页面初次渲染完成
      */
     onReady: function () {
+        let userid = wx.getStorageSync('userid')
+            , vocde = wx.getStorageSync('vocde')
+            , houseid = this.data.houseid
         this.chart = this.selectComponent("#chart");
-        this.randoms()
+
+        this.housePricetrend(userid, vocde, houseid)
+            .then(data => {
+                let houseTrend = this.data.houseTrend
+                let xData = houseTrend.monthList
+                let yDataCity = houseTrend.commList
+                let yDataDistrict = houseTrend.districtList
+
+                this.chart.initLine(doubleLine("城区房价", "小区房价", xdata, yDataCity, yDataDistrict))
+            })
+            .catch(err => console.log(err))
+
     },
 
     /**

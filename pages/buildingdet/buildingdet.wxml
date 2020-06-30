@@ -6,7 +6,7 @@
         </view>
         <view class="user-card-out">
             <view class="user-head">
-               <view class="house-src">国玺悦珑府</view>
+               <view class="house-src">{{houseDet.address}}</view>
                <view class="house-num">{{randomPrice + '元/m2'}}</view>
             </view>
 
@@ -30,39 +30,39 @@
         <view class="housepd-table-cells">
             <view class="housepd-cell-inlineb">
                 <text class="housepd-cell-key">建筑年代: </text>
-                <text class="housepd-cell-value">{{villageInfo.years}}</text>
+                <text class="housepd-cell-value">{{houseDet.byear||"-"}}</text>
             </view>
             <view class="housepd-cell-inlineb">
                 <text class="housepd-cell-key">物业费用: </text>
-                <text class="housepd-cell-value">{{villageInfo.propertyCost}}</text>
+                <text class="housepd-cell-value">{{houseDet.wyf||"-"}}</text>
             </view>
             <view class="housepd-cell-inlineb">
                 <text class="housepd-cell-key">建筑面积: </text>
-                <text class="housepd-cell-value">{{villageInfo.buildArea}} </text>
+                <text class="housepd-cell-value">{{houseDet.area||"-"}} </text>
             </view>
             <view class="housepd-cell-inlineb">
                 <text class="housepd-cell-key">物业类型: </text>
-                <text class="housepd-cell-value">{{villageInfo.propertyType}}</text>
+                <text class="housepd-cell-value">{{houseDet.buildingType||"-" }}</text>
             </view>
             <view class="housepd-cell-inlineb">
                 <text class="housepd-cell-key">车位数: </text>
-                <text class="housepd-cell-value">{{villageInfo.cars}} </text>
+                <text class="housepd-cell-value">{{houseDet.cars||"-"}} </text>
             </view>
             <view class="housepd-cell-inlineb">
                 <text class="housepd-cell-key">总户数: </text>
-                <text class="housepd-cell-value">{{villageInfo.houseTotal}}</text>
+                <text class="housepd-cell-value">{{houseDet.totalNumber||"-"}}</text>
             </view>
             <view class="housepd-cell-inlineb">
                 <text class="housepd-cell-key">容积率: </text>
-                <text class="housepd-cell-value">{{villageInfo.volume}}</text>
+                <text class="housepd-cell-value">{{houseDet.ratioCapacity ||"-"}}</text>
             </view>
             <view class="housepd-cell-inlineb">
                 <text class="housepd-cell-key">绿化率: </text>
-                <text class="housepd-cell-value">{{villageInfo.green}} </text>
+                <text class="housepd-cell-value">{{houseDet.ratioGreen ||"-"}} </text>
             </view>
             <view class="housepd-cell-block">
                 <text class="housepd-cell-key">物业公司: </text>
-                <text class="housepd-cell-value">{{villageInfo.propertCompony}}</text>
+                <text class="housepd-cell-value">{{houseDet.propertyCompany||"-"}}</text>
             </view>
         </view>
     </view>

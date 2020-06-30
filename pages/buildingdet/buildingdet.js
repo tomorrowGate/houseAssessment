@@ -1,8 +1,9 @@
-import { option, option2, option2_1, option3, option3_1, option4, option4_1, optionBarPic, villageInfo } from "../../mock/mockData.js"
+import { oneLine, villageInfo } from "../../mock/mockData.js"
 let echarts = require('../../utils/ec-canvas/echarts');
 let wxCharts = require('../../utils/wxcharts.js');
 
 let ringChart = null;
+let app = getApp()
 Page({
 
     /**
@@ -12,17 +13,6 @@ Page({
         ecComponent1:null,
         ecComponent2:null,
         ecComponent3:null,
-        // villageInfo:{
-        //     years:"",
-        //     propertyCost:"",
-        //     buildArea:"",
-        //     propertyType:"",
-        //     cars:"",
-        //     houseTotal:"",
-        //     volume:"",
-        //     green:"",
-        //     propertCompony:""
-        // },
         houseDet:{
             address:""
         },
@@ -40,7 +30,10 @@ Page({
         chartDataBar:{},
 
         chart:{},
-        chart2:{}
+        chart2:{},
+        houseDet:{},
+        houseid:"",
+        houseTrend:""
     },
     /* 搜索框方法开始 */
     showDiaLog() {
@@ -83,17 +76,10 @@ Page({
         });
     },
     loadData(){
-        let arr = [option, option2, option2_1, option3, option3_1, option4, option4_1,]
-            , randomInit = parseInt(Math.random() * arr.length)
         this.setData({
             chartDataBar: optionBarPic,
-            chartData: arr[randomInit],
-            chartData2: arr[parseInt(Math.random() * arr.length)]
         })
-
         this.ecComponent1 && this.ecComponent1.initLine(optionBarPic)
-        this.chart&&this.chart.initLine(arr[randomInit])
-        this.chart2&&this.chart2.initLine(arr[parseInt(Math.random() * arr.length)])
 
     },
     changeChartsShow(e){
@@ -104,24 +90,146 @@ Page({
             chartShowList: this.data.chartShowList
         })
     },
+    /* 后台接口 */
+    //获取价格走势
+    getHouseTrend(userid, vcode, imd) {
+        console.log(userid, vcode, imd)
+        return new Promise((resove, rej) => {
+            let that = this;
+            wx.request({
+                url: app.globalData.url + 'yzservice2/rest/yzapp/MarketMonitoring/land',
+                method: 'GET',
+                data: {
+                    userid,
+                    vcode,
+                    imd,
+                },
+                success: function (res) {
+                    console.log(res)
+                    if (res.data.code == 101) {
+                        let houseTrend = { ...res.data.data }
+                        that.setData({
+                            houseTrend
+                        })
+                        resove(res.data.data)
+                    } else if (res.data.code == 201) {
+                        wx.navigateTo({
+                            url: '/pages/bindUser/bindUser',
+                        })
+                        wx.hideLoading()
+                        rej(res.data.data)
+                    } else {
+                        let mesg = res.data.message ? res.data.message : "未能找到信息"
+                        res.data.message && wx.showToast({
+                            title: mesg,
+                            icon: "none"
+                        })
+                        // let timer = setTimeout(() => {
+                        //     wx.navigateBack()
+                        // }, 1500)
+                        wx.hideLoading()
+                        rej(["error"])
+                    }
+                    //wx.hideLoading()
+                },
+                fail: function (err) {
+
+                    rej("error1")
+                }
+            })
+        })
+    },
+    //获取楼盘信息
+    /* 后台接口 */
+    getBuildingDetail(userid, vcode, houseid) {
+        console.log(userid, vcode, houseid)
+        return new Promise((resove, rej) => {
+            let that = this;
+            wx.request({
+                url: app.globalData.url + 'yzservice2/rest/yzapp/house/getBuildingDetail',
+                method: 'GET',
+                data: {
+                    userid,
+                    vcode,
+                    bid: houseid,
+                },
+                success: function (res) {
+                    console.log(res,155)
+                    if (res.data.code == 101) {
+                        that.setData({
+                            houseDet: res.data.data
+                        })
+                        wx.hideLoading()
+                        resove(res.data.data)
+                    } else if (res.data.code == 201) {
+                        wx.navigateTo({
+                            url: '/pages/bindUser/bindUser',
+                        })
+                        wx.hideLoading()
+                        rej(res.data.data)
+                    } else {
+                        let mesg = res.data.message ? res.data.message : "未能找到信息"
+                        res.data.message && wx.showToast({
+                            title: mesg,
+                            icon: "none"
+                        })
+                        let timer = setTimeout(() => {
+
+                            wx.navigateBack()
+                        }, 1500)
+                        //wx.hideLoading()
+                        rej(["error"])
+                    }
+                    //wx.hideLoading()
+                },
+                fail: function (err) {
+                    rej("error1")
+                }
+            })
+        })
+    },
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        
+        let userid = wx.getStorageSync('userid')
+            , vocde = wx.getStorageSync('vocde')
+            , houseid = options.houseid
+        this.setData({
+            houseid,
+        })
+        wx.showLoading({
+            title: '正在查询',
+            mask: true,
+        })
+        this.getBuildingDetail(userid, vocde, houseid)
+            .catch(err => {
+                console.log(err)
+            })
     },
 
     /**
      * 生命周期函数--监听页面初次渲染完成
      */
     onReady: function () {
+        let imd = 0
+            , userid = wx.getStorageSync('userid')
+            , vocde = wx.getStorageSync('vocde')
+
         this.ecComponent1 = this.selectComponent('#ecdom1');
         this.chart = this.selectComponent("#chart");
         this.chart2 = this.selectComponent("#chart2");
-        this.loadData()
+        //this.loadData()
         this.setData({
             "houseDet.address": "滨江区龙禧硅谷广场4幢"
         })
+        this.getHouseTrend(userid, vocde, imd)
+            .then(data => {
+                let xdata = this.data.houseTrend.monthList
+                let ydataMoney = this.data.houseTrend.amountList
+                this.ecComponent1.initLine(oneLine("价格走势", xdata, ydataMoney))
+            })
+            .catch(err => console.log(err))
     },
 
     /**

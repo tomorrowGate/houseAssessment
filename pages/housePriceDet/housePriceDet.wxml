@@ -94,7 +94,7 @@
             </view>
             <view class="housepd-cell-inlineb">
                 <text class="housepd-cell-key">总  层  次: </text>
-                <text class="housepd-cell-value">{{"-"}}</text>
+                <text class="housepd-cell-value">{{houseDet.flooronstr}}</text>
             </view>
             <view class="housepd-cell-inlineb">
                 <text class="housepd-cell-key">建筑结构: </text>

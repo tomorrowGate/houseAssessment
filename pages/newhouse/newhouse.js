@@ -1,4 +1,4 @@
-import { table1, table2, table3, table4, option, option1_1, option3, option3_1, optionTime, backBarAndLine, backBarAndBar} from "../../mock/mockData.js"
+import { table1, table2, table3, table4, option, oneLine, backBarAndLine, backBarAndBar} from "../../mock/mockData.js"
 import { countMonthList, getMonths } from "../../utils/dateCalc.js"
 let echarts = require('../../utils/ec-canvas/echarts');
 let wxCharts = require('../../utils/wxcharts.js');
@@ -144,15 +144,12 @@ Page({
         this.charts2 = this.selectComponent("#chart2");
         this.charts3 = this.selectComponent("#chart3");
 
-        this.charts1.initLine(backBarAndBar("供应套数", "成交套数", getMonths(),twoType))
-        this.charts2.initLine(optionTime)
-        this.charts3.initLine(optionTime)
-        //this.charts3.initLine(backBarAndLine("当月库存量", "近年的月成交量", getMonths()))
 
         this.getNewHouseDet(userid, vocde, imd)
             .then(res => {
-                let { supplyTao, dealTao, linkRatio, yearOnYear, supplyTaoList, dealTaoList, dealAvgList, clearingCycleList, monthList } = { res }
-                that.setData({
+                let newhouseData = this.data.newhouseData
+                let { supplyTao, dealTao, linkRatio, yearOnYear, supplyTaoList, dealTaoList, dealAvgList, clearingCycleList, monthList } = { ...newhouseData }
+                this.setData({
                     supplyTao,
                     dealTao,
                     linkRatio,
@@ -162,13 +159,13 @@ Page({
                     dealAvgList,
                     clearingCycleList,
                     monthList,
-                    newhouseData
                 })
-                this.charts1.initLine(backBarAndBar("供应套数", "成交套数", monthList, twoType))
-                this.charts2.initLine(backBarAndLine("成交宗数", "成交金额", xdata, ydataNum, ydataAmount))
+                this.charts1.initLine(backBarAndBar("供应套数", "成交套数", monthList, supplyTaoList,dealTaoList,twoType))
+                this.charts2.initLine(oneLine("成交价/评估价", monthList, dealAvgList))
+                this.charts3.initLine(oneLine("成交价/评估价", monthList, clearingCycleList))
             })
             .catch(err => console.log(err))
-        this.randoms()
+        //this.randoms()
     },
 
     /**
@@ -195,6 +192,7 @@ Page({
     },
     bindPickerChangeCity(e){
         let value = this.data.arrayCity[e.detail.value]["name"]
+            ,twoType = ["bar", "bar"]
             ,imd = 0
             ,userid = wx.getStorageSync('userid')
             , vocde = wx.getStorageSync('vocde')
@@ -208,12 +206,26 @@ Page({
             imd = 0
         }
         this.getNewHouseDet(userid, vocde, imd)
-        this.getTimeCut({
-            detail: {
-                startTime: "2019/6",
-                endTime: "2020/6"
-            }
-        })
+            .then(res => {
+                let newhouseData = this.data.newhouseData
+                let { supplyTao, dealTao, linkRatio, yearOnYear, supplyTaoList, dealTaoList, dealAvgList, clearingCycleList, monthList } = { ...newhouseData }
+                this.setData({
+                    supplyTao,
+                    dealTao,
+                    linkRatio,
+                    yearOnYear,
+                    supplyTaoList,
+                    dealTaoList,
+                    dealAvgList,
+                    clearingCycleList,
+                    monthList,
+                })
+                this.charts1.initLine(backBarAndBar("供应套数", "成交套数", monthList, supplyTaoList, dealTaoList, twoType))
+                this.charts2.initLine(oneLine("成交价/评估价", monthList, dealAvgList))
+                this.charts3.initLine(oneLine("成交价/评估价", monthList, clearingCycleList))
+            })
+            .catch(err => console.log(err))
+
     },
     bindPickerChangeHouse(e) {
         let value = this.data.arrayHouse[e.detail.value]["name"]
@@ -232,43 +244,12 @@ Page({
     },
     //获取时间段
     getTimeCut(options){
-        this.setData({
-            startTime: options.detail.startTime,
-            endTime: options.detail.endTime,
-            pickerTime: options.detail.startTime + '-' + options.detail.endTime
-        })
-        console.log(this.data.pickerTime)
-        let arr = countMonthList(options.detail.startTime, options.detail.endTime)
-            ,randomData = [];
-            arr.forEach((v,i)=>{
-                randomData.push(parseInt(5+Math.random() * 95))
-            })
+        let twoType = ["bar", "bar"]
+            , userid = wx.getStorageSync('userid')
+            , vocde = wx.getStorageSync('vocde')
+            , imd = 1
 
-        optionTime.xAxis[0].data = arr
-        optionTime.series[0].data = randomData
-        //console.log(arr, optionTime)
-        this.setData({
-            chartData: optionTime
-        })
-       /*  if (!this.data.pickerCityValue){
-            wx.showToast({
-                title: '请选择城区',
-                icon:"none"
-            })
-            return
-        }
 
-        if (!this.data.pickerHouseValue) {
-            wx.showToast({
-                title: '请选择住宅',
-                icon: "none"
-            })
-            return
-        } */
-        this.charts1.initLine(backBarAndBar("供应套数", "成交套数", arr))
-        this.charts2.initLine(optionTime)
-        this.charts3.initLine(optionTime)
-        this.randoms()
     },
     /* 后台接口 */
     /* 获取所有新房详情 */
@@ -288,7 +269,9 @@ Page({
                     console.log(res)
                     if (res.data.code == 101) {
                         let newhouseData = {...res.data.data}
-                        
+                        that.setData({
+                            newhouseData
+                        })
                         resove(res.data.data)
                     } else if (res.data.code == 201) {
                         wx.navigateTo({
