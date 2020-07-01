@@ -232,7 +232,9 @@ Page({
                 let xdata = this.data.houseTrend.month
                 let ydataListing = this.data.houseTrend.listingCount
                 let ydatalCount = this.data.houseTrend.dealCount
-                this.ecComponent1.initLine(doubleLine("挂牌量", "成交量", xdata, ydataListing, ydatalCount))
+                let ydataAvg = this.data.houseTrend.dealAvg
+                this.ecComponent1.initLine(oneLine("成交价/评估价", xdata, ydataAvg))
+                //this.ecComponent1.initLine(doubleLine("挂牌量", "成交量", xdata, ydataListing, ydatalCount))
             })
             .catch(err => console.log(err))
     },

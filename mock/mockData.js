@@ -336,6 +336,7 @@ export function oneLine(title1, times, yData) {
            /*  data: [title1] */
         },
         grid: {
+            top:"4%",
             left: "50",
         },
         xAxis: [
@@ -351,7 +352,7 @@ export function oneLine(title1, times, yData) {
         }],
         series: [
             {
-                name: title1,
+                /* name: title1, */
                 type: 'line',
                 smooth: true,
                 animation: true,

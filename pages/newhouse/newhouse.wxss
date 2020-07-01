@@ -104,7 +104,10 @@
 /* 房屋数据 */
 .house-datas{
     padding: 30rpx;
-   border-bottom: 20rpx solid #F6F6F6
+}
+.house-datas+.house-datas{
+   border-top: 20rpx solid #F6F6F6
+
 }
 .house-datas-head{
     display: flex;
@@ -184,4 +187,10 @@
 .container1,.ec-canvas{
     width: 680rpx;
     height: 550rpx;
+}
+.note-text{
+    padding: 6rpx 30rpx 30rpx;
+    font-size: 24rpx;
+    font-weight: bold;
+
 }
