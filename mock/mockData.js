@@ -289,9 +289,9 @@ export function backBarAndBar(title1, title2, times,ydata1,ydata2, twoType = ["b
                 name: title1,
                 splitLine: { show: false },
                 min: 0,
-                max: Math.max(...ydata1) * 2,
+                max: parseInt(Math.max(...ydata1) * 2),
                 splitNumber: 6,
-                interval: (Math.max(...ydata1) * 2 - 0) / 6,
+                interval: parseInt((Math.max(...ydata1) * 2 - 0) / 6),
                 boundaryGap: [0.2, 0.2]
             },
             {
@@ -299,9 +299,9 @@ export function backBarAndBar(title1, title2, times,ydata1,ydata2, twoType = ["b
                 scale: true,
                 name: title2,
                 min: 0,
-                max: Math.max(...ydata2) * 2,
+                max: parseInt(Math.max(...ydata1) * 2),
                 splitNumber: 6,
-                interval: (Math.max(...ydata2) * 2 - 0) / 6,
+                interval: parseInt((Math.max(...ydata1) * 2 - 0) / 6),
                 splitLine: { show: false },
                 boundaryGap: [0.2, 0.2]
             }
@@ -328,6 +328,7 @@ export function oneLine(title1, times, yData) {
         color: ["#03A174"],
         tooltip: {
             trigger: 'axis',
+            confine: true,
             axisPointer: {
                 type: 'shadow'
             }
@@ -401,9 +402,9 @@ export function doubleLine(title1, title2, times, ydata1, ydata2) {
                 scale: true,
                 name: title1,
                 min: 0,
-               /*  max: Math.max(...ydata1) * 2,
+                max: parseInt(Math.max(...ydata1) * 2),
                 splitNumber: 6,
-                interval: (Math.max(...ydata1) * 2 - 0) / 6, */
+                interval: parseInt((Math.max(...ydata1) * 2 - 0) / 6),
                 splitLine: { show: false },
                 boundaryGap: [0.2, 0.2]
             },
@@ -412,9 +413,9 @@ export function doubleLine(title1, title2, times, ydata1, ydata2) {
                 scale: true,
                 name: title2,
                 min: 0,
-                /* max: Math.max(...ydata2) * 2,
+                max: parseInt(Math.max(...ydata1) * 2),
                 splitNumber: 6,
-                interval: (Math.max(...ydata2) * 2 - 0) / 6, */
+                interval: parseInt((Math.max(...ydata1) * 2 - 0) / 6),
                 splitLine: { show: false },
                 boundaryGap: [0.2, 0.2]
             }

@@ -41,6 +41,9 @@ Page({
      */
     onLoad: function (options) {
         //console.log(options)
+        this.setData({
+            pickerCityValue: "杭州市区"
+        })
     },
 
     /**

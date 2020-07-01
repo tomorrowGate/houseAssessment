@@ -129,7 +129,6 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-
     },
 
     /**
@@ -143,6 +142,9 @@ Page({
         this.charts1 = this.selectComponent("#chart1");
         this.charts2 = this.selectComponent("#chart2");
         this.charts3 = this.selectComponent("#chart3");
+        this.setData({
+            pickerCityValue: "杭州市区"
+        })
         wx.showLoading({
             title: '正在加载...',
             mask: true

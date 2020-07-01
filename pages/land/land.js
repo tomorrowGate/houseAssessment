@@ -80,7 +80,7 @@ Page({
         console.log(e)
     },
     bindPickerChangeCity(e) {
-        let value = "杭州主城区"
+        let value = "杭州市区"
         if (e && e.detail) {
             value = this.data.arrayCity[e.detail.value]["name"]
         }
