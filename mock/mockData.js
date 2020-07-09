@@ -376,14 +376,15 @@ export function doubleLine(title1, title2, times, ydata1, ydata2) {
         },
         tooltip: {
             trigger: 'axis',
-            axisPointer: {
+            /* axisPointer: {
                 type: 'cross'
-            }
+            } */
         },
         grid:{
             left:"50",
         },
         xAxis: [
+            
             {
                 type: 'category',
                 boundaryGap: true,
@@ -427,14 +428,14 @@ export function doubleLine(title1, title2, times, ydata1, ydata2) {
                 smooth: true,
                 animation: true,
                 data: ydata1,
-                yAxisIndex: 0,
+               /*  yAxisIndex: 0, */
             },
             {
                 name: title2,
                 type: 'line',
                 smooth: true,
                 animation: true,
-                yAxisIndex: 1,
+                /* yAxisIndex: 1, */
                 data:  ydata2
             }
         ]

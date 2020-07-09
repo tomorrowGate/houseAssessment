@@ -60,7 +60,8 @@
                 <text class="housepd-cell-key">绿化率: </text>
                 <text class="housepd-cell-value">{{houseDet.ratioGreen ||"-"}} </text>
             </view>
-            <view class="housepd-cell-block">
+            <!-- <view class="housepd-cell-block"> -->
+            <view class="housepd-cell-inlineb">
                 <text class="housepd-cell-key">物业公司: </text>
                 <text class="housepd-cell-value">{{houseDet.propertyCompany||"-"}}</text>
             </view>

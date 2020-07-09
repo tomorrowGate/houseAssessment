@@ -5,7 +5,8 @@ Page({
      * 页面的初始数据
      */
     data: {
-
+        welcomImg:"https://s1.ax1x.com/2020/04/20/JQTek8.png",
+        /* /static/img/welcome_page_bg.png */
     },
 
     /**

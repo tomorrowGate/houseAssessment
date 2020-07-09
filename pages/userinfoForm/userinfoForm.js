@@ -64,6 +64,10 @@ Page({
     },
     bind(e) {
         let _this = this
+        let isPhoneTrue = this.virifyTel(this.data.phoneNumber)
+        this.setData({
+            isPhoneTrue: isPhoneTrue
+        })
         let errArr = [ "未填写姓名", "手机号码格式错误", "未填写性别", "未填写公司","未填写职务"]
         let verifyArr = [ this.data.name, this.data.isPhoneTrue, this.data.sex, this.data.company, this.data.job]
         let isFormErr = false
@@ -99,6 +103,13 @@ Page({
             , vocde = wx.getStorageSync('vocde')
         //发送请求
         this.modifyUserData(userid, vocde, this.data.id, this.data.name, this.data.phoneNumber,this.data.sex,this.data.company,this.data.job)
+            .then(()=>{
+               
+            })
+            .catch(err=>{
+                console.log(err)
+            })
+       
         wx.hideLoading()
     },
     /* 后台接口 */
@@ -163,6 +174,13 @@ Page({
                         that.setData({
                             id:res.data.data,
                         })
+                        wx.showToast({
+                            title: res.data.message,
+                            icon: "none"
+                        })
+                        setTimeout(() => {
+                            wx.navigateBack()
+                        }, 1500)
                         resove(res.data.data)
                     }
                 },

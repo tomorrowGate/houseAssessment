@@ -221,6 +221,22 @@ Page({
                 let xData = houseTrend.monthList
                 let yDataCity = houseTrend.commList
                 let yDataDistrict = houseTrend.districtList
+               /*  let yDataCity = (function () {
+                        var res = [];
+                        var len = 12;
+                        while (len--) {
+                            res.push(Math.round(Math.random() * 1000));
+                        }
+                        return res;
+                    })()
+                let yDataDistrict = (function () {
+                    var res = [];
+                    var len = 12;
+                    while (len--) {
+                        res.push(Math.round(Math.random() * 1000));
+                    }
+                    return res;
+                })() */
 
                 this.chart.initLine(doubleLine("城区房价", "小区房价", xData, yDataCity, yDataDistrict))
             })
