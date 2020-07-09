@@ -1,7 +1,8 @@
 {
     "pages": [
-        "pages/casethink/casethink",
+        "pages/wantAssess/wantAssess",
         "pages/index/index",
+        "pages/casethink/casethink",
         "pages/houseprice/houseprice",
         "components/funcinput/funcinput",
         "pages/bindUser/bindUser",

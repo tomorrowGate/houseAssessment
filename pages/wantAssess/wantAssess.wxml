@@ -1,0 +1,14 @@
+<view class="">
+        <view class="house-datas">
+        <view class="house-datas-head">
+            <view class="house-datas-text">我要评估</view>
+            <view class="house-data-tag"></view>
+        </view>
+        <view class="house-data-body">
+            <Table 
+            thData="{{bdMessage}}" 
+            trDatas="{{tableDataNum}}" 
+            trtdWidth="{{trtdWidth}}"></Table>
+        </view>
+    </view>
+</view>

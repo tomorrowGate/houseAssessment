@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "Table": "../../components/table/table"
+},
+"navigationBarTitleText": "我要评估"
+}
