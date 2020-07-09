@@ -1,0 +1,19 @@
+<view class="case">
+    <view class="case-code" wx:for="{{codedata}}" wx:key="index">
+        <view class="case-title">{{item.address}}</view>
+        <view class="case-item">
+            <view class="case-item-btm">
+                <view class="case-btm-title">取整面积</view>
+                <view class="case-btm-val btm-area">{{item.area}}m2</view>
+            </view>
+            <view class="case-item-btm">
+                <view class="case-btm-title">签约均价</view>
+                <view class="case-btm-val btm-price">{{item.price}}</view>
+            </view>
+            <view class="case-item-btm">
+                <view class="case-btm-title">签约日期</view>
+                <view class="case-btm-val btm-date">{{item.signingDate}}</view>
+            </view>
+        </view>
+    </view>
+</view>

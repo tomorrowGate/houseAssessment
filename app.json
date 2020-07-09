@@ -1,5 +1,6 @@
 {
     "pages": [
+        "pages/casethink/casethink",
         "pages/index/index",
         "pages/houseprice/houseprice",
         "components/funcinput/funcinput",

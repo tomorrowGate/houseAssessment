@@ -12,12 +12,12 @@
 
             <view class="user-card">
                 <view class="user-card-item">
-                    <view class="user-card-itemnum">{{houseDet.apppall_init}}万元</view>
-                    <view class="user-card-itemtxt">估算总价</view>
-                </view>
-                <view class="user-card-item">
                     <view class="user-card-itemnum">{{houseDet.apppavg_init}}元/m2</view>
                     <view class="user-card-itemtxt">估算单价</view>
+                </view>
+                <view class="user-card-item">
+                    <view class="user-card-itemnum">{{houseDet.apppall_init}}万元</view>
+                    <view class="user-card-itemtxt">估算总价</view>
                 </view>
             </view>
         </view>
@@ -132,10 +132,10 @@
         <Charts chartData="{{chartData}}" id="chart"></Charts>
     </view>
 
-    <view class="house-datas">
+  <!--   <view class="house-datas">
         <view class="house-datas-head">
             <view class="house-datas-text">周边配套</view>
         </view>
     </view>
-    <baidumap class="baidu-map" searchName="{{houseDet.address}}"/>
+    <baidumap class="baidu-map" searchName="{{houseDet.address}}"/> -->
 </view>

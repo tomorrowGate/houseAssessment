@@ -1,0 +1,54 @@
+.case{
+    width: 100%;
+    height: 100%;
+    padding-bottom: 30rpx;
+    background: #F6F6F6;
+}
+.case-code{
+    width: 710rpx;
+    min-height:270rpx;
+    border-radius: 16rpx;
+    margin:30rpx auto;
+    background: #fff;
+}
+.case-title{
+    padding: 0 30rpx;
+    height: 100rpx;
+    line-height: 100rpx;
+    border-bottom: 1rpx solid #F5F5F5;
+}
+.case-item{
+    display: flex;
+
+}
+.case-item-btm{
+    flex:1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 33.33%;
+    height: 170rpx;
+    text-align: center;
+}
+.case-btm-title{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    height: 80rpx;
+    line-height: 80rpx;
+    color: #aaa;
+}
+.case-btm-val{
+     height: 90rpx;
+    line-height: 90rpx;
+}
+.btm-area{
+    color: #2977FF
+}
+.btm-price{
+    color: #FF2424
+}
+.btm-date{
+    color: #000
+}

@@ -117,12 +117,12 @@
     </view> -->
 
     
-    <view class="house-datas">
+    <!-- <view class="house-datas">
         <view class="house-datas-head">
             <view class="house-datas-text">周边配套</view>
         </view>
     </view>
-    <baidumap class="baidu-map" searchName="{{houseDet.address}}"/>
+    <baidumap class="baidu-map" searchName="{{houseDet.address}}"/> -->
 </view>
 
 <dialog isShowDia="{{isShowDia}}">
