@@ -69,7 +69,7 @@
 
     </view>
 
-   <!--  <view class="house-tag-group">
+    <view class="house-tag-group">
             <view class="house-tag-item bubble" bindtap="confirmStart">
                 <view class="house-tag-imgbox">
                     <image src="/static/img/date_icon.png"></image>
@@ -80,7 +80,7 @@
             <text>选择时间：</text> <text> {{pickerTime}} </text>
         </view>
 
-    </view> -->
+    </view>
 
     <CusTimePicker isShowDia = "{{!showModal}}" bind:getTimeCut="getTimeCut"/>
 
