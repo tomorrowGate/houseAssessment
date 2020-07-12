@@ -21,15 +21,15 @@
                 </view>
             </view>
             <view class="user-card">
-                <view class="user-card-item">
+                <view class="user-card-item" bindtap="goApplyDetail" data-key="0">
                     <view class="user-card-itemnum">{{userHouseData.applied}}</view>
                     <view class="user-card-itemtxt">已申请</view>
                 </view>
-                <view class="user-card-item">
+                <view class="user-card-item" bindtap="goApplyDetail" data-key="1">
                     <view class="user-card-itemnum">{{userHouseData.toBeAccepted}}</view>
                     <view class="user-card-itemtxt">待受理</view>
                 </view>
-                <view class="user-card-item">
+                <view class="user-card-item" bindtap="goApplyDetail" data-key="2">
                     <view class="user-card-itemnum">{{userHouseData.accepted}}</view>
                     <view class="user-card-itemtxt">已受理</view>
                 </view>

@@ -1,12 +1,13 @@
 {
     "pages": [
         "pages/index/index",
+        "pages/user/user",
+        "pages/applyDetail/applyDetail",
         "pages/casethink/casethink",
         "pages/houseprice/houseprice",
         "components/funcinput/funcinput",
         "pages/bindUser/bindUser",
         "pages/infowrite/infowrite",
-        "pages/user/user",
         "pages/housePriceDet/housePriceDet",
         "pages/priceModify/priceModify",
         "pages/newhouse/newhouse",

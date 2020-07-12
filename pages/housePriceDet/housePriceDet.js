@@ -67,6 +67,11 @@ Page({
             url: '/pages/offlineCommit/offlineCommit',
         })
     },
+    goCaseThink(e){
+        wx.navigateTo({
+            url: '/pages/casethink/casethink',
+        })
+    },
     getPrePage(){
         let pages = getCurrentPages();
         if (pages.length >= 2) {

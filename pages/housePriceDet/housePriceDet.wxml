@@ -36,7 +36,7 @@
             </view>
             <text class="housepd-item-text">市场预判</text>
         </view>
-        <view class="housepd-fun-item bubble" bindtap="nextTime">
+        <view class="housepd-fun-item bubble" bindtap="goCaseThink">
             <view class="housepd-item-imgbox">
                 <image class="" src="/static/img/case_reference_icon.png"></image>
             </view>

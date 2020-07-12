@@ -17,7 +17,8 @@ Page({
         fuzzyPortData:{},//模糊查询的后台返回数据
         page:1,
         blurTimer:null,
-        isCanClose:true
+        isCanClose:true,
+        historyRecode:[]
     },
     vModule(e){
         console.log(e.currentTarget.dataset.option,e.detail.value)
@@ -61,6 +62,7 @@ Page({
             })
     },
     filter: debounce(function(e) {
+        console.log(e)
         let keywords = e.detail.value
             ,_this = this
             ,result = []
@@ -164,6 +166,16 @@ Page({
             })
         },400)
     },
+    inputRecode(e){
+        let option = e.currentTarget.dataset.recode
+        e.detail.value = e.currentTarget.dataset.recode
+        e.currentTarget.dataset.filterdata = this.data.fuzzyQuery
+        e.currentTarget.dataset.filterkey = "fuzzyQuery"
+        this.setData({
+            "fuzzyQuery.inputValue": option
+        })
+        this.filter(e)
+    },
     /* 后台接口 */
     //模糊查询
     queryFuzzyPort(userid, vcode, key, page=1){
@@ -215,11 +227,61 @@ Page({
             })
         })
     },
+    //获取历史记录
+    getHistory(userid, vcode, ) {
+        console.log(userid, vcode)
+        return new Promise((resove, rej) => {
+            let that = this;
+            wx.request({
+                url: app.globalData.url + 'yzservice/rest/yzapp/house/HouseQueryHis',
+                method: 'GET',
+                data: {
+                    userid,
+                    vcode,
+                },
+                success: function (res) {
+                    console.log(res)
+                    if (res.data.code == 101) {
+                        //let city = []
+                        // res.data.data.forEach((v, i) => {
+                        //     city.push(v.address)
+                        // })
+                        that.setData({
+                            historyRecode: res.data.data
+                        })
+                        console.log(res.data.data,"历史记录")
+                        resove(res.data.data)
+                    } else if (res.data.code == 201) {
+                        wx.navigateTo({
+                            url: '/pages/bindUser/bindUser',
+                        })
+                        rej(res.data.data)
+                    } else {
+                        that.setData({
+                            fuzzyPortData: res.data.data,
+                            "fuzzyQuery.city": []
+                        })
+                        /* res.data.message &&  wx.showToast({
+                            title: res.data.message,
+                            icon: "none"
+                        }) */
+                        rej(["error"])
+                    }
+                },
+                fail: function (err) {
+                    rej("error1")
+                }
+            })
+        })
+    },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
+        let userid = wx.getStorageSync('userid')
+            , vocde = wx.getStorageSync('vocde')
+        this.getHistory(userid, vocde)
     },
 
     /**

@@ -91,7 +91,8 @@
     position: absolute;
     top:50%;
     left: 50%;
-    transform: translate( -50% , calc( -50% - 270rpx ))
+    transform: translate( -50% , calc( -50% - 270rpx ));
+    z-index:5
 }
 
 .houseprice-card-foot{
@@ -111,4 +112,24 @@
     font-size: 32rpx;
     border-radius: 20rpx;
     background-image: linear-gradient(to right,#0066FD,#002EFB) 
+}
+/* 历史记录 */
+.houseProceHistory{
+    position: absolute;
+    top:50%;
+    left: 50%;
+    transform: translate( calc(-50% - 210rpx) , calc( -50% - 70rpx ));
+    max-height: 400rpx;
+    overflow-y: scroll;
+}
+.history-recode-title{
+    margin-bottom: 20rpx;
+    font-weight: bold;
+    font-size: 34rpx
+}
+.history-recode{
+    
+}
+.history-recode-item{
+    margin-top: 16rpx
 }

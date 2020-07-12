@@ -1,0 +1,41 @@
+<view class="apply-page">
+    <view class="state">
+        <view data-id="0" bindtap="changeTabber" class="{{activeIndex==0?'active':''}} state-item">已申请</view>
+        <view data-id="1" bindtap="changeTabber" class="{{activeIndex==1?'active':''}} state-item">待受理</view>
+        <view data-id="2" bindtap="changeTabber" class="{{activeIndex==2?'active':''}} state-item">已受理</view>
+    </view>
+    <view class="apply-detail" wx:for="{{applyStatusArr}}" wx:key="index" >
+        <view class="apply-item">
+            <view class="apply-nav nav1">
+                <view class="apply-item-name">{{item.client}}</view>
+                <view class="apply-item-right">
+                    <!-- <view class="">
+                        <image></image>
+                    </view> -->
+                    <view class="apply-nav-address">申请状态 {{item.stateText}}</view> 
+                </view>
+            </view>
+            <view class="apply-nav nav2">
+                <!-- <view class="apply-item-block"> -->
+                    <view class="apply-item-det">
+                        申请时间：{{item.applicationDateDel}}
+                    </view>
+                    <view class="apply-item-det">
+                        受理时间：{{item.acceptanceDateDel||'-'}}
+                    </view>
+                <!-- </view> -->
+                <view class="apply-item-det apply-item-block">
+                    电话：{{item.tel}}
+                </view>
+                <view class="apply-item-det apply-item-block">
+                    地址：{{item.address}}
+                </view>
+            </view>
+            
+        </view>
+    </view>
+    <view class="no-apply" wx:if="{{false}}">
+        <image src="../../../src/image/apply.png"></image>
+        <view class="text">您还没有相关的订单</view>
+    </view>
+</view>

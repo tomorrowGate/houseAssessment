@@ -28,6 +28,13 @@ Page({
             url: '/pages/feedback/feedback',
         })
     },
+    goApplyDetail(e){
+        console.log(e.currentTarget.dataset.key,e)
+        let activeIndex = e.currentTarget.dataset.key
+        wx.navigateTo({
+            url: '/pages/applyDetail/applyDetail?activeIndex=' + activeIndex,
+        })
+    },
     isAttestation(){
         if (!app.globalData.userInfo){
             this.setData({

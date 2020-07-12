@@ -102,6 +102,21 @@
                         <input placeholder="请输入室" placeholder-class="iptbox-plc" value="{{searchParameter.room}}" bindinput="vModule" data-option="room"/>
                     </view>
                 </view> -->
+
+                <view class="houseProceHistory">
+                    <view class="history-recode-title"><text>历史纪录</text></view>  
+                    <view  class="history-recode">
+                        <view 
+                        class="history-recode-item" 
+                        wx:for="{{historyRecode}}" 
+                        wx:key="index" 
+                        bindtap="inputRecode"
+                        data-recode = "{{item.qrykey}}">
+                        {{item.qrykey}}
+                        </view>
+                    </view>
+                </view>
+
            </view>
 
            <view class="houseprice-card-foot">
