@@ -279,9 +279,7 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        let userid = wx.getStorageSync('userid')
-            , vocde = wx.getStorageSync('vocde')
-        this.getHistory(userid, vocde)
+       
     },
 
     /**
@@ -296,6 +294,9 @@ Page({
      */
     onShow: function () {
         console.log(wx.getSystemInfoSync().windowHeight)
+        let userid = wx.getStorageSync('userid')
+            , vocde = wx.getStorageSync('vocde')
+        this.getHistory(userid, vocde)
     },
 
     /**

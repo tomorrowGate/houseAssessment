@@ -69,7 +69,7 @@
 
     </view>
 
-    <view class="house-tag-group">
+   <!--  <view class="house-tag-group">
             <view class="house-tag-item bubble" bindtap="confirmStart">
                 <view class="house-tag-imgbox">
                     <image src="/static/img/date_icon.png"></image>
@@ -82,7 +82,7 @@
 
     </view>
 
-    <CusTimePicker isShowDia = "{{!showModal}}" bind:getTimeCut="getTimeCut"/>
+    <CusTimePicker isShowDia = "{{!showModal}}" bind:getTimeCut="getTimeCut"/> -->
 
    <!--   <view class="house-datas">
         <view class="house-datas-head">

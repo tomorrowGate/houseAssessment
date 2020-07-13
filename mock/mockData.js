@@ -196,6 +196,14 @@ export function backBarAndLine(title1,title2,times,ydata1,ydata2){
             trigger: 'axis',
             axisPointer: {
                 type: 'shadow'
+            },
+           formatter: function (params) {
+                var htmlStr = ""
+                for (var i = 0; i < params.length; i++) {
+                    htmlStr += params[i].seriesName + ":" + params[i].value + "\n"
+                }
+                htmlStr += "时间：" + params[0].name;
+                return htmlStr;
             }
         },
         legend: {
@@ -264,6 +272,14 @@ export function backBarAndBar(title1, title2, times,ydata1,ydata2, twoType = ["b
             trigger: 'axis',
             axisPointer: {
                 type: 'shadow'
+            },
+            formatter: function (params) {
+                var htmlStr = ""
+                for (var i = 0; i < params.length; i++) {
+                    htmlStr += params[i].seriesName + ":" + params[i].value + "\n"
+                }
+                htmlStr += "时间：" + params[0].name;
+                return htmlStr;
             }
         },
         legend: {
@@ -331,6 +347,15 @@ export function oneLine(title1, times, yData) {
             confine: true,
             axisPointer: {
                 type: 'shadow'
+            },
+            formatter: function (params) {
+                var htmlStr = ""
+                for (var i = 0; i < params.length; i++) {
+                    htmlStr += title1 + ":" + params[i].value + "\n"
+                    htmlStr += "时间：" + params[i].name;//x轴的名称
+                }
+                
+                return htmlStr;
             }
         },
         legend: {
@@ -379,6 +404,14 @@ export function doubleLine(title1, title2, times, ydata1, ydata2) {
             /* axisPointer: {
                 type: 'cross'
             } */
+            formatter: function (params) {
+                var htmlStr = ""
+                for (var i = 0; i < params.length; i++) {
+                    htmlStr += params[i].seriesName + ":" + params[i].value + "\n"
+                }
+                htmlStr += "时间：" + params[0].name;
+                return htmlStr;
+            }
         },
         grid:{
             left:"50",
@@ -437,6 +470,115 @@ export function doubleLine(title1, title2, times, ydata1, ydata2) {
                 animation: true,
                 /* yAxisIndex: 1, */
                 data:  ydata2
+            }
+        ]
+    };
+}
+/* 三折线图 */
+export function trible(title1, title2, title3, times, ydata1, ydata2, ydata3) {
+    return {
+        legend: {
+            data: [title1, title2,title3]
+        },
+        tooltip: {
+            trigger: 'axis',
+            /* axisPointer: {
+                type: 'cross'
+            } */
+            formatter: function (params) {
+                var htmlStr = ""
+                for (var i = 0; i < params.length; i++) {
+                    htmlStr += params[i].seriesName + ":" + params[i].value + "\n"
+                }
+                htmlStr += "时间：" + params[0].name;
+                return htmlStr;
+            }
+        },
+        grid: {
+            left: "50",
+            right:"20"
+        },
+        xAxis: [
+            {
+                type: 'category',
+                boundaryGap: true,
+                data: times,
+            },
+            {
+                show: false,
+                type: 'category',
+                boundaryGap: true,
+                data: times
+            },
+            {
+                show: false,
+                type: 'category',
+                boundaryGap: true,
+                data: times
+            }
+        ],
+        yAxis: {
+            type: 'value'
+        },
+       /*  yAxis: [
+            {
+                type: 'value',
+                scale: true,
+                name: title1,
+                min: 0,
+                max: parseInt(Math.max(...ydata1) * 2),
+                splitNumber: 6,
+                interval: parseInt((Math.max(...ydata1) * 2 - 0) / 6),
+                splitLine: { show: false },
+                boundaryGap: [0.2, 0.2]
+            },
+            {
+                type: 'value',
+                scale: true,
+                name: title2,
+                min: 0,
+                max: parseInt(Math.max(...ydata1) * 2),
+                splitNumber: 6,
+                interval: parseInt((Math.max(...ydata1) * 2 - 0) / 6),
+                splitLine: { show: false },
+                boundaryGap: [0.2, 0.2]
+            },
+            {
+                type: 'value',
+                scale: true,
+                name: title3,
+                min: 0,
+                max: parseInt(Math.max(...ydata1) * 2),
+                splitNumber: 6,
+                interval: parseInt((Math.max(...ydata1) * 2 - 0) / 6),
+                splitLine: { show: false },
+                boundaryGap: [0.2, 0.2]
+            }
+        ], */
+        series: [
+            {
+                name: title1,
+                type: 'line',
+                smooth: true,
+                animation: true,
+                data: ydata1,
+                /*  yAxisIndex: 0, */
+            },
+            {
+                name: title2,
+                type: 'line',
+                smooth: true,
+                animation: true,
+                /* yAxisIndex: 1, */
+                data: ydata2
+            },
+            {
+                name: title3,
+                type: 'line',
+                smooth: true,
+                animation: true,
+                /* yAxisIndex: 1, */
+                data: ydata3
             }
         ]
     };

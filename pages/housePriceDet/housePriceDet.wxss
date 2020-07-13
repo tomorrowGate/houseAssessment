@@ -158,7 +158,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    
+    margin-bottom: 20rpx;
 }
 .house-datas-text{
     font-size: 30rpx;
@@ -175,4 +175,10 @@
 }
 .house-data-body{
     height: 550rpx;
+}
+.housepd-alert{
+    color: #f20c00
+}
+.housepd-alert .housepd-cell-key{
+    color: #f20c00
 }

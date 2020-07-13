@@ -224,7 +224,8 @@ Page({
                             title: message,
                         })
                         that.setData({
-                            imgbox:[]
+                            imgbox:[],
+                            fileidArr:[]
                         })
                         resove(res.data.data)
                     }

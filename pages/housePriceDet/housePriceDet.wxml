@@ -56,6 +56,10 @@
             <view class="house-datas-text">房产基本信息</view>
         </view>
         <view class="housepd-table-cells">
+             <view class="housepd-cell-block housepd-alert">
+                <text class="housepd-cell-key">警醒: </text>
+                <text class="housepd-cell-value">{{houseDet.remark?houseDet.remark:'-'}}</text>
+            </view>
             <view class="housepd-cell-block">
                 <text class="housepd-cell-key">房屋坐落: </text>
                 <text class="housepd-cell-value">{{houseDet.address}}</text>
@@ -94,6 +98,10 @@
             </view>
             <view class="housepd-cell-inlineb">
                 <text class="housepd-cell-key">总  层  次: </text>
+                <text class="housepd-cell-value">{{"-"}}</text>
+            </view>
+            <view class="housepd-cell-inlineb">
+                <text class="housepd-cell-key">当 前  层  次: </text>
                 <text class="housepd-cell-value">{{houseDet.flooronstr}}</text>
             </view>
             <view class="housepd-cell-inlineb">

@@ -1,6 +1,6 @@
 // pages/housePriceDet/housePriceDet.js
 let app = getApp()
-import { option5, doubleLine } from "../../mock/mockData.js"
+import { option5, trible } from "../../mock/mockData.js"
 Page({
 
     /**
@@ -148,12 +148,12 @@ Page({
         return new Promise((resove, rej) => {
             let that = this;
             wx.request({
-                url: app.globalData.url + 'yzservice/rest/yzapp/house/comAndDisPrice',
+                url: app.globalData.url + 'yzservice/rest/yzapp/house/comAndDisPriceByHid',
                 method: 'GET',
                 data: {
                     userid,
                     vcode,
-                    bid:houseid,
+                    houseid:houseid,
                 },
                 success: function (res) {
                     console.log(res)
@@ -226,6 +226,7 @@ Page({
                 let xData = houseTrend.monthList
                 let yDataCity = houseTrend.commList
                 let yDataDistrict = houseTrend.districtList
+                let yDataFirstHand = houseTrend.firstHandList
                /*  let yDataCity = (function () {
                         var res = [];
                         var len = 12;
@@ -243,7 +244,7 @@ Page({
                     return res;
                 })() */
 
-                this.chart.initLine(doubleLine("城区房价", "小区房价", xData, yDataCity, yDataDistrict))
+                this.chart.initLine(trible("城区二手房房价", "小区房价", '城区一手房房价', xData, yDataCity, yDataDistrict, yDataFirstHand))
             })
             .catch(err => console.log(err))
 

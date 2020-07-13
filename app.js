@@ -40,12 +40,25 @@ App({
             }
         })
         //this.checkAuthorize()
+
+        let that = this
+        let timer = setInterval(that.heartReafsh, 660000)
+        let phone = wx.getStorageSync("cellnumber")
+        let yzm = wx.getStorageSync("vocde")
+        console.log(phone, yzm)
+        this.userLoginVeryfy(phone, yzm)
+            .catch((err) => {
+                console.log(err)
+                wx.navigateTo({
+                    url: '/pages/bindUser/bindUser',
+                })
+            })
     },
     onShow(option){
         // this.globalData.prevRoute = '/' + option.path
         // this.globalData.options = option.query
         //console.log(option, 11111)
-        let that = this
+        /* let that = this
         let timer = setInterval(that.heartReafsh,660000)
         let phone = wx.getStorageSync("cellnumber")
         let yzm = wx.getStorageSync("vocde")
@@ -56,7 +69,7 @@ App({
                 wx.navigateTo({
                     url: '/pages/bindUser/bindUser',
                 })
-            })
+            }) */
     },
     //检查是否授权过期
     checksession: function () {

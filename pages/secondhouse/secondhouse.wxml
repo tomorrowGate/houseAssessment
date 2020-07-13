@@ -92,7 +92,7 @@
     <view class="house-datas">
         <view class="house-datas-head">
             <view class="house-datas-text">价格走势</view>
-            <view class="house-data-tag">单位：%</view>
+            <view class="house-data-tag">单位：元</view>
         </view>
         <Charts chartData="{{chartData}}" id="chart2"/>
     </view>

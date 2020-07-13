@@ -118,7 +118,9 @@
     position: absolute;
     top:50%;
     left: 50%;
-    transform: translate( calc(-50% - 210rpx) , calc( -50% - 70rpx ));
+    transform: translate( calc(-50%  ) , calc( -50% + 40rpx ));
+    width:550rpx;
+    height: 400rpx;
     max-height: 400rpx;
     overflow-y: scroll;
 }
