@@ -1,8 +1,8 @@
 // pages/housePriceDet/housePriceDet.js
 let app = getApp()
 import { option5, trible } from "../../mock/mockData.js"
+import { calcDateByTime } from "../../utils/dateCalc.js"
 Page({
-
     /**
      * 页面的初始数据
      */
@@ -40,10 +40,13 @@ Page({
         ecComponent1: null,
         chart:{},
         housePriceDetPort:null,//后台返回的房屋详细信息
-        
+        oneHouseMoreCard:null,
+        isShowDia:true,
+        housePriceTotal:0,
+        houseAreaTotal:0,
+        appdate:0
     },
     randoms(){
-        
         this.setData({
             /* chartData: arr[randomInit], */
              chartData: option5
@@ -63,13 +66,15 @@ Page({
         })
     },
     goUnderLinde(e){
+        let address = this.data.houseDet.address
         wx.navigateTo({
-            url: '/pages/offlineCommit/offlineCommit',
+                url: '/pages/offlineComTwo/offineComTwo?address=' + address,
         })
     },
     goCaseThink(e){
+        let houseid = this.data.houseid
         wx.navigateTo({
-            url: '/pages/casethink/casethink',
+            url: '/pages/casethink/casethink?houseid=' + houseid,
         })
     },
     getPrePage(){
@@ -78,6 +83,11 @@ Page({
             let prevPage = pages[pages.length - 2]; //上一个页面
             return prevPage.data.searchParameter
         }
+    },
+    lookDetail(){
+        this.setData({
+            isShowDia:false
+        })
     },
     /* 后台接口 */
     //根据房屋id获取房屋信息
@@ -142,13 +152,13 @@ Page({
             })
         })
     },
-    /* 小区房价走势图 */
-    housePricetrend(userid, vcode, houseid){
+    /* 一房多证 */
+    houseMoreCard(userid, vcode, houseid){
         console.log(userid, vcode, houseid)
         return new Promise((resove, rej) => {
             let that = this;
             wx.request({
-                url: app.globalData.url + 'yzservice/rest/yzapp/house/comAndDisPriceByHid',
+                url: app.globalData.url + 'yzservice/rest/yzapp/house/HousePlusQueryByHouseid',
                 method: 'GET',
                 data: {
                     userid,
@@ -158,7 +168,49 @@ Page({
                 success: function (res) {
                     console.log(res)
                     if (res.data.code == 101) {
-                        let houseTrend = {...res.data.data}
+                        let oneHouseMoreCard = {...res.data.data}
+                        that.setData({
+                            oneHouseMoreCard,
+                        })
+                        resove(res.data.data)
+                    } else if (res.data.code == 201) {
+                        wx.navigateTo({
+                            url: '/pages/bindUser/bindUser',
+                        })
+                        wx.hideLoading()
+                        rej(res.data.data)
+                    } else {
+                        // let mesg = res.data.message ? res.data.message : "未能找到信息"
+                        // res.data.message && wx.showToast({
+                        //     title: mesg,
+                        //     icon: "none"
+                        // })
+                        rej(["error"])
+                    }
+                },
+                fail: function (err) {
+                    rej("error1")
+                }
+            })
+        })
+    },
+    /* 小区房价走势图 */
+    housePricetrend(userid, vcode, houseid) {
+        console.log(userid, vcode, houseid)
+        return new Promise((resove, rej) => {
+            let that = this;
+            wx.request({
+                url: app.globalData.url + 'yzservice/rest/yzapp/house/comAndDisPriceByHid',
+                method: 'GET',
+                data: {
+                    userid,
+                    vcode,
+                    houseid: houseid,
+                },
+                success: function (res) {
+                    console.log(res)
+                    if (res.data.code == 101) {
+                        let houseTrend = { ...res.data.data }
                         that.setData({
                             houseTrend
                         })
@@ -201,14 +253,9 @@ Page({
         this.setData({
             houseid,
         })
-        wx.showLoading({
-            title: '正在查询',
-            mask:true,
-        })
-        this.getHouseDetailById(userid, vocde, houseid)
-            .catch(err=>{
-                console.log(err)
-            })
+        this.setData({
+            appdate: calcDateByTime(10)
+        }) 
     },
 
     /**
@@ -254,7 +301,49 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-
+        let userid = wx.getStorageSync('userid')
+            , vocde = wx.getStorageSync('vocde')
+            , houseid = this.data.houseid
+            , pages = getCurrentPages()
+            , prevPage=""
+            , currPage=""
+        if (pages.length || pages.length-1) {
+            currPage = pages[pages.length - 1].route;
+            prevPage = pages[pages.length - 2].route;
+            if (prevPage = 'pages/infowritechange/infowritechange' && app.globalData.modifed){
+                this.setData({
+                    isModifyShow: true
+                })
+            }
+            console.log(currPage, prevPage)  
+        }
+        wx.showLoading({
+            title: '正在查询',
+            mask: true,
+        })
+        this.getHouseDetailById(userid, vocde, houseid)
+            .then(res => {
+                
+            })
+            .catch(err => {
+                console.log(err)
+            })
+        this.houseMoreCard(userid, vocde, houseid)
+            .then(res => {
+                let houseAreaTotal = 0
+                let housePriceTotal = 0
+                res.forEach((v, i) => {
+                    housePriceTotal += v.apppall * 1
+                    houseAreaTotal += v.area * 1
+                })
+                this.setData({
+                    housePriceTotal,
+                    houseAreaTotal
+                })
+            })
+            .catch(err => {
+                console.log(err)
+            })
     },
 
     /**
@@ -268,7 +357,7 @@ Page({
      * 生命周期函数--监听页面卸载
      */
     onUnload: function () {
-
+        app.globalData.modifed = false
     },
 
     /**

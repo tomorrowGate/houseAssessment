@@ -33,3 +33,26 @@ export function getMonths() {
     //console.log(dataArr);
     return dataArr.reverse();
 }
+
+export function calcDateByTime(dayNum=10){
+    const formatTime = date => {
+        const year = date.getFullYear()
+        const month = date.getMonth() + 1
+        const day = date.getDate()
+        const hour = date.getHours()
+        const minute = date.getMinutes()
+        const second = date.getSeconds()
+
+        return [year, month, day].map(formatNumber).join('/') 
+        // + ' ' + [hour, minute, second].map(formatNumber).join(':')
+    }
+
+    const formatNumber = n => {
+        n = n.toString()
+        return n[1] ? n : '0' + n
+    }
+
+    let time = new Date((new Date()).getTime() - dayNum * 24 * 60 * 60 * 1000)
+    console.log(formatTime(time))
+    return formatTime(time)
+}

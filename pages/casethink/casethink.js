@@ -64,7 +64,7 @@ Page({
         console.log(options)
         let userid = wx.getStorageSync('userid')
             , vocde = wx.getStorageSync('vocde')
-            , houseid = 1759711 || options.houseid 
+            , houseid = options.houseid 
         this.setData({
             houseid,
         })

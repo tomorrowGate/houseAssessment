@@ -12,7 +12,7 @@
 
             <view class="user-card">
                 <view class="user-card-item">
-                    <view class="user-card-itemnum">{{houseDet.apppavg_init}}元/m2</view>
+                    <view class="user-card-itemnum">{{houseDet.apppavg_init}}元/㎡</view>
                     <view class="user-card-itemtxt">估算单价</view>
                 </view>
                 <view class="user-card-item">
@@ -50,6 +50,20 @@
         </view>
     </view>
 
+        <view class="user-card-modify" wx:if="{{isModifyShow}}">
+            <view class="user-card-item">
+                <view class="user-card-itemnum">
+                <text class="user-modify-avg">{{houseDet.apppavg2}}</text> 
+                元/㎡</view>
+                <view class="user-card-itemtxt">修正后估算单价</view>
+            </view>
+            <view class="user-card-item">
+                <view class="user-card-itemnum">
+                <text class="user-modify-avg">{{houseDet.apppall2}}</text> 
+                万元</view>
+                <view class="user-card-itemtxt">修正后估算总价</view>
+            </view>
+        </view>
     
     <view class="housepd-table">
         <view class="housepd-table-head"> 
@@ -57,8 +71,14 @@
         </view>
         <view class="housepd-table-cells">
              <view class="housepd-cell-block housepd-alert">
-                <text class="housepd-cell-key">警醒: </text>
-                <text class="housepd-cell-value">{{houseDet.remark?houseDet.remark:'-'}}</text>
+                <view class="housepd-cell-block">
+                    <text class="housepd-cell-key">警醒: </text>
+                    <text class="housepd-cell-value">{{houseDet.remark?houseDet.remark:'-'}}</text>
+                </view>
+               <view class="housepd-alert-detail" wx:if="{{houseDet.remark}}" bindtap="lookDetail">
+               详情
+                <text class="iconfont icon-arrowRight-fill"></text>
+               </view>
             </view>
             <view class="housepd-cell-block">
                 <text class="housepd-cell-key">房屋坐落: </text>
@@ -108,6 +128,11 @@
                 <text class="housepd-cell-key">建筑结构: </text>
                 <text class="housepd-cell-value">{{houseDet.fstruct?houseDet.fstruct:'-'}}</text>
             </view>
+             <view class="housepd-cell-inlineb">
+                <text class="housepd-cell-key">价值时点: </text>
+                <!-- <text class="housepd-cell-value">{{appdate||'-'}}</text> -->
+                <text class="housepd-cell-value">{{houseDet.appdate||'-'}}</text>
+            </view>
         </view>
     </view>
 
@@ -139,6 +164,50 @@
         </view>
         <Charts chartData="{{chartData}}" id="chart"></Charts>
     </view>
+
+    <dialog isShowDia="{{isShowDia}}">
+        <view class="housepd-dia-title">相关房屋摘要</view>
+        <view class="apply-detail" wx:for="{{oneHouseMoreCard}}" wx:key="index" >
+            <view class="apply-item">
+                <view class="apply-nav nav1">
+                    <view class="apply-item-name">{{item.address}}</view>
+                    <!-- <view class="apply-item-right">
+                        <view class="apply-nav-address">申请状态 {{item.stateText}}</view> 
+                    </view> -->
+                </view>
+                <view class="apply-nav nav2">
+                    <view class="apply-item-det">
+                        <text class="item-det-key">单价：</text> 
+                        <text class="item-det-red">{{item.apppavg||'-'}}</text>元/㎡
+                    </view>
+                    <view class="apply-item-det">
+                            <text class="item-det-key">总价：</text>
+                        <text class="item-det-red">{{item.apppall||'-'}}</text> 万元
+                    </view>
+                    <view class="apply-item-det apply-item-block">
+                        <text class="item-det-key">取整面积：</text> 
+                        {{item.area}}㎡
+                    </view>
+                    <view class="apply-item-det apply-item-block">
+                         <text class="item-det-key">价值时点：</text>
+                       {{item.appdate||'-'}}
+                       <!--  {{appdate||'-'}} -->
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="housepd-dia-foot">
+            <view class="dia-foot-item">
+                取整面积（总计）： 
+                <text class="item-det-red">{{houseAreaTotal}}</text>㎡
+            </view>
+            <view class="dia-foot-item">
+                总价（总计）：
+                <text class="item-det-red">{{housePriceTotal}}</text>万元
+            </view>
+        </view>
+    </dialog>
+
 
   <!--   <view class="house-datas">
         <view class="house-datas-head">

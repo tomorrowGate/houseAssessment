@@ -12,28 +12,56 @@
                     <!-- <view class="">
                         <image></image>
                     </view> -->
-                    <view class="apply-nav-address">申请状态 {{item.stateText}}</view> 
+                    <view class="apply-nav-address">
+                        <text class="item-det-key">申请状态</text> 
+                        {{item.stateText}}
+                    </view> 
                 </view>
             </view>
             <view class="apply-nav nav2">
                 <!-- <view class="apply-item-block"> -->
                     <view class="apply-item-det">
-                        申请时间：{{item.applicationDateDel}}
+                        <text class="item-det-key">申请时间：</text> 
+                        {{item.applicationDateDel}}
                     </view>
                     <view class="apply-item-det">
-                        受理时间：{{item.acceptanceDateDel||'-'}}
+                        <text class="item-det-key">受理时间：</text> 
+                        {{item.acceptanceDateDel||'-'}}
                     </view>
                 <!-- </view> -->
                 <view class="apply-item-det apply-item-block">
-                    电话：{{item.tel}}
+                    <text class="item-det-key">电话：</text> 
+                    {{item.tel}}
                 </view>
                 <view class="apply-item-det apply-item-block">
-                    地址：{{item.address}}
+                    <text class="item-det-key">地址：</text>
+                    {{item.address}}
                 </view>
             </view>
-            
+            <view class="apply-nav nav3">
+                <view class="apply-fileList bubble" data-arids="{{item.arids}}" bindtap="lookFiles">查看文件列表</view>
+            </view>
         </view>
     </view>
+
+    <dialog isShowDia="{{isShowDia}}">
+    
+        <view class="apply-dia-title">文件列表</view>
+        <view class="apply-dia-out" wx:if="{{fileList.length}}">
+            <view 
+            class="apply-dia-item" 
+            wx:for="{{fileList}}" 
+            wx:key="index" 
+            bindtap="showFile"
+            data-url="{{item.url}}">
+                {{item.fileName}}
+            </view>
+        </view>
+         <view class="apply-dia-out" wx:if="{{!fileList.length}}">
+            <view  class="apply-dia-item" >暂无文件</view>
+         </view>
+    </dialog>
+
     <view class="no-apply" wx:if="{{false}}">
         <image src="../../../src/image/apply.png"></image>
         <view class="text">您还没有相关的订单</view>

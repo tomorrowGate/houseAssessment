@@ -16,7 +16,7 @@
             </view>
             
             <view class="appraise-cell">
-                <view class="appraise-cell-key">预期价格</view>
+                <view class="appraise-cell-key">预期总价(万元)</view>
                 <view class="appraise-cell-value">
                     <input type="number" class="cell-value-input" placeholder-class="plh-ipt" placeholder="请输入" bindinput="priceInput"  value="{{price}}"/>
                 </view>

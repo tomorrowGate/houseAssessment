@@ -28,6 +28,8 @@
     border-radius: 16rpx;
     top: 50%;
     left: 50%;
+    max-height: 1000rpx;
+    overflow-y: scroll;
     transform: translate(-50%, -50%);
     z-index: 8;
 }

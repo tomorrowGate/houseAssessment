@@ -86,7 +86,7 @@
     <!-- <view class="house-datas">
         <view class="house-datas-head">
             <view class="house-datas-text">交叉查询-面积</view>
-            <view class="house-data-tag">单位：面积(m2)\总价(万元)</view>
+            <view class="house-data-tag">单位：面积(㎡)\总价(万元)</view>
         </view>
         <view class="house-data-body">
            <Table thData="{{bdMessage}}" trDatas="{{tableDataArea}}" trtdWidth="{{trtdWidth}}" wx:if="{{tableDataArea&&tableDataArea.length}}"></Table>

@@ -7,7 +7,7 @@
         <view class="user-card-out">
             <view class="user-head">
                <view class="house-src">{{houseDet.tName||houseDet.bName||houseDet.qName||" "}}</view>
-               <view class="house-num">{{houseDet.price + '元/m2'}}</view>
+               <view class="house-num">{{houseDet.price + '元/㎡'}}</view>
             </view>
 
             <view class="user-card" bindtap="showInputSearch">

@@ -1,6 +1,7 @@
 {
     "pages": [
         "pages/index/index",
+        "pages/offlineComTwo/offineComTwo",
         "pages/user/user",
         "pages/applyDetail/applyDetail",
         "pages/casethink/casethink",

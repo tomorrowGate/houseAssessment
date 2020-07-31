@@ -1,0 +1,7 @@
+@import "../appraise/appraise.wxss";
+.appraise-cell-key{
+    flex:1
+}
+.appraise-cell-value{
+    flex:2
+}

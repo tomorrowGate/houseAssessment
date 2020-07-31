@@ -257,6 +257,7 @@ App({
         userServiceInfo:null,
         share: false,  // 分享默认为false
         height: 0,
+        modifed:false,//是否修改过房屋的价格
         url: "https://yz.hzhfeidian.com/",
         systemInfo: null, //客户端设备信息
         userInfo: null,

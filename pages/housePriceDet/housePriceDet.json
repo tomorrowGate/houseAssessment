@@ -3,6 +3,7 @@
     "usingComponents": {
         "ec-canvas": "../../utils/ec-canvas/ec-canvas",
         "baidumap": "../../components/baidumap/baidumap",
+        "dialog": "/components/dialog/dialog",
         "Charts": "../../components/charts/charts"
     }
 }

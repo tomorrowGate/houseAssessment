@@ -43,12 +43,20 @@ Page({
         console.log(modify)
         this.submitModify(modify)
             .then((res)=>{
-                this.getHouseDetailById(userid, vocde, houseid)
-                    .then(res=>{
-                        this.setData({
-                            isDiaShow: !this.data.isDiaShow
-                        })
-                    })
+                app.globalData.modifed = true
+                // this.getHouseDetailById(userid, vocde, houseid)
+                //     .then(res=>{
+                //         this.setData({
+                //             isDiaShow: !this.data.isDiaShow
+                //         })
+                //     })
+                wx.showToast({
+                    title: '修改成功',
+                    duration:500
+                })
+                setTimeout(() => {
+                    wx.navigateBack()
+                }, 500) 
             })
             .catch((err)=>{
                 console.log(err)
@@ -80,11 +88,14 @@ Page({
             title: '修改成功',
             duration: 1000
         })
-        setTimeout(() => {
+       /*  setTimeout(() => {
             this.setData({
                 isDiaShow: false
             })
-        }, 1000)
+        }, 1000) */
+        setTimeout(() => {
+            wx.navigateBack()
+        }, 2500) 
     },
     /* 后台接口 */
     //提交修改
@@ -182,8 +193,8 @@ Page({
                     console.log(res)
                     if (res.data.code == 101) {
                         that.setData({
-                            modifyAppavg: res.data.data.apppavg,
-                            modifyAppall: res.data.data.apppall
+                            modifyAppavg: res.data.data.apppavg2,
+                            modifyAppall: res.data.data.apppall2
                         })
                         resove(res.data.data)
                     } else if (res.data.code == 201) {

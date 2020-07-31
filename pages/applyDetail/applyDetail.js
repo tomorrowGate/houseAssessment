@@ -8,6 +8,10 @@ Page({
     data: {
         activeIndex:0,
         applyStatusArr:[],
+        isShowDia:true,
+        fileList:[],
+        activeFile:null,
+        lookedImgList:[]
     },
     changeTabber(e){
         let activeIndex = e.currentTarget.dataset.id
@@ -18,6 +22,45 @@ Page({
             activeIndex
         })
         this.getUserHouseData(userid,vocde,activeIndex)
+    },
+    lookFiles(e){
+        let activeFile = e.currentTarget.dataset.arids
+            ,self = this
+            , userid = wx.getStorageSync('userid')
+            , vocde = wx.getStorageSync('vocde')
+        this.getFileList(userid, vocde, activeFile)
+            .then(res=>{
+                this.data.lookedImgList = []
+                let lookedImgList = []
+                res.forEach((v,i)=>{
+                    lookedImgList.push(v.url)
+                })
+                this.setData({
+                    lookedImgList
+                })
+            })
+            .catch(err=>{
+                console.log(err)
+            })
+        this.setData({
+            isShowDia:false,
+            activeFile,
+        })
+    },
+    showFile(e){
+        let that = this
+        let current = e.currentTarget.dataset.url
+        if (!current || current == "null"){
+            wx.showToast({
+                title: '文件无法查看!',
+                icon:"none"
+            })
+            return
+        }
+        wx.previewImage({
+            current, // 当前显示图片的http链接
+            urls: that.data.lookedImgList // 需要预览的图片http链接列表
+        })
     },
     /* 后台接口 */
     getUserHouseData(userid, vcode, state) {
@@ -48,6 +91,33 @@ Page({
                         })
                         that.setData({
                             applyStatusArr: res.data.data
+                        })
+                        resove(res.data.data)
+                    }
+                },
+                fail: function (err) {
+                    rej("error 受理状态")
+                }
+            })
+        })
+    },
+    getFileList(userid, vcode, ids) {
+        return new Promise((resove, rej) => {
+            let that = this;
+            wx.request({
+                url: app.globalData.url + 'yzservice/rest/yzapp/evaluation/getProjectFiles',
+                method: 'get',
+                data: {
+                    userid,
+                    vcode,
+                    ids
+                },
+                success: function (res) {
+                    console.log(res)
+                    if (res.data.code == 101) {
+                        
+                        that.setData({
+                            fileList: res.data.data
                         })
                         resove(res.data.data)
                     }

@@ -4,7 +4,7 @@
         <view class="case-item">
             <view class="case-item-btm">
                 <view class="case-btm-title">取整面积</view>
-                <view class="case-btm-val btm-area">{{item.area}}m2</view>
+                <view class="case-btm-val btm-area">{{item.area}}㎡</view>
             </view>
             <view class="case-item-btm">
                 <view class="case-btm-title">签约均价</view>

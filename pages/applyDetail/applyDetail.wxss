@@ -69,6 +69,24 @@ page{
     flex-wrap: wrap;
 }
 
+.nav3{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 30rpx 24rpx;
+    border-top: 1rpx solid #ddd;
+    box-sizing: border-box;
+}
+.apply-fileList{
+    width:194rpx;
+    height:74rpx;
+    line-height: 74rpx;
+    text-align: center;
+    color: rgba(0,75,255,1);
+    background:rgba(255,255,255,1);
+    border:1px solid rgba(0,75,255,1);
+    border-radius:20rpx;
+}
 
 .apply-item-name{
     font-size: 30rpx;
@@ -126,4 +144,29 @@ page{
   margin-left: -140rpx;
   font-size: 28rpx;
   color: #7c7c7c;
+}
+.item-det-key{
+    color:#999999
+}
+/* 弹窗 */
+.apply-dia-title{
+    width: 100%;
+    height: 56rpx;
+    padding-top: 30rpx;
+    line-height: 56rpx;
+    text-align: center;
+    font-size: 30rpx;
+    font-weight: 600;
+}
+.apply-dia-out{
+    
+    padding: 24rpx;
+    
+}
+.apply-dia-item{
+    color:#00a0e9;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: no-wrap;
+    margin:20rpx 0;
 }

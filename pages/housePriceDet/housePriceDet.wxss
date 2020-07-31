@@ -1,8 +1,10 @@
+@import "../applyDetail/applyDetail.wxss";
 .user-main{
     position: relative;
     padding-bottom: 30rpx;
 }
 .user-bg{
+    position: relative;
     /* height: 336rpx; */
     height: 396rpx;
      /* height: 455rpx; */
@@ -11,6 +13,7 @@
     position: absolute;
     top: 60rpx;
     width: 100%;
+    height: 336rpx;
     box-sizing: border-box;
     z-index: 2;
 }
@@ -29,11 +32,26 @@
     margin-top: 30rpx
 }
 .user-card{
+    position: absolute;
+    bottom:0;
+    width:100%;
     display: flex;
     margin-top: 40rpx;
     background: #1165FF;
     color: #CADCFC;
     border-top:1rpx solid #0F66FF;
+}
+.user-card-modify{
+    display: flex;
+    width:calc(100% - 40rpx);
+    margin:1rpx auto;
+    color:#fff;
+   /* padding: 0 16rpx; */
+    background: rgb(14,102,252);
+    border-radius:6rpx 50rpx 6rpx 50rpx;
+}
+.user-modify-avg{
+    color:rgb(250,186,11)
 }
 .user-card-item{
     flex: 1;
@@ -177,8 +195,49 @@
     height: 550rpx;
 }
 .housepd-alert{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    white-space: wrap;
     color: #f20c00
 }
 .housepd-alert .housepd-cell-key{
     color: #f20c00
+}
+.housepd-alert-detail{
+    display: flex;
+    align-items: center;
+    width: 70rpx;
+    text-align: center;
+}
+/* 弹窗 */
+.housepd-dia-title{
+    width: 100%;
+    height: 56rpx;
+    padding-top: 30rpx;
+    line-height: 56rpx;
+    text-align: center;
+    font-size: 30rpx;
+    font-weight: 600;
+}
+.housepd-alert-detail {
+    width: 88rpx
+}
+.apply-detail {
+    display: flex;
+    flex-direction: column;
+    padding: 0rpx;
+    margin: 20px auto 0;
+    width: calc( 100% - 60rpx);
+    box-shadow: 0 5rpx 10rpx #ccc;
+    box-sizing: border-box;
+}
+.item-det-red{
+    color: #f20c00
+}
+.housepd-dia-foot{
+    padding: 30rpx 30rpx 0 30rpx;
+}
+.dia-foot-item{
+    text-align: right;
 }

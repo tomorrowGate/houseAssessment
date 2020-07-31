@@ -1,4 +1,6 @@
 {
     "navigationBarTitleText": "申请状态",
-  "usingComponents": {}
+    "usingComponents": {
+        "dialog": "/components/dialog/dialog"
+    }
 }
